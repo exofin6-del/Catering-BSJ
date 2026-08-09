@@ -1,0 +1,222 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e7]:
+      - list [ref=e9]:
+        - listitem [ref=e10]:
+          - link "Laravel Starter Kit" [ref=e11] [cursor=pointer]:
+            - /url: /dashboard
+            - img [ref=e13]
+            - generic [ref=e16]: Laravel Starter Kit
+      - generic [ref=e18]:
+        - generic [ref=e19]: Platform
+        - list [ref=e21]:
+          - listitem [ref=e22]:
+            - link "Dashboard" [ref=e23] [cursor=pointer]:
+              - /url: /dashboard
+              - img [ref=e24]
+              - generic [ref=e29]: Dashboard
+          - listitem [ref=e30]:
+            - link "Kategori" [ref=e31] [cursor=pointer]:
+              - /url: /kategori
+              - img [ref=e32]
+              - generic [ref=e36]: Kategori
+          - listitem [ref=e37]:
+            - link "Menu" [ref=e38] [cursor=pointer]:
+              - /url: /menu
+              - img [ref=e39]
+              - generic [ref=e42]: Menu
+          - listitem [ref=e43]:
+            - link "Paket" [ref=e44] [cursor=pointer]:
+              - /url: /paket
+              - img [ref=e45]
+              - generic [ref=e47]: Paket
+          - listitem [ref=e48]:
+            - link "Order" [ref=e49] [cursor=pointer]:
+              - /url: /order
+              - img [ref=e50]
+              - generic [ref=e53]: Order
+      - generic [ref=e54]:
+        - list [ref=e57]:
+          - listitem [ref=e58]:
+            - link "Repository" [ref=e59] [cursor=pointer]:
+              - /url: https://github.com/laravel/react-starter-kit
+              - img [ref=e60]
+              - generic [ref=e65]: Repository
+          - listitem [ref=e66]:
+            - link "Documentation" [ref=e67] [cursor=pointer]:
+              - /url: https://laravel.com/docs/starter-kits#react
+              - img [ref=e68]
+              - generic [ref=e70]: Documentation
+        - list [ref=e71]:
+          - listitem [ref=e72]:
+            - button "EA Example Admin" [ref=e73]:
+              - generic [ref=e75]: EA
+              - generic [ref=e77]: Example Admin
+              - img [ref=e78]
+    - main [ref=e81]:
+      - generic [ref=e83]:
+        - link "Kembali ke Order" [ref=e86] [cursor=pointer]:
+          - /url: /order
+          - img
+        - generic [ref=e87]:
+          - heading "Edit Order" [level=2] [ref=e92]
+          - navigation "breadcrumb" [ref=e94]:
+            - list [ref=e95]:
+              - listitem [ref=e96]:
+                - link "Dashboard" [ref=e97] [cursor=pointer]:
+                  - /url: /dashboard
+              - listitem [ref=e98]:
+                - img [ref=e99]
+              - listitem [ref=e101]:
+                - link "Order" [ref=e102] [cursor=pointer]:
+                  - /url: /order
+              - listitem [ref=e103]:
+                - img [ref=e104]
+              - listitem [ref=e106]:
+                - link "Edit" [disabled] [ref=e107]
+      - generic [ref=e110]:
+        - navigation "Progress" [ref=e112]:
+          - list [ref=e113]:
+            - listitem [ref=e114] [cursor=pointer]:
+              - button [ref=e115]:
+                - img [ref=e116]
+              - generic [ref=e118]:
+                - generic [ref=e119]: Step 1
+                - generic [ref=e120]: Informasi Pelanggan
+            - listitem [ref=e122] [cursor=pointer]:
+              - button [ref=e123]:
+                - img [ref=e124]
+              - generic [ref=e127]:
+                - generic [ref=e128]: Step 2
+                - generic [ref=e129]: Item order
+            - listitem [ref=e131] [cursor=pointer]:
+              - button [ref=e132]:
+                - img [ref=e133]
+              - generic [ref=e135]:
+                - generic [ref=e136]: Step 3
+                - generic [ref=e137]: Pembayaran
+        - generic [ref=e225]:
+          - group [ref=e227]:
+            - generic [ref=e228]:
+              - generic [ref=e229]: Informasi Pembayaran
+              - paragraph [ref=e230]: Catat pembayaran baru hanya saat uangnya sudah diterima.
+            - generic [ref=e231]:
+              - generic [ref=e232]:
+                - img [ref=e234]
+                - generic [ref=e237]:
+                  - paragraph [ref=e238]: Pembayaran order
+                  - paragraph [ref=e239]: Isi nominal pembayaran yang diterima. Sistem menentukan DP atau lunas dari nominalnya.
+              - generic [ref=e241]:
+                - generic [ref=e242]:
+                  - generic [ref=e243]: Metode pembayaran
+                  - combobox "Metode pembayaran" [ref=e244]:
+                    - generic: Belum dibayar
+                    - img
+                  - combobox [ref=e245]
+                - generic [ref=e246]:
+                  - generic [ref=e247]:
+                    - generic [ref=e248]: Nominal pembayaran
+                    - generic [ref=e249] [cursor=pointer]:
+                      - checkbox "Catat lunas" [disabled] [ref=e250]
+                      - checkbox [disabled]
+                      - text: Catat lunas
+                  - group [ref=e251]:
+                    - group [ref=e252]:
+                      - generic [ref=e253]: Rp
+                    - textbox "Pilih metode dulu" [ref=e254]
+                  - paragraph [ref=e255]: Pilih metode pembayaran untuk mulai mencatat pembayaran.
+                - generic [ref=e256]:
+                  - generic [ref=e257]: Bukti pembayaran
+                  - generic [ref=e258]:
+                    - region:
+                      - img
+                      - generic:
+                        - paragraph: Upload bukti pembayaran
+                        - paragraph: Gambar maksimal 2 MB.
+                    - button "Bukti pembayaran" [disabled] [ref=e259]
+                    - generic [ref=e260]: Bukti pembayaran
+            - generic [ref=e261]:
+              - generic [ref=e262]:
+                - generic [ref=e263]:
+                  - img [ref=e265]
+                  - generic [ref=e268]:
+                    - paragraph [ref=e269]: Belum ada pembayaran
+                    - paragraph [ref=e270]: Belum ada pembayaran baru yang akan dicatat.
+                - generic [ref=e271]:
+                  - generic [ref=e272]: Status saat ini
+                  - generic [ref=e273]: Belum bayar
+              - generic [ref=e274]:
+                - generic [ref=e275]:
+                  - paragraph [ref=e276]: Total tagihan
+                  - paragraph [ref=e277]: Rp 4.865.000
+                - generic [ref=e278]:
+                  - paragraph [ref=e279]: Sudah dibayar
+                  - paragraph [ref=e280]: Rp 0
+                - generic [ref=e281]:
+                  - paragraph [ref=e282]: Sisa tagihan
+                  - paragraph [ref=e283]: Rp 4.865.000
+          - complementary [ref=e284]:
+            - group [ref=e285]:
+              - generic [ref=e286]:
+                - generic [ref=e287]: Ringkasan order
+                - paragraph [ref=e288]: Periksa item order, informasi pelanggan, dan riwayat pembayaran.
+              - generic [ref=e289]:
+                - tablist [ref=e290]:
+                  - tab "Item order 3" [selected] [ref=e291]:
+                    - text: Item order
+                    - generic [ref=e292]: "3"
+                  - tab "Pelanggan" [ref=e293]
+                - tabpanel "Item order 3" [ref=e294]:
+                  - generic [ref=e295]:
+                    - generic [ref=e296]:
+                      - article [ref=e298]:
+                        - img "Paket Seminar Hemat" [ref=e300]
+                        - heading "Paket Seminar Hemat" [level=3] [ref=e303]
+                        - button "Tampilkan detail Paket Seminar Hemat" [ref=e305]:
+                          - img
+                        - generic [ref=e306]:
+                          - generic [ref=e307]:
+                            - generic [ref=e308]: Nasi Box
+                            - generic [ref=e309]: "|"
+                            - generic [ref=e310]: "70"
+                            - generic [ref=e311]: ×
+                            - generic [ref=e312]: Rp 45.000
+                          - generic [ref=e313]: Rp 3.150.000
+                      - article [ref=e314]:
+                        - img "Snack Box Classic" [ref=e316]
+                        - heading "Snack Box Classic" [level=3] [ref=e319]
+                        - generic [ref=e320]:
+                          - generic [ref=e321]:
+                            - generic [ref=e322]: Snack Box
+                            - generic [ref=e323]: "|"
+                            - generic [ref=e324]: "70"
+                            - generic [ref=e325]: ×
+                            - generic [ref=e326]: Rp 16.500
+                          - generic [ref=e327]: Rp 1.155.000
+                      - article [ref=e328]:
+                        - img "Es Teh Manis Jumbo" [ref=e330]
+                        - heading "Es Teh Manis Jumbo" [level=3] [ref=e333]
+                        - generic [ref=e334]:
+                          - generic [ref=e335]:
+                            - generic [ref=e336]: Minuman
+                            - generic [ref=e337]: "|"
+                            - generic [ref=e338]: "80"
+                            - generic [ref=e339]: ×
+                            - generic [ref=e340]: Rp 7.000
+                          - generic [ref=e341]: Rp 560.000
+                    - generic [ref=e342]:
+                      - generic [ref=e343]:
+                        - generic [ref=e344]: Subtotal
+                        - generic [ref=e345]: Rp 4.865.000
+                      - generic [ref=e346]:
+                        - generic [ref=e347]: Total
+                        - generic [ref=e348]: Rp 4.865.000
+        - generic [ref=e221]:
+          - button "Sebelumnya" [ref=e350]:
+            - img
+            - text: Sebelumnya
+          - generic [ref=e222]: Langkah 3/3
+          - button "Simpan perubahan" [ref=e351]:
+            - img
+            - text: Simpan perubahan
+  - region "Notifications alt+T"

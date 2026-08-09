@@ -1,0 +1,6 @@
+[    2881ms] [LOG] 🔍 Browser logger active (MCP server detected). Posting to: http://localhost:8000/_boost/browser-logs @ http://localhost:8000/menu?category_id=2&per_page=10:173
+[    3987ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:8000/menu?category_id=2&per_page=10:232
+[ 1085025ms] [LOG] 🔍 Browser logger active (MCP server detected). Posting to: http://localhost:8000/_boost/browser-logs @ http://localhost:8000/menu?per_page=10:173
+[ 1085603ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:8000/menu?per_page=10:232
+[ 1337814ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://[::1]:5173/resources/js/components/charts/bar-chart-mixed.tsx?t=1780953823532:0
+[ 1337855ms] [ERROR] [vite] Failed to reload /resources/js/components/charts/bar-chart-mixed.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:8000/menu?per_page=10:232

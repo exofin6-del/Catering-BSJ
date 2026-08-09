@@ -1,0 +1,160 @@
+- generic:
+  - generic:
+    - generic:
+      - main:
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - heading [level=2]: Edit Order
+            - generic:
+              - generic:
+                - link:
+                  - /url: /order
+                  - img
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - navigation:
+                  - list:
+                    - listitem:
+                      - generic:
+                        - button:
+                          - img
+                        - generic: Step 1
+                    - listitem:
+                      - generic:
+                        - button:
+                          - img
+                        - generic: Step 2
+                    - listitem:
+                      - generic:
+                        - button:
+                          - img
+                        - generic: Step 3
+                    - listitem:
+                      - generic:
+                        - button:
+                          - img
+                        - generic: Step 4
+              - generic:
+                - generic:
+                  - group:
+                    - generic:
+                      - generic:
+                        - generic: Item order
+                        - paragraph: Tambahkan menu atau paket untuk order ini.
+                      - button:
+                        - img
+                        - text: Tambah
+                    - generic:
+                      - generic:
+                        - generic:
+                          - article:
+                            - img
+                            - generic:
+                              - button:
+                                - img
+                              - generic:
+                                - generic:
+                                  - heading [level=3]: Paket Meeting Premium
+                                - generic:
+                                  - generic: Event & Meeting · Min. 20 pesanan
+                              - generic:
+                                - generic:
+                                  - group:
+                                    - button:
+                                      - img
+                                    - spinbutton: "25"
+                                    - button:
+                                      - img
+                                  - button:
+                                    - img
+                                - generic: Rp 1.166.675
+                        - article:
+                          - img
+                          - generic:
+                            - generic:
+                              - generic:
+                                - heading [level=3]: Jus Jeruk Peras
+                              - generic:
+                                - generic: Minuman · Min. 20 pesanan
+                            - generic:
+                              - generic:
+                                - group:
+                                  - button:
+                                    - img
+                                  - spinbutton: "25"
+                                  - button:
+                                    - img
+                                - button:
+                                  - img
+                              - generic: Rp 250.000
+                  - complementary:
+                    - generic:
+                      - img
+                      - heading [level=2]: Ringkasan item
+                    - generic:
+                      - generic:
+                        - generic: 2 item order
+                        - generic: Rp 1.416.675
+                      - generic:
+                        - generic: Total sementara
+                        - generic: Rp 1.416.675
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - button:
+                        - img
+                        - text: Sebelumnya
+                    - generic: Langkah 2/4
+                    - generic:
+                      - button:
+                        - text: Berikutnya
+                        - img
+    - region "Notifications alt+T"
+  - dialog "Tambah item order" [active] [ref=e287]:
+    - generic [ref=e288]:
+      - heading "Tambah item order" [level=2] [ref=e289]
+      - paragraph [ref=e290]: Cari menu atau paket lalu konfirmasi jumlahnya.
+    - generic [ref=e822]:
+      - generic [ref=e823]:
+        - button "Kembali" [ref=e824]:
+          - img
+        - generic [ref=e825]:
+          - heading "Konfirmasi item" [level=2] [ref=e826]
+          - paragraph [ref=e827]: Atur jumlah dan pilihan paket sebelum item ditambahkan.
+      - generic [ref=e828]:
+        - generic [ref=e829]:
+          - img "Nasi Box Ayam Bakar" [ref=e831]
+          - generic [ref=e832]:
+            - generic [ref=e833]:
+              - heading "Nasi Box Ayam Bakar" [level=3] [ref=e834]
+              - generic [ref=e835]: Menu
+            - paragraph [ref=e836]: Nasi Box · Min. 20 pesanan
+            - paragraph [ref=e837]: Rp 29.000/ item
+        - generic [ref=e838]:
+          - generic [ref=e839]:
+            - paragraph [ref=e840]: Jumlah pesanan
+            - paragraph [ref=e841]: Minimal 20 pesanan
+          - group [ref=e842]:
+            - button "Kurangi jumlah" [disabled]:
+              - img
+            - spinbutton "Jumlah pesanan" [ref=e843]: "20"
+            - button "Tambah jumlah" [ref=e844]:
+              - img
+        - generic [ref=e846]:
+          - img [ref=e847]
+          - generic [ref=e849]: Jumlah masih bisa diubah dari panel item order.
+      - generic [ref=e850]:
+        - generic [ref=e851]:
+          - paragraph [ref=e852]: Subtotal
+          - paragraph [ref=e853]: Rp 580.000
+        - button "Tambah item" [ref=e855]:
+          - img
+          - text: Tambah item

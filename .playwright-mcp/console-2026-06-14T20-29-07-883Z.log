@@ -1,0 +1,22 @@
+[    1794ms] [LOG] 🔍 Browser logger active (MCP server detected). Posting to: http://127.0.0.1:8000/_boost/browser-logs @ http://127.0.0.1:8000/order/1/edit:173
+[    3124ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:8000/order/1/edit:232
+[  268785ms] [LOG] 🔍 Browser logger active (MCP server detected). Posting to: http://127.0.0.1:8000/_boost/browser-logs @ http://127.0.0.1:8000/order/1/edit:173
+[  269127ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:8000/order/1/edit:232
+[  356133ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://[::1]:5173/resources/js/features/orders/components/form/steps/order-payment-step.tsx?t=1781469303930:0
+[  356138ms] [ERROR] [vite] Failed to reload /resources/js/features/orders/components/form/steps/order-payment-step.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://127.0.0.1:8000/order/1/edit:232
+[  630465ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://[::1]:5173/resources/js/features/orders/components/form/steps/order-payment-step.tsx?t=1781469578194:0
+[  630469ms] [ERROR] [vite] Failed to reload /resources/js/features/orders/components/form/steps/order-payment-step.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://127.0.0.1:8000/order/1/edit:232
+[ 1378235ms] [LOG] 🔍 Browser logger active (MCP server detected). Posting to: http://127.0.0.1:8000/_boost/browser-logs @ http://127.0.0.1:8000/order/1/edit:173
+[ 1378810ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:8000/order/1/edit:232
+[ 1572379ms] [LOG] 🔍 Browser logger active (MCP server detected). Posting to: http://127.0.0.1:8000/_boost/browser-logs @ http://127.0.0.1:8000/order/1/edit:173
+[ 1573649ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:8000/order/1/edit:232
+[ 1922032ms] [LOG] 🔍 Browser logger active (MCP server detected). Posting to: http://127.0.0.1:8000/_boost/browser-logs @ http://127.0.0.1:8000/order/1/edit:173
+[ 1923795ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:8000/order/1/edit:232
+[ 2390659ms] [LOG] 🔍 Browser logger active (MCP server detected). Posting to: http://127.0.0.1:8000/_boost/browser-logs @ http://127.0.0.1:8000/order/1/edit:173
+[ 2394494ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:8000/order/1/edit:232
+[ 2409640ms] [LOG] 🔍 Browser logger active (MCP server detected). Posting to: http://127.0.0.1:8000/_boost/browser-logs @ http://127.0.0.1:8000/order/1/edit:173
+[ 2410095ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:8000/order/1/edit:232
+[ 2798999ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://[::1]:5173/resources/js/features/orders/components/form/order-form-summary-aside.tsx?t=1781471746726:0
+[ 2799002ms] [ERROR] [vite] Failed to reload /resources/js/features/orders/components/form/order-form-summary-aside.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://127.0.0.1:8000/order/1/edit:232
+[ 3491811ms] [LOG] 🔍 Browser logger active (MCP server detected). Posting to: http://127.0.0.1:8000/_boost/browser-logs @ http://127.0.0.1:8000/order/1/edit:173
+[ 3493835ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://127.0.0.1:8000/order/1/edit:232

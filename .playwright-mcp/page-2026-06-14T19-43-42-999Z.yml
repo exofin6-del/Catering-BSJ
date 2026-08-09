@@ -1,0 +1,193 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e7]:
+      - list [ref=e9]:
+        - listitem [ref=e10]:
+          - link "Laravel Starter Kit" [ref=e11] [cursor=pointer]:
+            - /url: /dashboard
+            - img [ref=e13]
+            - generic [ref=e16]: Laravel Starter Kit
+      - generic [ref=e18]:
+        - generic [ref=e19]: Platform
+        - list [ref=e21]:
+          - listitem [ref=e22]:
+            - link "Dashboard" [ref=e23] [cursor=pointer]:
+              - /url: /dashboard
+              - img [ref=e24]
+              - generic [ref=e29]: Dashboard
+          - listitem [ref=e30]:
+            - link "Kategori" [ref=e31] [cursor=pointer]:
+              - /url: /kategori
+              - img [ref=e32]
+              - generic [ref=e36]: Kategori
+          - listitem [ref=e37]:
+            - link "Menu" [ref=e38] [cursor=pointer]:
+              - /url: /menu
+              - img [ref=e39]
+              - generic [ref=e42]: Menu
+          - listitem [ref=e43]:
+            - link "Paket" [ref=e44] [cursor=pointer]:
+              - /url: /paket
+              - img [ref=e45]
+              - generic [ref=e47]: Paket
+          - listitem [ref=e48]:
+            - link "Order" [ref=e49] [cursor=pointer]:
+              - /url: /order
+              - img [ref=e50]
+              - generic [ref=e53]: Order
+      - generic [ref=e54]:
+        - list [ref=e57]:
+          - listitem [ref=e58]:
+            - link "Repository" [ref=e59] [cursor=pointer]:
+              - /url: https://github.com/laravel/react-starter-kit
+              - img [ref=e60]
+              - generic [ref=e65]: Repository
+          - listitem [ref=e66]:
+            - link "Documentation" [ref=e67] [cursor=pointer]:
+              - /url: https://laravel.com/docs/starter-kits#react
+              - img [ref=e68]
+              - generic [ref=e70]: Documentation
+        - list [ref=e71]:
+          - listitem [ref=e72]:
+            - button "OS Order Seeder" [ref=e73]:
+              - generic [ref=e75]: OS
+              - generic [ref=e77]: Order Seeder
+              - img [ref=e78]
+    - main [ref=e81]:
+      - generic [ref=e83]:
+        - link "Kembali ke Order" [ref=e86] [cursor=pointer]:
+          - /url: /order
+          - img
+        - generic [ref=e87]:
+          - heading "Edit Order" [level=2] [ref=e92]
+          - navigation "breadcrumb" [ref=e94]:
+            - list [ref=e95]:
+              - listitem [ref=e96]:
+                - link "Dashboard" [ref=e97] [cursor=pointer]:
+                  - /url: /dashboard
+              - listitem [ref=e98]:
+                - img [ref=e99]
+              - listitem [ref=e101]:
+                - link "Order" [ref=e102] [cursor=pointer]:
+                  - /url: /order
+              - listitem [ref=e103]:
+                - img [ref=e104]
+              - listitem [ref=e106]:
+                - link "Edit" [disabled] [ref=e107]
+      - generic [ref=e110]:
+        - navigation "Progress" [ref=e112]:
+          - list [ref=e113]:
+            - listitem [ref=e114] [cursor=pointer]:
+              - button [ref=e115]:
+                - img [ref=e116]
+              - generic [ref=e118]:
+                - generic [ref=e119]: Step 1
+                - generic [ref=e120]: Informasi Pelanggan
+            - listitem [ref=e122] [cursor=pointer]:
+              - button [ref=e123]:
+                - img [ref=e124]
+              - generic [ref=e127]:
+                - generic [ref=e128]: Step 2
+                - generic [ref=e129]: Item order
+            - listitem [ref=e131] [cursor=pointer]:
+              - button [active] [ref=e132]:
+                - img [ref=e133]
+              - generic [ref=e135]:
+                - generic [ref=e136]: Step 3
+                - generic [ref=e137]: Pembayaran
+        - generic [ref=e414]:
+          - group [ref=e416]:
+            - generic [ref=e417]:
+              - generic [ref=e418]: Informasi Pembayaran
+              - paragraph [ref=e419]: Isi pembayaran, lalu pantau status dan kekurangan tagihan.
+            - generic [ref=e420]:
+              - generic [ref=e421]:
+                - img [ref=e423]
+                - generic [ref=e426]:
+                  - paragraph [ref=e427]: Catat pembayaran
+                  - paragraph [ref=e428]: Isi bagian ini hanya ketika pembayaran baru benar-benar diterima.
+              - generic [ref=e430]:
+                - generic [ref=e431]:
+                  - generic [ref=e432]: Metode
+                  - combobox "Metode" [ref=e433]:
+                    - generic: Transfer
+                    - img
+                  - combobox [ref=e434]
+                - generic [ref=e435]:
+                  - generic [ref=e436]: Nominal lunas
+                  - group [ref=e437]:
+                    - group [ref=e438]:
+                      - generic [ref=e439]: Rp
+                    - textbox "1.116.000" [ref=e440]
+                - generic [ref=e441]:
+                  - generic [ref=e442]: Bukti pembayaran
+                  - generic [ref=e443]:
+                    - region [ref=e444]:
+                      - img [ref=e445]
+                      - generic [ref=e449]:
+                        - paragraph [ref=e450]: Upload bukti pembayaran
+                        - paragraph [ref=e451]: Gambar maksimal 2 MB.
+                    - button "Bukti pembayaran" [ref=e452]
+                    - generic [ref=e453]: Bukti pembayaran
+            - generic [ref=e455]:
+              - generic [ref=e456]:
+                - generic [ref=e457]:
+                  - img [ref=e459]
+                  - generic [ref=e462]:
+                    - paragraph [ref=e463]: Belum ada pembayaran
+                    - paragraph [ref=e464]: Rp 1.116.000 akan dicatat setelah order disimpan.
+                - generic [ref=e465]:
+                  - generic [ref=e466]: Status saat ini
+                  - generic [ref=e467]: Belum bayar
+              - generic [ref=e468]:
+                - generic [ref=e469]:
+                  - paragraph [ref=e470]: Total tagihan
+                  - paragraph [ref=e471]: Rp 1.116.000
+                - generic [ref=e472]:
+                  - paragraph [ref=e473]: Terbayar saat ini
+                  - paragraph [ref=e474]: Rp 0
+                - generic [ref=e475]:
+                  - paragraph [ref=e476]: Kekurangan saat ini
+                  - paragraph [ref=e477]: Rp 1.116.000
+          - complementary [ref=e478]:
+            - group [ref=e479]:
+              - generic [ref=e480]:
+                - generic [ref=e481]: Ringkasan order
+                - paragraph [ref=e482]: Periksa item order, informasi pelanggan, dan riwayat pembayaran.
+              - generic [ref=e483]:
+                - tablist [ref=e484]:
+                  - tab "Item order 1" [selected] [ref=e485]:
+                    - text: Item order
+                    - generic [ref=e486]: "1"
+                  - tab "Pelanggan" [ref=e487]
+                - tabpanel "Item order 1" [ref=e488]:
+                  - generic [ref=e489]:
+                    - article [ref=e492]:
+                      - img "Paket Coffee Break Classic" [ref=e494]
+                      - heading "Paket Coffee Break Classic" [level=3] [ref=e497]
+                      - button "Tampilkan detail Paket Coffee Break Classic" [ref=e499]:
+                        - img
+                      - generic [ref=e500]:
+                        - generic [ref=e501]:
+                          - generic [ref=e502]: Snack Box
+                          - generic [ref=e503]: "|"
+                          - generic [ref=e504]: "36"
+                          - generic [ref=e505]: ×
+                          - generic [ref=e506]: Rp 31.000
+                        - generic [ref=e507]: Rp 1.116.000
+                    - generic [ref=e508]:
+                      - generic [ref=e509]:
+                        - generic [ref=e510]: Subtotal
+                        - generic [ref=e511]: Rp 1.116.000
+                      - generic [ref=e512]:
+                        - generic [ref=e513]: Total
+                        - generic [ref=e514]: Rp 1.116.000
+        - generic [ref=e221]:
+          - button "Sebelumnya" [ref=e319]:
+            - img
+            - text: Sebelumnya
+          - generic [ref=e222]: Langkah 3/3
+          - button "Simpan perubahan" [ref=e515]:
+            - img
+            - text: Simpan perubahan
+  - region "Notifications alt+T"

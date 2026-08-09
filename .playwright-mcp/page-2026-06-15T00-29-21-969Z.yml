@@ -1,0 +1,273 @@
+- generic:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - list:
+                - listitem:
+                  - link:
+                    - /url: /dashboard
+                    - generic:
+                      - img
+                    - generic:
+                      - generic: Laravel Starter Kit
+            - generic:
+              - generic:
+                - generic: Platform
+                - generic:
+                  - list:
+                    - listitem:
+                      - link:
+                        - /url: /dashboard
+                        - img
+                        - generic: Dashboard
+                    - listitem:
+                      - link:
+                        - /url: /kategori
+                        - img
+                        - generic: Kategori
+                    - listitem:
+                      - link:
+                        - /url: /menu
+                        - img
+                        - generic: Menu
+                    - listitem:
+                      - link:
+                        - /url: /paket
+                        - img
+                        - generic: Paket
+                    - listitem:
+                      - link:
+                        - /url: /order
+                        - img
+                        - generic: Order
+            - generic:
+              - generic:
+                - generic:
+                  - list:
+                    - listitem:
+                      - link:
+                        - /url: https://github.com/laravel/react-starter-kit
+                        - img
+                        - generic: Repository
+                    - listitem:
+                      - link:
+                        - /url: https://laravel.com/docs/starter-kits#react
+                        - img
+                        - generic: Documentation
+              - list:
+                - listitem:
+                  - button:
+                    - generic:
+                      - generic: EA
+                    - generic:
+                      - generic: Example Admin
+                    - img
+      - main:
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - link:
+                  - /url: /order
+                  - img
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - heading [level=2]: Edit Order
+              - generic:
+                - navigation:
+                  - list:
+                    - listitem:
+                      - link:
+                        - /url: /dashboard
+                        - text: Dashboard
+                    - listitem:
+                      - img
+                    - listitem:
+                      - link:
+                        - /url: /order
+                        - text: Order
+                    - listitem:
+                      - img
+                    - listitem:
+                      - link [disabled]: Edit
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - navigation:
+                  - list:
+                    - listitem:
+                      - button:
+                        - img
+                      - generic:
+                        - generic: Step 1
+                        - generic: Informasi Pelanggan
+                    - listitem:
+                      - button:
+                        - img
+                      - generic:
+                        - generic: Step 2
+                        - generic: Item order
+                    - listitem:
+                      - button:
+                        - img
+                      - generic:
+                        - generic: Step 3
+                        - generic: Pembayaran
+              - generic:
+                - generic:
+                  - generic:
+                    - group:
+                      - generic:
+                        - generic: Informasi Pembayaran
+                        - paragraph: Catat pembayaran baru hanya saat uangnya sudah diterima.
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                          - generic:
+                            - paragraph: Pembayaran order
+                            - paragraph: Isi nominal pembayaran yang diterima. Sistem menentukan DP atau lunas dari nominalnya.
+                        - generic:
+                          - generic:
+                            - generic:
+                              - generic: Metode pembayaran
+                              - combobox [expanded]:
+                                - generic: Belum dibayar
+                                - img
+                              - combobox
+                            - generic:
+                              - generic:
+                                - generic: Nominal pembayaran
+                                - generic:
+                                  - checkbox [disabled]
+                                  - checkbox [disabled]
+                                  - text: Catat lunas
+                              - group:
+                                - group:
+                                  - generic: Rp
+                                - textbox:
+                                  - /placeholder: Pilih metode dulu
+                              - paragraph: Pilih metode pembayaran untuk mulai mencatat pembayaran.
+                            - generic:
+                              - generic: Bukti pembayaran
+                              - generic:
+                                - region:
+                                  - img
+                                  - generic:
+                                    - paragraph: Upload bukti pembayaran
+                                    - paragraph: Gambar maksimal 2 MB.
+                                - button [disabled]
+                                - generic: Bukti pembayaran
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - img
+                            - generic:
+                              - paragraph: Belum ada pembayaran
+                              - paragraph: Belum ada pembayaran baru yang akan dicatat.
+                          - generic:
+                            - generic: Status saat ini
+                            - generic: Belum bayar
+                        - generic:
+                          - generic:
+                            - paragraph: Total tagihan
+                            - paragraph: Rp 4.865.000
+                          - generic:
+                            - paragraph: Sudah dibayar
+                            - paragraph: Rp 0
+                          - generic:
+                            - paragraph: Sisa tagihan
+                            - paragraph: Rp 4.865.000
+                  - complementary:
+                    - group:
+                      - generic:
+                        - generic: Ringkasan order
+                        - paragraph: Periksa item order, informasi pelanggan, dan riwayat pembayaran.
+                      - generic:
+                        - tablist:
+                          - tab [selected]:
+                            - text: Item order
+                            - generic: "3"
+                          - tab: Pelanggan
+                        - tabpanel:
+                          - generic:
+                            - generic:
+                              - generic:
+                                - article:
+                                  - generic:
+                                    - img
+                                  - generic:
+                                    - generic:
+                                      - heading [level=3]: Paket Seminar Hemat
+                                  - generic:
+                                    - button:
+                                      - img
+                                  - generic:
+                                    - generic:
+                                      - generic: Nasi Box
+                                      - generic: "|"
+                                      - generic: "70"
+                                      - generic: ×
+                                      - generic: Rp 45.000
+                                    - generic: Rp 3.150.000
+                              - article:
+                                - generic:
+                                  - img
+                                - generic:
+                                  - generic:
+                                    - heading [level=3]: Snack Box Classic
+                                - generic:
+                                  - generic:
+                                    - generic: Snack Box
+                                    - generic: "|"
+                                    - generic: "70"
+                                    - generic: ×
+                                    - generic: Rp 16.500
+                                  - generic: Rp 1.155.000
+                              - article:
+                                - generic:
+                                  - img
+                                - generic:
+                                  - generic:
+                                    - heading [level=3]: Es Teh Manis Jumbo
+                                - generic:
+                                  - generic:
+                                    - generic: Minuman
+                                    - generic: "|"
+                                    - generic: "80"
+                                    - generic: ×
+                                    - generic: Rp 7.000
+                                  - generic: Rp 560.000
+                            - generic:
+                              - generic:
+                                - generic: Subtotal
+                                - generic: Rp 4.865.000
+                              - generic:
+                                - generic: Total
+                                - generic: Rp 4.865.000
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - button:
+                        - img
+                        - text: Sebelumnya
+                    - generic: Langkah 3/3
+                    - generic:
+                      - button:
+                        - img
+                        - text: Simpan perubahan
+    - region "Notifications alt+T"
+  - listbox [ref=e352]:
+    - option "Transfer" [active] [ref=e353]:
+      - generic [ref=e355]: Transfer
+    - option "Tunai" [ref=e356]:
+      - generic [ref=e358]: Tunai

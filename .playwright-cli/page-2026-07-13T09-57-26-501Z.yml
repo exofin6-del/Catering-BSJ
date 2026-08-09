@@ -1,0 +1,1681 @@
+- generic:
+  - generic:
+    - generic:
+      - banner:
+        - generic:
+          - link:
+            - /url: /
+            - generic:
+              - generic: Catering BSJ
+              - generic: Catering untuk setiap momen
+          - navigation:
+            - link:
+              - /url: "#beranda"
+              - text: Beranda
+            - link:
+              - /url: "#katalog"
+              - text: Katalog
+            - link:
+              - /url: "#layanan"
+              - text: Layanan
+          - generic:
+            - generic:
+              - textbox:
+                - /placeholder: Cari menu atau paket...
+          - button
+      - main:
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic: Menerima pesanan
+                - generic: Mulai Rp 7.000
+              - generic:
+                - paragraph: Dibuat segar, disajikan berkesan
+                - heading [level=1]: Sajian yang tepat untuk momen yang penting.
+                - paragraph: Pilih menu satuan atau paket lengkap, atur jumlah, lalu simpan semuanya dalam satu keranjang yang rapi.
+              - link:
+                - /url: "#katalog"
+                - text: Jelajahi katalog
+              - generic:
+                - generic: Bahan segar
+                - generic: Pilihan fleksibel
+                - generic: Harga transparan
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - paragraph: Katalog pilihan
+                - heading [level=2]: Menu untuk setiap suasana
+                - paragraph: Temukan menu satuan dan paket yang tersedia. Semua harga ditampilkan sebelum masuk ke keranjang.
+            - generic:
+              - generic:
+                - tablist:
+                  - tab [selected]: Semua
+                  - tab: Paket
+                  - tab: Menu
+              - generic:
+                - button: Semua kategori
+                - button: Event & Meeting
+                - button: Minuman
+                - button: Nasi Box
+                - button: Prasmanan
+                - button: Snack Box
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Paket
+                    - generic: Favorit
+                - generic:
+                  - generic:
+                    - paragraph: Event & Meeting
+                    - heading [level=3]: Paket Meeting Premium
+                    - paragraph: Paket lengkap untuk rapat kantor dengan nasi box, snack, dan minuman.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 40.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Paket
+                    - generic: Favorit
+                - generic:
+                  - generic:
+                    - paragraph: Event & Meeting
+                    - heading [level=3]: Paket Meeting Executive
+                    - paragraph: Kombinasi menu premium untuk tamu eksekutif dan meeting penting.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 85.000
+                    - generic: Min. 15
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Paket
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Paket Seminar Hemat
+                    - paragraph: Paket hemat untuk seminar, workshop, dan pelatihan sehari penuh.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 60.000
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Paket
+                    - generic: Favorit
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Paket Wedding Nusantara
+                    - paragraph: Paket prasmanan premium untuk resepsi dan acara keluarga besar.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 110.000
+                    - generic: Min. 80
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Paket
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Paket Gathering Keluarga
+                    - paragraph: Menu prasmanan ramah keluarga untuk arisan, syukuran, dan gathering.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 78.000
+                    - generic: Min. 50
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Paket
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Paket Vegetarian Corporate
+                    - paragraph: Pilihan paket tanpa daging untuk kebutuhan corporate dining.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 76.000
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Paket
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Paket Coffee Break Classic
+                    - paragraph: Snack ringan dan minuman segar untuk jeda rapat atau kelas.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 36.000
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Paket
+                    - generic: Favorit
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Paket Coffee Break Premium
+                    - paragraph: Coffee break premium dengan snack pilihan untuk tamu penting.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 45.000
+                    - generic: Min. 25
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Paket
+                    - generic: Favorit
+                - generic:
+                  - generic:
+                    - paragraph: Event & Meeting
+                    - heading [level=3]: Paket Launching Produk
+                    - paragraph: Paket event modern untuk launching, press conference, dan corporate event.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 90.000
+                    - generic: Min. 40
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Paket
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Paket Tasyakuran
+                    - paragraph: Paket tasyakuran rapi untuk rumah, kantor, dan komunitas.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 72.000
+                    - generic: Min. 40
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Menu
+                    - generic: Favorit
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Ayam Bakar
+                    - paragraph: Paket nasi dengan ayam bakar, tumis sayur, sambal, dan kerupuk.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 29.000
+                      - paragraph: Rp 32.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Menu
+                    - generic: Favorit
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Rendang Sapi
+                    - paragraph: Rendang sapi dengan nasi putih, telur balado, and lalapan segar.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 38.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Ikan Rica
+                    - paragraph: Ikan fillet rica-rica dengan nasi, cah kangkung, and sambal roa.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 31.500
+                      - paragraph: Rp 34.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Menu
+                    - generic: Favorit
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Classic
+                    - paragraph: Isi risoles, bolu kukus, pastel, dan air mineral untuk rapat singkat.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 16.500
+                      - paragraph: Rp 18.000
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Premium
+                    - paragraph: Isi lemper ayam, sus buah, brownies, and puding cup.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 25.000
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Menu
+                    - generic: Favorit
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Paket Prasmanan Nusantara
+                    - paragraph: Menu prasmanan lengkap dengan nasi, lauk utama, sayur, buah, dan air mineral.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 55.000
+                    - generic: Min. 50
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Paket Prasmanan Hemat
+                    - paragraph: Pilihan prasmanan ekonomis untuk acara kantor dan komunitas.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 39.500
+                      - paragraph: Rp 42.000
+                    - generic: Min. 50
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Paket Vegetarian Delight
+                    - paragraph: Pilihan menu tanpa daging dengan protein nabati dan sayuran segar.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 47.000
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Minuman
+                    - heading [level=3]: Es Teh Manis Jumbo
+                    - paragraph: Es teh manis segar untuk pelengkap paket makan dan snack box.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 7.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Minuman
+                    - heading [level=3]: Jus Jeruk Peras
+                    - paragraph: Jus jeruk segar tanpa pemanis buatan, cocok untuk menu premium.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 10.000
+                      - paragraph: Rp 12.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Ayam Geprek 01
+                    - paragraph: Paket nasi dengan ayam geprek, sambal bawang, sayur, dan kerupuk.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 31.500
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Ayam Teriyaki 02
+                    - paragraph: Nasi box bergaya Jepang dengan ayam teriyaki, salad, dan saus wijen.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 36.500
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Dori Sambal Matah 03
+                    - paragraph: Ikan dori goreng renyah dengan sambal matah, nasi, dan tumis sayur.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 37.500
+                      - paragraph: Rp 40.500
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Empal Gentong 04
+                    - paragraph: Empal berbumbu rempah dengan nasi putih, acar, sambal, dan kerupuk.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 45.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Tradisional 05
+                    - paragraph: Aneka jajanan pasar untuk rapat, arisan, dan kegiatan komunitas.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 17.000
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Pastry 06
+                    - paragraph: Paket pastry manis dan gurih dengan minuman praktis.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 22.000
+                      - paragraph: Rp 24.500
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Menu
+                    - generic: Favorit
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Corporate 07
+                    - paragraph: Snack box modern untuk seminar, training, dan kebutuhan kantor.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 30.000
+                    - generic: Min. 25
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Prasmanan Ayam Rempah 08
+                    - paragraph: Prasmanan lengkap dengan lauk ayam rempah, sayur, kerupuk, dan buah.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 56.500
+                    - generic: Min. 50
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Prasmanan Seafood 09
+                    - paragraph: Pilihan prasmanan seafood untuk acara keluarga dan perusahaan.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 72.000
+                      - paragraph: Rp 74.000
+                    - generic: Min. 50
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Prasmanan Vegetarian 10
+                    - paragraph: Menu prasmanan vegetarian dengan protein nabati dan sayuran segar.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 47.000
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Minuman
+                    - heading [level=3]: Es Kopi Susu 11
+                    - paragraph: Es kopi susu segar untuk pelengkap acara kantor dan gathering.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 17.500
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Minuman
+                    - heading [level=3]: Infused Water 12
+                    - paragraph: Minuman infused water dengan buah segar untuk paket sehat.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 12.500
+                      - paragraph: Rp 14.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Ayam Geprek 13
+                    - paragraph: Paket nasi dengan ayam geprek, sambal bawang, sayur, dan kerupuk.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 35.500
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Menu
+                    - generic: Favorit
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Ayam Teriyaki 14
+                    - paragraph: Nasi box bergaya Jepang dengan ayam teriyaki, salad, dan saus wijen.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 40.500
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Dori Sambal Matah 15
+                    - paragraph: Ikan dori goreng renyah dengan sambal matah, nasi, dan tumis sayur.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 34.000
+                      - paragraph: Rp 37.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Empal Gentong 16
+                    - paragraph: Empal berbumbu rempah dengan nasi putih, acar, sambal, dan kerupuk.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 41.500
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Tradisional 17
+                    - paragraph: Aneka jajanan pasar untuk rapat, arisan, dan kegiatan komunitas.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 21.000
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Pastry 18
+                    - paragraph: Paket pastry manis dan gurih dengan minuman praktis.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 26.000
+                      - paragraph: Rp 28.500
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Corporate 19
+                    - paragraph: Snack box modern untuk seminar, training, dan kebutuhan kantor.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 34.000
+                    - generic: Min. 25
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Prasmanan Ayam Rempah 20
+                    - paragraph: Prasmanan lengkap dengan lauk ayam rempah, sayur, kerupuk, dan buah.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 53.000
+                    - generic: Min. 50
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Menu
+                    - generic: Favorit
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Prasmanan Seafood 21
+                    - paragraph: Pilihan prasmanan seafood untuk acara keluarga dan perusahaan.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 68.500
+                      - paragraph: Rp 70.500
+                    - generic: Min. 50
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Prasmanan Vegetarian 22
+                    - paragraph: Menu prasmanan vegetarian dengan protein nabati dan sayuran segar.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 51.000
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Minuman
+                    - heading [level=3]: Es Kopi Susu 23
+                    - paragraph: Es kopi susu segar untuk pelengkap acara kantor dan gathering.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 21.500
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Minuman
+                    - heading [level=3]: Infused Water 24
+                    - paragraph: Minuman infused water dengan buah segar untuk paket sehat.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 16.500
+                      - paragraph: Rp 18.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Ayam Geprek 25
+                    - paragraph: Paket nasi dengan ayam geprek, sambal bawang, sayur, dan kerupuk.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 32.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Ayam Teriyaki 26
+                    - paragraph: Nasi box bergaya Jepang dengan ayam teriyaki, salad, dan saus wijen.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 37.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Dori Sambal Matah 27
+                    - paragraph: Ikan dori goreng renyah dengan sambal matah, nasi, dan tumis sayur.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 38.000
+                      - paragraph: Rp 41.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Menu
+                    - generic: Favorit
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Empal Gentong 28
+                    - paragraph: Empal berbumbu rempah dengan nasi putih, acar, sambal, dan kerupuk.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 45.500
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Tradisional 29
+                    - paragraph: Aneka jajanan pasar untuk rapat, arisan, dan kegiatan komunitas.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 25.000
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Pastry 30
+                    - paragraph: Paket pastry manis dan gurih dengan minuman praktis.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 22.500
+                      - paragraph: Rp 25.000
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Corporate 31
+                    - paragraph: Snack box modern untuk seminar, training, dan kebutuhan kantor.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 30.500
+                    - generic: Min. 25
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Prasmanan Ayam Rempah 32
+                    - paragraph: Prasmanan lengkap dengan lauk ayam rempah, sayur, kerupuk, dan buah.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 57.000
+                    - generic: Min. 50
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Prasmanan Seafood 33
+                    - paragraph: Pilihan prasmanan seafood untuk acara keluarga dan perusahaan.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 72.500
+                      - paragraph: Rp 74.500
+                    - generic: Min. 50
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Prasmanan Vegetarian 34
+                    - paragraph: Menu prasmanan vegetarian dengan protein nabati dan sayuran segar.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 55.000
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Menu
+                    - generic: Favorit
+                - generic:
+                  - generic:
+                    - paragraph: Minuman
+                    - heading [level=3]: Es Kopi Susu 35
+                    - paragraph: Es kopi susu segar untuk pelengkap acara kantor dan gathering.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 18.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Minuman
+                    - heading [level=3]: Infused Water 36
+                    - paragraph: Minuman infused water dengan buah segar untuk paket sehat.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 13.000
+                      - paragraph: Rp 14.500
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Ayam Geprek 37
+                    - paragraph: Paket nasi dengan ayam geprek, sambal bawang, sayur, dan kerupuk.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 36.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Ayam Teriyaki 38
+                    - paragraph: Nasi box bergaya Jepang dengan ayam teriyaki, salad, dan saus wijen.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 41.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Dori Sambal Matah 39
+                    - paragraph: Ikan dori goreng renyah dengan sambal matah, nasi, dan tumis sayur.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 42.000
+                      - paragraph: Rp 45.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Empal Gentong 40
+                    - paragraph: Empal berbumbu rempah dengan nasi putih, acar, sambal, dan kerupuk.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 42.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Tradisional 41
+                    - paragraph: Aneka jajanan pasar untuk rapat, arisan, dan kegiatan komunitas.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 21.500
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Menu
+                    - generic: Favorit
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Pastry 42
+                    - paragraph: Paket pastry manis dan gurih dengan minuman praktis.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 26.500
+                      - paragraph: Rp 29.000
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Corporate 43
+                    - paragraph: Snack box modern untuk seminar, training, dan kebutuhan kantor.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 34.500
+                    - generic: Min. 25
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Prasmanan Ayam Rempah 44
+                    - paragraph: Prasmanan lengkap dengan lauk ayam rempah, sayur, kerupuk, dan buah.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 61.000
+                    - generic: Min. 50
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Prasmanan Seafood 45
+                    - paragraph: Pilihan prasmanan seafood untuk acara keluarga dan perusahaan.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 69.000
+                      - paragraph: Rp 71.000
+                    - generic: Min. 50
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Prasmanan Vegetarian 46
+                    - paragraph: Menu prasmanan vegetarian dengan protein nabati dan sayuran segar.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 51.500
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Minuman
+                    - heading [level=3]: Es Kopi Susu 47
+                    - paragraph: Es kopi susu segar untuk pelengkap acara kantor dan gathering.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 22.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Minuman
+                    - heading [level=3]: Infused Water 48
+                    - paragraph: Minuman infused water dengan buah segar untuk paket sehat.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 17.000
+                      - paragraph: Rp 18.500
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Menu
+                    - generic: Favorit
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Ayam Geprek 49
+                    - paragraph: Paket nasi dengan ayam geprek, sambal bawang, sayur, dan kerupuk.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 40.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Ayam Teriyaki 50
+                    - paragraph: Nasi box bergaya Jepang dengan ayam teriyaki, salad, dan saus wijen.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 37.500
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Dori Sambal Matah 51
+                    - paragraph: Ikan dori goreng renyah dengan sambal matah, nasi, dan tumis sayur.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 38.500
+                      - paragraph: Rp 41.500
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Empal Gentong 52
+                    - paragraph: Empal berbumbu rempah dengan nasi putih, acar, sambal, dan kerupuk.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 46.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Tradisional 53
+                    - paragraph: Aneka jajanan pasar untuk rapat, arisan, dan kegiatan komunitas.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 25.500
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Pastry 54
+                    - paragraph: Paket pastry manis dan gurih dengan minuman praktis.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 30.500
+                      - paragraph: Rp 33.000
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Corporate 55
+                    - paragraph: Snack box modern untuk seminar, training, dan kebutuhan kantor.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 31.000
+                    - generic: Min. 25
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Menu
+                    - generic: Favorit
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Prasmanan Ayam Rempah 56
+                    - paragraph: Prasmanan lengkap dengan lauk ayam rempah, sayur, kerupuk, dan buah.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 57.500
+                    - generic: Min. 50
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Prasmanan Seafood 57
+                    - paragraph: Pilihan prasmanan seafood untuk acara keluarga dan perusahaan.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 73.000
+                      - paragraph: Rp 75.000
+                    - generic: Min. 50
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Prasmanan Vegetarian 58
+                    - paragraph: Menu prasmanan vegetarian dengan protein nabati dan sayuran segar.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 55.500
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Minuman
+                    - heading [level=3]: Es Kopi Susu 59
+                    - paragraph: Es kopi susu segar untuk pelengkap acara kantor dan gathering.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 26.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Minuman
+                    - heading [level=3]: Infused Water 60
+                    - paragraph: Minuman infused water dengan buah segar untuk paket sehat.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 13.500
+                      - paragraph: Rp 15.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Ayam Geprek 61
+                    - paragraph: Paket nasi dengan ayam geprek, sambal bawang, sayur, dan kerupuk.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 36.500
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Ayam Teriyaki 62
+                    - paragraph: Nasi box bergaya Jepang dengan ayam teriyaki, salad, dan saus wijen.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 41.500
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Menu
+                    - generic: Favorit
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Dori Sambal Matah 63
+                    - paragraph: Ikan dori goreng renyah dengan sambal matah, nasi, dan tumis sayur.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 42.500
+                      - paragraph: Rp 45.500
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Empal Gentong 64
+                    - paragraph: Empal berbumbu rempah dengan nasi putih, acar, sambal, dan kerupuk.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 50.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Tradisional 65
+                    - paragraph: Aneka jajanan pasar untuk rapat, arisan, dan kegiatan komunitas.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 22.000
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Pastry 66
+                    - paragraph: Paket pastry manis dan gurih dengan minuman praktis.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 27.000
+                      - paragraph: Rp 29.500
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Corporate 67
+                    - paragraph: Snack box modern untuk seminar, training, dan kebutuhan kantor.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 35.000
+                    - generic: Min. 25
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Prasmanan Ayam Rempah 68
+                    - paragraph: Prasmanan lengkap dengan lauk ayam rempah, sayur, kerupuk, dan buah.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 61.500
+                    - generic: Min. 50
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Prasmanan Seafood 69
+                    - paragraph: Pilihan prasmanan seafood untuk acara keluarga dan perusahaan.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 77.000
+                      - paragraph: Rp 79.000
+                    - generic: Min. 50
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Menu
+                    - generic: Favorit
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Prasmanan Vegetarian 70
+                    - paragraph: Menu prasmanan vegetarian dengan protein nabati dan sayuran segar.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 52.000
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Minuman
+                    - heading [level=3]: Es Kopi Susu 71
+                    - paragraph: Es kopi susu segar untuk pelengkap acara kantor dan gathering.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 22.500
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Minuman
+                    - heading [level=3]: Infused Water 72
+                    - paragraph: Minuman infused water dengan buah segar untuk paket sehat.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 17.500
+                      - paragraph: Rp 19.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Ayam Geprek 73
+                    - paragraph: Paket nasi dengan ayam geprek, sambal bawang, sayur, dan kerupuk.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 40.500
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Ayam Teriyaki 74
+                    - paragraph: Nasi box bergaya Jepang dengan ayam teriyaki, salad, dan saus wijen.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 45.500
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Dori Sambal Matah 75
+                    - paragraph: Ikan dori goreng renyah dengan sambal matah, nasi, dan tumis sayur.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 39.000
+                      - paragraph: Rp 42.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Empal Gentong 76
+                    - paragraph: Empal berbumbu rempah dengan nasi putih, acar, sambal, dan kerupuk.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 46.500
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Menu
+                    - generic: Favorit
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Tradisional 77
+                    - paragraph: Aneka jajanan pasar untuk rapat, arisan, dan kegiatan komunitas.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 26.000
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Pastry 78
+                    - paragraph: Paket pastry manis dan gurih dengan minuman praktis.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 31.000
+                      - paragraph: Rp 33.500
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Corporate 79
+                    - paragraph: Snack box modern untuk seminar, training, dan kebutuhan kantor.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 39.000
+                    - generic: Min. 25
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Prasmanan Ayam Rempah 80
+                    - paragraph: Prasmanan lengkap dengan lauk ayam rempah, sayur, kerupuk, dan buah.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 58.000
+                    - generic: Min. 50
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Prasmanan Seafood 81
+                    - paragraph: Pilihan prasmanan seafood untuk acara keluarga dan perusahaan.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 73.500
+                      - paragraph: Rp 75.500
+                    - generic: Min. 50
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Prasmanan
+                    - heading [level=3]: Prasmanan Vegetarian 82
+                    - paragraph: Menu prasmanan vegetarian dengan protein nabati dan sayuran segar.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 56.000
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Minuman
+                    - heading [level=3]: Es Kopi Susu 83
+                    - paragraph: Es kopi susu segar untuk pelengkap acara kantor dan gathering.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 26.500
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Menu
+                    - generic: Favorit
+                - generic:
+                  - generic:
+                    - paragraph: Minuman
+                    - heading [level=3]: Infused Water 84
+                    - paragraph: Minuman infused water dengan buah segar untuk paket sehat.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 21.500
+                      - paragraph: Rp 23.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Ayam Geprek 85
+                    - paragraph: Paket nasi dengan ayam geprek, sambal bawang, sayur, dan kerupuk.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 37.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Ayam Teriyaki 86
+                    - paragraph: Nasi box bergaya Jepang dengan ayam teriyaki, salad, dan saus wijen.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 42.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Dori Sambal Matah 87
+                    - paragraph: Ikan dori goreng renyah dengan sambal matah, nasi, dan tumis sayur.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 43.000
+                      - paragraph: Rp 46.000
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Nasi Box
+                    - heading [level=3]: Nasi Box Empal Gentong 88
+                    - paragraph: Empal berbumbu rempah dengan nasi putih, acar, sambal, dan kerupuk.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 50.500
+                    - generic: Min. 20
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Tradisional 89
+                    - paragraph: Aneka jajanan pasar untuk rapat, arisan, dan kegiatan komunitas.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 30.000
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+              - generic:
+                - generic: Menu
+                - generic:
+                  - generic:
+                    - paragraph: Snack Box
+                    - heading [level=3]: Snack Box Pastry 90
+                    - paragraph: Paket pastry manis dan gurih dengan minuman praktis.
+                  - generic:
+                    - generic:
+                      - paragraph: Rp 27.500
+                      - paragraph: Rp 30.000
+                    - generic: Min. 30
+                - generic:
+                  - button: Tambah ke keranjang
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - heading [level=3]: Dimasak segar
+              - paragraph: Disiapkan sesuai jadwal acara.
+          - generic:
+            - generic:
+              - heading [level=3]: Pilihan fleksibel
+              - paragraph: Menu satuan dan paket lengkap.
+          - generic:
+            - generic:
+              - heading [level=3]: Harga transparan
+              - paragraph: Estimasi terlihat sejak awal.
+          - generic:
+            - generic:
+              - heading [level=3]: Terjadwal rapi
+              - paragraph: Waktu layanan dikonfirmasi tim.
+      - contentinfo:
+        - generic:
+          - generic:
+            - paragraph: Catering BSJ
+            - paragraph: Sajian catering yang praktis untuk rapat, perayaan, gathering, dan momen penting lainnya.
+          - paragraph: © 2026 Catering BSJ. All rights reserved.
+    - region "Notifications alt+T"
+  - dialog [ref=e1930]:
+    - generic [ref=e1931]:
+      - heading "Konfirmasi item order" [level=2] [ref=e1932]
+      - paragraph [ref=e1933]: Atur jumlah dan pilihan item sebelum masuk ke order.
+    - generic [ref=e1934]:
+      - generic [ref=e1935]:
+        - article [ref=e1937]:
+          - img "Paket Meeting Premium" [ref=e1940]
+          - generic [ref=e1941]:
+            - heading "Paket Meeting Premium" [level=3] [ref=e1943]
+            - paragraph [ref=e1944]: Event & Meeting · Min. 20 pesanan
+          - generic [ref=e1945]:
+            - group [ref=e1947]:
+              - button "Kurangi jumlah" [disabled]
+              - spinbutton "Jumlah pesanan" [active] [ref=e1948]: "20"
+              - button "Tambah jumlah" [ref=e1949]
+            - generic [ref=e1950]: Rp 800.000
+        - generic [ref=e1951]:
+          - generic [ref=e1952]:
+            - generic [ref=e1953]:
+              - heading "Isi paket" [level=3] [ref=e1954]
+              - paragraph [ref=e1955]: Pilih satu menu untuk setiap bagian paket.
+            - generic [ref=e1956]: 0/1 dipilih
+          - generic [ref=e1957]:
+            - generic [ref=e1958]:
+              - heading "Pilihan Makanan" [level=4] [ref=e1960]
+              - generic [ref=e1961]:
+                - button "Nasi Box Ayam Bakar -53% Rekomendasi Rp 32.000 Rp 15.000" [ref=e1962] [cursor=pointer]:
+                  - generic [ref=e1963]:
+                    - checkbox
+                    - generic [ref=e1965]:
+                      - generic [ref=e1966]: Nasi Box Ayam Bakar
+                      - generic [ref=e1967]: "-53%"
+                      - generic [ref=e1968]: Rekomendasi
+                  - generic [ref=e1969]:
+                    - generic [ref=e1970]: Rp 32.000
+                    - generic [ref=e1971]: Rp 15.000
+                - button "Es Kopi Susu 11 Rp 17.500" [ref=e1972] [cursor=pointer]:
+                  - generic [ref=e1973]:
+                    - checkbox
+                    - generic [ref=e1975]: Es Kopi Susu 11
+                  - generic [ref=e1977]: Rp 17.500
+            - generic [ref=e1979]:
+              - checkbox [checked] [disabled]
+              - generic [ref=e1981]:
+                - heading "Snack Box Classic" [level=4] [ref=e1983]
+                - paragraph [ref=e1984]: Snack Box Classic
+              - generic [ref=e1985]: Rp 18.000
+            - generic [ref=e1987]:
+              - checkbox [checked] [disabled]
+              - generic [ref=e1989]:
+                - heading "Es Teh Manis Jumbo" [level=4] [ref=e1991]
+                - paragraph [ref=e1992]: Es Teh Manis Jumbo
+              - generic [ref=e1993]: Rp 7.000
+          - paragraph [ref=e1995]: Pilih satu menu untuk setiap pilihan paket.
+        - generic [ref=e1996]: Harga akhir tetap dihitung ulang saat order disimpan.
+      - generic [ref=e2001]:
+        - generic [ref=e2002]:
+          - paragraph [ref=e2003]: Subtotal
+          - paragraph [ref=e2004]: Rp 800.000
+        - generic [ref=e2005]:
+          - button "Batal" [ref=e2006]
+          - button "Tambah item" [disabled]
+    - button "Close" [ref=e2007]

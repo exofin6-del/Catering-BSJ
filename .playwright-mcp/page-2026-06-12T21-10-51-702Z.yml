@@ -1,0 +1,175 @@
+- generic [ref=e2]:
+  - generic [ref=e42]:
+    - generic [ref=e46]:
+      - list [ref=e48]:
+        - listitem [ref=e49]:
+          - link "Laravel Starter Kit" [ref=e50] [cursor=pointer]:
+            - /url: /dashboard
+            - img [ref=e52]
+            - generic [ref=e55]: Laravel Starter Kit
+      - generic [ref=e57]:
+        - generic [ref=e58]: Platform
+        - list [ref=e60]:
+          - listitem [ref=e61]:
+            - link "Dashboard" [ref=e62] [cursor=pointer]:
+              - /url: /dashboard
+              - img [ref=e63]
+              - generic [ref=e68]: Dashboard
+          - listitem [ref=e69]:
+            - link "Kategori" [ref=e70] [cursor=pointer]:
+              - /url: /kategori
+              - img [ref=e71]
+              - generic [ref=e75]: Kategori
+          - listitem [ref=e76]:
+            - link "Menu" [ref=e77] [cursor=pointer]:
+              - /url: /menu
+              - img [ref=e78]
+              - generic [ref=e81]: Menu
+          - listitem [ref=e82]:
+            - link "Paket" [ref=e83] [cursor=pointer]:
+              - /url: /paket
+              - img [ref=e84]
+              - generic [ref=e86]: Paket
+          - listitem [ref=e87]:
+            - link "Order" [ref=e88] [cursor=pointer]:
+              - /url: /order
+              - img [ref=e89]
+              - generic [ref=e92]: Order
+      - generic [ref=e93]:
+        - list [ref=e96]:
+          - listitem [ref=e97]:
+            - link "Repository" [ref=e98] [cursor=pointer]:
+              - /url: https://github.com/laravel/react-starter-kit
+              - img [ref=e99]
+              - generic [ref=e104]: Repository
+          - listitem [ref=e105]:
+            - link "Documentation" [ref=e106] [cursor=pointer]:
+              - /url: https://laravel.com/docs/starter-kits#react
+              - img [ref=e107]
+              - generic [ref=e109]: Documentation
+        - list [ref=e110]:
+          - listitem [ref=e111]:
+            - button "OS Order Seeder" [ref=e112]:
+              - generic [ref=e114]: OS
+              - generic [ref=e116]: Order Seeder
+              - img [ref=e117]
+    - main [ref=e120]:
+      - generic [ref=e122]:
+        - link "Kembali ke Order" [ref=e125] [cursor=pointer]:
+          - /url: /order
+          - img
+        - generic [ref=e126]:
+          - heading "Tambah Order" [level=2] [ref=e131]
+          - navigation "breadcrumb" [ref=e133]:
+            - list [ref=e134]:
+              - listitem [ref=e135]:
+                - link "Dashboard" [ref=e136] [cursor=pointer]:
+                  - /url: /dashboard
+              - listitem [ref=e137]:
+                - img [ref=e138]
+              - listitem [ref=e140]:
+                - link "Order" [ref=e141] [cursor=pointer]:
+                  - /url: /order
+              - listitem [ref=e142]:
+                - img [ref=e143]
+              - listitem [ref=e145]:
+                - link "Tambah" [disabled] [ref=e146]
+      - generic [ref=e149]:
+        - navigation "Progress" [ref=e151]:
+          - list [ref=e152]:
+            - listitem [ref=e153] [cursor=pointer]:
+              - button [ref=e154]:
+                - img [ref=e155]
+              - generic [ref=e157]:
+                - generic [ref=e158]: Step 1
+                - generic [ref=e159]: Informasi Pelanggan
+            - listitem [ref=e161] [cursor=pointer]:
+              - button [ref=e162]:
+                - img [ref=e163]
+              - generic [ref=e166]:
+                - generic [ref=e167]: Step 2
+                - generic [ref=e168]: Item order
+            - listitem [ref=e170] [cursor=pointer]:
+              - button [ref=e171]:
+                - img [ref=e172]
+              - generic [ref=e174]:
+                - generic [ref=e175]: Step 3
+                - generic [ref=e176]: Pembayaran
+            - listitem [ref=e178] [cursor=pointer]:
+              - button [ref=e179]:
+                - img [ref=e180]
+              - generic [ref=e182]:
+                - generic [ref=e183]: Step 4
+                - generic [ref=e184]: Preview
+        - generic [ref=e186]:
+          - group [ref=e188]:
+            - generic [ref=e189]:
+              - generic [ref=e190]: Informasi pelanggan
+              - paragraph [ref=e191]: Data dasar pemesan dan jadwal acara
+            - generic [ref=e192]:
+              - generic [ref=e193]:
+                - group [ref=e194]:
+                  - generic [ref=e195]: Nama pelanggan
+                  - textbox "Nama pelanggan" [ref=e196]:
+                    - /placeholder: Nama pemesan
+                - group [ref=e197]:
+                  - generic [ref=e198]: No. HP
+                  - textbox "No. HP" [ref=e199]:
+                    - /placeholder: 08xxxxxxxxxx
+              - generic [ref=e200]:
+                - group [ref=e201]:
+                  - generic [ref=e202]: Nama acara
+                  - textbox "Nama acara" [ref=e203]:
+                    - /placeholder: "Contoh: Pernikahan, rapat, ulang tahun"
+                - generic [ref=e204]:
+                  - group [ref=e205]:
+                    - generic [ref=e206]: Tanggal acara
+                    - textbox "Tanggal acara" [ref=e207]
+                  - group [ref=e208]:
+                    - generic [ref=e209]: Jam acara
+                    - textbox "Jam acara" [ref=e210]
+            - generic [ref=e211]:
+              - generic [ref=e212]: Lokasi
+              - paragraph [ref=e213]: Alamat dan titik lokasi acara
+            - generic [ref=e215]:
+              - group [ref=e216]:
+                - generic [ref=e217]: Nama Alamat
+                - textbox "Nama Alamat" [ref=e218]:
+                  - /placeholder: Gedung, rumah, kantor
+              - group [ref=e219]:
+                - generic [ref=e220]: Lokasi acara
+                - group [ref=e221] [cursor=pointer]:
+                  - group [ref=e222]:
+                    - img [ref=e223]
+                  - textbox "Lokasi acara" [ref=e226]:
+                    - /placeholder: Pilih lokasi di maps
+          - complementary [ref=e227]:
+            - group [ref=e228]:
+              - generic [ref=e229]:
+                - generic [ref=e230]: Ringkasan
+                - paragraph [ref=e231]: Pastikan data pelanggan dan lokasi sudah benar.
+              - generic [ref=e232]:
+                - generic [ref=e233]:
+                  - img [ref=e234]
+                  - generic [ref=e237]:
+                    - generic [ref=e238]: Pelanggan
+                    - generic [ref=e239]: Belum diisi
+                    - paragraph [ref=e240]: No. HP belum diisi
+                - generic [ref=e241]:
+                  - img [ref=e242]
+                  - generic [ref=e245]:
+                    - generic [ref=e246]: Acara
+                    - generic [ref=e247]: Belum diisi
+                    - paragraph [ref=e248]: Tanggal dan jam belum diisi
+                - generic [ref=e249]:
+                  - img [ref=e250]
+                  - generic [ref=e254]:
+                    - generic [ref=e255]: Lokasi
+                    - generic [ref=e256]: Belum ada lokasi
+                    - paragraph [ref=e257]: Pilih lokasi di maps
+        - generic [ref=e260]:
+          - generic [ref=e261]: Langkah 1/4
+          - button "Berikutnya" [ref=e263]:
+            - text: Berikutnya
+            - img
+  - region "Notifications alt+T"

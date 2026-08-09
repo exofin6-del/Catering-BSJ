@@ -1,0 +1,171 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e7]:
+      - list [ref=e9]:
+        - listitem [ref=e10]:
+          - link "Laravel Starter Kit" [ref=e11] [cursor=pointer]:
+            - /url: /dashboard
+            - img [ref=e13]
+            - generic [ref=e16]: Laravel Starter Kit
+      - generic [ref=e18]:
+        - generic [ref=e19]: Platform
+        - list [ref=e21]:
+          - listitem [ref=e22]:
+            - link "Dashboard" [ref=e23] [cursor=pointer]:
+              - /url: /dashboard
+              - img [ref=e24]
+              - generic [ref=e29]: Dashboard
+          - listitem [ref=e30]:
+            - link "Kategori" [ref=e31] [cursor=pointer]:
+              - /url: /kategori
+              - img [ref=e32]
+              - generic [ref=e36]: Kategori
+          - listitem [ref=e37]:
+            - link "Menu" [ref=e38] [cursor=pointer]:
+              - /url: /menu
+              - img [ref=e39]
+              - generic [ref=e42]: Menu
+          - listitem [ref=e43]:
+            - link "Paket" [ref=e44] [cursor=pointer]:
+              - /url: /paket
+              - img [ref=e45]
+              - generic [ref=e47]: Paket
+          - listitem [ref=e48]:
+            - link "Order" [ref=e49] [cursor=pointer]:
+              - /url: /order
+              - img [ref=e50]
+              - generic [ref=e53]: Order
+      - generic [ref=e54]:
+        - list [ref=e57]:
+          - listitem [ref=e58]:
+            - link "Repository" [ref=e59] [cursor=pointer]:
+              - /url: https://github.com/laravel/react-starter-kit
+              - img [ref=e60]
+              - generic [ref=e65]: Repository
+          - listitem [ref=e66]:
+            - link "Documentation" [ref=e67] [cursor=pointer]:
+              - /url: https://laravel.com/docs/starter-kits#react
+              - img [ref=e68]
+              - generic [ref=e70]: Documentation
+        - list [ref=e71]:
+          - listitem [ref=e72]:
+            - button "OS Order Seeder" [ref=e73]:
+              - generic [ref=e75]: OS
+              - generic [ref=e77]: Order Seeder
+              - img [ref=e78]
+    - main [ref=e81]:
+      - generic [ref=e83]:
+        - link "Kembali ke Order" [ref=e86] [cursor=pointer]:
+          - /url: /order
+          - img
+        - generic [ref=e87]:
+          - heading "Edit Order" [level=2] [ref=e92]
+          - navigation "breadcrumb" [ref=e94]:
+            - list [ref=e95]:
+              - listitem [ref=e96]:
+                - link "Dashboard" [ref=e97] [cursor=pointer]:
+                  - /url: /dashboard
+              - listitem [ref=e98]:
+                - img [ref=e99]
+              - listitem [ref=e101]:
+                - link "Order" [ref=e102] [cursor=pointer]:
+                  - /url: /order
+              - listitem [ref=e103]:
+                - img [ref=e104]
+              - listitem [ref=e106]:
+                - link "Edit" [disabled] [ref=e107]
+      - generic [ref=e110]:
+        - navigation "Progress" [ref=e112]:
+          - list [ref=e113]:
+            - listitem [ref=e114] [cursor=pointer]:
+              - button [ref=e115]:
+                - img [ref=e116]
+              - generic [ref=e118]:
+                - generic [ref=e119]: Step 1
+                - generic [ref=e120]: Informasi Pelanggan
+            - listitem [ref=e122] [cursor=pointer]:
+              - button [ref=e123]:
+                - img [ref=e124]
+              - generic [ref=e127]:
+                - generic [ref=e128]: Step 2
+                - generic [ref=e129]: Item order
+            - listitem [ref=e131] [cursor=pointer]:
+              - button [ref=e132]:
+                - img [ref=e133]
+              - generic [ref=e135]:
+                - generic [ref=e136]: Step 3
+                - generic [ref=e137]: Pembayaran
+        - generic [ref=e340]:
+          - group [ref=e342]:
+            - generic [ref=e343]:
+              - generic [ref=e344]:
+                - generic [ref=e345]: Item order
+                - paragraph [ref=e346]: Tambahkan menu atau paket untuk order ini.
+              - button "Tambah" [ref=e347]:
+                - img
+                - text: Tambah
+            - generic [ref=e349]:
+              - article [ref=e352]:
+                - img "Paket Coffee Break Classic" [ref=e353]
+                - generic [ref=e354]:
+                  - button "Tampilkan detail Paket Coffee Break Classic" [ref=e355]:
+                    - img
+                  - generic [ref=e356]:
+                    - heading "Paket Coffee Break Classic" [level=3] [ref=e358]
+                    - generic [ref=e360]: Snack Box · Min. 30 pesanan
+                  - generic [ref=e361]:
+                    - generic [ref=e362]:
+                      - group [ref=e363]:
+                        - button "Kurangi jumlah" [ref=e364]:
+                          - img
+                        - spinbutton "Jumlah" [ref=e365]: "36"
+                        - button "Tambah jumlah" [active] [ref=e366]:
+                          - img
+                      - button "Hapus item 1" [ref=e367]:
+                        - img
+                    - generic [ref=e368]: Rp 1.116.000
+              - generic [ref=e369]:
+                - generic [ref=e370]:
+                  - generic [ref=e371]: Subtotal
+                  - generic [ref=e372]: Rp 1.116.000
+                - generic [ref=e373]:
+                  - generic [ref=e374]: Total
+                  - generic [ref=e375]: Rp 1.116.000
+          - complementary [ref=e376]:
+            - group [ref=e377]:
+              - generic [ref=e378]:
+                - generic [ref=e379]: Ringkasan order
+                - paragraph [ref=e380]: Periksa kembali item yang sudah ditambahkan.
+              - generic [ref=e381]:
+                - generic [ref=e382]:
+                  - img [ref=e383]
+                  - generic [ref=e386]:
+                    - generic [ref=e387]: Pelanggan
+                    - generic [ref=e388]: Kevin Halim
+                    - paragraph [ref=e389]: "081234567809"
+                - generic [ref=e390]:
+                  - img [ref=e391]
+                  - generic [ref=e393]:
+                    - generic [ref=e394]: Acara
+                    - generic [ref=e395]: Internal Training
+                    - paragraph [ref=e396]: 22 Jun 2026 | 08:30
+                - generic [ref=e397]:
+                  - img [ref=e398]
+                  - generic [ref=e402]:
+                    - generic [ref=e403]: Lokasi
+                    - generic [ref=e404]: Kirim bertahap sesuai jadwal istirahat.
+                    - paragraph [ref=e405]: Training Center BSD, Tangerang
+                - generic [ref=e406]:
+                  - img [ref=e407]
+                  - generic [ref=e410]:
+                    - generic [ref=e411]: Catatan
+                    - generic [ref=e412]: Dibatalkan karena perubahan jadwal internal.
+        - generic [ref=e221]:
+          - button "Sebelumnya" [ref=e319]:
+            - img
+            - text: Sebelumnya
+          - generic [ref=e222]: Langkah 2/3
+          - button "Berikutnya" [ref=e413]:
+            - text: Berikutnya
+            - img
+  - region "Notifications alt+T"

@@ -1,0 +1,249 @@
+- generic [ref=f1e2]:
+  - generic [ref=f1e3]:
+    - banner [ref=f1e4]:
+      - generic [ref=f1e5]:
+        - link "Catering BSJ" [ref=f1e6] [cursor=pointer]:
+          - /url: /
+          - generic [ref=f1e10]:
+            - generic [ref=f1e11]: Catering BSJ
+            - generic [ref=f1e12]: Catering untuk setiap momen
+        - navigation "Navigasi utama" [ref=f1e13]:
+          - link "Beranda" [ref=f1e14] [cursor=pointer]:
+            - /url: "#beranda"
+          - link "Tentang" [ref=f1e15] [cursor=pointer]:
+            - /url: "#tentang"
+          - link "Katalog" [ref=f1e16] [cursor=pointer]:
+            - /url: "#katalog"
+          - link "Lokasi" [ref=f1e17] [cursor=pointer]:
+            - /url: "#lokasi"
+        - generic [ref=f1e18]:
+          - textbox "Cari menu atau paket..." [ref=f1e24]
+          - button "Buka keranjang" [ref=f1e25]
+    - main [ref=f1e26]:
+      - generic [ref=f1e28]:
+        - img "Paket Meeting Premium" [ref=f1e29]
+        - generic [ref=f1e31]:
+          - generic [ref=f1e32]:
+            - generic [ref=f1e33]: Menerima pesanan
+            - generic [ref=f1e34]: Mulai Rp 7.000
+          - generic [ref=f1e35]:
+            - paragraph [ref=f1e36]: Dibuat segar, disajikan berkesan
+            - heading "Sajian yang tepat untuk momen yang penting." [level=1] [ref=f1e37]
+            - paragraph [ref=f1e38]: Pilih menu satuan atau paket lengkap, atur jumlah, lalu simpan semuanya dalam satu keranjang yang rapi.
+          - link "Jelajahi katalog" [ref=f1e39] [cursor=pointer]:
+            - /url: "#katalog"
+          - generic [ref=f1e40]:
+            - generic [ref=f1e41]: Bahan segar
+            - generic [ref=f1e45]: Pilihan fleksibel
+            - generic [ref=f1e49]: Harga transparan
+      - generic [ref=f1e54]:
+        - generic [ref=f1e55]:
+          - generic [ref=f1e56]:
+            - paragraph [ref=f1e57]: Tentang Catering BSJ
+            - heading "Sajian yang dipersiapkan untuk setiap momen penting." [level=2] [ref=f1e58]
+            - paragraph [ref=f1e59]: Catering BSJ membantu memenuhi kebutuhan konsumsi untuk rapat, acara keluarga, perayaan, dan berbagai kegiatan lainnya. Setiap pilihan dibuat agar proses pemesanan terasa praktis, jelas, dan nyaman.
+          - link "Jelajahi menu & paket" [ref=f1e61] [cursor=pointer]:
+            - /url: "#katalog"
+        - generic [ref=f1e62]:
+          - article [ref=f1e63]:
+            - generic [ref=f1e67]:
+              - heading "Dimasak dengan perhatian" [level=3] [ref=f1e68]
+              - paragraph [ref=f1e69]: Menu disiapkan untuk menjaga rasa dan kualitas sajian.
+          - article [ref=f1e70]:
+            - generic [ref=f1e77]:
+              - heading "Pilihan yang fleksibel" [level=3] [ref=f1e78]
+              - paragraph [ref=f1e79]: Tersedia menu satuan dan paket untuk berbagai acara.
+          - article [ref=f1e80]:
+            - generic [ref=f1e86]:
+              - heading "Pemesanan lebih jelas" [level=3] [ref=f1e87]
+              - paragraph [ref=f1e88]: Detail pesanan dirangkum agar mudah diperiksa kembali.
+          - article [ref=f1e89]:
+            - generic [ref=f1e94]:
+              - heading "Terencana dan tepat" [level=3] [ref=f1e95]
+              - paragraph [ref=f1e96]: Jadwal disesuaikan dengan kebutuhan momen Anda.
+      - generic [ref=f1e98]:
+        - generic [ref=f1e100]:
+          - paragraph [ref=f1e103]: Katalog catering
+          - heading "Pilihan terbaik untuk setiap acara" [level=2] [ref=f1e104]
+          - paragraph [ref=f1e105]: Jelajahi menu satuan dan paket catering yang tersedia, lengkap dengan harga dan minimum pemesanan yang transparan.
+        - generic [ref=f1e106]:
+          - generic [ref=f1e107]:
+            - generic [ref=f1e108]:
+              - heading "Paket pilihan" [level=3] [ref=f1e109]
+              - paragraph [ref=f1e110]: Pilihan lengkap yang praktis untuk berbagai kebutuhan acara.
+            - paragraph [ref=f1e111]: 10 pilihan
+          - generic "Filter kategori katalog" [ref=f1e112]:
+            - button "Semua" [ref=f1e113]
+            - button "Event & Meeting" [ref=f1e114]
+            - button "Nasi Box" [ref=f1e115]
+            - button "Prasmanan" [ref=f1e116]
+            - button "Snack Box" [ref=f1e117]
+          - generic [ref=f1e118]:
+            - link "Lihat detail Paket Meeting Premium" [ref=f1e119]:
+              - generic [ref=f1e120]:
+                - generic [ref=f1e124]:
+                  - img "Paket Meeting Premium" [ref=f1e125]
+                  - generic: Rekomendasi
+                - generic [ref=f1e126]:
+                  - generic [ref=f1e127]:
+                    - generic [ref=f1e128]:
+                      - paragraph [ref=f1e129]: Event & Meeting
+                      - generic [ref=f1e130]: Min. 20
+                    - generic [ref=f1e131]: Paket Meeting Premium
+                  - generic [ref=f1e132]:
+                    - generic [ref=f1e133]:
+                      - paragraph [ref=f1e134]: Mulai dari
+                      - generic [ref=f1e135]:
+                        - paragraph [ref=f1e136]: Rp 40.000
+                        - generic [ref=f1e137]: "-6%"
+                      - paragraph [ref=f1e138]: Rp 42.500
+                    - button [ref=f1e139]
+            - link "Lihat detail Paket Meeting Executive" [ref=f1e140]:
+              - generic [ref=f1e141]:
+                - generic [ref=f1e145]:
+                  - img "Paket Meeting Executive" [ref=f1e146]
+                  - generic: Rekomendasi
+                - generic [ref=f1e147]:
+                  - generic [ref=f1e148]:
+                    - generic [ref=f1e149]:
+                      - paragraph [ref=f1e150]: Event & Meeting
+                      - generic [ref=f1e151]: Min. 15
+                    - generic [ref=f1e152]: Paket Meeting Executive
+                  - generic [ref=f1e153]:
+                    - paragraph [ref=f1e156]: Rp 85.000
+                    - button [ref=f1e157]
+            - link "Lihat detail Paket Seminar Hemat" [ref=f1e158]:
+              - generic [ref=f1e159]:
+                - img "Paket Seminar Hemat" [ref=f1e164]
+                - generic [ref=f1e165]:
+                  - generic [ref=f1e166]:
+                    - generic [ref=f1e167]:
+                      - paragraph [ref=f1e168]: Nasi Box
+                      - generic [ref=f1e169]: Min. 30
+                    - generic [ref=f1e170]: Paket Seminar Hemat
+                  - generic [ref=f1e171]:
+                    - paragraph [ref=f1e174]: Rp 60.000
+                    - button [ref=f1e175]
+            - link "Lihat detail Paket Wedding Nusantara" [ref=f1e176]:
+              - generic [ref=f1e177]:
+                - generic [ref=f1e181]:
+                  - img "Paket Wedding Nusantara" [ref=f1e182]
+                  - generic: Rekomendasi
+                - generic [ref=f1e183]:
+                  - generic [ref=f1e184]:
+                    - generic [ref=f1e185]:
+                      - paragraph [ref=f1e186]: Prasmanan
+                      - generic [ref=f1e187]: Min. 80
+                    - generic [ref=f1e188]: Paket Wedding Nusantara
+                  - generic [ref=f1e189]:
+                    - paragraph [ref=f1e192]: Rp 110.000
+                    - button [ref=f1e193]
+          - button "Tampilkan lebih" [ref=f1e195]
+        - generic [ref=f1e196]:
+          - generic [ref=f1e197]:
+            - generic [ref=f1e198]:
+              - heading "Menu pilihan" [level=3] [ref=f1e199]
+              - paragraph [ref=f1e200]: Pilih menu favorit untuk melengkapi pesanan Anda.
+            - paragraph [ref=f1e201]: 100 pilihan
+          - generic "Filter kategori katalog" [ref=f1e202]:
+            - button "Semua" [ref=f1e203]
+            - button "Minuman" [ref=f1e204]
+            - button "Nasi Box" [ref=f1e205]
+            - button "Prasmanan" [ref=f1e206]
+            - button "Snack Box" [ref=f1e207]
+          - generic [ref=f1e208]:
+            - link "Lihat detail Nasi Box Ayam Bakar" [ref=f1e209]:
+              - generic [ref=f1e210]:
+                - generic [ref=f1e214]:
+                  - img "Nasi Box Ayam Bakar" [ref=f1e215]
+                  - generic: Rekomendasi
+                - generic [ref=f1e216]:
+                  - generic [ref=f1e217]:
+                    - generic [ref=f1e218]:
+                      - paragraph [ref=f1e219]: Nasi Box
+                      - generic [ref=f1e220]: Min. 20
+                    - generic [ref=f1e221]: Nasi Box Ayam Bakar
+                  - generic [ref=f1e222]:
+                    - generic [ref=f1e223]:
+                      - generic [ref=f1e224]:
+                        - paragraph [ref=f1e225]: Rp 29.000
+                        - generic [ref=f1e226]: "-9%"
+                      - paragraph [ref=f1e227]: Rp 32.000
+                    - button [ref=f1e228]
+            - link "Lihat detail Nasi Box Rendang Sapi" [ref=f1e229]:
+              - generic [ref=f1e230]:
+                - generic [ref=f1e234]:
+                  - img "Nasi Box Rendang Sapi" [ref=f1e235]
+                  - generic: Rekomendasi
+                - generic [ref=f1e236]:
+                  - generic [ref=f1e237]:
+                    - generic [ref=f1e238]:
+                      - paragraph [ref=f1e239]: Nasi Box
+                      - generic [ref=f1e240]: Min. 20
+                    - generic [ref=f1e241]: Nasi Box Rendang Sapi
+                  - generic [ref=f1e242]:
+                    - paragraph [ref=f1e245]: Rp 38.000
+                    - button [ref=f1e246]
+            - link "Lihat detail Nasi Box Ikan Rica" [ref=f1e247]:
+              - generic [ref=f1e248]:
+                - img "Nasi Box Ikan Rica" [ref=f1e253]
+                - generic [ref=f1e254]:
+                  - generic [ref=f1e255]:
+                    - generic [ref=f1e256]:
+                      - paragraph [ref=f1e257]: Nasi Box
+                      - generic [ref=f1e258]: Min. 20
+                    - generic [ref=f1e259]: Nasi Box Ikan Rica
+                  - generic [ref=f1e260]:
+                    - generic [ref=f1e261]:
+                      - generic [ref=f1e262]:
+                        - paragraph [ref=f1e263]: Rp 31.500
+                        - generic [ref=f1e264]: "-7%"
+                      - paragraph [ref=f1e265]: Rp 34.000
+                    - button [ref=f1e266]
+            - link "Lihat detail Snack Box Classic" [ref=f1e267]:
+              - generic [ref=f1e268]:
+                - generic [ref=f1e272]:
+                  - img "Snack Box Classic" [ref=f1e273]
+                  - generic: Rekomendasi
+                - generic [ref=f1e274]:
+                  - generic [ref=f1e275]:
+                    - generic [ref=f1e276]:
+                      - paragraph [ref=f1e277]: Snack Box
+                      - generic [ref=f1e278]: Min. 30
+                    - generic [ref=f1e279]: Snack Box Classic
+                  - generic [ref=f1e280]:
+                    - generic [ref=f1e281]:
+                      - generic [ref=f1e282]:
+                        - paragraph [ref=f1e283]: Rp 16.500
+                        - generic [ref=f1e284]: "-8%"
+                      - paragraph [ref=f1e285]: Rp 18.000
+                    - button [ref=f1e286]
+          - button "Tampilkan lebih" [ref=f1e288]
+    - generic [ref=f1e290]:
+      - generic [ref=f1e295]:
+        - heading "Dimasak segar" [level=3] [ref=f1e296]
+        - paragraph [ref=f1e297]: Disiapkan sesuai jadwal acara.
+      - generic [ref=f1e305]:
+        - heading "Pilihan fleksibel" [level=3] [ref=f1e306]
+        - paragraph [ref=f1e307]: Menu satuan dan paket lengkap.
+      - generic [ref=f1e313]:
+        - heading "Harga transparan" [level=3] [ref=f1e314]
+        - paragraph [ref=f1e315]: Estimasi terlihat sejak awal.
+      - generic [ref=f1e321]:
+        - heading "Terjadwal rapi" [level=3] [ref=f1e322]
+        - paragraph [ref=f1e323]: Waktu layanan dikonfirmasi tim.
+    - generic [ref=f1e325]:
+      - generic [ref=f1e332]:
+        - paragraph [ref=f1e333]: Lokasi catering
+        - heading "Temukan Catering BSJ" [level=2] [ref=f1e334]
+        - paragraph [ref=f1e335]: Lihat titik lokasi operasional kami dan gunakan Google Maps untuk mendapatkan rute terbaik dari lokasi Anda.
+      - generic [ref=f1e343]:
+        - paragraph [ref=f1e344]: Lokasi belum tersedia
+        - paragraph [ref=f1e345]: Titik lokasi catering belum diatur pada pengaturan bisnis.
+    - contentinfo [ref=f1e346]:
+      - generic [ref=f1e347]:
+        - generic [ref=f1e348]:
+          - paragraph [ref=f1e349]: Catering BSJ
+          - paragraph [ref=f1e350]: Sajian catering yang praktis untuk rapat, perayaan, gathering, dan momen penting lainnya.
+        - paragraph [ref=f1e351]: © 2026 Catering BSJ. All rights reserved.
+  - region "Notifications alt+T"

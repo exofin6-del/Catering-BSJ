@@ -1,0 +1,88 @@
+- generic [ref=f11e2]:
+  - generic [ref=f11e3]:
+    - generic [ref=f11e4]:
+      - heading "Sidebar" [level=2]
+      - paragraph: Displays the mobile sidebar.
+    - main [ref=f11e5]:
+      - generic [ref=f11e7]:
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading "Pengaturan" [level=2]
+        - button "Toggle sidebar" [ref=f11e10]
+      - generic [ref=f11e13]:
+        - complementary [ref=f11e14]:
+          - navigation "Pengaturan" [ref=f11e15]:
+            - link "Bisnis" [ref=f11e16] [cursor=pointer]:
+              - /url: /settings/business
+            - link "Profil" [ref=f11e17] [cursor=pointer]:
+              - /url: /settings/profile
+            - link "Keamanan" [ref=f11e18] [cursor=pointer]:
+              - /url: /settings/security
+            - link "Tampilan" [ref=f11e19] [cursor=pointer]:
+              - /url: /settings/appearance
+        - main [ref=f11e20]:
+          - generic [ref=f11e21]:
+            - generic [ref=f11e23]:
+              - heading "Pengaturan bisnis" [level=2] [ref=f11e25]
+              - paragraph [ref=f11e26]: Atur kapasitas, jam operasional, dan area layanan catering.
+            - generic [ref=f11e27]:
+              - generic [ref=f11e28]:
+                - generic [ref=f11e36]:
+                  - generic [ref=f11e37]: Informasi bisnis
+                  - generic [ref=f11e38]: Nama dan status penerimaan order.
+                - generic [ref=f11e39]:
+                  - generic [ref=f11e40]:
+                    - generic [ref=f11e41]: Nama catering
+                    - textbox "Nama catering" [ref=f11e42]: Catering BSJ
+                  - generic [ref=f11e43] [cursor=pointer]:
+                    - checkbox "Terima order baru Nonaktifkan sementara saat bisnis tutup atau kapasitas dihentikan." [checked] [ref=f11e44]
+                    - checkbox [checked]
+                    - generic [ref=f11e45]:
+                      - generic [ref=f11e46]: Terima order baru
+                      - generic [ref=f11e47]: Nonaktifkan sementara saat bisnis tutup atau kapasitas dihentikan.
+              - generic [ref=f11e48]:
+                - generic [ref=f11e55]:
+                  - generic [ref=f11e56]: Operasional & kapasitas
+                  - generic [ref=f11e57]: Batasi waktu dan jumlah order yang dapat diterima setiap hari.
+                - generic [ref=f11e58]:
+                  - generic [ref=f11e59]:
+                    - generic [ref=f11e60]: Jam buka
+                    - textbox "Jam buka" [ref=f11e61]: 07:00
+                  - generic [ref=f11e62]:
+                    - generic [ref=f11e63]: Jam tutup
+                    - textbox "Jam tutup" [ref=f11e64]: 17:00
+                  - generic [ref=f11e65]:
+                    - generic [ref=f11e66]: Maksimum order per hari
+                    - spinbutton "Maksimum order per hari" [ref=f11e68]: "3"
+                    - paragraph [ref=f11e69]: Order baru akan ditolak setelah kapasitas pada tanggal tersebut penuh.
+              - generic [ref=f11e70]:
+                - generic [ref=f11e78]:
+                  - generic [ref=f11e79]: Area layanan
+                  - generic [ref=f11e80]: Tentukan pusat catering dan radius maksimum pengantaran.
+                - generic [ref=f11e81]:
+                  - generic [ref=f11e82]:
+                    - generic [ref=f11e84]:
+                      - group [ref=f11e90]:
+                        - group [ref=f11e91]
+                        - textbox "Cari lokasi catering..." [ref=f11e95]
+                      - group "Zoom controls" [ref=f11e97]:
+                        - button "Zoom in" [ref=f11e98]
+                        - button "Zoom out" [ref=f11e99]
+                    - paragraph [ref=f11e104]: Cari lokasi atau geser peta. Lingkaran menunjukkan jangkauan order sejauh 10 km dari lokasi catering.
+                  - generic [ref=f11e105]:
+                    - generic [ref=f11e106]:
+                      - generic [ref=f11e107]: Radius order maksimum
+                      - generic [ref=f11e108]:
+                        - spinbutton "Radius order maksimum" [ref=f11e109]: "10"
+                        - generic [ref=f11e110]: km
+                    - slider "Radius order maksimum" [ref=f11e111] [cursor=pointer]: "10"
+                    - generic [ref=f11e112]:
+                      - generic [ref=f11e113]: 1 km
+                      - generic [ref=f11e114]: 100 km
+              - generic [ref=f11e115]:
+                - paragraph [ref=f11e116]: Pengaturan sudah tersimpan.
+                - button "Simpan" [ref=f11e117]
+  - region "Notifications alt+T"

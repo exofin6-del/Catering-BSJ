@@ -1,0 +1,84 @@
+
+ INFO Server running on [http://127.0.0.1:8000]. 
+
+ Press Ctrl+C to stop the server
+
+ 2026-06-15 02:37:58 /order/1/edit .. ~ 2s
+ 2026-06-15 02:37:58 .. ~ 2s
+ 2026-06-15 02:37:59 /login .. ~ 1s
+ 2026-06-15 02:38:01 /build/assets/app-CZnZ3myE.css .. ~ 0.84ms
+ 2026-06-15 02:38:01 /build/assets/instrument-sans-400-normal-DRC__1Mx.woff2 .. ~ 18.97ms
+ 2026-06-15 02:38:01 /build/assets/instrument-sans-500-normal-Dk9ku72i.woff2 .. ~ 33.26ms
+ 2026-06-15 02:38:01 /build/assets/instrument-sans-400-normal-Q_nF8v4l.woff2 .. ~ 42.68ms
+ 2026-06-15 02:38:01 /build/assets/instrument-sans-500-normal-CTEe1bJa.woff2 .. ~ 55.13ms
+ 2026-06-15 02:38:01 /build/assets/instrument-sans-600-normal-B7fBEWYG.woff2 .. ~ 70.15ms
+ 2026-06-15 02:38:01 /build/assets/instrument-sans-600-normal-BsaQcF38.woff2 .. ~ 41.28ms
+ 2026-06-15 02:38:01 /build/assets/app-oMBiEaID.js .. ~ 48.84ms
+ 2026-06-15 02:38:01 /build/assets/chunk-QTnfLwEv.js .. ~ 33.29ms
+ 2026-06-15 02:38:01 /build/assets/preload-helper-BgbkXLIy.js .. ~ 34.01ms
+ 2026-06-15 02:38:01 /build/assets/floating-ui.react-dom-DI8ZWUVc.js .. ~ 33.60ms
+ 2026-06-15 02:38:01 /build/assets/dist-DUO4ghnK.js .. ~ 19.16ms
+ 2026-06-15 02:38:01 /build/assets/wayfinder-DfIhba5X.js .. ~ 52.67ms
+ 2026-06-15 02:38:01 /build/assets/button-Bg0vRxAc.js .. ~ 35.04ms
+ 2026-06-15 02:38:01 /build/assets/createLucideIcon-Dt98Z2VR.js .. ~ 24.29ms
+ 2026-06-15 02:38:01 /build/assets/dist-CK7J-vjq.js .. ~ 32.60ms
+ 2026-06-15 02:38:01 /build/assets/dist-MrlYm6uN.js .. ~ 586.20ms
+ 2026-06-15 02:38:01 /build/assets/es2015-Cn3U9Co9.js .. ~ 574.32ms
+ 2026-06-15 02:38:02 /build/assets/login-CT-JTt-U.js .. ~ 580.60ms
+ 2026-06-15 02:38:02 /build/assets/checkbox-DRPLwn0e.js .. ~ 571.72ms
+ 2026-06-15 02:38:02 /build/assets/dist-ClXeXiMY.js .. ~ 570.97ms
+ 2026-06-15 02:38:02 /build/assets/label-EjNhKCVv.js .. ~ 16.93ms
+ 2026-06-15 02:38:02 /build/assets/password-input-CA6odmSm.js .. ~ 21.55ms
+ 2026-06-15 02:38:02 /build/assets/eye-D4O8Xizx.js .. ~ 20.84ms
+ 2026-06-15 02:38:02 /build/assets/input-error-s6xyWTcS.js .. ~ 41.27ms
+ 2026-06-15 02:38:02 /build/assets/text-link-C25TVdwE.js .. ~ 62.94ms
+ 2026-06-15 02:38:02 /build/assets/spinner-AtmW9lS-.js .. ~ 66.73ms
+ 2026-06-15 02:38:02 /build/assets/loader-circle-Cys8U8h0.js .. ~ 71.45ms
+ 2026-06-15 02:38:02 /build/assets/passkey-verify-DbS2Riii.js .. ~ 85.70ms
+ 2026-06-15 02:38:02 /build/assets/react-DE4ffhsU.js .. ~ 49.40ms
+ 2026-06-15 02:38:02 /build/assets/password-JrTQCTWF.js .. ~ 39.98ms
+ 2026-06-15 02:38:02 /build/assets/confirm-mK9qTiju.js .. ~ 75.22ms
+ 2026-06-15 02:38:02 /build/assets/instrument-sans-500-normal-Z6ESRlEs.woff .. ~ 0.70ms
+ 2026-06-15 02:38:02 /build/assets/instrument-sans-400-normal-D1W7dsQl.woff .. ~ 1.97ms
+ 2026-06-15 02:38:02 /favicon.svg .. ~ 0.72ms
+ 2026-06-15 02:38:02 /favicon.ico .. ~ 0.23ms
+ 2026-06-15 02:38:19 /login .. ~ 3s
+ 2026-06-15 02:38:22 /order/1/edit .. ~ 4s
+ 2026-06-15 02:38:27 /build/assets/order-form-Cz7j0UV8.css .. ~ 18.66ms
+ 2026-06-15 02:38:27 /build/assets/edit-BOiqYyZA.js .. ~ 37.96ms
+ 2026-06-15 02:38:27 /build/assets/field-BXbNEC3D.js .. ~ 41.52ms
+ 2026-06-15 02:38:27 /build/assets/select-COWiXjnh.js .. ~ 632.46ms
+ 2026-06-15 02:38:27 /build/assets/chevron-down-BnCVynHy.js .. ~ 634.32ms
+ 2026-06-15 02:38:27 /build/assets/order-form-D95iLpQj.js .. ~ 636.13ms
+ 2026-06-15 02:38:27 /build/assets/tabs-DMSMG1IP.js .. ~ 616.23ms
+ 2026-06-15 02:38:28 /build/assets/command-BXFa93_9.js .. ~ 15.60ms
+ 2026-06-15 02:38:28 /build/assets/search-jsCDF7KQ.js .. ~ 18.78ms
+ 2026-06-15 02:38:28 /build/assets/dialog-DEXNlNsq.js .. ~ 34.76ms
+ 2026-06-15 02:38:28 /build/assets/input-group-CANapzHo.js .. ~ 52.40ms
+ 2026-06-15 02:38:28 /build/assets/textarea-BtogasiX.js .. ~ 56.31ms
+ 2026-06-15 02:38:28 /build/assets/arrow-left-DYmWyizX.js .. ~ 54.44ms
+ 2026-06-15 02:38:28 /build/assets/circle-alert-Di8dpoxg.js .. ~ 44.70ms
+ 2026-06-15 02:38:28 /build/assets/order-format-B_NHg-l3.js .. ~ 54.54ms
+ 2026-06-15 02:38:28 /build/assets/file-upload-DcQEH7Uk.js .. ~ 29.90ms
+ 2026-06-15 02:38:28 /build/assets/image-1lwhFOxv.js .. ~ 40.55ms
+ 2026-06-15 02:38:28 /build/assets/map-pin-BoYIxEje.js .. ~ 38.06ms
+ 2026-06-15 02:38:28 /build/assets/minus-CYu9pcxS.js .. ~ 24.07ms
+ 2026-06-15 02:38:28 /build/assets/trash-2-BwcSVLXy.js .. ~ 33.07ms
+ 2026-06-15 02:38:28 /build/assets/badge-CYhOd16t.js .. ~ 21.14ms
+ 2026-06-15 02:38:29 /build/assets/instrument-sans-600-normal-B9e8oLYv.woff .. ~ 15.27ms
+ 2026-06-15 02:39:29 /order/1/edit .. ~ 7s
+ 2026-06-15 02:39:29 .. ~ 15s
+ 2026-06-15 02:40:24 /order/1/edit .. ~ 12s
+ 2026-06-15 02:40:37 .. ~ 0.22ms
+ 2026-06-15 02:40:51 /order/1/edit .. ~ 2s
+ 2026-06-15 02:40:51 .. ~ 3s
+ 2026-06-15 02:41:15 /_boost/browser-logs .. ~ 1s
+ 2026-06-15 02:41:19 /favicon.svg .. ~ 8.71ms
+ 2026-06-15 02:41:19 /favicon.ico .. ~ 0.33ms
+ 2026-06-15 02:42:01 /order/create .. ~ 1s
+ 2026-06-15 02:42:02 /_boost/browser-logs .. ~ 3s
+ 2026-06-15 02:42:18 /order/6/edit .. ~ 1s
+ 2026-06-15 02:42:18 /_boost/browser-logs .. ~ 2s
+ 2026-06-15 02:42:52 /order/9/edit .. ~ 1s
+ 2026-06-15 02:42:53 /_boost/browser-logs .. ~ 1s
+ 2026-06-15 02:44:11 /_boost/browser-logs .. ~ 511.69ms

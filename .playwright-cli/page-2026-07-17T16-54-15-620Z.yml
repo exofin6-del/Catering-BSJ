@@ -1,0 +1,320 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - banner [ref=e4]:
+        - generic [ref=e5]:
+          - button [ref=e349]
+          - link [ref=e350] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e10]:
+              - generic [ref=e11]: Catering BSJ
+              - generic [ref=e12]: Catering untuk setiap momen
+          - generic [ref=e18]:
+            - button [ref=e351]
+            - button [ref=e352]
+      - main [ref=e26]:
+        - generic [ref=e31]:
+          - generic [ref=e32]:
+            - generic [ref=e33]: Menerima pesanan
+            - generic [ref=e34]: Mulai Rp 7.000
+          - generic [ref=e35]:
+            - paragraph [ref=e36]: Dibuat segar, disajikan berkesan
+            - heading [level=1] [ref=e354]: Sajian yang tepat untuk momen yang penting.
+            - paragraph [ref=e38]: Pilih menu satuan atau paket lengkap, atur jumlah, lalu simpan semuanya dalam satu keranjang yang rapi.
+          - link [ref=e355] [cursor=pointer]:
+            - /url: "#katalog"
+            - text: Jelajahi katalog
+          - generic [ref=e40]:
+            - generic [ref=e41]: Bahan segar
+            - generic [ref=e45]: Pilihan fleksibel
+            - generic [ref=e49]: Harga transparan
+        - generic [ref=e54]:
+          - generic [ref=e55]:
+            - generic [ref=e56]:
+              - paragraph [ref=e57]: Tentang Catering BSJ
+              - heading [level=2] [ref=e356]: Sajian yang dipersiapkan untuk setiap momen penting.
+              - paragraph [ref=e59]: Catering BSJ membantu memenuhi kebutuhan konsumsi untuk rapat, acara keluarga, perayaan, dan berbagai kegiatan lainnya. Setiap pilihan dibuat agar proses pemesanan terasa praktis, jelas, dan nyaman.
+            - link [ref=e357] [cursor=pointer]:
+              - /url: "#katalog"
+              - text: Jelajahi menu & paket
+          - generic [ref=e62]:
+            - article [ref=e63]:
+              - generic [ref=e67]:
+                - heading [level=3] [ref=e358]: Dimasak dengan perhatian
+                - paragraph [ref=e69]: Menu disiapkan untuk menjaga rasa dan kualitas sajian.
+            - article [ref=e70]:
+              - generic [ref=e77]:
+                - heading [level=3] [ref=e359]: Pilihan yang fleksibel
+                - paragraph [ref=e79]: Tersedia menu satuan dan paket untuk berbagai acara.
+            - article [ref=e80]:
+              - generic [ref=e86]:
+                - heading [level=3] [ref=e360]: Pemesanan lebih jelas
+                - paragraph [ref=e88]: Detail pesanan dirangkum agar mudah diperiksa kembali.
+            - article [ref=e89]:
+              - generic [ref=e94]:
+                - heading [level=3] [ref=e361]: Terencana dan tepat
+                - paragraph [ref=e96]: Jadwal disesuaikan dengan kebutuhan momen Anda.
+        - generic [ref=e98]:
+          - generic [ref=e100]:
+            - paragraph [ref=e103]: Katalog catering
+            - heading [level=2] [ref=e362]: Pilihan terbaik untuk setiap acara
+            - paragraph [ref=e105]: Jelajahi menu satuan dan paket catering yang tersedia, lengkap dengan harga dan minimum pemesanan yang transparan.
+          - generic [ref=e106]:
+            - generic [ref=e107]:
+              - generic [ref=e108]:
+                - heading [level=3] [ref=e363]: Paket pilihan
+                - paragraph [ref=e110]: Pilihan lengkap yang praktis untuk berbagai kebutuhan acara.
+              - paragraph [ref=e111]: 10 pilihan
+            - generic [ref=e364]:
+              - button [ref=e365]: Semua
+              - button [ref=e366]: Event & Meeting
+              - button [ref=e367]: Nasi Box
+              - button [ref=e368]: Prasmanan
+              - button [ref=e369]: Snack Box
+            - generic [ref=e118]:
+              - link [ref=e370] [cursor=pointer]:
+                - generic [ref=e120]: Paket
+                - generic [ref=e123]:
+                  - generic [ref=e124]:
+                    - paragraph [ref=e125]: Event & Meeting
+                    - heading [level=3] [ref=e372]: Paket Meeting Premium
+                  - generic [ref=e127]:
+                    - generic [ref=e128]:
+                      - paragraph [ref=e129]: Mulai dari
+                      - paragraph [ref=e130]: Rp 40.000
+                    - generic [ref=e131]: Min. 20
+                  - generic [ref=e132]:
+                    - generic [ref=e133]: Lihat detail
+                    - button [ref=e373]
+              - link [ref=e374] [cursor=pointer]:
+                - generic [ref=e139]: Paket
+                - generic [ref=e142]:
+                  - generic [ref=e143]:
+                    - paragraph [ref=e144]: Event & Meeting
+                    - heading [level=3] [ref=e376]: Paket Meeting Executive
+                  - generic [ref=e146]:
+                    - paragraph [ref=e148]: Rp 85.000
+                    - generic [ref=e149]: Min. 15
+                  - generic [ref=e150]:
+                    - generic [ref=e151]: Lihat detail
+                    - button [ref=e377]
+              - link [ref=e378] [cursor=pointer]:
+                - generic [ref=e157]: Paket
+                - generic [ref=e160]:
+                  - generic [ref=e161]:
+                    - paragraph [ref=e162]: Nasi Box
+                    - heading [level=3] [ref=e380]: Paket Seminar Hemat
+                  - generic [ref=e164]:
+                    - paragraph [ref=e166]: Rp 60.000
+                    - generic [ref=e167]: Min. 30
+                  - generic [ref=e168]:
+                    - generic [ref=e169]: Lihat detail
+                    - button [ref=e381]
+              - link [ref=e382] [cursor=pointer]:
+                - generic [ref=e175]: Paket
+                - generic [ref=e178]:
+                  - generic [ref=e179]:
+                    - paragraph [ref=e180]: Prasmanan
+                    - heading [level=3] [ref=e384]: Paket Wedding Nusantara
+                  - generic [ref=e182]:
+                    - paragraph [ref=e184]: Rp 110.000
+                    - generic [ref=e185]: Min. 80
+                  - generic [ref=e186]:
+                    - generic [ref=e187]: Lihat detail
+                    - button [ref=e385]
+            - button [ref=e386]: Tampilkan lebih
+          - generic [ref=e194]:
+            - generic [ref=e195]:
+              - generic [ref=e196]:
+                - heading [level=3] [ref=e387]: Menu pilihan
+                - paragraph [ref=e198]: Pilih menu favorit untuk melengkapi pesanan Anda.
+              - paragraph [ref=e199]: 100 pilihan
+            - generic [ref=e388]:
+              - button [ref=e389]: Semua
+              - button [ref=e390]: Minuman
+              - button [ref=e391]: Nasi Box
+              - button [ref=e392]: Prasmanan
+              - button [ref=e393]: Snack Box
+            - generic [ref=e206]:
+              - link [ref=e394] [cursor=pointer]:
+                - generic [ref=e208]: Menu
+                - generic [ref=e211]:
+                  - generic [ref=e212]:
+                    - paragraph [ref=e213]: Nasi Box
+                    - heading [level=3] [ref=e396]: Nasi Box Ayam Bakar
+                  - generic [ref=e215]:
+                    - generic [ref=e216]:
+                      - paragraph [ref=e217]: Rp 29.000
+                      - paragraph [ref=e218]: Rp 32.000
+                    - generic [ref=e219]: Min. 20
+                  - generic [ref=e220]:
+                    - generic [ref=e221]: Lihat detail
+                    - button [ref=e397]
+              - link [ref=e398] [cursor=pointer]:
+                - generic [ref=e227]: Menu
+                - generic [ref=e230]:
+                  - generic [ref=e231]:
+                    - paragraph [ref=e232]: Nasi Box
+                    - heading [level=3] [ref=e400]: Nasi Box Rendang Sapi
+                  - generic [ref=e234]:
+                    - paragraph [ref=e236]: Rp 38.000
+                    - generic [ref=e237]: Min. 20
+                  - generic [ref=e238]:
+                    - generic [ref=e239]: Lihat detail
+                    - button [ref=e401]
+              - link [ref=e402] [cursor=pointer]:
+                - generic [ref=e245]: Menu
+                - generic [ref=e248]:
+                  - generic [ref=e249]:
+                    - paragraph [ref=e250]: Nasi Box
+                    - heading [level=3] [ref=e404]: Nasi Box Ikan Rica
+                  - generic [ref=e252]:
+                    - generic [ref=e253]:
+                      - paragraph [ref=e254]: Rp 31.500
+                      - paragraph [ref=e255]: Rp 34.000
+                    - generic [ref=e256]: Min. 20
+                  - generic [ref=e257]:
+                    - generic [ref=e258]: Lihat detail
+                    - button [ref=e405]
+              - link [ref=e406] [cursor=pointer]:
+                - generic [ref=e264]: Menu
+                - generic [ref=e267]:
+                  - generic [ref=e268]:
+                    - paragraph [ref=e269]: Snack Box
+                    - heading [level=3] [ref=e408]: Snack Box Classic
+                  - generic [ref=e271]:
+                    - generic [ref=e272]:
+                      - paragraph [ref=e273]: Rp 16.500
+                      - paragraph [ref=e274]: Rp 18.000
+                    - generic [ref=e275]: Min. 30
+                  - generic [ref=e276]:
+                    - generic [ref=e277]: Lihat detail
+                    - button [ref=e409]
+            - button [ref=e410]: Tampilkan lebih
+      - generic [ref=e285]:
+        - generic [ref=e290]:
+          - heading [level=3] [ref=e411]: Dimasak segar
+          - paragraph [ref=e292]: Disiapkan sesuai jadwal acara.
+        - generic [ref=e300]:
+          - heading [level=3] [ref=e412]: Pilihan fleksibel
+          - paragraph [ref=e302]: Menu satuan dan paket lengkap.
+        - generic [ref=e308]:
+          - heading [level=3] [ref=e413]: Harga transparan
+          - paragraph [ref=e310]: Estimasi terlihat sejak awal.
+        - generic [ref=e316]:
+          - heading [level=3] [ref=e414]: Terjadwal rapi
+          - paragraph [ref=e318]: Waktu layanan dikonfirmasi tim.
+      - generic [ref=e320]:
+        - generic [ref=e327]:
+          - paragraph [ref=e328]: Lokasi catering
+          - heading [level=2] [ref=e415]: Temukan Catering BSJ
+          - paragraph [ref=e330]: Lihat titik lokasi operasional kami dan gunakan Google Maps untuk mendapatkan rute terbaik dari lokasi Anda.
+        - generic [ref=e338]:
+          - paragraph [ref=e339]: Lokasi belum tersedia
+          - paragraph [ref=e340]: Titik lokasi catering belum diatur pada pengaturan bisnis.
+      - contentinfo [ref=e341]:
+        - generic [ref=e342]:
+          - generic [ref=e343]:
+            - paragraph [ref=e344]: Catering BSJ
+            - paragraph [ref=e345]: Sajian catering yang praktis untuk rapat, perayaan, gathering, dan momen penting lainnya.
+          - paragraph [ref=e346]: © 2026 Catering BSJ. All rights reserved.
+    - region "Notifications alt+T"
+  - dialog [ref=e419]:
+    - generic [ref=e420]:
+      - heading "Tambah item order" [level=2] [ref=e421]
+      - paragraph [ref=e422]: Cari menu atau paket lalu buka halaman detailnya.
+    - generic [ref=e423]:
+      - generic [ref=e425]:
+        - button "Kembali" [ref=e426]
+        - group [ref=e428]:
+          - combobox [expanded] [active] [ref=e429]
+          - group [ref=e430]
+      - generic [ref=e435]:
+        - generic [ref=e436]: Filter item dan kategori
+        - group "Filter item dan kategori" [ref=e437]:
+          - generic [ref=e440]:
+            - button "Semua" [pressed] [ref=e442]
+            - button "Menu" [ref=e444]
+            - button "Paket" [ref=e446]
+      - listbox "Suggestions" [ref=e447]:
+        - generic [ref=e448]:
+          - generic [ref=e449]: Menu terbaru
+          - group "Menu terbaru" [ref=e450]:
+            - option "Snack Box Pastry 90 Snack Box · Min. 30 Rp 27.500 Rp 30.000 -8%" [selected] [ref=e451] [cursor=pointer]:
+              - generic [ref=e454]:
+                - generic [ref=e455]: Snack Box Pastry 90
+                - generic [ref=e456]: Snack Box · Min. 30
+                - generic [ref=e457]:
+                  - generic [ref=e458]: Rp 27.500
+                  - generic [ref=e459]: Rp 30.000
+                  - generic [ref=e460]: "-8%"
+            - option "Snack Box Tradisional 89 Snack Box · Min. 30 Rp 30.000" [ref=e461] [cursor=pointer]:
+              - generic [ref=e464]:
+                - generic [ref=e465]: Snack Box Tradisional 89
+                - generic [ref=e466]: Snack Box · Min. 30
+                - generic [ref=e467]: Rp 30.000
+            - option "Nasi Box Empal Gentong 88 Nasi Box · Min. 20 Rp 50.500" [ref=e469] [cursor=pointer]:
+              - generic [ref=e472]:
+                - generic [ref=e473]: Nasi Box Empal Gentong 88
+                - generic [ref=e474]: Nasi Box · Min. 20
+                - generic [ref=e475]: Rp 50.500
+            - option "Nasi Box Dori Sambal Matah 87 Nasi Box · Min. 20 Rp 43.000 Rp 46.000 -7%" [ref=e477] [cursor=pointer]:
+              - generic [ref=e480]:
+                - generic [ref=e481]: Nasi Box Dori Sambal Matah 87
+                - generic [ref=e482]: Nasi Box · Min. 20
+                - generic [ref=e483]:
+                  - generic [ref=e484]: Rp 43.000
+                  - generic [ref=e485]: Rp 46.000
+                  - generic [ref=e486]: "-7%"
+            - option "Nasi Box Ayam Teriyaki 86 Nasi Box · Min. 20 Rp 42.000" [ref=e487] [cursor=pointer]:
+              - generic [ref=e490]:
+                - generic [ref=e491]: Nasi Box Ayam Teriyaki 86
+                - generic [ref=e492]: Nasi Box · Min. 20
+                - generic [ref=e493]: Rp 42.000
+            - button "Tampilkan lebih banyak" [ref=e496]
+          - separator [ref=e497]
+          - generic [ref=e498]: Paket terbaru
+          - group "Paket terbaru" [ref=e499]:
+            - option "Paket Tasyakuran Prasmanan · Min. 40 Rp 55.000 Rp 83.000 -34%" [ref=e500] [cursor=pointer]:
+              - generic [ref=e503]:
+                - generic [ref=e504]: Paket Tasyakuran
+                - generic [ref=e505]: Prasmanan · Min. 40
+                - generic [ref=e506]:
+                  - generic [ref=e507]: Rp 55.000
+                  - generic [ref=e508]: Rp 83.000
+                  - generic [ref=e509]: "-34%"
+            - option "Paket Launching Produk Event & Meeting · Min. 40 Rp 67.000 Rp 75.000 -11% Rekomendasi" [ref=e510] [cursor=pointer]:
+              - generic [ref=e513]:
+                - generic [ref=e514]: Paket Launching Produk
+                - generic [ref=e515]: Event & Meeting · Min. 40
+                - generic [ref=e516]:
+                  - generic [ref=e517]: Rp 67.000
+                  - generic [ref=e518]: Rp 75.000
+                  - generic [ref=e519]: "-11%"
+                  - generic [ref=e520]: Rekomendasi
+            - option "Paket Coffee Break Premium Snack Box · Min. 25 Rp 34.000 Rp 44.000 -23% Rekomendasi" [ref=e521] [cursor=pointer]:
+              - generic [ref=e524]:
+                - generic [ref=e525]: Paket Coffee Break Premium
+                - generic [ref=e526]: Snack Box · Min. 25
+                - generic [ref=e527]:
+                  - generic [ref=e528]: Rp 34.000
+                  - generic [ref=e529]: Rp 44.000
+                  - generic [ref=e530]: "-23%"
+                  - generic [ref=e531]: Rekomendasi
+            - option "Paket Coffee Break Classic Snack Box · Min. 30 Rp 31.000 Rp 37.000 -16%" [ref=e532] [cursor=pointer]:
+              - generic [ref=e535]:
+                - generic [ref=e536]: Paket Coffee Break Classic
+                - generic [ref=e537]: Snack Box · Min. 30
+                - generic [ref=e538]:
+                  - generic [ref=e539]: Rp 31.000
+                  - generic [ref=e540]: Rp 37.000
+                  - generic [ref=e541]: "-16%"
+            - option "Paket Vegetarian Corporate Prasmanan · Min. 30 Rp 62.334 Rp 84.000 -26%" [ref=e542] [cursor=pointer]:
+              - generic [ref=e545]:
+                - generic [ref=e546]: Paket Vegetarian Corporate
+                - generic [ref=e547]: Prasmanan · Min. 30
+                - generic [ref=e548]:
+                  - generic [ref=e549]: Rp 62.334
+                  - generic [ref=e550]: Rp 84.000
+                  - generic [ref=e551]: "-26%"
+            - button "Tampilkan lebih banyak" [ref=e553]

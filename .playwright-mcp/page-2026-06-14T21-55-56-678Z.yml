@@ -1,0 +1,183 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e7]:
+      - list [ref=e9]:
+        - listitem [ref=e10]:
+          - link "Laravel Starter Kit" [ref=e11] [cursor=pointer]:
+            - /url: /dashboard
+            - img [ref=e13]
+            - generic [ref=e16]: Laravel Starter Kit
+      - generic [ref=e18]:
+        - generic [ref=e19]: Platform
+        - list [ref=e21]:
+          - listitem [ref=e22]:
+            - link "Dashboard" [ref=e23] [cursor=pointer]:
+              - /url: /dashboard
+              - img [ref=e24]
+              - generic [ref=e29]: Dashboard
+          - listitem [ref=e30]:
+            - link "Kategori" [ref=e31] [cursor=pointer]:
+              - /url: /kategori
+              - img [ref=e32]
+              - generic [ref=e36]: Kategori
+          - listitem [ref=e37]:
+            - link "Menu" [ref=e38] [cursor=pointer]:
+              - /url: /menu
+              - img [ref=e39]
+              - generic [ref=e42]: Menu
+          - listitem [ref=e43]:
+            - link "Paket" [ref=e44] [cursor=pointer]:
+              - /url: /paket
+              - img [ref=e45]
+              - generic [ref=e47]: Paket
+          - listitem [ref=e48]:
+            - link "Order" [ref=e49] [cursor=pointer]:
+              - /url: /order
+              - img [ref=e50]
+              - generic [ref=e53]: Order
+      - generic [ref=e54]:
+        - list [ref=e57]:
+          - listitem [ref=e58]:
+            - link "Repository" [ref=e59] [cursor=pointer]:
+              - /url: https://github.com/laravel/react-starter-kit
+              - img [ref=e60]
+              - generic [ref=e65]: Repository
+          - listitem [ref=e66]:
+            - link "Documentation" [ref=e67] [cursor=pointer]:
+              - /url: https://laravel.com/docs/starter-kits#react
+              - img [ref=e68]
+              - generic [ref=e70]: Documentation
+        - list [ref=e71]:
+          - listitem [ref=e72]:
+            - button "EA Example Admin" [ref=e73]:
+              - generic [ref=e75]: EA
+              - generic [ref=e77]: Example Admin
+              - img [ref=e78]
+    - main [ref=e81]:
+      - generic [ref=e83]:
+        - link "Kembali ke Order" [ref=e760] [cursor=pointer]:
+          - /url: /order
+          - img
+        - generic [ref=e87]:
+          - heading "Edit Order" [level=2] [ref=e761]
+          - navigation "breadcrumb" [ref=e94]:
+            - list [ref=e95]:
+              - listitem [ref=e96]:
+                - link "Dashboard" [ref=e97] [cursor=pointer]:
+                  - /url: /dashboard
+              - listitem [ref=e98]:
+                - img [ref=e99]
+              - listitem [ref=e101]:
+                - link "Order" [ref=e762] [cursor=pointer]:
+                  - /url: /order
+              - listitem [ref=e763]:
+                - img [ref=e764]
+              - listitem [ref=e766]:
+                - link "Edit" [disabled] [ref=e767]
+      - generic [ref=e770]:
+        - navigation "Progress" [ref=e772]:
+          - list [ref=e773]:
+            - listitem [ref=e774] [cursor=pointer]:
+              - button [ref=e775]:
+                - img [ref=e776]
+              - generic [ref=e778]:
+                - generic [ref=e779]: Step 1
+                - generic [ref=e780]: Informasi Pelanggan
+            - listitem [ref=e782] [cursor=pointer]:
+              - button [ref=e783]:
+                - img [ref=e784]
+              - generic [ref=e787]:
+                - generic [ref=e788]: Step 2
+                - generic [ref=e789]: Item order
+            - listitem [ref=e791] [cursor=pointer]:
+              - button [ref=e792]:
+                - img [ref=e793]
+              - generic [ref=e795]:
+                - generic [ref=e796]: Step 3
+                - generic [ref=e797]: Pembayaran
+        - generic [ref=e799]:
+          - group [ref=e801]:
+            - generic [ref=e802]:
+              - generic [ref=e803]: Informasi pelanggan
+              - paragraph [ref=e804]: Data dasar pemesan dan jadwal acara
+            - generic [ref=e805]:
+              - generic [ref=e806]:
+                - group [ref=e807]:
+                  - generic [ref=e808]: Nama pelanggan
+                  - textbox "Nama pelanggan" [ref=e809]:
+                    - /placeholder: Nama pemesan
+                    - text: Intan Kurnia
+                - group [ref=e810]:
+                  - generic [ref=e811]: No. HP
+                  - textbox "No. HP" [ref=e812]:
+                    - /placeholder: 08xxxxxxxxxx
+                    - text: "081300000005"
+              - generic [ref=e813]:
+                - group [ref=e814]:
+                  - generic [ref=e815]: Nama acara
+                  - textbox "Nama acara" [ref=e816]:
+                    - /placeholder: "Contoh: Pernikahan, rapat, ulang tahun"
+                    - text: Workshop Digital Marketing
+                - generic [ref=e817]:
+                  - group [ref=e818]:
+                    - generic [ref=e819]: Tanggal acara
+                    - textbox "Tanggal acara" [ref=e820]: 2026-06-20
+                  - group [ref=e821]:
+                    - generic [ref=e822]: Jam acara
+                    - textbox "Jam acara" [ref=e823]: 12:00
+              - generic [ref=e824]:
+                - group [ref=e825]:
+                  - generic [ref=e826]: Nama Alamat
+                  - textbox "Nama Alamat" [ref=e827]:
+                    - /placeholder: Gedung, rumah, kantor
+                    - text: Antar ke lobby utama dan hubungi PIC saat sampai.
+                - group [ref=e828]:
+                  - generic [ref=e829]: Lokasi acara
+                  - group [ref=e830] [cursor=pointer]:
+                    - group [ref=e831]:
+                      - img [ref=e832]
+                    - textbox "Lokasi acara" [ref=e835]: Kantor Startup Hub Kemang, Jakarta Selatan
+                    - group [ref=e836]:
+                      - button "Hapus lokasi acara" [ref=e837]:
+                        - img
+              - group [ref=e838]:
+                - generic [ref=e839]: Catatan
+                - textbox "Catatan" [ref=e840]:
+                  - /placeholder: Catatan tambahan untuk order ini
+                  - text: Menunggu konfirmasi admin dan pembayaran pelanggan.
+                - paragraph [ref=e841]: Informasi tambahan terkait pesanan, acara, atau permintaan pelanggan.
+          - complementary [ref=e842]:
+            - group [ref=e843]:
+              - generic [ref=e844]:
+                - generic [ref=e845]: Ringkasan
+                - paragraph [ref=e846]: Pastikan data pelanggan dan lokasi sudah benar.
+              - generic [ref=e847]:
+                - generic [ref=e848]:
+                  - img [ref=e849]
+                  - generic [ref=e852]:
+                    - generic [ref=e853]: Pelanggan
+                    - generic [ref=e854]: Intan Kurnia
+                    - paragraph [ref=e855]: "081300000005"
+                - generic [ref=e856]:
+                  - img [ref=e857]
+                  - generic [ref=e859]:
+                    - generic [ref=e860]: Acara
+                    - generic [ref=e861]: Workshop Digital Marketing
+                    - paragraph [ref=e862]: 20 Jun 2026 | 12:00
+                - generic [ref=e863]:
+                  - img [ref=e864]
+                  - generic [ref=e868]:
+                    - generic [ref=e869]: Lokasi
+                    - generic [ref=e870]: Antar ke lobby utama dan hubungi PIC saat sampai.
+                    - paragraph [ref=e871]: Kantor Startup Hub Kemang, Jakarta Selatan
+                - generic [ref=e872]:
+                  - img [ref=e873]
+                  - generic [ref=e876]:
+                    - generic [ref=e877]: Catatan
+                    - generic [ref=e878]: Menunggu konfirmasi admin dan pembayaran pelanggan.
+        - generic [ref=e881]:
+          - generic [ref=e882]: Langkah 1/3
+          - button "Berikutnya" [ref=e884]:
+            - text: Berikutnya
+            - img
+  - region "Notifications alt+T"

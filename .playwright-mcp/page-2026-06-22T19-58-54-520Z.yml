@@ -1,0 +1,520 @@
+- generic:
+  - generic:
+    - generic:
+      - main:
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - heading [level=2]: Order
+            - generic:
+              - generic:
+                - button:
+                  - img
+                  - generic: Toggle sidebar
+            - generic:
+              - link:
+                - /url: /order/create
+                - img
+                - generic: Tambah
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - img
+                  - textbox:
+                    - /placeholder: Cari order...
+                - button [expanded]:
+                  - img
+              - generic:
+                - generic:
+                  - generic: Filter order
+                  - group:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - button [pressed]: Semua
+                          - generic:
+                            - button: Menunggu
+                          - generic:
+                            - button: DP Dibayar
+                          - generic:
+                            - button: Lunas
+                          - generic:
+                            - button: Dibatalkan
+                      - button:
+                        - img
+                        - generic: Scroll filter berikutnya
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Menunggu Konfirmasi
+                    - generic: "2"
+                    - generic: Order baru yang masih menunggu tindakan admin.
+                  - generic:
+                    - img
+                - generic:
+                  - img
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: DP Dibayar
+                    - generic: "1"
+                    - generic: Order dengan DP tercatat dan sisa pembayaran berjalan.
+                  - generic:
+                    - img
+                - generic:
+                  - img
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Lunas
+                    - generic: "7"
+                    - generic: Order yang pembayaran akhirnya sudah lunas.
+                  - generic:
+                    - img
+                - generic:
+                  - img
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Dibatalkan
+                    - generic: "0"
+                    - generic: Order yang sudah dibatalkan.
+                  - generic:
+                    - img
+                - generic:
+                  - img
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - img
+                    - generic:
+                      - heading [level=2]: Daftar Order
+                      - paragraph: Menampilkan 1-10 dari 10 order
+                  - button:
+                    - img
+                    - text: Ekspor
+              - generic:
+                - generic:
+                  - generic:
+                    - article:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ORD-SEED-001
+                            - generic: Terkonfirmasi
+                          - generic:
+                            - generic: Ayu Maharani
+                            - generic: Rapat Koordinasi Cabang
+                        - generic:
+                          - button:
+                            - img
+                            - generic: Buka aksi order
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Rapat Koordinasi Cabang
+                          - generic:
+                            - generic:
+                              - img
+                              - text: 16 Jun 2026
+                            - generic:
+                              - img
+                              - text: 08:00
+                        - generic:
+                          - generic:
+                            - generic: Rp 1.166.675
+                            - generic:
+                              - generic: Lunas
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                          - generic:
+                            - generic: Admin
+                            - generic: Manual
+                  - generic:
+                    - article:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ORD-SEED-002
+                            - generic: Terkonfirmasi
+                          - generic:
+                            - generic: Fajar Nugroho
+                            - generic: Pelatihan Tim Sales
+                        - generic:
+                          - button:
+                            - img
+                            - generic: Buka aksi order
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Pelatihan Tim Sales
+                          - generic:
+                            - generic:
+                              - img
+                              - text: 17 Jun 2026
+                            - generic:
+                              - img
+                              - text: 12:00
+                        - generic:
+                          - generic:
+                            - generic: Rp 2.295.000
+                            - generic:
+                              - generic: Lunas
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                          - generic:
+                            - generic: Admin
+                            - generic: Manual
+                  - generic:
+                    - article:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ORD-SEED-003
+                            - generic: Terkonfirmasi
+                          - generic:
+                            - generic: Gita Permatasari
+                            - generic: Syukuran Kantor Baru
+                        - generic:
+                          - button:
+                            - img
+                            - generic: Buka aksi order
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Syukuran Kantor Baru
+                          - generic:
+                            - generic:
+                              - img
+                              - text: 18 Jun 2026
+                            - generic:
+                              - img
+                              - text: 16:00
+                        - generic:
+                          - generic:
+                            - generic: Rp 2.680.000
+                            - generic:
+                              - generic: Lunas
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                          - generic:
+                            - generic: Admin
+                            - generic: Manual
+                  - generic:
+                    - article:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ORD-SEED-004
+                            - generic: Terkonfirmasi
+                          - generic:
+                            - generic: Hendra Saputra
+                            - generic: Gathering Divisi Operasional
+                        - generic:
+                          - button:
+                            - img
+                            - generic: Buka aksi order
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Gathering Divisi Operasional
+                          - generic:
+                            - generic:
+                              - img
+                              - text: 19 Jun 2026
+                            - generic:
+                              - img
+                              - text: 08:00
+                        - generic:
+                          - generic:
+                            - generic: Rp 3.950.000
+                            - generic:
+                              - generic: Lunas
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                          - generic:
+                            - generic: Admin
+                            - generic: Manual
+                  - generic:
+                    - article:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ORD-SEED-005
+                            - generic: Terkonfirmasi
+                          - generic:
+                            - generic: Intan Kurnia
+                            - generic: Workshop Digital Marketing
+                        - generic:
+                          - button:
+                            - img
+                            - generic: Buka aksi order
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Workshop Digital Marketing
+                          - generic:
+                            - generic:
+                              - img
+                              - text: 20 Jun 2026
+                            - generic:
+                              - img
+                              - text: 12:00
+                        - generic:
+                          - generic:
+                            - generic: Rp 1.915.000
+                            - generic:
+                              - generic: Lunas
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                          - generic:
+                            - generic: Admin
+                            - generic: Manual
+                  - generic:
+                    - article:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ORD-SEED-006
+                            - generic: Terkonfirmasi
+                          - generic:
+                            - generic: Joko Wibowo
+                            - generic: Halal Bihalal Komunitas
+                        - generic:
+                          - button:
+                            - img
+                            - generic: Buka aksi order
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Halal Bihalal Komunitas
+                          - generic:
+                            - generic:
+                              - img
+                              - text: 21 Jun 2026
+                            - generic:
+                              - img
+                              - text: 16:00
+                        - generic:
+                          - generic:
+                            - generic: Rp 6.393.360
+                            - generic:
+                              - generic: Lunas
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                          - generic:
+                            - generic: Admin
+                            - generic: Manual
+                  - generic:
+                    - article:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ORD-SEED-007
+                            - generic: Terkonfirmasi
+                          - generic:
+                            - generic: Kirana Safitri
+                            - generic: Mini Wedding Outdoor
+                        - generic:
+                          - button:
+                            - img
+                            - generic: Buka aksi order
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Mini Wedding Outdoor
+                          - generic:
+                            - generic:
+                              - img
+                              - text: 22 Jun 2026
+                            - generic:
+                              - img
+                              - text: 08:00
+                        - generic:
+                          - generic:
+                            - generic: Rp 3.960.000
+                            - generic:
+                              - generic: DP 13% | Rp 500.000
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                          - generic:
+                            - generic: Admin
+                            - generic: Manual
+                  - generic:
+                    - article:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ORD-SEED-008
+                            - generic: Menunggu konfirmasi
+                          - generic:
+                            - generic: M. Rizky Akbar
+                            - generic: Seminar Kewirausahaan
+                        - generic:
+                          - button:
+                            - img
+                            - generic: Buka aksi order
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Seminar Kewirausahaan
+                          - generic:
+                            - generic:
+                              - img
+                              - text: 23 Jun 2026
+                            - generic:
+                              - img
+                              - text: 12:00
+                        - generic:
+                          - generic:
+                            - generic: Rp 6.840.000
+                            - generic:
+                              - generic: Belum
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                          - generic:
+                            - generic: Admin
+                            - generic: Manual
+                  - generic:
+                    - article:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ORD-SEED-009
+                            - generic: Menunggu konfirmasi
+                          - generic:
+                            - generic: Nabila Rahma
+                            - generic: Townhall Kuartalan
+                        - generic:
+                          - button:
+                            - img
+                            - generic: Buka aksi order
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Townhall Kuartalan
+                          - generic:
+                            - generic:
+                              - img
+                              - text: 24 Jun 2026
+                            - generic:
+                              - img
+                              - text: 16:00
+                        - generic:
+                          - generic:
+                            - generic: Rp 4.225.000
+                            - generic:
+                              - generic: Belum
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                          - generic:
+                            - generic: Admin
+                            - generic: Manual
+                  - generic:
+                    - article:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: ORD-SEED-010
+                            - generic: Selesai
+                          - generic:
+                            - generic: Oscar Wijaya
+                            - generic: Peluncuran Produk Internal
+                        - generic:
+                          - button:
+                            - img
+                            - generic: Buka aksi order
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Peluncuran Produk Internal
+                          - generic:
+                            - generic:
+                              - img
+                              - text: 25 Jun 2026
+                            - generic:
+                              - img
+                              - text: 08:00
+                        - generic:
+                          - generic:
+                            - generic: Rp 4.865.000
+                            - generic:
+                              - generic: Lunas
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                          - generic:
+                            - generic: Admin
+                            - generic: Manual
+                - generic:
+                  - generic:
+                    - generic: Page 1 of 1
+                    - generic:
+                      - button [disabled]:
+                        - generic: Go to previous page
+                        - img
+                      - button [disabled]:
+                        - generic: Go to next page
+                        - img
+    - region "Notifications alt+T"
+  - dialog "Filter order" [ref=e1199]:
+    - generic [ref=e1200]:
+      - heading "Filter order" [level=2] [ref=e1201]
+      - paragraph [ref=e1202]: Saring order berdasarkan status, pembayaran, dan tanggal acara.
+    - generic [ref=e1204]:
+      - generic [ref=e1205]:
+        - paragraph [ref=e1206]: Status & pembayaran
+        - generic [ref=e1207]:
+          - combobox "Status order" [active] [ref=e1208]:
+            - generic: Status order
+            - img
+          - combobox "Status pembayaran" [ref=e1209]:
+            - generic: Status pembayaran
+            - img
+          - combobox "Tipe pembayaran" [ref=e1210]:
+            - generic: Tipe pembayaran
+            - img
+      - generic [ref=e1211]:
+        - paragraph [ref=e1212]: Rentang tanggal acara
+        - generic [ref=e1213]:
+          - generic [ref=e1214]:
+            - generic [ref=e1215]: Mulai
+            - textbox "Tanggal acara mulai" [ref=e1216]
+          - generic [ref=e1217]:
+            - generic [ref=e1218]: Sampai
+            - textbox "Tanggal acara selesai" [ref=e1219]
+    - generic [ref=e1220]:
+      - button "Reset filter" [disabled]
+      - button "Selesai" [ref=e1221]
+    - button "Close" [ref=e1222]:
+      - img [ref=e1223]
+      - generic [ref=e1226]: Close

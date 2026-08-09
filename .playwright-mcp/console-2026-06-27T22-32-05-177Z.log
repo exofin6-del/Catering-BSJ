@@ -1,0 +1,31 @@
+[    6338ms] [LOG] 🔍 Browser logger active (MCP server detected). Posting to: http://localhost:8000/_boost/browser-logs @ http://localhost:8000/login:173
+[    7912ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:8000/login:232
+[  363184ms] [ERROR] React has detected a change in the order of Hooks called by %s. This will lead to bugs and errors if not fixed. For more information, read the Rules of Hooks: https://react.dev/link/rules-of-hooks
+
+   Previous render            Next render
+   ------------------------------------------------------
+%s   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ MenuIndexPage 1. useState                   useState
+2. useState                   useState
+3. useState                   useState
+4. useState                   useState
+5. useRef                     useRef
+6. useRef                     useRef
+7. useEffect                  useRef
+ @ http://localhost:8000/login:232
+[  363711ms] Error: Rendered more hooks than during the previous render.
+    at updateWorkInProgressHook (http://[::1]:5173/node_modules/.vite/deps/@inertiajs_react.js?v=e4e5528a:10855:12)
+    at updateEffectImpl (http://[::1]:5173/node_modules/.vite/deps/@inertiajs_react.js?v=e4e5528a:11379:15)
+    at Object.useEffect (http://[::1]:5173/node_modules/.vite/deps/@inertiajs_react.js?v=e4e5528a:19781:5)
+    at exports.useEffect (http://[::1]:5173/node_modules/.vite/deps/react.js?v=e4e5528a:716:31)
+    at useMenuTable (http://[::1]:5173/resources/js/features/menus/hooks/use-menu-table.ts?t=1782599884400:377:2)
+    at MenuIndexPage (http://[::1]:5173/@id/C:/laragon/www/rewrite-app/resources/js/pages/admin/menus/index.tsx?t=1782599884220:48:177)
+    at Object.react_stack_bottom_frame (http://[::1]:5173/node_modules/.vite/deps/@inertiajs_react.js?v=e4e5528a:19396:12)
+    at renderWithHooks (http://[::1]:5173/node_modules/.vite/deps/@inertiajs_react.js?v=e4e5528a:10741:19)
+    at updateFunctionComponent (http://[::1]:5173/node_modules/.vite/deps/@inertiajs_react.js?v=e4e5528a:12097:16)
+    at beginWork (http://[::1]:5173/node_modules/.vite/deps/@inertiajs_react.js?v=e4e5528a:12668:20)
+[  363637ms] [WARNING] %s
+
+%s
+ An error occurred in the <MenuIndexPage> component. Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://react.dev/link/error-boundaries to learn more about error boundaries. @ http://localhost:8000/login:232

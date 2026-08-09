@@ -1,0 +1,203 @@
+- generic [ref=f2e2]:
+  - generic [ref=f2e3]:
+    - generic [ref=f2e7]:
+      - list [ref=f2e9]:
+        - listitem [ref=f2e10]:
+          - link "CB Catering BSJ" [ref=f2e11] [cursor=pointer]:
+            - /url: /dashboard
+            - generic [ref=f2e12]: CB
+            - generic [ref=f2e14]: Catering BSJ
+      - generic [ref=f2e17]:
+        - generic [ref=f2e18]: Platform
+        - list [ref=f2e20]:
+          - listitem [ref=f2e21]:
+            - link "Dashboard" [ref=f2e22] [cursor=pointer]:
+              - /url: /dashboard
+          - listitem [ref=f2e29]:
+            - link "Kategori" [ref=f2e30] [cursor=pointer]:
+              - /url: /kategori
+          - listitem [ref=f2e36]:
+            - link "Menu" [ref=f2e37] [cursor=pointer]:
+              - /url: /menu
+          - listitem [ref=f2e44]:
+            - link "Paket" [ref=f2e45] [cursor=pointer]:
+              - /url: /paket
+          - listitem [ref=f2e51]:
+            - link "Order" [ref=f2e52] [cursor=pointer]:
+              - /url: /order
+          - listitem [ref=f2e57]:
+            - link "Jadwal" [ref=f2e58] [cursor=pointer]:
+              - /url: /jadwal
+          - listitem [ref=f2e62]:
+            - link "Laporan" [ref=f2e63] [cursor=pointer]:
+              - /url: /laporan
+          - listitem [ref=f2e67]:
+            - link "Pengaturan" [ref=f2e68] [cursor=pointer]:
+              - /url: /settings/business
+      - generic [ref=f2e73]:
+        - list [ref=f2e76]:
+          - listitem [ref=f2e77]:
+            - link "Repository" [ref=f2e78] [cursor=pointer]:
+              - /url: https://github.com/laravel/react-starter-kit
+          - listitem [ref=f2e85]:
+            - link "Documentation" [ref=f2e86] [cursor=pointer]:
+              - /url: https://laravel.com/docs/starter-kits#react
+        - list [ref=f2e90]:
+          - listitem [ref=f2e91]:
+            - button "EA Example Admin" [ref=f2e92]:
+              - generic [ref=f2e93]: EA
+              - generic [ref=f2e95]: Example Admin
+    - main [ref=f2e100]:
+      - generic [ref=f2e103]:
+        - heading "Pengaturan" [level=2] [ref=f2e108]
+        - navigation "breadcrumb" [ref=f2e110]:
+          - list [ref=f2e111]:
+            - listitem [ref=f2e112]:
+              - link "Pengaturan Bisnis" [disabled] [ref=f2e113]
+      - generic [ref=f2e115]:
+        - complementary [ref=f2e116]:
+          - generic [ref=f2e117]:
+            - paragraph [ref=f2e118]: Pengaturan
+            - paragraph [ref=f2e119]: Kelola pengaturan bisnis, akun, dan tampilan.
+          - navigation "Pengaturan" [ref=f2e120]:
+            - generic [ref=f2e121]:
+              - link "Bisnis" [ref=f2e122] [cursor=pointer]:
+                - /url: /settings/business
+              - link "Akun" [ref=f2e124] [cursor=pointer]:
+                - /url: /settings/profile
+              - link "Tampilan" [ref=f2e126] [cursor=pointer]:
+                - /url: /settings/appearance
+        - main [ref=f2e128]:
+          - generic [ref=f2e641]:
+            - generic [ref=f2e643]:
+              - heading "Pengaturan bisnis" [level=2] [ref=f2e645]
+              - paragraph [ref=f2e646]: Atur kontak, kapasitas, jam operasional, dan area layanan catering.
+            - generic [ref=f2e647]:
+              - generic [ref=f2e648]:
+                - generic [ref=f2e656]:
+                  - generic [ref=f2e657]: Informasi bisnis
+                  - generic [ref=f2e658]: Nama dan status penerimaan order.
+                - generic [ref=f2e660]:
+                  - generic [ref=f2e661]:
+                    - generic [ref=f2e663]:
+                      - generic [ref=f2e892] [cursor=pointer]:
+                        - img "Logo bisnis" [ref=f2e893]
+                        - generic [ref=f2e894]: Ganti
+                        - button "Hapus logo" [ref=f2e900]
+                      - button "File upload" [ref=f2e672]
+                      - generic [ref=f2e673]: File upload
+                    - generic [ref=f2e674]:
+                      - generic [ref=f2e675]:
+                        - generic [ref=f2e676]: Nama catering
+                        - textbox "Nama catering" [ref=f2e677]: Catering BSJ
+                      - generic [ref=f2e678]:
+                        - generic [ref=f2e679]: Nomor WhatsApp
+                        - textbox "Nomor WhatsApp" [ref=f2e680]:
+                          - /placeholder: "Contoh: 081234567890"
+                  - generic [ref=f2e681] [cursor=pointer]:
+                    - checkbox "Terima order baru Nonaktifkan saat bisnis tutup atau kapasitas penuh." [checked] [ref=f2e682]
+                    - checkbox [checked]
+                    - generic [ref=f2e683]:
+                      - generic [ref=f2e684]: Terima order baru
+                      - generic [ref=f2e685]: Nonaktifkan saat bisnis tutup atau kapasitas penuh.
+                  - generic [ref=f2e686]:
+                    - button "Simpan" [active] [ref=f2e902]
+                    - button "Batal" [ref=f2e903]
+                    - paragraph [ref=f2e904]: Ada perubahan yang belum disimpan.
+              - generic [ref=f2e687]:
+                - generic [ref=f2e696]:
+                  - generic [ref=f2e697]: Gambar beranda customer
+                  - generic [ref=f2e698]: Maksimal 3 gambar yang akan tampil sebagai slide di halaman customer.
+                - generic [ref=f2e700]:
+                  - generic [ref=f2e701]:
+                    - generic [ref=f2e704] [cursor=pointer]:
+                      - generic [ref=f2e709]: Gambar 1
+                      - generic [ref=f2e710]: PNG · JPG · WEBPmaks. 5MB
+                    - generic [ref=f2e713] [cursor=pointer]:
+                      - generic [ref=f2e718]: Gambar 2
+                      - generic [ref=f2e719]: PNG · JPG · WEBPmaks. 5MB
+                    - generic [ref=f2e722] [cursor=pointer]:
+                      - generic [ref=f2e727]: Gambar 3
+                      - generic [ref=f2e728]: PNG · JPG · WEBPmaks. 5MB
+                  - paragraph [ref=f2e729]: Gambar akan tampil sebagai slideshow otomatis di bagian beranda halaman customer.
+              - generic [ref=f2e730]:
+                - generic [ref=f2e740]:
+                  - generic [ref=f2e741]: Tampilan customer
+                  - generic [ref=f2e742]: Pilih warna storefront customer. Tema ini terpisah dari dark mode admin.
+                - generic [ref=f2e744]:
+                  - button "Minimalist Hitam dan putih modern" [ref=f2e745]:
+                    - generic [ref=f2e752]:
+                      - generic [ref=f2e753]: Minimalist
+                      - generic [ref=f2e754]: Hitam dan putih modern
+                  - button "Sage Hijau lembut dan natural" [ref=f2e755]:
+                    - generic [ref=f2e762]:
+                      - generic [ref=f2e763]: Sage
+                      - generic [ref=f2e764]: Hijau lembut dan natural
+                  - button "Ocean Biru segar dan tenang" [ref=f2e765]:
+                    - generic [ref=f2e772]:
+                      - generic [ref=f2e773]: Ocean
+                      - generic [ref=f2e774]: Biru segar dan tenang
+                  - button "Terracotta Hangat dan bersahabat" [ref=f2e775]:
+                    - generic [ref=f2e782]:
+                      - generic [ref=f2e783]: Terracotta
+                      - generic [ref=f2e784]: Hangat dan bersahabat
+                  - button "Lavender Ungu lembut dan elegan" [ref=f2e785]:
+                    - generic [ref=f2e792]:
+                      - generic [ref=f2e793]: Lavender
+                      - generic [ref=f2e794]: Ungu lembut dan elegan
+                  - button "Rose Merah muda modern dan premium" [pressed] [ref=f2e795]:
+                    - generic [ref=f2e802]:
+                      - generic [ref=f2e803]: Rose
+                      - generic [ref=f2e804]: Merah muda modern dan premium
+                  - button "Citrus Kuning cerah dan penuh energi" [ref=f2e805]:
+                    - generic [ref=f2e812]:
+                      - generic [ref=f2e813]: Citrus
+                      - generic [ref=f2e814]: Kuning cerah dan penuh energi
+                  - generic [ref=f2e815]:
+                    - button "Simpan" [disabled]
+                  - paragraph [ref=f2e816]
+              - generic [ref=f2e817]:
+                - generic [ref=f2e824]:
+                  - generic [ref=f2e825]: Operasional & kapasitas
+                  - generic [ref=f2e826]: Batasi waktu dan jumlah order yang dapat diterima setiap hari.
+                - generic [ref=f2e828]:
+                  - generic [ref=f2e829]:
+                    - generic [ref=f2e830]: Jam buka
+                    - textbox "Jam buka" [ref=f2e831]: 07:00
+                  - generic [ref=f2e832]:
+                    - generic [ref=f2e833]: Jam tutup
+                    - textbox "Jam tutup" [ref=f2e834]: 17:00
+                  - generic [ref=f2e835]:
+                    - generic [ref=f2e836]: Maksimum order per hari
+                    - spinbutton "Maksimum order per hari" [ref=f2e838]: "3"
+                    - paragraph [ref=f2e839]: Order baru akan ditolak setelah kapasitas pada tanggal tersebut penuh.
+                  - generic [ref=f2e840]:
+                    - button "Simpan" [disabled]
+                  - paragraph [ref=f2e841]
+              - generic [ref=f2e842]:
+                - generic [ref=f2e850]:
+                  - generic [ref=f2e851]: Area layanan
+                  - generic [ref=f2e852]: Tentukan pusat catering dan radius maksimum pengantaran.
+                - generic [ref=f2e854]:
+                  - generic [ref=f2e855]:
+                    - generic [ref=f2e857]:
+                      - button "Cari lokasi catering..." [ref=f2e859]
+                      - group "Zoom controls" [ref=f2e865]:
+                        - button "Zoom in" [ref=f2e866]
+                        - button "Zoom out" [ref=f2e867]
+                      - generic [ref=f2e868]: Silahkan cari atau pilih lokasi terlebih dahulu
+                    - paragraph [ref=f2e874]: Mulai dengan mencari lokasi catering terlebih dahulu.
+                  - generic [ref=f2e875]:
+                    - generic [ref=f2e876]:
+                      - generic [ref=f2e877]: Radius order maksimum
+                      - generic [ref=f2e878]:
+                        - spinbutton "Radius order maksimum" [ref=f2e879]: "10"
+                        - generic [ref=f2e880]: km
+                    - slider "Radius order maksimum" [ref=f2e881] [cursor=pointer]: "10"
+                    - generic [ref=f2e882]:
+                      - generic [ref=f2e883]: 1 km
+                      - generic [ref=f2e884]: 100 km
+                  - generic [ref=f2e885]:
+                    - button "Simpan" [disabled]
+                  - paragraph
+  - region "Notifications alt+T"

@@ -1,0 +1,186 @@
+- generic [ref=f1e2]:
+  - generic [ref=f1e3]:
+    - generic [ref=f1e7]:
+      - list [ref=f1e9]:
+        - listitem [ref=f1e10]:
+          - link "Laravel Starter Kit" [ref=f1e11] [cursor=pointer]:
+            - /url: /dashboard
+      - generic [ref=f1e18]:
+        - generic [ref=f1e19]: Platform
+        - list [ref=f1e21]:
+          - listitem [ref=f1e22]:
+            - link "Dashboard" [ref=f1e23] [cursor=pointer]:
+              - /url: /dashboard
+          - listitem [ref=f1e30]:
+            - link "Kategori" [ref=f1e31] [cursor=pointer]:
+              - /url: /kategori
+          - listitem [ref=f1e37]:
+            - link "Menu" [ref=f1e38] [cursor=pointer]:
+              - /url: /menu
+          - listitem [ref=f1e45]:
+            - link "Paket" [ref=f1e46] [cursor=pointer]:
+              - /url: /paket
+          - listitem [ref=f1e52]:
+            - link "Order" [ref=f1e53] [cursor=pointer]:
+              - /url: /order
+          - listitem [ref=f1e58]:
+            - link "Jadwal" [ref=f1e59] [cursor=pointer]:
+              - /url: /jadwal
+          - listitem [ref=f1e63]:
+            - link "Laporan" [ref=f1e64] [cursor=pointer]:
+              - /url: /laporan
+      - generic [ref=f1e68]:
+        - list [ref=f1e71]:
+          - listitem [ref=f1e72]:
+            - link "Repository" [ref=f1e73] [cursor=pointer]:
+              - /url: https://github.com/laravel/react-starter-kit
+          - listitem [ref=f1e80]:
+            - link "Documentation" [ref=f1e81] [cursor=pointer]:
+              - /url: https://laravel.com/docs/starter-kits#react
+        - list [ref=f1e85]:
+          - listitem [ref=f1e86]:
+            - button "EA Example Admin" [ref=f1e87]:
+              - generic [ref=f1e88]: EA
+              - generic [ref=f1e90]: Example Admin
+    - main [ref=f1e95]:
+      - generic [ref=f1e97]:
+        - generic [ref=f1e98]:
+          - heading "Jadwal" [level=2] [ref=f1e103]
+          - navigation "breadcrumb" [ref=f1e105]:
+            - list [ref=f1e106]:
+              - listitem [ref=f1e107]:
+                - link "Dashboard" [ref=f1e108] [cursor=pointer]:
+                  - /url: /dashboard
+              - listitem [ref=f1e109]
+              - listitem [ref=f1e112]:
+                - link "Jadwal" [disabled] [ref=f1e113]
+        - button "Ekspor" [ref=f1e115]
+      - generic [ref=f1e117]:
+        - generic [ref=f1e118]:
+          - generic [ref=f1e121]:
+            - generic [ref=f1e122]: Jadwal aktif
+            - generic [ref=f1e124]: "4"
+            - generic [ref=f1e125]: Total seluruh jadwal pesanan aktif.
+          - generic [ref=f1e132]:
+            - generic [ref=f1e133]: Hari ini
+            - generic [ref=f1e135]: "1"
+            - generic [ref=f1e136]: Jadwal pesanan catering hari ini.
+          - generic [ref=f1e143]:
+            - generic [ref=f1e144]: Mendatang
+            - generic [ref=f1e146]: "2"
+            - generic [ref=f1e147]: Jadwal pesanan masa depan.
+          - generic [ref=f1e153]:
+            - generic [ref=f1e154]: Terlewat
+            - generic [ref=f1e156]: "2"
+            - generic [ref=f1e157]: Jadwal pesanan yang sudah terlewat.
+        - generic [ref=f1e161]:
+          - generic [ref=f1e162]:
+            - generic [ref=f1e163]:
+              - button "Bulan sebelumnya" [ref=f1e164]
+              - generic [ref=f1e165]:
+                - combobox "Pilih bulan" [ref=f1e166]:
+                  - generic: Juli
+                - combobox "Pilih tahun" [ref=f1e167]:
+                  - generic: "2026"
+              - button "Bulan berikutnya" [ref=f1e168]
+            - row [ref=f1e169]:
+              - columnheader "Senin" [ref=f1e170]:
+                - generic [ref=f1e171]: Sen
+              - columnheader "Selasa" [ref=f1e172]:
+                - generic [ref=f1e173]: Sel
+              - columnheader "Rabu" [ref=f1e174]:
+                - generic [ref=f1e175]: Rab
+              - columnheader "Kamis" [ref=f1e176]:
+                - generic [ref=f1e177]: Kam
+              - columnheader "Jumat" [ref=f1e178]:
+                - generic [ref=f1e179]: Jum
+              - columnheader "Sabtu" [ref=f1e180]:
+                - generic [ref=f1e181]: Sab
+              - columnheader "Minggu" [ref=f1e182]:
+                - generic [ref=f1e183]: Min
+            - grid "Kalender Juli 2026" [ref=f1e184]:
+              - gridcell "Rabu, 1 Juli 2026, 0 acara" [ref=f1e187]:
+                - generic [ref=f1e188]: "1"
+              - gridcell "Kamis, 2 Juli 2026, 0 acara" [ref=f1e190]:
+                - generic [ref=f1e191]: "2"
+              - gridcell "Jumat, 3 Juli 2026, 0 acara" [ref=f1e193]:
+                - generic [ref=f1e194]: "3"
+              - gridcell "Sabtu, 4 Juli 2026, 0 acara" [ref=f1e196]:
+                - generic [ref=f1e197]: "4"
+              - gridcell "Minggu, 5 Juli 2026, 0 acara" [ref=f1e199]:
+                - generic [ref=f1e200]: "5"
+              - gridcell "Senin, 6 Juli 2026, 0 acara" [ref=f1e202]:
+                - generic [ref=f1e203]: "6"
+              - gridcell "Selasa, 7 Juli 2026, 0 acara" [ref=f1e205]:
+                - generic [ref=f1e206]: "7"
+              - gridcell "Rabu, 8 Juli 2026, 0 acara" [ref=f1e208]:
+                - generic [ref=f1e209]: "8"
+              - gridcell "Kamis, 9 Juli 2026, 0 acara" [ref=f1e211]:
+                - generic [ref=f1e212]: "9"
+              - gridcell "Jumat, 10 Juli 2026, 0 acara" [ref=f1e214]:
+                - generic [ref=f1e215]: "10"
+              - gridcell "Sabtu, 11 Juli 2026, 1 acara" [ref=f1e217]:
+                - generic [ref=f1e218]: "11"
+                - generic [ref=f1e220]: 1 acara
+              - gridcell "Minggu, 12 Juli 2026, 1 acara" [ref=f1e223]:
+                - generic [ref=f1e224]: "12"
+                - generic [ref=f1e226]: 1 acara
+              - gridcell "Senin, 13 Juli 2026, 1 acara" [ref=f1e229]:
+                - generic [ref=f1e230]: "13"
+                - generic [ref=f1e233]: 1 acara
+              - gridcell "Selasa, 14 Juli 2026, 1 acara" [ref=f1e236]:
+                - generic [ref=f1e237]: "14"
+                - generic [ref=f1e239]: 1 acara
+              - gridcell "Rabu, 15 Juli 2026, 0 acara" [ref=f1e242]:
+                - generic [ref=f1e243]: "15"
+              - gridcell "Kamis, 16 Juli 2026, 0 acara" [ref=f1e245]:
+                - generic [ref=f1e246]: "16"
+              - gridcell "Jumat, 17 Juli 2026, 0 acara" [ref=f1e248]:
+                - generic [ref=f1e249]: "17"
+              - gridcell "Sabtu, 18 Juli 2026, 0 acara" [ref=f1e251]:
+                - generic [ref=f1e252]: "18"
+              - gridcell "Minggu, 19 Juli 2026, 0 acara" [ref=f1e254]:
+                - generic [ref=f1e255]: "19"
+              - gridcell "Senin, 20 Juli 2026, 0 acara" [ref=f1e257]:
+                - generic [ref=f1e258]: "20"
+              - gridcell "Selasa, 21 Juli 2026, 0 acara" [ref=f1e260]:
+                - generic [ref=f1e261]: "21"
+              - gridcell "Rabu, 22 Juli 2026, 0 acara" [ref=f1e263]:
+                - generic [ref=f1e264]: "22"
+              - gridcell "Kamis, 23 Juli 2026, 0 acara" [ref=f1e266]:
+                - generic [ref=f1e267]: "23"
+              - gridcell "Jumat, 24 Juli 2026, 0 acara" [ref=f1e269]:
+                - generic [ref=f1e270]: "24"
+              - gridcell "Sabtu, 25 Juli 2026, 0 acara" [ref=f1e272]:
+                - generic [ref=f1e273]: "25"
+              - gridcell "Minggu, 26 Juli 2026, 0 acara" [ref=f1e275]:
+                - generic [ref=f1e276]: "26"
+              - gridcell "Senin, 27 Juli 2026, 0 acara" [ref=f1e278]:
+                - generic [ref=f1e279]: "27"
+              - gridcell "Selasa, 28 Juli 2026, 0 acara" [ref=f1e281]:
+                - generic [ref=f1e282]: "28"
+              - gridcell "Rabu, 29 Juli 2026, 0 acara" [ref=f1e284]:
+                - generic [ref=f1e285]: "29"
+              - gridcell "Kamis, 30 Juli 2026, 0 acara" [ref=f1e287]:
+                - generic [ref=f1e288]: "30"
+              - gridcell "Jumat, 31 Juli 2026, 0 acara" [ref=f1e290]:
+                - generic [ref=f1e291]: "31"
+          - complementary [ref=f1e293]:
+            - generic [ref=f1e295]:
+              - generic [ref=f1e296]:
+                - generic [ref=f1e297]: 13 Juli 2026
+                - generic [ref=f1e298]: 1 order aktif ditemukan
+              - generic [ref=f1e299]:
+                - button "Hari Ini" [ref=f1e300]
+                - button "Semua Bulan Ini" [ref=f1e301]
+            - button "Workshop Digital Marketing ORD-SEED-005 · Intan Kurnia DP 13 Juli 2026, 12:00 081300000005 Kantor Startup Hub Kemang, Jakarta Selatan" [ref=f1e303]:
+              - generic [ref=f1e304]:
+                - generic [ref=f1e305]:
+                  - paragraph [ref=f1e306]: Workshop Digital Marketing
+                  - paragraph [ref=f1e307]: ORD-SEED-005 · Intan Kurnia
+                - generic [ref=f1e308]: DP
+              - generic [ref=f1e309]:
+                - generic [ref=f1e310]: 13 Juli 2026, 12:00
+                - generic [ref=f1e314]: "081300000005"
+                - generic [ref=f1e319]: Kantor Startup Hub Kemang, Jakarta Selatan
+  - region "Notifications alt+T"

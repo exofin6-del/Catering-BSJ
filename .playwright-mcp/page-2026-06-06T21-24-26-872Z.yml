@@ -1,0 +1,155 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e7]:
+        - list [ref=e9]:
+          - listitem [ref=e10]:
+            - link [ref=e218] [cursor=pointer]:
+              - /url: /dashboard
+              - img [ref=e13]
+              - generic [ref=e16]: Laravel Starter Kit
+        - generic [ref=e18]:
+          - generic [ref=e19]: Platform
+          - list [ref=e21]:
+            - listitem [ref=e22]:
+              - link [ref=e219] [cursor=pointer]:
+                - /url: /dashboard
+                - img [ref=e24]
+                - generic [ref=e29]: Dashboard
+            - listitem [ref=e30]:
+              - button [expanded] [ref=e220]:
+                - img [ref=e32]
+                - generic [ref=e35]: Menu
+                - img [ref=e36]
+              - list [ref=e39]:
+                - listitem [ref=e40]:
+                  - link [ref=e221] [cursor=pointer]:
+                    - /url: /menu
+                    - generic [ref=e42]: Daftar Menu
+                - listitem [ref=e43]:
+                  - link [ref=e222] [cursor=pointer]:
+                    - /url: /menu/kategori
+                    - generic [ref=e45]: Kategori Menu
+        - generic [ref=e46]:
+          - list [ref=e49]:
+            - listitem [ref=e50]:
+              - link [ref=e223] [cursor=pointer]:
+                - /url: https://github.com/laravel/react-starter-kit
+                - img [ref=e52]
+                - generic [ref=e57]: Repository
+            - listitem [ref=e58]:
+              - link [ref=e224] [cursor=pointer]:
+                - /url: https://laravel.com/docs/starter-kits#react
+                - img [ref=e60]
+                - generic [ref=e62]: Documentation
+          - list [ref=e63]:
+            - listitem [ref=e64]:
+              - button [ref=e225]:
+                - generic [ref=e67]: MS
+                - generic [ref=e69]: Menu Seeder
+                - img [ref=e70]
+      - main [ref=e73]:
+        - generic [ref=e76]:
+          - heading [level=2] [ref=e226]: Edit Menu
+          - navigation [ref=e227]:
+            - list [ref=e83]:
+              - listitem [ref=e84]:
+                - link [ref=e228] [cursor=pointer]:
+                  - /url: /dashboard
+                  - text: Dashboard
+              - listitem [ref=e86]:
+                - img [ref=e87]
+              - listitem [ref=e89]:
+                - link [ref=e229] [cursor=pointer]:
+                  - /url: /menu
+                  - text: Menu
+              - listitem [ref=e91]:
+                - img [ref=e92]
+              - listitem [ref=e94]:
+                - link [disabled] [ref=e230]: Edit
+        - generic [ref=e97]:
+          - navigation [ref=e231]:
+            - list [ref=e100]:
+              - listitem [ref=e101] [cursor=pointer]:
+                - button [ref=e102]:
+                  - img [ref=e103]
+                - generic [ref=e105]:
+                  - generic [ref=e106]: Step 1
+                  - generic [ref=e107]: Info menu
+              - listitem [ref=e109] [cursor=pointer]:
+                - button [ref=e110]:
+                  - img [ref=e111]
+                - generic [ref=e114]:
+                  - generic [ref=e115]: Step 2
+                  - generic [ref=e116]: Harga
+              - listitem [ref=e118] [cursor=pointer]:
+                - button [ref=e119]:
+                  - img [ref=e120]
+                - generic [ref=e124]:
+                  - generic [ref=e125]: Step 3
+                  - generic [ref=e126]: Publikasi
+          - generic [ref=e127]:
+            - generic [ref=e129]:
+              - group [ref=e131]:
+                - generic [ref=e132]:
+                  - generic [ref=e133]: Informasi dasar
+                  - paragraph [ref=e134]: Detail utama yang akan muncul di katalog menu.
+                - generic [ref=e135]:
+                  - generic [ref=e136]:
+                    - generic [ref=e137]: Nama menu
+                    - textbox [ref=e232]:
+                      - /placeholder: Nasi liwet komplit
+                      - text: jj
+                  - generic [ref=e139]:
+                    - generic [ref=e140]: Kategori
+                    - group [ref=e141]:
+                      - button "Dismiss" [ref=e233]
+                      - combobox "Kategori" [expanded] [active] [ref=e142]: Kategori Baru MCP
+                      - group [ref=e143]:
+                        - button [ref=e212]:
+                          - img
+                      - group [ref=e213]:
+                        - generic [ref=e214]: Baru
+                    - textbox [ref=e145]: Kategori Baru MCP
+                    - paragraph [ref=e146]: Pilih kategori aktif atau ketik nama kategori baru.
+                  - generic [ref=e147]:
+                    - generic [ref=e148]: Deskripsi
+                    - group [ref=e149]:
+                      - textbox [ref=e234]:
+                        - /placeholder: Ringkasan bahan, rasa, atau komposisi menu.
+              - complementary [ref=e151]:
+                - generic [ref=e152]:
+                  - img [ref=e153]
+                  - heading [level=2] [ref=e235]: Ringkasan
+                - generic [ref=e156]:
+                  - generic [ref=e157]:
+                    - generic [ref=e158]: Kategori
+                    - generic [ref=e159]: Kategori Baru MCP
+                  - generic [ref=e160]:
+                    - generic [ref=e161]: Slug
+                    - generic [ref=e162]: Dibuat otomatis dari nama menu
+                  - generic [ref=e163]:
+                    - generic [ref=e164]: Gambar
+                    - generic [ref=e165]: Bisa ditambahkan di langkah publikasi
+            - generic [ref=e167]:
+              - generic [ref=e168]: Langkah 1/3
+              - button [ref=e236]:
+                - text: Berikutnya
+                - img
+    - region "Notifications alt+T"
+  - generic:
+    - listbox [ref=e238]:
+      - option "Nasi Box" [ref=e239]:
+        - generic [ref=e240]: Nasi Box
+      - option "Snack Box" [ref=e241]:
+        - generic [ref=e242]: Snack Box
+      - option "Prasmanan" [ref=e243]:
+        - generic [ref=e244]: Prasmanan
+      - option "Minuman" [ref=e245]:
+        - generic [ref=e246]: Minuman
+      - option "Kategori Baru MCP Baru" [selected] [ref=e247]:
+        - generic [ref=e248]: Kategori Baru MCP
+        - generic [ref=e249]: Baru
+        - generic:
+          - img
+    - button "Dismiss" [ref=e250]

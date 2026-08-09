@@ -1,0 +1,235 @@
+- generic [ref=e2]:
+  - generic [ref=e42]:
+    - generic [ref=e43]:
+      - heading "Sidebar" [level=2]
+      - paragraph: Displays the mobile sidebar.
+    - main [ref=e44]:
+      - generic [ref=e46]:
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading "Kategori" [level=2]
+        - button "Toggle sidebar" [ref=e49]:
+          - img
+          - generic [ref=e50]: Toggle sidebar
+        - link "Tambah" [ref=e52] [cursor=pointer]:
+          - /url: /kategori/create
+          - img
+          - generic [ref=e53]: Tambah
+      - generic [ref=e56]:
+        - generic [ref=e58]:
+          - generic [ref=e59]:
+            - generic [ref=e60]:
+              - img
+              - textbox "Cari kategori..." [ref=e61]
+            - combobox [ref=e62]:
+              - generic: Semua
+              - img
+          - generic [ref=e63]:
+            - generic [ref=e64]:
+              - img [ref=e66]
+              - generic [ref=e70]:
+                - heading "Daftar Kategori" [level=2] [ref=e71]
+                - paragraph [ref=e72]: Menampilkan 1-8 dari 8 kategori
+            - generic [ref=e318]:
+              - generic [ref=e319]:
+                - checkbox "Pilih semua hasil" [ref=e320]
+                - button "Pilih semua" [ref=e321]
+              - button "Batalkan" [ref=e322]:
+                - img
+                - text: Batalkan
+            - generic [ref=e323]:
+              - generic [ref=e324]:
+                - img [ref=e326]
+                - generic [ref=e329]:
+                  - generic [ref=e330]:
+                    - generic [ref=e331]: Silakan pilih
+                    - generic [ref=e332]: "0"
+                  - paragraph [ref=e333]: Pilih baris yang ingin diekspor.
+              - generic [ref=e334]:
+                - combobox "Pilih format ekspor" [disabled] [ref=e335]:
+                  - generic:
+                    - img
+                    - text: Excel
+                  - img
+                - button "Unduh" [disabled]:
+                  - img
+                  - text: Unduh
+                - button "Tutup pilihan ekspor" [ref=e336]:
+                  - img
+                  - generic [ref=e337]: Tutup pilihan ekspor
+        - generic [ref=e75]:
+          - generic [ref=e76]:
+            - generic [ref=e77]:
+              - checkbox "Pilih baris" [ref=e339]
+              - generic [ref=e80]:
+                - img [ref=e82]
+                - generic [ref=e85]:
+                  - generic [ref=e86]:
+                    - generic [ref=e87]:
+                      - generic [ref=e88]:
+                        - generic [ref=e89]: Nasi Box
+                        - generic [ref=e90]: Menu
+                      - generic [ref=e91]: nasi-box
+                    - generic [ref=e92]:
+                      - generic [ref=e93]:
+                        - generic [ref=e94]: 35 menu
+                        - generic [ref=e95]: 0 komponen paket
+                      - checkbox "Nonaktifkan Nasi Box" [checked] [ref=e97]:
+                        - generic:
+                          - img
+                  - button "Buka aksi kategori" [ref=e100]:
+                    - img [ref=e101]
+                    - generic [ref=e105]: Buka aksi kategori
+            - generic [ref=e106]:
+              - checkbox "Pilih baris" [ref=e341]
+              - generic [ref=e109]:
+                - img [ref=e111]
+                - generic [ref=e117]:
+                  - generic [ref=e118]:
+                    - generic [ref=e119]:
+                      - generic [ref=e120]:
+                        - generic [ref=e121]: Snack Box
+                        - generic [ref=e122]: Menu
+                      - generic [ref=e123]: snack-box
+                    - generic [ref=e124]:
+                      - generic [ref=e125]:
+                        - generic [ref=e126]: 25 menu
+                        - generic [ref=e127]: 0 komponen paket
+                      - checkbox "Nonaktifkan Snack Box" [checked] [ref=e129]:
+                        - generic:
+                          - img
+                  - button "Buka aksi kategori" [ref=e132]:
+                    - img [ref=e133]
+                    - generic [ref=e137]: Buka aksi kategori
+            - generic [ref=e138]:
+              - checkbox "Pilih baris" [ref=e343]
+              - generic [ref=e141]:
+                - img [ref=e143]
+                - generic [ref=e147]:
+                  - generic [ref=e148]:
+                    - generic [ref=e149]:
+                      - generic [ref=e150]:
+                        - generic [ref=e151]: Prasmanan
+                        - generic [ref=e152]: Menu
+                      - generic [ref=e153]: prasmanan
+                    - generic [ref=e154]:
+                      - generic [ref=e155]:
+                        - generic [ref=e156]: 24 menu
+                        - generic [ref=e157]: 0 komponen paket
+                      - checkbox "Nonaktifkan Prasmanan" [checked] [ref=e159]:
+                        - generic:
+                          - img
+                  - button "Buka aksi kategori" [ref=e162]:
+                    - img [ref=e163]
+                    - generic [ref=e167]: Buka aksi kategori
+            - generic [ref=e168]:
+              - checkbox "Pilih baris" [ref=e345]
+              - generic [ref=e171]:
+                - img [ref=e173]
+                - generic [ref=e177]:
+                  - generic [ref=e178]:
+                    - generic [ref=e179]:
+                      - generic [ref=e180]:
+                        - generic [ref=e181]: Minuman
+                        - generic [ref=e182]: Menu
+                      - generic [ref=e183]: minuman
+                    - generic [ref=e184]:
+                      - generic [ref=e185]:
+                        - generic [ref=e186]: 16 menu
+                        - generic [ref=e187]: 0 komponen paket
+                      - checkbox "Nonaktifkan Minuman" [checked] [ref=e189]:
+                        - generic:
+                          - img
+                  - button "Buka aksi kategori" [ref=e192]:
+                    - img [ref=e193]
+                    - generic [ref=e197]: Buka aksi kategori
+            - generic [ref=e198]:
+              - checkbox "Pilih baris" [ref=e347]
+              - generic [ref=e201]:
+                - img [ref=e203]
+                - generic [ref=e206]:
+                  - generic [ref=e207]:
+                    - generic [ref=e208]:
+                      - generic [ref=e209]:
+                        - generic [ref=e210]: Nasi Box
+                        - generic [ref=e211]: Paket
+                      - generic [ref=e212]: nasi-box
+                    - generic [ref=e213]:
+                      - generic [ref=e214]: 1 paket
+                      - checkbox "Nonaktifkan Nasi Box" [checked] [ref=e216]:
+                        - generic:
+                          - img
+                  - button "Buka aksi kategori" [ref=e219]:
+                    - img [ref=e220]
+                    - generic [ref=e224]: Buka aksi kategori
+            - generic [ref=e225]:
+              - checkbox "Pilih baris" [ref=e349]
+              - generic [ref=e228]:
+                - img [ref=e230]
+                - generic [ref=e236]:
+                  - generic [ref=e237]:
+                    - generic [ref=e238]:
+                      - generic [ref=e239]:
+                        - generic [ref=e240]: Snack Box
+                        - generic [ref=e241]: Paket
+                      - generic [ref=e242]: snack-box
+                    - generic [ref=e243]:
+                      - generic [ref=e244]: 2 paket
+                      - checkbox "Nonaktifkan Snack Box" [checked] [ref=e246]:
+                        - generic:
+                          - img
+                  - button "Buka aksi kategori" [ref=e249]:
+                    - img [ref=e250]
+                    - generic [ref=e254]: Buka aksi kategori
+            - generic [ref=e255]:
+              - checkbox "Pilih baris" [ref=e351]
+              - generic [ref=e258]:
+                - img [ref=e260]
+                - generic [ref=e264]:
+                  - generic [ref=e265]:
+                    - generic [ref=e266]:
+                      - generic [ref=e267]:
+                        - generic [ref=e268]: Prasmanan
+                        - generic [ref=e269]: Paket
+                      - generic [ref=e270]: prasmanan
+                    - generic [ref=e271]:
+                      - generic [ref=e272]: 4 paket
+                      - checkbox "Nonaktifkan Prasmanan" [checked] [ref=e274]:
+                        - generic:
+                          - img
+                  - button "Buka aksi kategori" [ref=e277]:
+                    - img [ref=e278]
+                    - generic [ref=e282]: Buka aksi kategori
+            - generic [ref=e283]:
+              - checkbox "Pilih baris" [ref=e353]
+              - generic [ref=e286]:
+                - img [ref=e288]
+                - generic [ref=e292]:
+                  - generic [ref=e293]:
+                    - generic [ref=e294]:
+                      - generic [ref=e295]:
+                        - generic [ref=e296]: Event & Meeting
+                        - generic [ref=e297]: Paket
+                      - generic [ref=e298]: event-meeting
+                    - generic [ref=e299]:
+                      - generic [ref=e300]: 3 paket
+                      - checkbox "Nonaktifkan Event & Meeting" [checked] [ref=e302]:
+                        - generic:
+                          - img
+                  - button "Buka aksi kategori" [ref=e305]:
+                    - img [ref=e306]
+                    - generic [ref=e310]: Buka aksi kategori
+          - generic [ref=e311]:
+            - combobox "Jumlah baris per halaman" [ref=e313]:
+              - generic: "10"
+              - img
+            - navigation "pagination" [ref=e314]:
+              - list [ref=e315]:
+                - listitem [ref=e316]:
+                  - link "Buka halaman 1" [ref=e317] [cursor=pointer]:
+                    - /url: "#"
+                    - text: "1"
+  - region "Notifications alt+T"

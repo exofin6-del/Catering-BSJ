@@ -1,0 +1,239 @@
+- generic:
+  - generic:
+    - generic:
+      - main:
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - heading [level=2]: Edit Order
+            - generic:
+              - generic:
+                - link:
+                  - /url: /order
+                  - img
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - navigation:
+                  - list:
+                    - listitem:
+                      - generic:
+                        - button:
+                          - img
+                        - generic: Step 1
+                    - listitem:
+                      - generic:
+                        - button:
+                          - img
+                        - generic: Step 2
+                    - listitem:
+                      - generic:
+                        - button:
+                          - img
+                        - generic: Step 3
+                    - listitem:
+                      - generic:
+                        - button:
+                          - img
+                        - generic: Step 4
+              - generic:
+                - generic:
+                  - group:
+                    - generic:
+                      - generic:
+                        - generic: Item order
+                        - paragraph: Tambahkan menu atau paket untuk order ini.
+                      - button:
+                        - img
+                        - text: Tambah
+                    - generic:
+                      - generic:
+                        - article:
+                          - img
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - heading [level=3]: Paket Meeting Premium
+                                  - generic: Paket
+                                - generic: Paket lengkap untuk rapat kantor dengan nasi box, snack, dan minuman.
+                              - generic:
+                                - button:
+                                  - img
+                                - button:
+                                  - img
+                            - generic:
+                              - generic: Event & Meeting · Harga satuan Rp 46.667
+                            - generic:
+                              - generic:
+                                - group:
+                                  - button:
+                                    - img
+                                  - spinbutton: "25"
+                                  - button:
+                                    - img
+                              - generic: Rp 1.166.675
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: Detail paket
+                                - generic: 3 komponen
+                              - generic:
+                                - generic:
+                                  - generic: Pilihan Paket
+                                  - generic: Belum dipilih
+                                - generic:
+                                  - generic: Snack Box Classic
+                                  - generic: Snack Box Classic
+                                - generic:
+                                  - generic: Es Teh Manis Jumbo
+                                  - generic: Es Teh Manis Jumbo
+                        - article:
+                          - img
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - heading [level=3]: Jus Jeruk Peras
+                                  - generic: Menu
+                                - generic: Jus jeruk segar tanpa pemanis buatan, cocok untuk menu premium.
+                              - generic:
+                                - button:
+                                  - img
+                                - button:
+                                  - img
+                            - generic:
+                              - generic: Minuman · Harga satuan Rp 10.000
+                            - generic:
+                              - generic:
+                                - group:
+                                  - button:
+                                    - img
+                                  - spinbutton: "25"
+                                  - button:
+                                    - img
+                              - generic: Rp 250.000
+                        - article:
+                          - img
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - heading [level=3]: Paket Meeting Premium
+                                  - generic: Paket
+                                - generic: Paket lengkap untuk rapat kantor dengan nasi box, snack, dan minuman.
+                              - generic:
+                                - button:
+                                  - img
+                                - button:
+                                  - img
+                            - generic:
+                              - generic: Event & Meeting · Harga satuan Rp 46.667
+                            - generic:
+                              - generic:
+                                - group:
+                                  - button [disabled]:
+                                    - img
+                                  - spinbutton: "20"
+                                  - button:
+                                    - img
+                              - generic: Rp 933.340
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic: Detail paket
+                                - generic: 3 komponen
+                              - generic:
+                                - generic:
+                                  - generic: Pilihan Paket
+                                  - generic: Nasi Box Ayam Bakar
+                                - generic:
+                                  - generic: Snack Box Classic
+                                  - generic: Snack Box Classic
+                                - generic:
+                                  - generic: Es Teh Manis Jumbo
+                                  - generic: Es Teh Manis Jumbo
+                  - complementary:
+                    - generic:
+                      - img
+                      - heading [level=2]: Ringkasan item
+                    - generic:
+                      - generic:
+                        - generic: 3 item order
+                        - generic: Rp 2.350.015
+                      - generic:
+                        - generic: Total sementara
+                        - generic: Rp 2.350.015
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - button:
+                        - img
+                        - text: Sebelumnya
+                    - generic: Langkah 2/4
+                    - generic:
+                      - button:
+                        - text: Berikutnya
+                        - img
+    - region "Notifications alt+T"
+  - dialog "Tambah item order" [active] [ref=e625]:
+    - generic [ref=e626]:
+      - heading "Tambah item order" [level=2] [ref=e627]
+      - paragraph [ref=e628]: Cari menu atau paket lalu konfirmasi jumlahnya.
+    - generic [ref=e665]:
+      - generic [ref=e666]:
+        - button "Kembali" [ref=e667]:
+          - img
+        - generic [ref=e668]:
+          - generic [ref=e669]: Konfirmasi item
+          - paragraph [ref=e670]: Atur jumlah dan pilihan paket sebelum item ditambahkan.
+      - generic [ref=e672]:
+        - article [ref=e674]:
+          - img "Paket Meeting Premium" [ref=e675]
+          - generic [ref=e676]:
+            - generic [ref=e678]:
+              - generic [ref=e679]:
+                - heading "Paket Meeting Premium" [level=3] [ref=e680]
+                - generic [ref=e681]: Paket
+              - generic [ref=e682]: Paket lengkap untuk rapat kantor dengan nasi box, snack, dan minuman.
+            - generic [ref=e683]: Event & Meeting
+            - generic [ref=e684]:
+              - generic [ref=e685]: 20 x Rp 46.667
+              - generic [ref=e686]: Rp 933.340
+        - group [ref=e687]:
+          - group [ref=e688]:
+            - generic [ref=e689]: Qty
+            - spinbutton "Qty" [ref=e690]: "20"
+            - paragraph [ref=e691]: Harga satuan Rp 46.667.
+          - group [ref=e692]:
+            - generic [ref=e693]:
+              - generic [ref=e694]: Pilihan paket
+              - paragraph [ref=e695]: Tentukan menu untuk setiap komponen pilihan.
+            - generic [ref=e697]:
+              - generic [ref=e698]:
+                - heading "Pilihan Paket" [level=4] [ref=e699]
+                - paragraph [ref=e700]: Pilih satu menu.
+              - generic [ref=e701]:
+                - button "Nasi Box Ayam Bakar Rp 21.667" [ref=e702]:
+                  - img [ref=e704]
+                  - generic [ref=e707]: Nasi Box Ayam Bakar
+                  - generic [ref=e708]: Rp 21.667
+                - button "Paket Vegetarian Delight Rp 47.000" [ref=e709]:
+                  - img [ref=e711]
+                  - generic [ref=e714]: Paket Vegetarian Delight
+                  - generic [ref=e715]: Rp 47.000
+            - alert [ref=e716]: Pilih semua opsi paket terlebih dahulu.
+        - generic [ref=e717]:
+          - img [ref=e718]
+          - generic [ref=e720]: Harga akhir tetap dihitung ulang saat order disimpan.
+      - generic [ref=e721]:
+        - button "Batal" [ref=e722]
+        - button "Tambah item" [disabled]:
+          - img
+          - text: Tambah item

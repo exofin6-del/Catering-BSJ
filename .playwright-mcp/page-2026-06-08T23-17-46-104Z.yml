@@ -1,0 +1,290 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - heading "Sidebar" [level=2]
+      - paragraph: Displays the mobile sidebar.
+    - main [ref=e5]:
+      - generic [ref=e7]:
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading "Paket" [level=2]
+        - button "Toggle sidebar" [ref=e10]:
+          - img
+          - generic [ref=e11]: Toggle sidebar
+        - link "Tambah" [ref=e13] [cursor=pointer]:
+          - /url: /paket/create
+          - img
+          - generic [ref=e14]: Tambah
+      - generic [ref=e16]:
+        - generic [ref=e18]:
+          - generic [ref=e20]:
+            - img
+            - textbox "Cari paket..." [ref=e21]
+          - generic [ref=e22]:
+            - generic [ref=e23]: Filter paket
+            - group "Filter paket" [ref=e24]:
+              - generic [ref=e25]:
+                - generic [ref=e27]:
+                  - button "Semua" [pressed] [ref=e29]
+                  - button "Aktif" [ref=e31]
+                  - button "Nonaktif" [ref=e33]
+                  - button "Harga promo" [ref=e35]
+                  - button "Rekomendasi" [ref=e37]
+                  - button "Nasi Box" [ref=e39]
+                  - button "Snack Box" [ref=e41]
+                  - button "Prasmanan" [ref=e43]
+                  - button "Event & Meeting" [ref=e45]
+                - button "Scroll filter berikutnya" [ref=e46]:
+                  - img
+                  - generic [ref=e47]: Scroll filter berikutnya
+        - generic [ref=e48]:
+          - generic [ref=e49]:
+            - generic [ref=e50]:
+              - img [ref=e51]
+              - generic [ref=e54]: Ringkasan paket
+            - generic [ref=e55]:
+              - application [ref=e59]:
+                - generic [ref=e62]: 10Total
+              - generic [ref=e63]:
+                - generic [ref=e64]:
+                  - generic "Aktif" [ref=e67]
+                  - generic [ref=e68]: "10"
+                - generic [ref=e69]:
+                  - generic "Nonaktif" [ref=e72]
+                  - generic [ref=e73]: "0"
+                - generic [ref=e74]:
+                  - generic "Promo" [ref=e77]
+                  - generic [ref=e78]: "10"
+                - generic [ref=e79]:
+                  - generic "Rekomendasi" [ref=e82]
+                  - generic [ref=e83]: "5"
+          - generic [ref=e84]:
+            - generic [ref=e86]:
+              - img [ref=e87]
+              - generic [ref=e89]: Paket terlengkap
+            - application [ref=e94]
+        - generic [ref=e104]:
+          - generic [ref=e106]:
+            - generic [ref=e107]:
+              - img [ref=e109]
+              - generic [ref=e113]:
+                - heading "Daftar Paket" [level=2] [ref=e114]
+                - paragraph [ref=e115]: Menampilkan 1-10 dari 10 paket
+            - button "Ekspor" [ref=e116]:
+              - img
+              - text: Ekspor
+          - generic [ref=e117]:
+            - generic [ref=e118]:
+              - generic [ref=e121]:
+                - img "Paket Meeting Premium" [ref=e124]
+                - generic [ref=e125]:
+                  - generic [ref=e126]:
+                    - generic [ref=e127]:
+                      - generic [ref=e128]:
+                        - generic [ref=e129]: Paket Meeting Premium
+                        - generic [ref=e130]: Rekomendasi
+                      - generic [ref=e131]: Event & Meeting | 3 komponen | Min. 20 porsi
+                    - generic [ref=e132]:
+                      - generic [ref=e134]:
+                        - generic [ref=e135]: Rp 46.667
+                        - generic [ref=e136]:
+                          - generic [ref=e137]: Rp 57.000
+                          - generic [ref=e138]: "-18%"
+                      - checkbox "Nonaktifkan Paket Meeting Premium" [checked] [ref=e141]:
+                        - generic:
+                          - img
+                  - button "Buka aksi paket" [ref=e144]:
+                    - img [ref=e145]
+                    - generic [ref=e149]: Buka aksi paket
+              - generic [ref=e152]:
+                - img "Paket Meeting Executive" [ref=e155]
+                - generic [ref=e156]:
+                  - generic [ref=e157]:
+                    - generic [ref=e158]:
+                      - generic [ref=e159]:
+                        - generic [ref=e160]: Paket Meeting Executive
+                        - generic [ref=e161]: Rekomendasi
+                      - generic [ref=e162]: Event & Meeting | 3 komponen | Min. 15 porsi
+                    - generic [ref=e163]:
+                      - generic [ref=e165]:
+                        - generic [ref=e166]: Rp 65.334
+                        - generic [ref=e167]:
+                          - generic [ref=e168]: Rp 75.000
+                          - generic [ref=e169]: "-13%"
+                      - checkbox "Nonaktifkan Paket Meeting Executive" [checked] [ref=e172]:
+                        - generic:
+                          - img
+                  - button "Buka aksi paket" [ref=e175]:
+                    - img [ref=e176]
+                    - generic [ref=e180]: Buka aksi paket
+              - generic [ref=e183]:
+                - img "Paket Seminar Hemat" [ref=e186]
+                - generic [ref=e187]:
+                  - generic [ref=e188]:
+                    - generic [ref=e189]:
+                      - generic [ref=e191]: Paket Seminar Hemat
+                      - generic [ref=e192]: Nasi Box | 3 komponen | Min. 30 porsi
+                    - generic [ref=e193]:
+                      - generic [ref=e195]:
+                        - generic [ref=e196]: Rp 45.000
+                        - generic [ref=e197]:
+                          - generic [ref=e198]: Rp 59.000
+                          - generic [ref=e199]: "-24%"
+                      - checkbox "Nonaktifkan Paket Seminar Hemat" [checked] [ref=e202]:
+                        - generic:
+                          - img
+                  - button "Buka aksi paket" [ref=e205]:
+                    - img [ref=e206]
+                    - generic [ref=e210]: Buka aksi paket
+              - generic [ref=e213]:
+                - img "Paket Wedding Nusantara" [ref=e216]
+                - generic [ref=e217]:
+                  - generic [ref=e218]:
+                    - generic [ref=e219]:
+                      - generic [ref=e220]:
+                        - generic [ref=e221]: Paket Wedding Nusantara
+                        - generic [ref=e222]: Rekomendasi
+                      - generic [ref=e223]: Prasmanan | 3 komponen | Min. 80 porsi
+                    - generic [ref=e224]:
+                      - generic [ref=e226]:
+                        - generic [ref=e227]: Rp 73.667
+                        - generic [ref=e228]:
+                          - generic [ref=e229]: Rp 92.000
+                          - generic [ref=e230]: "-20%"
+                      - checkbox "Nonaktifkan Paket Wedding Nusantara" [checked] [ref=e233]:
+                        - generic:
+                          - img
+                  - button "Buka aksi paket" [ref=e236]:
+                    - img [ref=e237]
+                    - generic [ref=e241]: Buka aksi paket
+              - generic [ref=e244]:
+                - img "Paket Gathering Keluarga" [ref=e247]
+                - generic [ref=e248]:
+                  - generic [ref=e249]:
+                    - generic [ref=e250]:
+                      - generic [ref=e252]: Paket Gathering Keluarga
+                      - generic [ref=e253]: Prasmanan | 3 komponen | Min. 50 porsi
+                    - generic [ref=e254]:
+                      - generic [ref=e256]:
+                        - generic [ref=e257]: Rp 59.000
+                        - generic [ref=e258]:
+                          - generic [ref=e259]: Rp 81.000
+                          - generic [ref=e260]: "-27%"
+                      - checkbox "Nonaktifkan Paket Gathering Keluarga" [checked] [ref=e263]:
+                        - generic:
+                          - img
+                  - button "Buka aksi paket" [ref=e266]:
+                    - img [ref=e267]
+                    - generic [ref=e271]: Buka aksi paket
+              - generic [ref=e274]:
+                - img "Paket Vegetarian Corporate" [ref=e277]
+                - generic [ref=e278]:
+                  - generic [ref=e279]:
+                    - generic [ref=e280]:
+                      - generic [ref=e282]: Paket Vegetarian Corporate
+                      - generic [ref=e283]: Prasmanan | 3 komponen | Min. 30 porsi
+                    - generic [ref=e284]:
+                      - generic [ref=e286]:
+                        - generic [ref=e287]: Rp 62.334
+                        - generic [ref=e288]:
+                          - generic [ref=e289]: Rp 84.000
+                          - generic [ref=e290]: "-26%"
+                      - checkbox "Nonaktifkan Paket Vegetarian Corporate" [checked] [ref=e293]:
+                        - generic:
+                          - img
+                  - button "Buka aksi paket" [ref=e296]:
+                    - img [ref=e297]
+                    - generic [ref=e301]: Buka aksi paket
+              - generic [ref=e304]:
+                - img "Paket Coffee Break Classic" [ref=e307]
+                - generic [ref=e308]:
+                  - generic [ref=e309]:
+                    - generic [ref=e310]:
+                      - generic [ref=e312]: Paket Coffee Break Classic
+                      - generic [ref=e313]: Snack Box | 3 komponen | Min. 30 porsi
+                    - generic [ref=e314]:
+                      - generic [ref=e316]:
+                        - generic [ref=e317]: Rp 31.000
+                        - generic [ref=e318]:
+                          - generic [ref=e319]: Rp 37.000
+                          - generic [ref=e320]: "-16%"
+                      - checkbox "Nonaktifkan Paket Coffee Break Classic" [checked] [ref=e323]:
+                        - generic:
+                          - img
+                  - button "Buka aksi paket" [ref=e326]:
+                    - img [ref=e327]
+                    - generic [ref=e331]: Buka aksi paket
+              - generic [ref=e334]:
+                - img "Paket Coffee Break Premium" [ref=e337]
+                - generic [ref=e338]:
+                  - generic [ref=e339]:
+                    - generic [ref=e340]:
+                      - generic [ref=e341]:
+                        - generic [ref=e342]: Paket Coffee Break Premium
+                        - generic [ref=e343]: Rekomendasi
+                      - generic [ref=e344]: Snack Box | 3 komponen | Min. 25 porsi
+                    - generic [ref=e345]:
+                      - generic [ref=e347]:
+                        - generic [ref=e348]: Rp 34.000
+                        - generic [ref=e349]:
+                          - generic [ref=e350]: Rp 44.000
+                          - generic [ref=e351]: "-23%"
+                      - checkbox "Nonaktifkan Paket Coffee Break Premium" [checked] [ref=e354]:
+                        - generic:
+                          - img
+                  - button "Buka aksi paket" [ref=e357]:
+                    - img [ref=e358]
+                    - generic [ref=e362]: Buka aksi paket
+              - generic [ref=e365]:
+                - img "Paket Launching Produk" [ref=e368]
+                - generic [ref=e369]:
+                  - generic [ref=e370]:
+                    - generic [ref=e371]:
+                      - generic [ref=e372]:
+                        - generic [ref=e373]: Paket Launching Produk
+                        - generic [ref=e374]: Rekomendasi
+                      - generic [ref=e375]: Event & Meeting | 3 komponen | Min. 40 porsi
+                    - generic [ref=e376]:
+                      - generic [ref=e378]:
+                        - generic [ref=e379]: Rp 67.000
+                        - generic [ref=e380]:
+                          - generic [ref=e381]: Rp 75.000
+                          - generic [ref=e382]: "-11%"
+                      - checkbox "Nonaktifkan Paket Launching Produk" [checked] [ref=e385]:
+                        - generic:
+                          - img
+                  - button "Buka aksi paket" [ref=e388]:
+                    - img [ref=e389]
+                    - generic [ref=e393]: Buka aksi paket
+              - generic [ref=e396]:
+                - img "Paket Tasyakuran" [ref=e399]
+                - generic [ref=e400]:
+                  - generic [ref=e401]:
+                    - generic [ref=e402]:
+                      - generic [ref=e404]: Paket Tasyakuran
+                      - generic [ref=e405]: Prasmanan | 3 komponen | Min. 40 porsi
+                    - generic [ref=e406]:
+                      - generic [ref=e408]:
+                        - generic [ref=e409]: Rp 55.000
+                        - generic [ref=e410]:
+                          - generic [ref=e411]: Rp 83.000
+                          - generic [ref=e412]: "-34%"
+                      - checkbox "Nonaktifkan Paket Tasyakuran" [checked] [ref=e415]:
+                        - generic:
+                          - img
+                  - button "Buka aksi paket" [ref=e418]:
+                    - img [ref=e419]
+                    - generic [ref=e423]: Buka aksi paket
+            - generic [ref=e425]:
+              - generic [ref=e426]: Page 1 of 1
+              - generic [ref=e427]:
+                - button "Go to previous page" [disabled]:
+                  - generic: Go to previous page
+                  - img
+                - button "Go to next page" [disabled]:
+                  - generic: Go to next page
+                  - img
+  - region "Notifications alt+T"

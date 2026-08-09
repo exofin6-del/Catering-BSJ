@@ -1,0 +1,110 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - heading "Sidebar" [level=2]
+      - paragraph: Displays the mobile sidebar.
+    - main [ref=e5]:
+      - generic [ref=e7]:
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading "Edit Order" [level=2]
+        - link "Kembali ke Order" [ref=e10] [cursor=pointer]:
+          - /url: /order
+          - img
+      - generic [ref=e13]:
+        - navigation "Progress" [ref=e15]:
+          - list [ref=e16]:
+            - listitem [ref=e17] [cursor=pointer]:
+              - generic [ref=e19]:
+                - button [ref=e20]:
+                  - img [ref=e21]
+                - generic [ref=e23]: Step 1
+            - listitem [ref=e24] [cursor=pointer]:
+              - generic [ref=e26]:
+                - button [active] [ref=e27]:
+                  - img [ref=e28]
+                - generic [ref=e31]: Step 2
+            - listitem [ref=e32] [cursor=pointer]:
+              - generic [ref=e34]:
+                - button [ref=e35]:
+                  - img [ref=e36]
+                - generic [ref=e38]: Step 3
+            - listitem [ref=e39] [cursor=pointer]:
+              - generic [ref=e40]:
+                - button [ref=e41]:
+                  - img [ref=e42]
+                - generic [ref=e44]: Step 4
+        - generic [ref=e126]:
+          - group [ref=e127]:
+            - generic [ref=e128]:
+              - generic [ref=e129]:
+                - generic [ref=e130]: Item order
+                - paragraph [ref=e131]: Tambahkan menu atau paket untuk order ini.
+              - button "Tambah" [ref=e132]:
+                - img
+                - text: Tambah
+            - generic [ref=e134]:
+              - article [ref=e135]:
+                - img "Paket Meeting Premium" [ref=e136]
+                - generic [ref=e137]:
+                  - generic [ref=e138]:
+                    - heading "Paket Meeting Premium" [level=3] [ref=e140]
+                    - generic [ref=e142]: Event & Meeting · Min. 20 pesanan
+                  - generic [ref=e143]:
+                    - generic [ref=e144]:
+                      - group [ref=e145]:
+                        - button "Kurangi jumlah" [ref=e146]:
+                          - img
+                        - spinbutton "Jumlah" [ref=e147]: "25"
+                        - button "Tambah jumlah" [ref=e148]:
+                          - img
+                      - button "Hapus item 1" [ref=e149]:
+                        - img
+                    - generic [ref=e150]: Rp 1.166.675
+                - generic [ref=e153]:
+                  - button "Detail paket (3)" [ref=e154]:
+                    - img
+                    - generic [ref=e155]: Detail paket (3)
+                  - button "Ubah" [ref=e156]:
+                    - img
+                    - text: Ubah
+              - article [ref=e157]:
+                - img "Jus Jeruk Peras" [ref=e158]
+                - generic [ref=e159]:
+                  - generic [ref=e160]:
+                    - heading "Jus Jeruk Peras" [level=3] [ref=e162]
+                    - generic [ref=e164]: Minuman · Min. 20 pesanan
+                  - generic [ref=e165]:
+                    - generic [ref=e166]:
+                      - group [ref=e167]:
+                        - button "Kurangi jumlah" [ref=e168]:
+                          - img
+                        - spinbutton "Jumlah" [ref=e169]: "25"
+                        - button "Tambah jumlah" [ref=e170]:
+                          - img
+                      - button "Hapus item 2" [ref=e171]:
+                        - img
+                    - generic [ref=e172]: Rp 250.000
+          - complementary [ref=e173]:
+            - generic [ref=e174]:
+              - img [ref=e175]
+              - heading "Ringkasan item" [level=2] [ref=e179]
+            - generic [ref=e180]:
+              - generic [ref=e181]:
+                - generic [ref=e182]: 2 item order
+                - generic [ref=e183]: Rp 1.416.675
+              - generic [ref=e184]:
+                - generic [ref=e185]: Total sementara
+                - generic [ref=e186]: Rp 1.416.675
+        - generic [ref=e122]:
+          - button "Sebelumnya" [ref=e188]:
+            - img
+            - text: Sebelumnya
+          - generic [ref=e123]: Langkah 2/4
+          - button "Berikutnya" [ref=e125]:
+            - text: Berikutnya
+            - img
+  - region "Notifications alt+T"

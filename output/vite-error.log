@@ -1,0 +1,275 @@
+
+  [41m[37m[1m SSR ERROR [0m  [36madmin/orders/edit[0m
+
+  window is not defined
+  [2mSource: C:\laragon\www\rewrite-app\resources\js\components\shared\maps\location-map.tsx:3:1[0m
+  [2mURL: /order/1/edit[0m
+
+  [33mHint[0m  The global window object doesn't exist in Node.js. Wrap browser-specific code in a onMounted/useEffect/onMount lifecycle hook, or check "typeof window !== 'undefined'" before using it.
+
+  [2mReferenceError: window is not defined
+      at C:\laragon\www\rewrite-app\node_modules\.pnpm\leaflet@1.9.4\node_modules\leaflet\dist\leaflet-src.js:230:19
+      at C:\laragon\www\rewrite-app\node_modules\.pnpm\leaflet@1.9.4\node_modules\leaflet\dist\leaflet-src.js:7:66
+      at Object.<anonymous> (C:\laragon\www\rewrite-app\node_modules\.pnpm\leaflet@1.9.4\node_modules\leaflet\dist\leaflet-src.js:10:3)
+      at Module._compile (node:internal/modules/cjs/loader:1706:14)
+      at Object..js (node:internal/modules/cjs/loader:1839:10)
+      at Module.load (node:internal/modules/cjs/loader:1441:32)
+      at Function._load (node:internal/modules/cjs/loader:1263:12)
+      at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+      at cjsLoader (node:internal/modules/esm/translators:309:5)
+      at ModuleWrap.<anonymous> (node:internal/modules/esm/translators:202:7)
+      at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+      at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1222:18)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\components\shared\maps\location-map.tsx:3:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\features\orders\components\shared\location-command.tsx:18:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\features\orders\components\form\steps\order-customer-step.tsx:33:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\features\orders\components\form\order-form.tsx:37:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\pages\admin\orders\edit.tsx:3:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async resolve (C:\laragon\www\rewrite-app\resources\js\app.tsx:18:23)
+      at async file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/@inertiajs+react@3.3.1_reac_2d4e1a445aa479eced592590e8b54381/node_modules/@inertiajs/react/dist/index.js:239:32
+      at async handleSSRRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/@inertiajs+vite@3.3.1_vite@_16df41d848025d114ba85d2623072f99/node_modules/@inertiajs/vite/dist/index.js:496:20)
+      at async file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/@inertiajs+vite@3.3.1_vite@_16df41d848025d114ba85d2623072f99/node_modules/@inertiajs/vite/dist/index.js:677:9[0m
+
+
+  [41m[37m[1m SSR ERROR [0m  [36madmin/orders/edit[0m
+
+  window is not defined
+  [2mSource: C:\laragon\www\rewrite-app\resources\js\components\shared\maps\location-map.tsx:3:1[0m
+  [2mURL: /order/1/edit[0m
+
+  [33mHint[0m  The global window object doesn't exist in Node.js. Wrap browser-specific code in a onMounted/useEffect/onMount lifecycle hook, or check "typeof window !== 'undefined'" before using it.
+
+  [2mReferenceError: window is not defined
+      at C:\laragon\www\rewrite-app\node_modules\.pnpm\leaflet@1.9.4\node_modules\leaflet\dist\leaflet-src.js:230:19
+      at C:\laragon\www\rewrite-app\node_modules\.pnpm\leaflet@1.9.4\node_modules\leaflet\dist\leaflet-src.js:7:66
+      at Object.<anonymous> (C:\laragon\www\rewrite-app\node_modules\.pnpm\leaflet@1.9.4\node_modules\leaflet\dist\leaflet-src.js:10:3)
+      at Module._compile (node:internal/modules/cjs/loader:1706:14)
+      at Object..js (node:internal/modules/cjs/loader:1839:10)
+      at Module.load (node:internal/modules/cjs/loader:1441:32)
+      at Function._load (node:internal/modules/cjs/loader:1263:12)
+      at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+      at cjsLoader (node:internal/modules/esm/translators:309:5)
+      at ModuleWrap.<anonymous> (node:internal/modules/esm/translators:202:7)
+      at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+      at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1222:18)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\components\shared\maps\location-map.tsx:3:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\features\orders\components\shared\location-command.tsx:18:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\features\orders\components\form\steps\order-customer-step.tsx:33:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\features\orders\components\form\order-form.tsx:37:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\pages\admin\orders\edit.tsx:3:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async resolve (C:\laragon\www\rewrite-app\resources\js\app.tsx:18:23)
+      at async file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/@inertiajs+react@3.3.1_reac_2d4e1a445aa479eced592590e8b54381/node_modules/@inertiajs/react/dist/index.js:239:32
+      at async handleSSRRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/@inertiajs+vite@3.3.1_vite@_16df41d848025d114ba85d2623072f99/node_modules/@inertiajs/vite/dist/index.js:496:20)
+      at async file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/@inertiajs+vite@3.3.1_vite@_16df41d848025d114ba85d2623072f99/node_modules/@inertiajs/vite/dist/index.js:677:9[0m
+
+
+  [41m[37m[1m SSR ERROR [0m  [36madmin/orders/create[0m
+
+  window is not defined
+  [2mSource: C:\laragon\www\rewrite-app\resources\js\components\shared\maps\location-map.tsx:3:1[0m
+  [2mURL: /order/create[0m
+
+  [33mHint[0m  The global window object doesn't exist in Node.js. Wrap browser-specific code in a onMounted/useEffect/onMount lifecycle hook, or check "typeof window !== 'undefined'" before using it.
+
+  [2mReferenceError: window is not defined
+      at C:\laragon\www\rewrite-app\node_modules\.pnpm\leaflet@1.9.4\node_modules\leaflet\dist\leaflet-src.js:230:19
+      at C:\laragon\www\rewrite-app\node_modules\.pnpm\leaflet@1.9.4\node_modules\leaflet\dist\leaflet-src.js:7:66
+      at Object.<anonymous> (C:\laragon\www\rewrite-app\node_modules\.pnpm\leaflet@1.9.4\node_modules\leaflet\dist\leaflet-src.js:10:3)
+      at Module._compile (node:internal/modules/cjs/loader:1706:14)
+      at Object..js (node:internal/modules/cjs/loader:1839:10)
+      at Module.load (node:internal/modules/cjs/loader:1441:32)
+      at Function._load (node:internal/modules/cjs/loader:1263:12)
+      at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+      at cjsLoader (node:internal/modules/esm/translators:309:5)
+      at ModuleWrap.<anonymous> (node:internal/modules/esm/translators:202:7)
+      at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+      at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1222:18)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\components\shared\maps\location-map.tsx:3:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\features\orders\components\shared\location-command.tsx:18:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\features\orders\components\form\steps\order-customer-step.tsx:33:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\features\orders\components\form\order-form.tsx:37:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\pages\admin\orders\edit.tsx:3:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async resolve (C:\laragon\www\rewrite-app\resources\js\app.tsx:18:23)
+      at async file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/@inertiajs+react@3.3.1_reac_2d4e1a445aa479eced592590e8b54381/node_modules/@inertiajs/react/dist/index.js:239:32
+      at async handleSSRRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/@inertiajs+vite@3.3.1_vite@_16df41d848025d114ba85d2623072f99/node_modules/@inertiajs/vite/dist/index.js:496:20)
+      at async file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/@inertiajs+vite@3.3.1_vite@_16df41d848025d114ba85d2623072f99/node_modules/@inertiajs/vite/dist/index.js:677:9[0m
+
+
+  [41m[37m[1m SSR ERROR [0m  [36madmin/orders/edit[0m
+
+  window is not defined
+  [2mSource: C:\laragon\www\rewrite-app\resources\js\components\shared\maps\location-map.tsx:3:1[0m
+  [2mURL: /order/6/edit[0m
+
+  [33mHint[0m  The global window object doesn't exist in Node.js. Wrap browser-specific code in a onMounted/useEffect/onMount lifecycle hook, or check "typeof window !== 'undefined'" before using it.
+
+  [2mReferenceError: window is not defined
+      at C:\laragon\www\rewrite-app\node_modules\.pnpm\leaflet@1.9.4\node_modules\leaflet\dist\leaflet-src.js:230:19
+      at C:\laragon\www\rewrite-app\node_modules\.pnpm\leaflet@1.9.4\node_modules\leaflet\dist\leaflet-src.js:7:66
+      at Object.<anonymous> (C:\laragon\www\rewrite-app\node_modules\.pnpm\leaflet@1.9.4\node_modules\leaflet\dist\leaflet-src.js:10:3)
+      at Module._compile (node:internal/modules/cjs/loader:1706:14)
+      at Object..js (node:internal/modules/cjs/loader:1839:10)
+      at Module.load (node:internal/modules/cjs/loader:1441:32)
+      at Function._load (node:internal/modules/cjs/loader:1263:12)
+      at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+      at cjsLoader (node:internal/modules/esm/translators:309:5)
+      at ModuleWrap.<anonymous> (node:internal/modules/esm/translators:202:7)
+      at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+      at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1222:18)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\components\shared\maps\location-map.tsx:3:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\features\orders\components\shared\location-command.tsx:18:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\features\orders\components\form\steps\order-customer-step.tsx:33:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\features\orders\components\form\order-form.tsx:37:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\pages\admin\orders\edit.tsx:3:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async resolve (C:\laragon\www\rewrite-app\resources\js\app.tsx:18:23)
+      at async file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/@inertiajs+react@3.3.1_reac_2d4e1a445aa479eced592590e8b54381/node_modules/@inertiajs/react/dist/index.js:239:32
+      at async handleSSRRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/@inertiajs+vite@3.3.1_vite@_16df41d848025d114ba85d2623072f99/node_modules/@inertiajs/vite/dist/index.js:496:20)
+      at async file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/@inertiajs+vite@3.3.1_vite@_16df41d848025d114ba85d2623072f99/node_modules/@inertiajs/vite/dist/index.js:677:9[0m
+
+
+  [41m[37m[1m SSR ERROR [0m  [36madmin/orders/edit[0m
+
+  window is not defined
+  [2mSource: C:\laragon\www\rewrite-app\resources\js\components\shared\maps\location-map.tsx:3:1[0m
+  [2mURL: /order/9/edit[0m
+
+  [33mHint[0m  The global window object doesn't exist in Node.js. Wrap browser-specific code in a onMounted/useEffect/onMount lifecycle hook, or check "typeof window !== 'undefined'" before using it.
+
+  [2mReferenceError: window is not defined
+      at C:\laragon\www\rewrite-app\node_modules\.pnpm\leaflet@1.9.4\node_modules\leaflet\dist\leaflet-src.js:230:19
+      at C:\laragon\www\rewrite-app\node_modules\.pnpm\leaflet@1.9.4\node_modules\leaflet\dist\leaflet-src.js:7:66
+      at Object.<anonymous> (C:\laragon\www\rewrite-app\node_modules\.pnpm\leaflet@1.9.4\node_modules\leaflet\dist\leaflet-src.js:10:3)
+      at Module._compile (node:internal/modules/cjs/loader:1706:14)
+      at Object..js (node:internal/modules/cjs/loader:1839:10)
+      at Module.load (node:internal/modules/cjs/loader:1441:32)
+      at Function._load (node:internal/modules/cjs/loader:1263:12)
+      at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+      at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+      at cjsLoader (node:internal/modules/esm/translators:309:5)
+      at ModuleWrap.<anonymous> (node:internal/modules/esm/translators:202:7)
+      at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+      at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:665:26)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1222:18)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\components\shared\maps\location-map.tsx:3:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\features\orders\components\shared\location-command.tsx:18:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\features\orders\components\form\steps\order-customer-step.tsx:33:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\features\orders\components\form\order-form.tsx:37:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async eval (C:\laragon\www\rewrite-app\resources\js\pages\admin\orders\edit.tsx:3:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1006:3)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1259:59)
+      at async SSRCompatModuleRunner.directRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:10918:20)
+      at async SSRCompatModuleRunner.cachedRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/module-runner.js:1166:73)
+      at async resolve (C:\laragon\www\rewrite-app\resources\js\app.tsx:18:23)
+      at async file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/@inertiajs+react@3.3.1_reac_2d4e1a445aa479eced592590e8b54381/node_modules/@inertiajs/react/dist/index.js:239:32
+      at async handleSSRRequest (file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/@inertiajs+vite@3.3.1_vite@_16df41d848025d114ba85d2623072f99/node_modules/@inertiajs/vite/dist/index.js:496:20)
+      at async file:///C:/laragon/www/rewrite-app/node_modules/.pnpm/@inertiajs+vite@3.3.1_vite@_16df41d848025d114ba85d2623072f99/node_modules/@inertiajs/vite/dist/index.js:677:9[0m
+

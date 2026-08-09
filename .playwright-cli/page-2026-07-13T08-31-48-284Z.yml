@@ -1,0 +1,128 @@
+- generic [ref=f9e2]:
+  - generic [ref=f9e3]:
+    - generic [ref=f9e7]:
+      - list [ref=f9e9]:
+        - listitem [ref=f9e10]:
+          - link "Laravel Starter Kit" [ref=f9e11] [cursor=pointer]:
+            - /url: /dashboard
+      - generic [ref=f9e18]:
+        - generic [ref=f9e19]: Platform
+        - list [ref=f9e21]:
+          - listitem [ref=f9e22]:
+            - link "Dashboard" [ref=f9e23] [cursor=pointer]:
+              - /url: /dashboard
+          - listitem [ref=f9e30]:
+            - link "Kategori" [ref=f9e31] [cursor=pointer]:
+              - /url: /kategori
+          - listitem [ref=f9e37]:
+            - link "Menu" [ref=f9e38] [cursor=pointer]:
+              - /url: /menu
+          - listitem [ref=f9e45]:
+            - link "Paket" [ref=f9e46] [cursor=pointer]:
+              - /url: /paket
+          - listitem [ref=f9e52]:
+            - link "Order" [ref=f9e53] [cursor=pointer]:
+              - /url: /order
+          - listitem [ref=f9e58]:
+            - link "Jadwal" [ref=f9e59] [cursor=pointer]:
+              - /url: /jadwal
+          - listitem [ref=f9e63]:
+            - link "Laporan" [ref=f9e64] [cursor=pointer]:
+              - /url: /laporan
+          - listitem [ref=f9e68]:
+            - link "Pengaturan" [ref=f9e69] [cursor=pointer]:
+              - /url: /settings/business
+      - generic [ref=f9e74]:
+        - list [ref=f9e77]:
+          - listitem [ref=f9e78]:
+            - link "Repository" [ref=f9e79] [cursor=pointer]:
+              - /url: https://github.com/laravel/react-starter-kit
+          - listitem [ref=f9e86]:
+            - link "Documentation" [ref=f9e87] [cursor=pointer]:
+              - /url: https://laravel.com/docs/starter-kits#react
+        - list [ref=f9e91]:
+          - listitem [ref=f9e92]:
+            - button "EA Example Admin" [ref=f9e93]:
+              - generic [ref=f9e94]: EA
+              - generic [ref=f9e96]: Example Admin
+    - main [ref=f9e101]:
+      - generic [ref=f9e104]:
+        - heading "Pengaturan" [level=2] [ref=f9e109]
+        - navigation "breadcrumb" [ref=f9e111]:
+          - list [ref=f9e112]:
+            - listitem [ref=f9e113]:
+              - link "Pengaturan Bisnis" [disabled] [ref=f9e114]
+      - generic [ref=f9e116]:
+        - complementary [ref=f9e117]:
+          - navigation "Pengaturan" [ref=f9e118]:
+            - link "Bisnis" [ref=f9e119] [cursor=pointer]:
+              - /url: /settings/business
+            - link "Profil" [ref=f9e120] [cursor=pointer]:
+              - /url: /settings/profile
+            - link "Keamanan" [ref=f9e121] [cursor=pointer]:
+              - /url: /settings/security
+            - link "Tampilan" [ref=f9e122] [cursor=pointer]:
+              - /url: /settings/appearance
+        - main [ref=f9e123]:
+          - generic [ref=f9e124]:
+            - generic [ref=f9e126]:
+              - heading "Pengaturan bisnis" [level=2] [ref=f9e128]
+              - paragraph [ref=f9e129]: Atur kapasitas, jam operasional, dan area layanan catering.
+            - generic [ref=f9e130]:
+              - generic [ref=f9e131]:
+                - generic [ref=f9e139]:
+                  - generic [ref=f9e140]: Informasi bisnis
+                  - generic [ref=f9e141]: Nama dan status penerimaan order.
+                - generic [ref=f9e142]:
+                  - generic [ref=f9e143]:
+                    - generic [ref=f9e144]: Nama catering
+                    - textbox "Nama catering" [ref=f9e145]: Catering BSJ
+                  - generic [ref=f9e146] [cursor=pointer]:
+                    - checkbox "Terima order baru Nonaktifkan sementara saat bisnis tutup atau kapasitas dihentikan." [checked] [ref=f9e147]
+                    - checkbox [checked]
+                    - generic [ref=f9e148]:
+                      - generic [ref=f9e149]: Terima order baru
+                      - generic [ref=f9e150]: Nonaktifkan sementara saat bisnis tutup atau kapasitas dihentikan.
+              - generic [ref=f9e151]:
+                - generic [ref=f9e158]:
+                  - generic [ref=f9e159]: Operasional & kapasitas
+                  - generic [ref=f9e160]: Batasi waktu dan jumlah order yang dapat diterima setiap hari.
+                - generic [ref=f9e161]:
+                  - generic [ref=f9e162]:
+                    - generic [ref=f9e163]: Jam buka
+                    - textbox "Jam buka" [ref=f9e164]: 07:00
+                  - generic [ref=f9e165]:
+                    - generic [ref=f9e166]: Jam tutup
+                    - textbox "Jam tutup" [ref=f9e167]: 17:00
+                  - generic [ref=f9e168]:
+                    - generic [ref=f9e169]: Maksimum order per hari
+                    - spinbutton "Maksimum order per hari" [ref=f9e171]: "3"
+                    - paragraph [ref=f9e172]: Order baru akan ditolak setelah kapasitas pada tanggal tersebut penuh.
+              - generic [ref=f9e173]:
+                - generic [ref=f9e181]:
+                  - generic [ref=f9e182]: Area layanan
+                  - generic [ref=f9e183]: Tentukan pusat catering dan radius maksimum pengantaran.
+                - generic [ref=f9e184]:
+                  - generic [ref=f9e185]:
+                    - generic [ref=f9e187]:
+                      - group [ref=f9e193]:
+                        - group [ref=f9e194]
+                        - textbox "Cari lokasi catering..." [ref=f9e198]
+                      - group "Zoom controls" [ref=f9e200]:
+                        - button "Zoom in" [ref=f9e201]
+                        - button "Zoom out" [ref=f9e202]
+                    - paragraph [ref=f9e207]: Cari lokasi atau geser peta. Lingkaran menunjukkan jangkauan order sejauh 10 km dari lokasi catering.
+                  - generic [ref=f9e208]:
+                    - generic [ref=f9e209]:
+                      - generic [ref=f9e210]: Radius order maksimum
+                      - generic [ref=f9e211]:
+                        - spinbutton "Radius order maksimum" [ref=f9e212]: "10"
+                        - generic [ref=f9e213]: km
+                    - slider "Radius order maksimum" [ref=f9e214] [cursor=pointer]: "10"
+                    - generic [ref=f9e215]:
+                      - generic [ref=f9e216]: 1 km
+                      - generic [ref=f9e217]: 100 km
+              - generic [ref=f9e218]:
+                - paragraph [ref=f9e219]: Pengaturan sudah tersimpan.
+                - button "Simpan" [ref=f9e220]
+  - region "Notifications alt+T"

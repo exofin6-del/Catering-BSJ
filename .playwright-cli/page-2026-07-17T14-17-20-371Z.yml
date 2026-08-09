@@ -1,0 +1,187 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - link "Catering BSJ" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e10]:
+            - generic [ref=e11]: Catering BSJ
+            - generic [ref=e12]: Catering untuk setiap momen
+        - navigation "Navigasi utama" [ref=e13]:
+          - link "Beranda" [ref=e14] [cursor=pointer]:
+            - /url: "#beranda"
+          - link "Tentang" [ref=e15] [cursor=pointer]:
+            - /url: "#tentang"
+          - link "Katalog" [ref=e16] [cursor=pointer]:
+            - /url: "#katalog"
+          - link "Lokasi" [ref=e17] [cursor=pointer]:
+            - /url: "#lokasi"
+        - generic [ref=e18]:
+          - group [ref=e20]:
+            - group [ref=e21]
+            - combobox "Cari menu atau paket" [ref=e25]: ayam
+            - group [ref=e348]:
+              - button "Hapus pencarian" [ref=e349]
+          - button "Buka keranjang" [ref=e26]
+    - main [ref=e27]:
+      - generic [ref=e29]:
+        - img "Paket Meeting Premium" [ref=e30]
+        - generic [ref=e32]:
+          - generic [ref=e33]:
+            - generic [ref=e34]: Menerima pesanan
+            - generic [ref=e35]: Mulai Rp 7.000
+          - generic [ref=e36]:
+            - paragraph [ref=e37]: Dibuat segar, disajikan berkesan
+            - heading "Sajian yang tepat untuk momen yang penting." [level=1] [ref=e38]
+            - paragraph [ref=e39]: Pilih menu satuan atau paket lengkap, atur jumlah, lalu simpan semuanya dalam satu keranjang yang rapi.
+          - link "Jelajahi katalog" [ref=e40] [cursor=pointer]:
+            - /url: "#katalog"
+          - generic [ref=e41]:
+            - generic [ref=e42]: Bahan segar
+            - generic [ref=e46]: Pilihan fleksibel
+            - generic [ref=e50]: Harga transparan
+      - generic [ref=e55]:
+        - generic [ref=e56]:
+          - generic [ref=e57]:
+            - paragraph [ref=e58]: Tentang Catering BSJ
+            - heading "Sajian yang dipersiapkan untuk setiap momen penting." [level=2] [ref=e59]
+            - paragraph [ref=e60]: Catering BSJ membantu memenuhi kebutuhan konsumsi untuk rapat, acara keluarga, perayaan, dan berbagai kegiatan lainnya. Setiap pilihan dibuat agar proses pemesanan terasa praktis, jelas, dan nyaman.
+          - link "Jelajahi menu & paket" [ref=e62] [cursor=pointer]:
+            - /url: "#katalog"
+        - generic [ref=e63]:
+          - article [ref=e64]:
+            - generic [ref=e68]:
+              - heading "Dimasak dengan perhatian" [level=3] [ref=e69]
+              - paragraph [ref=e70]: Menu disiapkan untuk menjaga rasa dan kualitas sajian.
+          - article [ref=e71]:
+            - generic [ref=e78]:
+              - heading "Pilihan yang fleksibel" [level=3] [ref=e79]
+              - paragraph [ref=e80]: Tersedia menu satuan dan paket untuk berbagai acara.
+          - article [ref=e81]:
+            - generic [ref=e87]:
+              - heading "Pemesanan lebih jelas" [level=3] [ref=e88]
+              - paragraph [ref=e89]: Detail pesanan dirangkum agar mudah diperiksa kembali.
+          - article [ref=e90]:
+            - generic [ref=e95]:
+              - heading "Terencana dan tepat" [level=3] [ref=e96]
+              - paragraph [ref=e97]: Jadwal disesuaikan dengan kebutuhan momen Anda.
+      - generic [ref=e99]:
+        - generic [ref=e101]:
+          - paragraph [ref=e104]: Katalog catering
+          - heading "Pilihan terbaik untuk setiap acara" [level=2] [ref=e105]
+          - paragraph [ref=e106]: Jelajahi menu satuan dan paket catering yang tersedia, lengkap dengan harga dan minimum pemesanan yang transparan.
+        - generic [ref=e107]:
+          - generic [ref=e108]:
+            - generic [ref=e109]:
+              - heading "Paket pilihan" [level=3] [ref=e110]
+              - paragraph [ref=e111]: Pilihan lengkap yang praktis untuk berbagai kebutuhan acara.
+            - paragraph [ref=e112]: 0 pilihan
+          - generic "Filter kategori katalog" [ref=e113]:
+            - button "Semua" [ref=e114]
+            - button "Event & Meeting" [ref=e115]
+            - button "Nasi Box" [ref=e116]
+            - button "Prasmanan" [ref=e117]
+            - button "Snack Box" [ref=e118]
+          - generic [ref=e397]:
+            - paragraph [ref=e398]: Paket tidak ditemukan
+            - paragraph [ref=e399]: Coba kata kunci atau kategori yang lain.
+        - generic [ref=e195]:
+          - generic [ref=e196]:
+            - generic [ref=e197]:
+              - heading "Menu pilihan" [level=3] [ref=e198]
+              - paragraph [ref=e199]: Pilih menu favorit untuk melengkapi pesanan Anda.
+            - paragraph [ref=e200]: 25 pilihan
+          - generic "Filter kategori katalog" [ref=e201]:
+            - button "Semua" [ref=e202]
+            - button "Minuman" [ref=e203]
+            - button "Nasi Box" [ref=e204]
+            - button "Prasmanan" [ref=e205]
+            - button "Snack Box" [ref=e206]
+          - generic [ref=e207]:
+            - link "Nasi Box Ayam Bakar Menu Nasi Box Nasi Box Ayam Bakar Rp 29.000 Rp 32.000 Min. 20 Lihat detail Tambah Nasi Box Ayam Bakar ke keranjang" [ref=e208] [cursor=pointer]:
+              - generic [ref=e209]:
+                - img "Nasi Box Ayam Bakar" [ref=e210]
+                - generic [ref=e211]: Menu
+              - generic [ref=e212]:
+                - generic [ref=e213]:
+                  - paragraph [ref=e214]: Nasi Box
+                  - heading "Nasi Box Ayam Bakar" [level=3] [ref=e215]
+                - generic [ref=e216]:
+                  - generic [ref=e217]:
+                    - paragraph [ref=e218]: Rp 29.000
+                    - paragraph [ref=e219]: Rp 32.000
+                  - generic [ref=e220]: Min. 20
+                - generic [ref=e221]:
+                  - generic [ref=e222]: Lihat detail
+                  - button "Tambah Nasi Box Ayam Bakar ke keranjang" [ref=e226]
+            - link "Snack Box Premium Menu Snack Box Snack Box Premium Rp 25.000 Min. 30 Lihat detail Tambah Snack Box Premium ke keranjang" [ref=e400] [cursor=pointer]:
+              - generic [ref=e401]:
+                - img "Snack Box Premium" [ref=e402]
+                - generic [ref=e403]: Menu
+              - generic [ref=e404]:
+                - generic [ref=e405]:
+                  - paragraph [ref=e406]: Snack Box
+                  - heading "Snack Box Premium" [level=3] [ref=e407]
+                - generic [ref=e408]:
+                  - paragraph [ref=e410]: Rp 25.000
+                  - generic [ref=e411]: Min. 30
+                - generic [ref=e412]:
+                  - generic [ref=e413]: Lihat detail
+                  - button "Tambah Snack Box Premium ke keranjang" [ref=e417]
+            - link "Nasi Box Ayam Geprek 01 Menu Nasi Box Nasi Box Ayam Geprek 01 Rp 31.500 Min. 20 Lihat detail Tambah Nasi Box Ayam Geprek 01 ke keranjang" [ref=e418] [cursor=pointer]:
+              - generic [ref=e419]:
+                - img "Nasi Box Ayam Geprek 01" [ref=e420]
+                - generic [ref=e421]: Menu
+              - generic [ref=e422]:
+                - generic [ref=e423]:
+                  - paragraph [ref=e424]: Nasi Box
+                  - heading "Nasi Box Ayam Geprek 01" [level=3] [ref=e425]
+                - generic [ref=e426]:
+                  - paragraph [ref=e428]: Rp 31.500
+                  - generic [ref=e429]: Min. 20
+                - generic [ref=e430]:
+                  - generic [ref=e431]: Lihat detail
+                  - button "Tambah Nasi Box Ayam Geprek 01 ke keranjang" [ref=e435]
+            - link "Nasi Box Ayam Teriyaki 02 Menu Nasi Box Nasi Box Ayam Teriyaki 02 Rp 36.500 Min. 20 Lihat detail Tambah Nasi Box Ayam Teriyaki 02 ke keranjang" [ref=e436] [cursor=pointer]:
+              - generic [ref=e437]:
+                - img "Nasi Box Ayam Teriyaki 02" [ref=e438]
+                - generic [ref=e439]: Menu
+              - generic [ref=e440]:
+                - generic [ref=e441]:
+                  - paragraph [ref=e442]: Nasi Box
+                  - heading "Nasi Box Ayam Teriyaki 02" [level=3] [ref=e443]
+                - generic [ref=e444]:
+                  - paragraph [ref=e446]: Rp 36.500
+                  - generic [ref=e447]: Min. 20
+                - generic [ref=e448]:
+                  - generic [ref=e449]: Lihat detail
+                  - button "Tambah Nasi Box Ayam Teriyaki 02 ke keranjang" [ref=e453]
+          - button "Tampilkan lebih" [ref=e284]
+    - generic [ref=e286]:
+      - generic [ref=e291]:
+        - heading "Dimasak segar" [level=3] [ref=e292]
+        - paragraph [ref=e293]: Disiapkan sesuai jadwal acara.
+      - generic [ref=e301]:
+        - heading "Pilihan fleksibel" [level=3] [ref=e302]
+        - paragraph [ref=e303]: Menu satuan dan paket lengkap.
+      - generic [ref=e309]:
+        - heading "Harga transparan" [level=3] [ref=e310]
+        - paragraph [ref=e311]: Estimasi terlihat sejak awal.
+      - generic [ref=e317]:
+        - heading "Terjadwal rapi" [level=3] [ref=e318]
+        - paragraph [ref=e319]: Waktu layanan dikonfirmasi tim.
+    - generic [ref=e321]:
+      - generic [ref=e328]:
+        - paragraph [ref=e329]: Lokasi catering
+        - heading "Temukan Catering BSJ" [level=2] [ref=e330]
+        - paragraph [ref=e331]: Lihat titik lokasi operasional kami dan gunakan Google Maps untuk mendapatkan rute terbaik dari lokasi Anda.
+      - generic [ref=e339]:
+        - paragraph [ref=e340]: Lokasi belum tersedia
+        - paragraph [ref=e341]: Titik lokasi catering belum diatur pada pengaturan bisnis.
+    - contentinfo [ref=e342]:
+      - generic [ref=e343]:
+        - generic [ref=e344]:
+          - paragraph [ref=e345]: Catering BSJ
+          - paragraph [ref=e346]: Sajian catering yang praktis untuk rapat, perayaan, gathering, dan momen penting lainnya.
+        - paragraph [ref=e347]: © 2026 Catering BSJ. All rights reserved.
+  - region "Notifications alt+T"

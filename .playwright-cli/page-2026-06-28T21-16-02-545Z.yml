@@ -1,0 +1,470 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e7]:
+      - list [ref=e9]:
+        - listitem [ref=e10]:
+          - link "Laravel Starter Kit" [ref=e11] [cursor=pointer]:
+            - /url: /dashboard
+            - img [ref=e13]
+            - generic [ref=e16]: Laravel Starter Kit
+      - generic [ref=e18]:
+        - generic [ref=e19]: Platform
+        - list [ref=e21]:
+          - listitem [ref=e22]:
+            - link "Dashboard" [ref=e23] [cursor=pointer]:
+              - /url: /dashboard
+              - img [ref=e24]
+              - generic [ref=e29]: Dashboard
+          - listitem [ref=e30]:
+            - link "Kategori" [ref=e31] [cursor=pointer]:
+              - /url: /kategori
+              - img [ref=e32]
+              - generic [ref=e36]: Kategori
+          - listitem [ref=e37]:
+            - link "Menu" [ref=e38] [cursor=pointer]:
+              - /url: /menu
+              - img [ref=e39]
+              - generic [ref=e42]: Menu
+          - listitem [ref=e43]:
+            - link "Paket" [ref=e44] [cursor=pointer]:
+              - /url: /paket
+              - img [ref=e45]
+              - generic [ref=e47]: Paket
+          - listitem [ref=e48]:
+            - link "Order" [ref=e49] [cursor=pointer]:
+              - /url: /order
+              - img [ref=e50]
+              - generic [ref=e53]: Order
+      - generic [ref=e54]:
+        - list [ref=e57]:
+          - listitem [ref=e58]:
+            - link "Repository" [ref=e59] [cursor=pointer]:
+              - /url: https://github.com/laravel/react-starter-kit
+              - img [ref=e60]
+              - generic [ref=e65]: Repository
+          - listitem [ref=e66]:
+            - link "Documentation" [ref=e67] [cursor=pointer]:
+              - /url: https://laravel.com/docs/starter-kits#react
+              - img [ref=e68]
+              - generic [ref=e70]: Documentation
+        - list [ref=e71]:
+          - listitem [ref=e72]:
+            - button "EA Example Admin" [ref=e73]:
+              - generic [ref=e75]: EA
+              - generic [ref=e77]: Example Admin
+              - img [ref=e78]
+    - main [ref=e81]:
+      - generic [ref=e83]:
+        - generic [ref=e84]:
+          - heading "Menu" [level=2] [ref=e89]
+          - navigation "breadcrumb" [ref=e91]:
+            - list [ref=e92]:
+              - listitem [ref=e93]:
+                - link "Dashboard" [ref=e94] [cursor=pointer]:
+                  - /url: /dashboard
+              - listitem [ref=e95]:
+                - img [ref=e96]
+              - listitem [ref=e98]:
+                - link "Menu" [disabled] [ref=e99]
+        - link "Tambah" [ref=e101] [cursor=pointer]:
+          - /url: /menu/create
+          - img
+          - generic [ref=e102]: Tambah
+          - generic [ref=e103]: Tambah
+      - generic [ref=e105]:
+        - generic [ref=e107]:
+          - generic [ref=e109]:
+            - img
+            - textbox "Cari menu..." [ref=e110]
+          - generic [ref=e111]:
+            - generic [ref=e112]: Filter menu
+            - group "Filter menu" [ref=e113]:
+              - generic [ref=e114]:
+                - generic [ref=e116]:
+                  - button "Semua" [pressed] [ref=e118]
+                  - button "Aktif" [ref=e120]
+                  - button "Nonaktif" [ref=e122]
+                  - button "Promo" [ref=e124]
+                  - button "Rekomendasi" [ref=e126]
+                  - button "Nasi Box" [ref=e128]
+                  - button "Snack Box" [ref=e130]
+                  - button "Prasmanan" [ref=e132]
+                  - button "Minuman" [ref=e134]
+                - button "Scroll filter berikutnya" [ref=e135]:
+                  - img
+                  - generic [ref=e136]: Scroll filter berikutnya
+        - generic [ref=e137]:
+          - generic [ref=e138]:
+            - generic [ref=e141]:
+              - img [ref=e143]
+              - generic [ref=e146]:
+                - generic [ref=e147]: Ringkasan menu
+                - generic [ref=e148]: Status keaktifan, promo, dan rekomendasi
+            - generic [ref=e149]:
+              - application [ref=e153]:
+                - generic [ref=e156]: 100Total
+              - generic [ref=e157]:
+                - generic [ref=e158]:
+                  - generic "Aktif" [ref=e161]
+                  - generic [ref=e162]: "100"
+                - generic [ref=e163]:
+                  - generic "Nonaktif" [ref=e166]
+                  - generic [ref=e167]: "0"
+                - generic [ref=e168]:
+                  - generic "Promo" [ref=e171]
+                  - generic [ref=e172]: "35"
+                - generic [ref=e173]:
+                  - generic "Rekomendasi" [ref=e176]
+                  - generic [ref=e177]: "16"
+          - generic [ref=e178]:
+            - generic [ref=e181]:
+              - img [ref=e183]
+              - generic [ref=e186]:
+                - generic [ref=e187]: Menu terpopuler
+                - generic [ref=e188]: Ranking berdasarkan jumlah order
+            - list [ref=e190]:
+              - listitem [ref=e191]:
+                - generic [ref=e192]:
+                  - generic [ref=e193]: "1"
+                  - generic [ref=e195]:
+                    - generic [ref=e196]: Es Teh Manis Jumbo
+                    - generic [ref=e197]: 2 order
+              - listitem [ref=e199]:
+                - generic [ref=e200]:
+                  - generic [ref=e201]: "2"
+                  - generic [ref=e203]:
+                    - generic [ref=e204]: Jus Jeruk Peras
+                    - generic [ref=e205]: 1 order
+              - listitem [ref=e207]:
+                - generic [ref=e208]:
+                  - generic [ref=e209]: "3"
+                  - generic [ref=e211]:
+                    - generic [ref=e212]: Nasi Box Ikan Rica
+                    - generic [ref=e213]: 1 order
+              - listitem [ref=e215]:
+                - generic [ref=e216]:
+                  - generic [ref=e217]: "4"
+                  - generic [ref=e219]:
+                    - generic [ref=e220]: Nasi Box Rendang Sapi
+                    - generic [ref=e221]: 1 order
+        - generic [ref=e223]:
+          - generic [ref=e225]:
+            - generic [ref=e226]:
+              - img [ref=e228]
+              - generic [ref=e231]:
+                - heading "Daftar Menu" [level=2] [ref=e232]
+                - paragraph [ref=e233]: Menampilkan 1-10 dari 100 menu
+            - button "Ekspor" [ref=e234]:
+              - img
+              - text: Ekspor
+          - generic [ref=e235]:
+            - generic [ref=e236]:
+              - table [ref=e238]:
+                - rowgroup [ref=e239]:
+                  - row "Menu Harga Status" [ref=e240]:
+                    - columnheader [ref=e241]
+                    - columnheader "Menu" [ref=e242]
+                    - columnheader "Harga" [ref=e243]
+                    - columnheader "Status" [ref=e244]
+                    - columnheader [ref=e245]
+                - rowgroup [ref=e246]:
+                  - row "Pindahkan Nasi Box Ayam Bakar Nasi Box Ayam Bakar Nasi Box Ayam Bakar ★ Rekomendasi Nasi Box | Min. 20 porsi Rp 29.000 Rp 32.000 -9% Aktif Nonaktifkan Nasi Box Ayam Bakar Buka aksi menu" [ref=e247]:
+                    - cell "Pindahkan Nasi Box Ayam Bakar" [ref=e248]:
+                      - button "Pindahkan Nasi Box Ayam Bakar" [ref=e249]:
+                        - img
+                        - generic [ref=e250]: Pindahkan Nasi Box Ayam Bakar
+                    - cell "Nasi Box Ayam Bakar Nasi Box Ayam Bakar ★ Rekomendasi Nasi Box | Min. 20 porsi" [ref=e251]:
+                      - generic [ref=e252]:
+                        - img "Nasi Box Ayam Bakar" [ref=e254]
+                        - generic [ref=e255]:
+                          - generic [ref=e256]:
+                            - generic [ref=e257]: Nasi Box Ayam Bakar
+                            - generic [ref=e258]: ★ Rekomendasi
+                          - generic [ref=e260]: Nasi Box | Min. 20 porsi
+                    - cell "Rp 29.000 Rp 32.000 -9%" [ref=e261]:
+                      - generic [ref=e262]:
+                        - generic [ref=e263]: Rp 29.000
+                        - generic [ref=e264]:
+                          - generic [ref=e265]: Rp 32.000
+                          - generic [ref=e266]: "-9%"
+                    - cell "Aktif Nonaktifkan Nasi Box Ayam Bakar" [ref=e267]:
+                      - generic [ref=e268]:
+                        - generic [ref=e269]: Aktif
+                        - checkbox "Nonaktifkan Nasi Box Ayam Bakar" [checked] [ref=e270]:
+                          - generic:
+                            - img
+                    - cell "Buka aksi menu" [ref=e271]:
+                      - button "Buka aksi menu" [ref=e273]:
+                        - img [ref=e274]
+                        - generic [ref=e278]: Buka aksi menu
+                  - row "Pindahkan Nasi Box Rendang Sapi Nasi Box Rendang Sapi Nasi Box Rendang Sapi ★ Rekomendasi Nasi Box | Min. 20 porsi Rp 38.000 Harga normal Aktif Nonaktifkan Nasi Box Rendang Sapi Buka aksi menu" [ref=e279]:
+                    - cell "Pindahkan Nasi Box Rendang Sapi" [ref=e280]:
+                      - button "Pindahkan Nasi Box Rendang Sapi" [ref=e281]:
+                        - img
+                        - generic [ref=e282]: Pindahkan Nasi Box Rendang Sapi
+                    - cell "Nasi Box Rendang Sapi Nasi Box Rendang Sapi ★ Rekomendasi Nasi Box | Min. 20 porsi" [ref=e283]:
+                      - generic [ref=e284]:
+                        - img "Nasi Box Rendang Sapi" [ref=e286]
+                        - generic [ref=e287]:
+                          - generic [ref=e288]:
+                            - generic [ref=e289]: Nasi Box Rendang Sapi
+                            - generic [ref=e290]: ★ Rekomendasi
+                          - generic [ref=e292]: Nasi Box | Min. 20 porsi
+                    - cell "Rp 38.000 Harga normal" [ref=e293]:
+                      - generic [ref=e294]:
+                        - generic [ref=e295]: Rp 38.000
+                        - generic [ref=e297]: Harga normal
+                    - cell "Aktif Nonaktifkan Nasi Box Rendang Sapi" [ref=e298]:
+                      - generic [ref=e299]:
+                        - generic [ref=e300]: Aktif
+                        - checkbox "Nonaktifkan Nasi Box Rendang Sapi" [checked] [ref=e301]:
+                          - generic:
+                            - img
+                    - cell "Buka aksi menu" [ref=e302]:
+                      - button "Buka aksi menu" [ref=e304]:
+                        - img [ref=e305]
+                        - generic [ref=e309]: Buka aksi menu
+                  - row "Pindahkan Nasi Box Ikan Rica Nasi Box Ikan Rica Nasi Box Ikan Rica Nasi Box | Min. 20 porsi Rp 31.500 Rp 34.000 -7% Aktif Nonaktifkan Nasi Box Ikan Rica Buka aksi menu" [ref=e310]:
+                    - cell "Pindahkan Nasi Box Ikan Rica" [ref=e311]:
+                      - button "Pindahkan Nasi Box Ikan Rica" [ref=e312]:
+                        - img
+                        - generic [ref=e313]: Pindahkan Nasi Box Ikan Rica
+                    - cell "Nasi Box Ikan Rica Nasi Box Ikan Rica Nasi Box | Min. 20 porsi" [ref=e314]:
+                      - generic [ref=e315]:
+                        - img "Nasi Box Ikan Rica" [ref=e317]
+                        - generic [ref=e318]:
+                          - generic [ref=e320]: Nasi Box Ikan Rica
+                          - generic [ref=e322]: Nasi Box | Min. 20 porsi
+                    - cell "Rp 31.500 Rp 34.000 -7%" [ref=e323]:
+                      - generic [ref=e324]:
+                        - generic [ref=e325]: Rp 31.500
+                        - generic [ref=e326]:
+                          - generic [ref=e327]: Rp 34.000
+                          - generic [ref=e328]: "-7%"
+                    - cell "Aktif Nonaktifkan Nasi Box Ikan Rica" [ref=e329]:
+                      - generic [ref=e330]:
+                        - generic [ref=e331]: Aktif
+                        - checkbox "Nonaktifkan Nasi Box Ikan Rica" [checked] [ref=e332]:
+                          - generic:
+                            - img
+                    - cell "Buka aksi menu" [ref=e333]:
+                      - button "Buka aksi menu" [ref=e335]:
+                        - img [ref=e336]
+                        - generic [ref=e340]: Buka aksi menu
+                  - row "Pindahkan Snack Box Classic Snack Box Classic Snack Box Classic ★ Rekomendasi Snack Box | Min. 30 porsi Rp 16.500 Rp 18.000 -8% Aktif Nonaktifkan Snack Box Classic Buka aksi menu" [ref=e341]:
+                    - cell "Pindahkan Snack Box Classic" [ref=e342]:
+                      - button "Pindahkan Snack Box Classic" [ref=e343]:
+                        - img
+                        - generic [ref=e344]: Pindahkan Snack Box Classic
+                    - cell "Snack Box Classic Snack Box Classic ★ Rekomendasi Snack Box | Min. 30 porsi" [ref=e345]:
+                      - generic [ref=e346]:
+                        - img "Snack Box Classic" [ref=e348]
+                        - generic [ref=e349]:
+                          - generic [ref=e350]:
+                            - generic [ref=e351]: Snack Box Classic
+                            - generic [ref=e352]: ★ Rekomendasi
+                          - generic [ref=e354]: Snack Box | Min. 30 porsi
+                    - cell "Rp 16.500 Rp 18.000 -8%" [ref=e355]:
+                      - generic [ref=e356]:
+                        - generic [ref=e357]: Rp 16.500
+                        - generic [ref=e358]:
+                          - generic [ref=e359]: Rp 18.000
+                          - generic [ref=e360]: "-8%"
+                    - cell "Aktif Nonaktifkan Snack Box Classic" [ref=e361]:
+                      - generic [ref=e362]:
+                        - generic [ref=e363]: Aktif
+                        - checkbox "Nonaktifkan Snack Box Classic" [checked] [ref=e364]:
+                          - generic:
+                            - img
+                    - cell "Buka aksi menu" [ref=e365]:
+                      - button "Buka aksi menu" [ref=e367]:
+                        - img [ref=e368]
+                        - generic [ref=e372]: Buka aksi menu
+                  - row "Pindahkan Snack Box Premium Snack Box Premium Snack Box Premium Snack Box | Min. 30 porsi Rp 25.000 Harga normal Aktif Nonaktifkan Snack Box Premium Buka aksi menu" [ref=e373]:
+                    - cell "Pindahkan Snack Box Premium" [ref=e374]:
+                      - button "Pindahkan Snack Box Premium" [ref=e375]:
+                        - img
+                        - generic [ref=e376]: Pindahkan Snack Box Premium
+                    - cell "Snack Box Premium Snack Box Premium Snack Box | Min. 30 porsi" [ref=e377]:
+                      - generic [ref=e378]:
+                        - img "Snack Box Premium" [ref=e380]
+                        - generic [ref=e381]:
+                          - generic [ref=e383]: Snack Box Premium
+                          - generic [ref=e385]: Snack Box | Min. 30 porsi
+                    - cell "Rp 25.000 Harga normal" [ref=e386]:
+                      - generic [ref=e387]:
+                        - generic [ref=e388]: Rp 25.000
+                        - generic [ref=e390]: Harga normal
+                    - cell "Aktif Nonaktifkan Snack Box Premium" [ref=e391]:
+                      - generic [ref=e392]:
+                        - generic [ref=e393]: Aktif
+                        - checkbox "Nonaktifkan Snack Box Premium" [checked] [ref=e394]:
+                          - generic:
+                            - img
+                    - cell "Buka aksi menu" [ref=e395]:
+                      - button "Buka aksi menu" [ref=e397]:
+                        - img [ref=e398]
+                        - generic [ref=e402]: Buka aksi menu
+                  - row "Pindahkan Paket Prasmanan Nusantara Paket Prasmanan Nusantara Paket Prasmanan Nusantara ★ Rekomendasi Prasmanan | Min. 50 porsi Rp 55.000 Harga normal Aktif Nonaktifkan Paket Prasmanan Nusantara Buka aksi menu" [ref=e403]:
+                    - cell "Pindahkan Paket Prasmanan Nusantara" [ref=e404]:
+                      - button "Pindahkan Paket Prasmanan Nusantara" [ref=e405]:
+                        - img
+                        - generic [ref=e406]: Pindahkan Paket Prasmanan Nusantara
+                    - cell "Paket Prasmanan Nusantara Paket Prasmanan Nusantara ★ Rekomendasi Prasmanan | Min. 50 porsi" [ref=e407]:
+                      - generic [ref=e408]:
+                        - img "Paket Prasmanan Nusantara" [ref=e410]
+                        - generic [ref=e411]:
+                          - generic [ref=e412]:
+                            - generic [ref=e413]: Paket Prasmanan Nusantara
+                            - generic [ref=e414]: ★ Rekomendasi
+                          - generic [ref=e416]: Prasmanan | Min. 50 porsi
+                    - cell "Rp 55.000 Harga normal" [ref=e417]:
+                      - generic [ref=e418]:
+                        - generic [ref=e419]: Rp 55.000
+                        - generic [ref=e421]: Harga normal
+                    - cell "Aktif Nonaktifkan Paket Prasmanan Nusantara" [ref=e422]:
+                      - generic [ref=e423]:
+                        - generic [ref=e424]: Aktif
+                        - checkbox "Nonaktifkan Paket Prasmanan Nusantara" [checked] [ref=e425]:
+                          - generic:
+                            - img
+                    - cell "Buka aksi menu" [ref=e426]:
+                      - button "Buka aksi menu" [ref=e428]:
+                        - img [ref=e429]
+                        - generic [ref=e433]: Buka aksi menu
+                  - row "Pindahkan Paket Prasmanan Hemat Paket Prasmanan Hemat Paket Prasmanan Hemat Prasmanan | Min. 50 porsi Rp 39.500 Rp 42.000 -6% Aktif Nonaktifkan Paket Prasmanan Hemat Buka aksi menu" [ref=e434]:
+                    - cell "Pindahkan Paket Prasmanan Hemat" [ref=e435]:
+                      - button "Pindahkan Paket Prasmanan Hemat" [ref=e436]:
+                        - img
+                        - generic [ref=e437]: Pindahkan Paket Prasmanan Hemat
+                    - cell "Paket Prasmanan Hemat Paket Prasmanan Hemat Prasmanan | Min. 50 porsi" [ref=e438]:
+                      - generic [ref=e439]:
+                        - img "Paket Prasmanan Hemat" [ref=e441]
+                        - generic [ref=e442]:
+                          - generic [ref=e444]: Paket Prasmanan Hemat
+                          - generic [ref=e446]: Prasmanan | Min. 50 porsi
+                    - cell "Rp 39.500 Rp 42.000 -6%" [ref=e447]:
+                      - generic [ref=e448]:
+                        - generic [ref=e449]: Rp 39.500
+                        - generic [ref=e450]:
+                          - generic [ref=e451]: Rp 42.000
+                          - generic [ref=e452]: "-6%"
+                    - cell "Aktif Nonaktifkan Paket Prasmanan Hemat" [ref=e453]:
+                      - generic [ref=e454]:
+                        - generic [ref=e455]: Aktif
+                        - checkbox "Nonaktifkan Paket Prasmanan Hemat" [checked] [ref=e456]:
+                          - generic:
+                            - img
+                    - cell "Buka aksi menu" [ref=e457]:
+                      - button "Buka aksi menu" [ref=e459]:
+                        - img [ref=e460]
+                        - generic [ref=e464]: Buka aksi menu
+                  - row "Pindahkan Paket Vegetarian Delight Paket Vegetarian Delight Paket Vegetarian Delight Prasmanan | Min. 30 porsi Rp 47.000 Harga normal Aktif Nonaktifkan Paket Vegetarian Delight Buka aksi menu" [ref=e465]:
+                    - cell "Pindahkan Paket Vegetarian Delight" [ref=e466]:
+                      - button "Pindahkan Paket Vegetarian Delight" [ref=e467]:
+                        - img
+                        - generic [ref=e468]: Pindahkan Paket Vegetarian Delight
+                    - cell "Paket Vegetarian Delight Paket Vegetarian Delight Prasmanan | Min. 30 porsi" [ref=e469]:
+                      - generic [ref=e470]:
+                        - img "Paket Vegetarian Delight" [ref=e472]
+                        - generic [ref=e473]:
+                          - generic [ref=e475]: Paket Vegetarian Delight
+                          - generic [ref=e477]: Prasmanan | Min. 30 porsi
+                    - cell "Rp 47.000 Harga normal" [ref=e478]:
+                      - generic [ref=e479]:
+                        - generic [ref=e480]: Rp 47.000
+                        - generic [ref=e482]: Harga normal
+                    - cell "Aktif Nonaktifkan Paket Vegetarian Delight" [ref=e483]:
+                      - generic [ref=e484]:
+                        - generic [ref=e485]: Aktif
+                        - checkbox "Nonaktifkan Paket Vegetarian Delight" [checked] [ref=e486]:
+                          - generic:
+                            - img
+                    - cell "Buka aksi menu" [ref=e487]:
+                      - button "Buka aksi menu" [ref=e489]:
+                        - img [ref=e490]
+                        - generic [ref=e494]: Buka aksi menu
+                  - row "Pindahkan Es Teh Manis Jumbo Es Teh Manis Jumbo Es Teh Manis Jumbo Minuman | Min. 20 porsi Rp 7.000 Harga normal Aktif Nonaktifkan Es Teh Manis Jumbo Buka aksi menu" [ref=e495]:
+                    - cell "Pindahkan Es Teh Manis Jumbo" [ref=e496]:
+                      - button "Pindahkan Es Teh Manis Jumbo" [ref=e497]:
+                        - img
+                        - generic [ref=e498]: Pindahkan Es Teh Manis Jumbo
+                    - cell "Es Teh Manis Jumbo Es Teh Manis Jumbo Minuman | Min. 20 porsi" [ref=e499]:
+                      - generic [ref=e500]:
+                        - img "Es Teh Manis Jumbo" [ref=e502]
+                        - generic [ref=e503]:
+                          - generic [ref=e505]: Es Teh Manis Jumbo
+                          - generic [ref=e507]: Minuman | Min. 20 porsi
+                    - cell "Rp 7.000 Harga normal" [ref=e508]:
+                      - generic [ref=e509]:
+                        - generic [ref=e510]: Rp 7.000
+                        - generic [ref=e512]: Harga normal
+                    - cell "Aktif Nonaktifkan Es Teh Manis Jumbo" [ref=e513]:
+                      - generic [ref=e514]:
+                        - generic [ref=e515]: Aktif
+                        - checkbox "Nonaktifkan Es Teh Manis Jumbo" [checked] [ref=e516]:
+                          - generic:
+                            - img
+                    - cell "Buka aksi menu" [ref=e517]:
+                      - button "Buka aksi menu" [ref=e519]:
+                        - img [ref=e520]
+                        - generic [ref=e524]: Buka aksi menu
+                  - row "Pindahkan Jus Jeruk Peras Jus Jeruk Peras Jus Jeruk Peras Minuman | Min. 20 porsi Rp 10.000 Rp 12.000 -17% Aktif Nonaktifkan Jus Jeruk Peras Buka aksi menu" [ref=e525]:
+                    - cell "Pindahkan Jus Jeruk Peras" [ref=e526]:
+                      - button "Pindahkan Jus Jeruk Peras" [ref=e527]:
+                        - img
+                        - generic [ref=e528]: Pindahkan Jus Jeruk Peras
+                    - cell "Jus Jeruk Peras Jus Jeruk Peras Minuman | Min. 20 porsi" [ref=e529]:
+                      - generic [ref=e530]:
+                        - img "Jus Jeruk Peras" [ref=e532]
+                        - generic [ref=e533]:
+                          - generic [ref=e535]: Jus Jeruk Peras
+                          - generic [ref=e537]: Minuman | Min. 20 porsi
+                    - cell "Rp 10.000 Rp 12.000 -17%" [ref=e538]:
+                      - generic [ref=e539]:
+                        - generic [ref=e540]: Rp 10.000
+                        - generic [ref=e541]:
+                          - generic [ref=e542]: Rp 12.000
+                          - generic [ref=e543]: "-17%"
+                    - cell "Aktif Nonaktifkan Jus Jeruk Peras" [ref=e544]:
+                      - generic [ref=e545]:
+                        - generic [ref=e546]: Aktif
+                        - checkbox "Nonaktifkan Jus Jeruk Peras" [checked] [ref=e547]:
+                          - generic:
+                            - img
+                    - cell "Buka aksi menu" [ref=e548]:
+                      - button "Buka aksi menu" [ref=e550]:
+                        - img [ref=e551]
+                        - generic [ref=e555]: Buka aksi menu
+              - status [ref=e556]
+            - generic [ref=e557]:
+              - combobox "Jumlah baris per halaman" [ref=e559]:
+                - generic: "10"
+                - img
+              - navigation "pagination" [ref=e560]:
+                - list [ref=e561]:
+                  - listitem [ref=e562]:
+                    - link "Buka halaman 1" [ref=e563] [cursor=pointer]:
+                      - /url: "#"
+                      - text: "1"
+                  - listitem [ref=e564]:
+                    - link "Buka halaman 2" [ref=e565] [cursor=pointer]:
+                      - /url: "#"
+                      - text: "2"
+                  - listitem [ref=e566]:
+                    - link "Buka halaman 3" [ref=e567] [cursor=pointer]:
+                      - /url: "#"
+                      - text: "3"
+                  - listitem [ref=e568]:
+                    - generic [ref=e569]:
+                      - img [ref=e570]
+                      - generic [ref=e574]: More pages
+                  - listitem [ref=e575]:
+                    - link "Buka halaman 10" [ref=e576] [cursor=pointer]:
+                      - /url: "#"
+                      - text: "10"
+                  - listitem [ref=e577]:
+                    - link "Halaman berikutnya" [ref=e578] [cursor=pointer]:
+                      - /url: "#"
+                      - img
+  - region "Notifications alt+T"

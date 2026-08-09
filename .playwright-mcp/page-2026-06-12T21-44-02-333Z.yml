@@ -1,0 +1,188 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e7]:
+      - list [ref=e9]:
+        - listitem [ref=e10]:
+          - link "Laravel Starter Kit" [ref=e11] [cursor=pointer]:
+            - /url: /dashboard
+            - img [ref=e13]
+            - generic [ref=e16]: Laravel Starter Kit
+      - generic [ref=e18]:
+        - generic [ref=e19]: Platform
+        - list [ref=e21]:
+          - listitem [ref=e22]:
+            - link "Dashboard" [ref=e23] [cursor=pointer]:
+              - /url: /dashboard
+              - img [ref=e24]
+              - generic [ref=e29]: Dashboard
+          - listitem [ref=e30]:
+            - link "Kategori" [ref=e31] [cursor=pointer]:
+              - /url: /kategori
+              - img [ref=e32]
+              - generic [ref=e36]: Kategori
+          - listitem [ref=e37]:
+            - link "Menu" [ref=e38] [cursor=pointer]:
+              - /url: /menu
+              - img [ref=e39]
+              - generic [ref=e42]: Menu
+          - listitem [ref=e43]:
+            - link "Paket" [ref=e44] [cursor=pointer]:
+              - /url: /paket
+              - img [ref=e45]
+              - generic [ref=e47]: Paket
+          - listitem [ref=e48]:
+            - link "Order" [ref=e49] [cursor=pointer]:
+              - /url: /order
+              - img [ref=e50]
+              - generic [ref=e53]: Order
+      - generic [ref=e54]:
+        - list [ref=e57]:
+          - listitem [ref=e58]:
+            - link "Repository" [ref=e59] [cursor=pointer]:
+              - /url: https://github.com/laravel/react-starter-kit
+              - img [ref=e60]
+              - generic [ref=e65]: Repository
+          - listitem [ref=e66]:
+            - link "Documentation" [ref=e67] [cursor=pointer]:
+              - /url: https://laravel.com/docs/starter-kits#react
+              - img [ref=e68]
+              - generic [ref=e70]: Documentation
+        - list [ref=e71]:
+          - listitem [ref=e72]:
+            - button "OS Order Seeder" [ref=e73]:
+              - generic [ref=e75]: OS
+              - generic [ref=e77]: Order Seeder
+              - img [ref=e78]
+    - main [ref=e81]:
+      - generic [ref=e83]:
+        - link "Kembali ke Order" [ref=e86] [cursor=pointer]:
+          - /url: /order
+          - img
+        - generic [ref=e87]:
+          - heading "Edit Order" [level=2] [ref=e92]
+          - navigation "breadcrumb" [ref=e94]:
+            - list [ref=e95]:
+              - listitem [ref=e96]:
+                - link "Dashboard" [ref=e97] [cursor=pointer]:
+                  - /url: /dashboard
+              - listitem [ref=e98]:
+                - img [ref=e99]
+              - listitem [ref=e101]:
+                - link "Order" [ref=e102] [cursor=pointer]:
+                  - /url: /order
+              - listitem [ref=e103]:
+                - img [ref=e104]
+              - listitem [ref=e106]:
+                - link "Edit" [disabled] [ref=e107]
+      - generic [ref=e110]:
+        - navigation "Progress" [ref=e112]:
+          - list [ref=e113]:
+            - listitem [ref=e114] [cursor=pointer]:
+              - button [ref=e115]:
+                - img [ref=e116]
+              - generic [ref=e118]:
+                - generic [ref=e119]: Step 1
+                - generic [ref=e120]: Informasi Pelanggan
+            - listitem [ref=e122] [cursor=pointer]:
+              - button [ref=e123]:
+                - img [ref=e124]
+              - generic [ref=e127]:
+                - generic [ref=e128]: Step 2
+                - generic [ref=e129]: Item order
+            - listitem [ref=e131] [cursor=pointer]:
+              - button [ref=e132]:
+                - img [ref=e133]
+              - generic [ref=e135]:
+                - generic [ref=e136]: Step 3
+                - generic [ref=e137]: Pembayaran
+            - listitem [ref=e139] [cursor=pointer]:
+              - button [ref=e140]:
+                - img [ref=e141]
+              - generic [ref=e143]:
+                - generic [ref=e144]: Step 4
+                - generic [ref=e145]: Preview
+        - generic [ref=e227]:
+          - group [ref=e228]:
+            - generic [ref=e229]:
+              - generic [ref=e230]:
+                - generic [ref=e231]: Item order
+                - paragraph [ref=e232]: Tambahkan menu atau paket untuk order ini.
+              - button "Tambah" [ref=e233]:
+                - img
+                - text: Tambah
+            - generic [ref=e235]:
+              - article [ref=e236]:
+                - img "Paket Meeting Premium" [ref=e237]
+                - generic [ref=e238]:
+                  - generic [ref=e239]:
+                    - heading "Paket Meeting Premium" [level=3] [ref=e241]
+                    - generic [ref=e243]: Event & Meeting · Min. 20 pesanan
+                  - generic [ref=e244]:
+                    - generic [ref=e245]:
+                      - group [ref=e246]:
+                        - button "Kurangi jumlah" [ref=e247]:
+                          - img
+                        - spinbutton "Jumlah" [ref=e248]: "25"
+                        - button "Tambah jumlah" [ref=e249]:
+                          - img
+                      - button "Hapus item 1" [ref=e250]:
+                        - img
+                    - generic [ref=e251]: Rp 1.166.675
+                - generic [ref=e253]:
+                  - generic [ref=e254]:
+                    - button "Detail paket (3)" [expanded] [active] [ref=e255]:
+                      - img
+                      - generic [ref=e256]: Detail paket (3)
+                    - button "Ubah" [ref=e257]:
+                      - img
+                      - text: Ubah
+                  - generic [ref=e291]:
+                    - generic [ref=e292]:
+                      - img [ref=e294]
+                      - generic [ref=e296]: Nasi Box Ayam Bakar
+                      - generic [ref=e297]: Rp 21.667
+                    - generic [ref=e298]:
+                      - img [ref=e300]
+                      - generic [ref=e302]: Snack Box Classic
+                      - generic [ref=e303]: Rp 18.000
+                    - generic [ref=e304]:
+                      - img [ref=e306]
+                      - generic [ref=e308]: Es Teh Manis Jumbo
+                      - generic [ref=e309]: Rp 7.000
+              - article [ref=e258]:
+                - img "Jus Jeruk Peras" [ref=e259]
+                - generic [ref=e260]:
+                  - generic [ref=e261]:
+                    - heading "Jus Jeruk Peras" [level=3] [ref=e263]
+                    - generic [ref=e265]: Minuman · Min. 20 pesanan
+                  - generic [ref=e266]:
+                    - generic [ref=e267]:
+                      - group [ref=e268]:
+                        - button "Kurangi jumlah" [ref=e269]:
+                          - img
+                        - spinbutton "Jumlah" [ref=e270]: "25"
+                        - button "Tambah jumlah" [ref=e271]:
+                          - img
+                      - button "Hapus item 2" [ref=e272]:
+                        - img
+                    - generic [ref=e273]: Rp 250.000
+          - complementary [ref=e274]:
+            - generic [ref=e275]:
+              - img [ref=e276]
+              - heading "Ringkasan item" [level=2] [ref=e280]
+            - generic [ref=e281]:
+              - generic [ref=e282]:
+                - generic [ref=e283]: 2 item order
+                - generic [ref=e284]: Rp 1.416.675
+              - generic [ref=e285]:
+                - generic [ref=e286]: Total sementara
+                - generic [ref=e287]: Rp 1.416.675
+        - generic [ref=e223]:
+          - button "Sebelumnya" [ref=e289]:
+            - img
+            - text: Sebelumnya
+          - generic [ref=e224]: Langkah 2/4
+          - button "Berikutnya" [ref=e226]:
+            - text: Berikutnya
+            - img
+  - region "Notifications alt+T"
