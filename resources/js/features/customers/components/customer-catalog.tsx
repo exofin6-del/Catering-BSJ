@@ -621,13 +621,16 @@ export function CustomerProductCard({
     entry,
     onClick,
     onAdd,
+    layout = 'auto',
 }: {
     entry: CustomerCatalogItem;
     onClick: () => void;
     onAdd: () => void;
+    layout?: 'auto' | 'horizontal';
 }) {
     const { item } = entry;
     const priceInfo = customerCatalogPriceSummary(entry);
+    const isHorizontal = layout === 'horizontal';
 
     function handleAddButton(event: MouseEvent<HTMLButtonElement>): void {
         event.preventDefault();
@@ -653,9 +656,24 @@ export function CustomerProductCard({
                 }
             }}
         >
-            <div className="grid h-full grid-cols-[8rem_minmax(0,1fr)] sm:grid-cols-1">
-                <div className="w-full border-r border-border/60 bg-muted sm:border-r-0">
-                    <div className="relative h-full w-full sm:hidden">
+            <div
+                className={cn(
+                    'grid h-full grid-cols-[8rem_minmax(0,1fr)]',
+                    !isHorizontal && 'sm:grid-cols-1',
+                )}
+            >
+                <div
+                    className={cn(
+                        'w-full border-r border-border/60 bg-muted',
+                        !isHorizontal && 'sm:border-r-0',
+                    )}
+                >
+                    <div
+                        className={cn(
+                            'relative h-full w-full',
+                            !isHorizontal && 'sm:hidden',
+                        )}
+                    >
                         <CatalogThumbnailMedia
                             image={item.primary_image ?? null}
                             name={item.name}
@@ -671,23 +689,25 @@ export function CustomerProductCard({
                         />
                     </div>
 
-                    <div className="hidden sm:block">
-                        <AspectRatio ratio={4 / 3}>
-                            <CatalogThumbnailMedia
-                                image={item.primary_image ?? null}
-                                name={item.name}
-                            />
-                            <CatalogThumbnailBadges
-                                isRecommended={item.is_recommended}
-                                minOrder={item.min_order ?? 1}
-                                packageCount={
-                                    entry.type === 'package'
-                                        ? entry.item.items.length
-                                        : undefined
-                                }
-                            />
-                        </AspectRatio>
-                    </div>
+                    {!isHorizontal && (
+                        <div className="hidden sm:block">
+                            <AspectRatio ratio={4 / 3}>
+                                <CatalogThumbnailMedia
+                                    image={item.primary_image ?? null}
+                                    name={item.name}
+                                />
+                                <CatalogThumbnailBadges
+                                    isRecommended={item.is_recommended}
+                                    minOrder={item.min_order ?? 1}
+                                    packageCount={
+                                        entry.type === 'package'
+                                            ? entry.item.items.length
+                                            : undefined
+                                    }
+                                />
+                            </AspectRatio>
+                        </div>
+                    )}
                 </div>
 
                 <div className="flex h-full min-w-0 flex-col">
@@ -754,13 +774,16 @@ export function CustomerPaketCard({
     entry,
     onClick,
     onAdd,
+    layout = 'auto',
 }: {
     entry: CustomerCatalogItem;
     onClick: () => void;
     onAdd: () => void;
+    layout?: 'auto' | 'horizontal';
 }) {
     const { item } = entry;
     const priceInfo = customerCatalogPriceSummary(entry);
+    const isHorizontal = layout === 'horizontal';
 
     function handleAddButton(event: MouseEvent<HTMLButtonElement>): void {
         event.preventDefault();
@@ -786,74 +809,106 @@ export function CustomerPaketCard({
                 }
             }}
         >
-            <div className="grid h-full grid-cols-1">
-                <div className="w-full border-r border-border/60 bg-muted sm:border-r-0">
-                    <AspectRatio ratio={4 / 3}>
-                        <CatalogThumbnailMedia
-                            image={item.primary_image ?? null}
-                            name={item.name}
-                        />
-                        <CatalogThumbnailBadges
-                            isRecommended={item.is_recommended}
-                            minOrder={item.min_order ?? 1}
-                            packageCount={
-                                entry.type === 'package'
-                                    ? entry.item.items.length
-                                    : undefined
-                            }
-                        />
-                    </AspectRatio>
+            <div
+                className={cn(
+                    'grid h-full',
+                    isHorizontal
+                        ? 'grid-cols-[8rem_minmax(0,1fr)]'
+                        : 'grid-cols-1',
+                )}
+            >
+                <div
+                    className={cn(
+                        'w-full border-r border-border/60 bg-muted',
+                        !isHorizontal && 'sm:border-r-0',
+                    )}
+                >
+                    {isHorizontal ? (
+                        <div className="relative h-full w-full">
+                            <CatalogThumbnailMedia
+                                image={item.primary_image ?? null}
+                                name={item.name}
+                            />
+                            <CatalogThumbnailBadges
+                                isRecommended={item.is_recommended}
+                                minOrder={item.min_order ?? 1}
+                                packageCount={
+                                    entry.type === 'package'
+                                        ? entry.item.items.length
+                                        : undefined
+                                }
+                            />
+                        </div>
+                    ) : (
+                        <AspectRatio ratio={4 / 3}>
+                            <CatalogThumbnailMedia
+                                image={item.primary_image ?? null}
+                                name={item.name}
+                            />
+                            <CatalogThumbnailBadges
+                                isRecommended={item.is_recommended}
+                                minOrder={item.min_order ?? 1}
+                                packageCount={
+                                    entry.type === 'package'
+                                        ? entry.item.items.length
+                                        : undefined
+                                }
+                            />
+                        </AspectRatio>
+                    )}
                 </div>
 
-                <CardContent className="space-y-1 px-3 pt-3 pb-2">
-                    <CardTitle className="truncate text-[15px] font-semibold">
-                        {item.name}
-                    </CardTitle>
+                <div className="flex h-full min-w-0 flex-col">
+                    <CardContent className="space-y-1 px-3 pt-3 pb-2">
+                        <CardTitle className="truncate text-[15px] font-semibold">
+                            {item.name}
+                        </CardTitle>
 
-                    <div className="flex items-center justify-between gap-3">
-                        <div className="min-w-0">
-                            {priceInfo.startsFrom ? (
-                                <p className="text-xs text-muted-foreground">
-                                    Mulai dari
-                                </p>
-                            ) : (
-                                <div className="h-4" />
-                            )}
+                        <div className="flex items-center justify-between gap-3">
+                            <div className="min-w-0">
+                                {priceInfo.startsFrom ? (
+                                    <p className="text-xs text-muted-foreground">
+                                        Mulai dari
+                                    </p>
+                                ) : (
+                                    <div className="h-4" />
+                                )}
 
-                            <div className="flex items-center gap-2">
-                                <p className="text-base leading-none font-semibold">
-                                    {formatOrderPrice(priceInfo.activePrice)}
-                                </p>
+                                <div className="flex items-center gap-2">
+                                    <p className="text-base leading-none font-semibold">
+                                        {formatOrderPrice(priceInfo.activePrice)}
+                                    </p>
 
-                                {priceInfo.discountPercent > 0 && (
-                                    <PackageDiscountBadge
-                                        discountPercent={
-                                            priceInfo.discountPercent
-                                        }
-                                    />
+                                    {priceInfo.discountPercent > 0 && (
+                                        <PackageDiscountBadge
+                                            discountPercent={
+                                                priceInfo.discountPercent
+                                            }
+                                        />
+                                    )}
+                                </div>
+
+                                {priceInfo.originalPrice ? (
+                                    <p className="text-xs text-muted-foreground line-through">
+                                        {formatOrderPrice(priceInfo.originalPrice)}
+                                    </p>
+                                ) : (
+                                    <div className="h-4" />
                                 )}
                             </div>
 
-                            {priceInfo.originalPrice ? (
-                                <p className="text-xs text-muted-foreground line-through">
-                                    {formatOrderPrice(priceInfo.originalPrice)}
-                                </p>
-                            ) : (
-                                <div className="h-4" />
-                            )}
+                            <Button
+                                type="button"
+                                variant="ghost"
+                                size="icon"
+                                className="size-9 shrink-0 rounded-full border border-primary bg-primary text-primary-foreground hover:bg-primary/85 hover:text-primary-foreground"
+                                onClick={handleAddButton}
+                            >
+                                <ShoppingCart className="size-4" />
+                            </Button>
                         </div>
-
-                        <Button
-                            type="button"
-                            variant="ghost"
-                            size="icon"
-                            className="size-9 shrink-0 rounded-full border border-primary bg-primary text-primary-foreground hover:bg-primary/85 hover:text-primary-foreground"
-                            onClick={handleAddButton}
-                        >
-                            <ShoppingCart className="size-4" />
-                        </Button>
-                    </div>
-                </CardContent>
+                    </CardContent>
+                </div>
             </div>
         </Card>
     );

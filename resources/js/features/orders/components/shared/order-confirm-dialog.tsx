@@ -107,7 +107,7 @@ export function OrderConfirmDialog(props: OrderConfirmDialogProps) {
             showSwipeHandle={isMobile}
             swipeDirection={isMobile ? 'down' : 'right'}
         >
-            <DrawerContent className="m-0 h-auto max-h-[92dvh] w-full max-w-none rounded-t-3xl rounded-b-none border-x-0 border-b-0 [--drawer-inset:0px] md:m-2 md:h-auto md:max-h-[calc(100dvh-1rem)] md:w-[28rem] md:max-w-[calc(100vw-1rem)] md:rounded-3xl md:border md:[--drawer-inset:--spacing(2)] md:data-[swipe-axis=x]:top-0 md:data-[swipe-axis=x]:bottom-auto">
+            <DrawerContent className="m-0 h-auto min-h-[50dvh] max-h-[92dvh] w-full max-w-none rounded-t-3xl rounded-b-none border-x-0 border-b-0 [--drawer-inset:0px] md:m-2 md:h-auto md:min-h-0 md:max-h-[calc(100dvh-1rem)] md:w-[28rem] md:max-w-[calc(100vw-1rem)] md:rounded-3xl md:border md:[--drawer-inset:--spacing(2)] md:data-[swipe-axis=x]:top-0 md:data-[swipe-axis=x]:bottom-auto">
                 {props.type === 'menu_item' ? (
                     <OrderConfirmContent
                         menuItem={props.menuItem}
