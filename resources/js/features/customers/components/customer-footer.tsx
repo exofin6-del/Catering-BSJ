@@ -1,9 +1,5 @@
 import { Link } from '@inertiajs/react';
-import {
-    ChefHat,
-    Phone,
-    UtensilsCrossed,
-} from 'lucide-react';
+import { ChefHat, Phone, UtensilsCrossed } from 'lucide-react';
 import BsjLogoIcon from '@/components/shared/brand/bsj-logo-icon';
 import type { CustomerBusiness } from '@/features/customers/types/customer-storefront-types';
 import { customerWhatsAppUrl } from '@/features/customers/utils/customer-whatsapp';
@@ -43,9 +39,30 @@ export function CustomerFooter({ business }: CustomerFooterProps) {
     const year = new Date().getFullYear();
 
     return (
-        <footer className="mt-16 bg-primary text-primary-foreground sm:mt-24">
+        <footer className="relative mt-16 overflow-hidden bg-primary text-primary-foreground sm:mt-24">
+            {/* Vignette supaya bagian bawah lebih gelap & fokus tetap di konten */}
+            <div
+                className="pointer-events-none absolute inset-0"
+                style={{
+                    background: `
+            radial-gradient(
+                90% 65% at 50% 0%,
+                color-mix(in oklab, var(--primary) 18%, transparent) 0%,
+                transparent 58%
+            ),
+            linear-gradient(
+                to bottom,
+                transparent 0%,
+                color-mix(in oklab, var(--primary) 8%, transparent) 42%,
+                color-mix(in oklab, var(--primary) 72%, black) 100%
+            )
+        `,
+                }}
+                aria-hidden="true"
+            />
+
             {/* Main footer grid */}
-            <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="grid gap-12 py-14 sm:py-16 lg:grid-cols-[1.8fr_0.8fr_0.8fr_1fr] lg:gap-10 xl:gap-16">
                     {/* Brand & description */}
                     <div className="flex flex-col gap-6">
@@ -84,7 +101,6 @@ export function CustomerFooter({ business }: CustomerFooterProps) {
                                     href={item.href}
                                     className="group inline-flex items-center gap-1.5 text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
                                 >
-                                    <span className="size-1 rounded-full bg-primary-foreground/30 transition-colors group-hover:bg-primary-foreground" />
                                     {item.label}
                                 </Link>
                             ))}
@@ -125,7 +141,7 @@ export function CustomerFooter({ business }: CustomerFooterProps) {
                         <h3 className="text-[10px] font-semibold tracking-[0.14em] text-primary-foreground/50 uppercase">
                             Kontak Kami
                         </h3>
-                        <div className="flex flex-col  gap-3">
+                        <div className="flex flex-col gap-3">
                             {business.whatsapp_number && (
                                 <a
                                     href={whatsappHref ?? '#'}

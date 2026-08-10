@@ -18,7 +18,15 @@ class StorefrontCheckoutRequest extends OrderRequest
      */
     public function rules(): array
     {
-        return $this->orderRules(isUpdate: false, requiresLocation: true);
+        $rules = $this->orderRules(isUpdate: false, requiresLocation: true);
+
+        // All fields are required on the storefront checkout except notes.
+        $rules['event_time'] = ['required', 'date_format:H:i'];
+        $rules['address_name'] = ['required', 'string', 'max:255'];
+        $rules['latitude'] = ['required', 'numeric', 'between:-90,90'];
+        $rules['longitude'] = ['required', 'numeric', 'between:-180,180'];
+
+        return $rules;
     }
 
     protected function prepareForValidation(): void

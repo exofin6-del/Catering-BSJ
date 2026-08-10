@@ -28,13 +28,6 @@ export const customerThemeOptions = [
             'bg-[#eef4ff] [--theme-accent:#1d4ed8] [--theme-surface:#b9cefc] [--theme-card:#ffffff] [--theme-card-border:#b9cefc] [--theme-input-border:#b9cefc] [--theme-primary-fg:#ffffff]',
     },
     {
-        value: 'lavender',
-        label: 'Lavender',
-        description: 'Ungu lembut dan elegan',
-        previewClassName:
-            'bg-[#f5f2ff] [--theme-accent:#6d28d9] [--theme-surface:#d4c8fc] [--theme-card:#ffffff] [--theme-card-border:#cdbcf5] [--theme-input-border:#cdbcf5] [--theme-primary-fg:#ffffff]',
-    },
-    {
         value: 'rose',
         label: 'Rose',
         description: 'Merah muda modern dan premium',

@@ -36,7 +36,7 @@ type Props = {
 
 const mainNavItems: NavLinkItem[] = [
     {
-        title: 'Home',
+        title: 'Beranda',
         href: home(),
         icon: LayoutGrid,
     },

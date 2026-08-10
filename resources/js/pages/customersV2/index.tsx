@@ -64,7 +64,7 @@ export default function CustomerV2Index({
 
     return (
         <>
-            <Head title="Home" />
+            <Head title="Beranda" />
 
             <div className="min-h-screen bg-background text-foreground">
                 <CustomerHero business={business} items={items} />
@@ -103,6 +103,5 @@ export default function CustomerV2Index({
 }
 
 CustomerV2Index.layout = {
-    title: 'Home',
-    description: 'Kelola informasi pelanggan dalam satu tempat.',
+    title: 'Beranda',
 };

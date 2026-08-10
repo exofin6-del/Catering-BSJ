@@ -1034,10 +1034,10 @@ export function LocationCommand({
                 <DrawerContent className="m-0 h-[100svh] max-h-none w-full max-w-none rounded-none border-0 bg-card text-card-foreground shadow-xl [--drawer-inset:0px] md:m-2 md:h-[calc(100dvh-1rem)] md:max-h-[calc(100dvh-1rem)] md:w-[28rem] md:max-w-[calc(100vw-1rem)] md:rounded-3xl md:border md:[--drawer-inset:--spacing(2)]">
                     <Command
                         shouldFilter={false}
-                        className="flex h-full min-h-0 w-full flex-col overflow-hidden rounded-none border-none p-0 shadow-2xl outline-none sm:rounded-xl"
+                        className="flex h-full min-h-0 w-full flex-col overflow-hidden rounded-none border-none bg-transparent p-0 text-slate-700 shadow-2xl outline-none sm:rounded-xl dark:text-slate-300"
                     >
                         {/* Header */}
-                        <div className="relative z-[1002] flex shrink-0 items-center gap-1 border-b bg-background px-3 py-1.5 sm:py-2">
+                        <div className="relative z-[1002] flex shrink-0 items-center gap-1 border-b px-3 py-1.5 sm:py-2">
                             {isSearchActive ? (
                                 <Button
                                     type="button"
@@ -1190,7 +1190,7 @@ export function LocationCommand({
                                             mapClassName="h-56 min-h-48 sm:h-64"
                                         />
                                     )}
-                                    <div className="mt-2 flex items-center gap-2 rounded-lg border border-zinc-100 bg-zinc-50 px-3 py-2.5 text-xs dark:border-zinc-800/60 dark:bg-zinc-900/50">
+                                    <div className="mt-2 flex items-center gap-2 rounded-lg px-3 py-2.5 text-xs dark:border-zinc-800/60 dark:bg-zinc-900/50">
                                         <MapPin
                                             className={cn(
                                                 'size-4 shrink-0',
@@ -1214,7 +1214,7 @@ export function LocationCommand({
                             )}
 
                             {/* Panel */}
-                            <div className="flex min-w-0 shrink-0 flex-col overflow-hidden border-b border-border/30 bg-transparent">
+                            <div className="flex min-w-0 shrink-0 flex-col overflow-hidden border-b border-border/30">
                                 <div className="flex items-center justify-between gap-2 px-4 py-2">
                                     <span className="text-[11px] font-bold tracking-wider text-muted-foreground/40 uppercase">
                                         {panelTitle}
@@ -1245,7 +1245,7 @@ export function LocationCommand({
                                             )}
                                         </div>
                                     ) : (
-                                        <CommandList className="max-h-none overflow-x-hidden p-0">
+                                        <CommandList className="max-h-none overflow-x-hidden bg-transparent p-0">
                                             {emptyMsg && items.length === 0 && (
                                                 <CommandEmpty className="px-4 py-6">
                                                     <div className="mx-auto flex max-w-72 flex-col items-center gap-3 text-center">
@@ -1281,7 +1281,7 @@ export function LocationCommand({
                                                 )}
                                             {(!isSearchMode ||
                                                 items.length > 0) && (
-                                                <CommandGroup className="p-0">
+                                                <CommandGroup className="bg-transparent p-0 text-slate-700 dark:text-slate-300">
                                                     {items.map((f) => (
                                                         <CommandItem
                                                             key={[
@@ -1296,19 +1296,19 @@ export function LocationCommand({
                                                                     .id ??
                                                                 `${f.geometry.coordinates[1]},${f.geometry.coordinates[0]}`
                                                             }
-                                                            className="group cursor-pointer rounded-none bg-transparent px-4 py-3 transition-colors data-selected:bg-transparent data-selected:text-primary [&>svg:last-child]:hidden"
+                                                            className="group cursor-pointer rounded-none bg-transparent px-4 py-3 text-slate-700 transition-colors data-selected:bg-transparent data-selected:text-slate-700 dark:text-slate-300 dark:data-selected:text-slate-300 [&>svg:last-child]:hidden"
                                                             onSelect={() =>
                                                                 handleSelect(f)
                                                             }
                                                         >
                                                             <div className="grid w-full max-w-full min-w-0 grid-cols-[3.5rem_minmax(0,1fr)] items-start gap-3 overflow-hidden">
-                                                                <div className="mt-0.5 flex min-w-0 flex-col items-center gap-1.5 transition-colors group-data-[selected]:text-primary">
+                                                                <div className="mt-0.5 flex min-w-0 flex-col items-center gap-1.5 text-slate-600 transition-colors dark:text-slate-400">
                                                                     {isSearchMode ? (
-                                                                        <MapPin className="size-5 text-muted-foreground/45 group-data-[selected]:text-primary" />
+                                                                        <MapPin className="size-5 text-slate-400 dark:text-slate-500" />
                                                                     ) : (
-                                                                        <MapPinned className="size-5 text-muted-foreground/45 group-data-[selected]:text-primary" />
+                                                                        <MapPinned className="size-5 text-slate-400 dark:text-slate-500" />
                                                                     )}
-                                                                    <span className="text-[10px] font-bold tracking-tight text-muted-foreground/40 group-data-[selected]:text-primary/70">
+                                                                    <span className="text-[10px] font-bold tracking-tight text-slate-400 dark:text-slate-500">
                                                                         {formatDistance(
                                                                             distanceMetersBetween(
                                                                                 {
@@ -1332,12 +1332,12 @@ export function LocationCommand({
                                                                     </span>
                                                                 </div>
                                                                 <div className="flex max-w-full min-w-0 flex-col gap-1 overflow-hidden">
-                                                                    <span className="block max-w-full truncate text-sm font-semibold tracking-tight text-foreground transition-colors group-data-[selected]:text-primary">
+                                                                    <span className="block max-w-full truncate text-sm font-semibold tracking-tight text-slate-800 transition-colors dark:text-slate-200">
                                                                         {displayPlaceTitle(
                                                                             f,
                                                                         )}
                                                                     </span>
-                                                                    <span className="block max-w-full truncate text-xs leading-snug text-muted-foreground/55 group-data-[selected]:text-primary/60">
+                                                                    <span className="block max-w-full truncate text-xs leading-snug text-slate-500 transition-colors dark:text-slate-400">
                                                                         {(() => {
                                                                             const a =
                                                                                 displayPlaceArea(

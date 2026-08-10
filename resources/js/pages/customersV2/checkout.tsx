@@ -7,7 +7,7 @@ import {
     LoaderCircle,
     ShoppingBag,
 } from 'lucide-react';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
@@ -68,6 +68,7 @@ export default function CustomerCheckoutPage({
     const cart = useCustomerCartStore(menuItems, packages);
     const clearCart = cart.clear;
     const [processing, setProcessing] = useState(false);
+    const hasErrorRef = useRef(false);
     const defaultValues = useMemo<OrderFormData>(
         () => ({
             ...initialOrderFormData(),
@@ -128,17 +129,37 @@ export default function CustomerCheckoutPage({
             data: payload,
             method: 'post',
             onError: (errors: Errors) => {
+                hasErrorRef.current = true;
                 applyOrderFormServerErrors(errors, form.setError);
                 toast.error('Pesanan belum dapat dibuat.', {
                     description: firstErrorMessage(errors),
                 });
             },
-            onFinish: () => setProcessing(false),
+            onFinish: (visit) => {
+                setProcessing(false);
+
+                // The backend redirects to WhatsApp via Inertia::location()
+                // (HTTP 409 + X-Inertia-Location), which never fires
+                // onFlash/onSuccess. Only onFinish runs, so clear the cart
+                // and reset the form here on a successful checkout.
+                if (visit.completed && !hasErrorRef.current) {
+                    clearCart();
+                    removePersistentState(CustomerCheckoutStorageKey);
+                    form.reset({
+                        ...initialOrderFormData(),
+                        items: [],
+                        payment_type: 'full',
+                        status: 'pending_confirmation',
+                    });
+                }
+            },
             onFlash: handleCheckoutFlash,
             onNetworkError: () => {
+                hasErrorRef.current = true;
                 toast.error('Koneksi bermasalah. Silakan coba kembali.');
             },
             onStart: () => {
+                hasErrorRef.current = false;
                 form.clearErrors();
                 setProcessing(true);
             },
@@ -181,7 +202,7 @@ export default function CustomerCheckoutPage({
                             <form
                                 id={CustomerCheckoutFormId}
                                 className="grid min-w-0 grid-cols-1 items-start gap-5 xl:grid-cols-[minmax(0,1fr)_clamp(20rem,28vw,24rem)]"
-                                onSubmit={form.handleSubmit(submit)}
+                                onSubmit={(e) => form.handleSubmit(submit)(e)}
                             >
                                 <OrderCustomerStep
                                     business={business}

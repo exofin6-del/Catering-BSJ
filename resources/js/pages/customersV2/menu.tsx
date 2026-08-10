@@ -13,7 +13,6 @@ import type { OrderFormItem } from '@/features/orders/types/order-types';
 import { menuDetail, packageDetail } from '@/routes/customerV2';
 
 export default function CustomerV2MenuPage({
-    business,
     menuItems,
     packages,
 }: CustomerStorefrontProps) {
@@ -67,7 +66,7 @@ export default function CustomerV2MenuPage({
 
     return (
         <>
-            <Head title={`Menu - ${business.name}`} />
+            <Head title="Menu" />
 
             <div className="min-h-screen bg-background text-foreground">
                 <MenuCatalog

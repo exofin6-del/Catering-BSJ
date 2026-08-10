@@ -156,10 +156,38 @@ export const orderFormSchema = orderFormBase.superRefine((values, context) => {
     }
 });
 
-// Customer schema: event_address is required
+// Customer schema: all fields are required except notes (catatan)
 export const customerOrderFormSchema = orderFormBase
     .extend({
+        address_name: z
+            .string()
+            .trim()
+            .min(1, 'Nama alamat wajib diisi.'),
         event_address: z.string().trim().min(1, 'Lokasi acara wajib diisi.'),
+        event_time: z
+            .string()
+            .trim()
+            .regex(/^\d{2}:\d{2}$/, 'Jam acara wajib diisi.'),
+        latitude: z
+            .string()
+            .trim()
+            .min(1, 'Latitude wajib diisi.')
+            .refine((value) => Number.isFinite(Number(value)), {
+                message: 'Latitude harus berupa angka.',
+            })
+            .refine((value) => Number(value) >= -90 && Number(value) <= 90, {
+                message: 'Latitude harus antara -90 dan 90.',
+            }),
+        longitude: z
+            .string()
+            .trim()
+            .min(1, 'Longitude wajib diisi.')
+            .refine((value) => Number.isFinite(Number(value)), {
+                message: 'Longitude harus berupa angka.',
+            })
+            .refine((value) => Number(value) >= -180 && Number(value) <= 180, {
+                message: 'Longitude harus antara -180 dan 180.',
+            }),
     })
     .superRefine((values, context) => {
         if (values.payment_type === '') {

@@ -787,21 +787,23 @@ export function CustomerPaketCard({
             }}
         >
             <div className="grid h-full grid-cols-1">
-                <AspectRatio ratio={4 / 3}>
-                    <CatalogThumbnailMedia
-                        image={item.primary_image ?? null}
-                        name={item.name}
-                    />
-                    <CatalogThumbnailBadges
-                        isRecommended={item.is_recommended}
-                        minOrder={item.min_order ?? 1}
-                        packageCount={
-                            entry.type === 'package'
-                                ? entry.item.items.length
-                                : undefined
-                        }
-                    />
-                </AspectRatio>
+                <div className="w-full border-r border-border/60 bg-muted sm:border-r-0">
+                    <AspectRatio ratio={4 / 3}>
+                        <CatalogThumbnailMedia
+                            image={item.primary_image ?? null}
+                            name={item.name}
+                        />
+                        <CatalogThumbnailBadges
+                            isRecommended={item.is_recommended}
+                            minOrder={item.min_order ?? 1}
+                            packageCount={
+                                entry.type === 'package'
+                                    ? entry.item.items.length
+                                    : undefined
+                            }
+                        />
+                    </AspectRatio>
+                </div>
 
                 <CardContent className="space-y-1 px-3 pt-3 pb-2">
                     <CardTitle className="truncate text-[15px] font-semibold">

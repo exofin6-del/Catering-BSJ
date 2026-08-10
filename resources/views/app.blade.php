@@ -1,12 +1,15 @@
 @php
-    $isCustomerPage = str_starts_with($page['component'] ?? '', 'customers/') || str_starts_with($page['component'] ?? '', 'customersV2/');
+    $isCustomerPage =
+        str_starts_with($page['component'] ?? '', 'customers/') ||
+        str_starts_with($page['component'] ?? '', 'customersV2/');
     $customerTheme = $isCustomerPage ? $page['props']['customerTheme'] ?? null : null;
 @endphp
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" @class([
     'admin-dark' => !$isCustomerPage && ($appearance ?? 'system') === 'dark',
-]) @if ($customerTheme) data-customer-theme="{{ $customerTheme }}" @endif>
+])
+    @if ($customerTheme) data-customer-theme="{{ $customerTheme }}" @endif>
 
 <head>
     <meta charset="utf-8">
@@ -63,9 +66,8 @@
         }
     </style>
 
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href="/images/logo.svg" type="image/svg">
+    <link rel="apple-touch-icon" href="/images/logo.svg">
 
     @fonts
 

@@ -11,7 +11,7 @@ export default function CustomerV2InfoPage({
 
     return (
         <>
-            <Head title={`Info - ${business.name}`} />
+            <Head title="Tentang Kami" />
 
             <div className="space-y-6 py-4 sm:space-y-8 sm:py-6 lg:space-y-10 lg:py-8">
                 {/* Our Story Section */}
