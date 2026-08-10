@@ -1,2 +1,2 @@
 [phases.setup]
-nixPkgs = ["php83", "php83Packages.composer", "php83Extensions.pdo_mysql", "php83Extensions.mysqli"]
+nixPkgs = ["php83", "php83Packages.composer", "php83Extensions.pdo_mysql", "php83Extensions.mysqli", "nodejs_22", "pnpm"]
