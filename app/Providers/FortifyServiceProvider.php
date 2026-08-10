@@ -11,6 +11,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
 use Inertia\Inertia;
+use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
+use Laravel\Fortify\Contracts\LogoutResponse as LogoutResponseContract;
 use Laravel\Fortify\Features;
 use Laravel\Fortify\Fortify;
 
@@ -21,7 +23,27 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->instance(LoginResponseContract::class, new class implements LoginResponseContract {
+            public function toResponse($request)
+            {
+                if ($request->inertia()) {
+                    return Inertia::location(config('fortify.home'));
+                }
+
+                return redirect()->intended(config('fortify.home'));
+            }
+        });
+
+        $this->app->instance(LogoutResponseContract::class, new class implements LogoutResponseContract {
+            public function toResponse($request)
+            {
+                if ($request->inertia()) {
+                    return Inertia::location('/');
+                }
+
+                return redirect('/');
+            }
+        });
     }
 
     /**
