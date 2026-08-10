@@ -11,7 +11,7 @@ import {
     customerCatalogItemCategory,
     customerCatalogItems,
 } from '../utils/customer-catalog';
-import { CustomerPaketCard, CustomerProductCard } from './customer-catalog';
+import { CustomerProductCard } from './customer-catalog';
 
 const MAX_INTERESTED_ITEMS = 10;
 
@@ -80,25 +80,15 @@ export function CustomerInterestedSection({
             </div>
 
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
-                {interestedItems.map((item) =>
-                    item.type === 'package' ? (
-                        <CustomerPaketCard
-                            key={item.id}
-                            entry={item}
-                            layout="horizontal"
-                            onAdd={() => setSelectedItem(item)}
-                            onClick={() => handleViewDetail(item)}
-                        />
-                    ) : (
-                        <CustomerProductCard
-                            key={item.id}
-                            entry={item}
-                            layout="horizontal"
-                            onAdd={() => setSelectedItem(item)}
-                            onClick={() => handleViewDetail(item)}
-                        />
-                    ),
-                )}
+                {interestedItems.map((item) => (
+                    <CustomerProductCard
+                        key={item.id}
+                        entry={item}
+                        layout="horizontal"
+                        onAdd={() => setSelectedItem(item)}
+                        onClick={() => handleViewDetail(item)}
+                    />
+                ))}
             </div>
 
             {selectedItem?.type === 'menu_item' ? (
