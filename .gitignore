@@ -11,6 +11,9 @@
 /resources/js/routes
 /resources/js/wayfinder
 /vendor
+.playwright-cli/
+.playwright-mcp/
+output/
 .DS_Store
 .env
 .env.backup
