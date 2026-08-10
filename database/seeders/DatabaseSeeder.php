@@ -20,13 +20,14 @@ class DatabaseSeeder extends Seeder
             PackageSeeder::class,
         ]);
 
-        User::query()->firstOrCreate(
-            ['email' => 'admin@gmail.com'],
-            [
-                'name' => 'Admin',
-                'password' => Hash::make('cateringbsj'),
-                'email_verified_at' => now(),
-            ],
-        );
+        // User::factory(10)->create();
+        // User::query()->firstOrCreate(
+        //     ['email' => 'admin@example.com'],
+        //     [
+        //         'name' => 'Example Admin',
+        //         'password' => Hash::make('12345678'),
+        //         'email_verified_at' => now(),
+        //     ],
+        // );
     }
 }
