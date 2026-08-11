@@ -14,6 +14,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Inertia\Support\SessionKey;
 use Inertia\Testing\AssertableInertia as Assert;
 use Tests\TestCase;
 
@@ -363,6 +364,9 @@ class OrderManagementTest extends TestCase
                 ],
             ])
             ->assertRedirect(route('order.index'))
+            ->assertSessionHas(SessionKey::FLASH_DATA, fn (array $flash): bool => ($flash['toast']['type'] ?? null) === 'success'
+                && str_starts_with((string) ($flash['toast']['message'] ?? ''), 'Order ORD-')
+                && str_ends_with((string) ($flash['toast']['message'] ?? ''), ' created.'))
             ->assertSessionHasNoErrors();
 
         $order = Order::query()
@@ -456,7 +460,7 @@ class OrderManagementTest extends TestCase
             ->assertSessionHasErrors('event_date');
     }
 
-    public function test_order_update_can_redirect_back_to_detail(): void
+    public function test_order_update_redirects_to_index_even_when_detail_redirect_is_requested(): void
     {
         $user = User::factory()->create();
         $order = $this->createOrder([
@@ -471,7 +475,9 @@ class OrderManagementTest extends TestCase
             ]), [
                 'customer_name' => 'Siti Aminah',
             ])
-            ->assertRedirect(route('order.show', $order))
+            ->assertRedirect(route('order.index'))
+            ->assertSessionHas(SessionKey::FLASH_DATA, fn (array $flash): bool => ($flash['toast']['type'] ?? null) === 'success'
+                && ($flash['toast']['message'] ?? null) === "Order {$order->order_code} updated.")
             ->assertSessionHasNoErrors();
 
         $this->assertSame('Siti Aminah', $order->refresh()->customer_name);

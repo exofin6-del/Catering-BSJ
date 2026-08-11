@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Inertia\Support\SessionKey;
 use Inertia\Testing\AssertableInertia as Assert;
 use Tests\TestCase;
 
@@ -101,7 +102,10 @@ class MenuFormTest extends TestCase
                 'promo_price' => 25000,
             ]);
 
-        $response->assertRedirect(route('menu.index'));
+        $response
+            ->assertRedirect(route('menu.index'))
+            ->assertSessionHas(SessionKey::FLASH_DATA, fn (array $flash): bool => ($flash['toast']['type'] ?? null) === 'success'
+                && ($flash['toast']['message'] ?? null) === 'Rice Bowl Ayam Suwir created.');
 
         $item = MenuItem::query()
             ->where('name', 'Rice Bowl Ayam Suwir')
@@ -222,7 +226,10 @@ class MenuFormTest extends TestCase
                 'promo_price' => null,
             ]);
 
-        $response->assertRedirect(route('menu.index'));
+        $response
+            ->assertRedirect(route('menu.index'))
+            ->assertSessionHas(SessionKey::FLASH_DATA, fn (array $flash): bool => ($flash['toast']['type'] ?? null) === 'success'
+                && ($flash['toast']['message'] ?? null) === 'Snack Gurih updated.');
 
         $item->refresh();
 

@@ -3,7 +3,6 @@ import type { Errors } from '@inertiajs/core';
 import { router } from '@inertiajs/react';
 import { useMemo, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
-import { toast } from 'sonner';
 
 import {
     FormWizardFooter,
@@ -146,16 +145,22 @@ export function MenuForm({
             return;
         }
 
-        const routeForm =
-            isEditing && item?.id !== undefined
-                ? menu.update.form(item.id)
-                : menu.store.form();
         const payload = buildMenuFormPayload(values, images, removedImageIds);
+        const route =
+            isEditing && item?.id !== undefined
+                ? menu.update(item.id)
+                : menu.store();
 
-        router.visit(routeForm.action, {
-            data: payload,
+        router.visit(route.url, {
+            data:
+                isEditing && item?.id !== undefined
+                    ? {
+                          ...payload,
+                          _method: 'put',
+                      }
+                    : payload,
             invalidateCacheTags: menuIndexCacheTag,
-            method: routeForm.method,
+            method: isEditing ? 'post' : route.method,
             onError: (errors) => {
                 applyMenuFormServerErrors(errors, form.setError);
                 applyImageServerError(errors, setImageError);
@@ -163,11 +168,6 @@ export function MenuForm({
             },
             onSuccess: () => {
                 removePersistentState(formStorageKey);
-                toast.success(
-                    isEditing
-                        ? 'Menu berhasil diperbarui.'
-                        : 'Menu berhasil ditambahkan.',
-                );
             },
             onFinish: () => setProcessing(false),
             onStart: () => {

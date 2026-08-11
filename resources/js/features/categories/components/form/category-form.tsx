@@ -2,7 +2,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { router } from '@inertiajs/react';
 import { useMemo, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
-import { toast } from 'sonner';
 
 import {
     FormWizardFooter,
@@ -58,27 +57,22 @@ export function CategoryForm({
     function submit(values: CategoryFormValues) {
         form.clearErrors();
 
-        const routeForm =
+        const route =
             isEditing && category
-                ? categories.update.form([category.type, category.id])
-                : categories.store.form();
+                ? categories.update([category.type, category.id])
+                : categories.store();
         const payload = buildCategoryFormPayload(values, {
             includeType: !isEditing,
         });
 
-        router.visit(routeForm.action, {
+        router.visit(route.url, {
             data: payload,
             invalidateCacheTags: categoryIndexCacheTag,
-            method: routeForm.method,
+            method: route.method,
             onError: (errors) =>
                 applyCategoryFormServerErrors(errors, form.setError),
             onSuccess: () => {
                 removePersistentState(formStorageKey);
-                toast.success(
-                    isEditing
-                        ? 'Kategori berhasil diperbarui.'
-                        : 'Kategori berhasil ditambahkan.',
-                );
             },
             onFinish: () => setProcessing(false),
             onStart: () => {

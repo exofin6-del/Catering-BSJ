@@ -9,6 +9,7 @@ use App\Models\PackageCategory;
 use App\Models\PackageItem;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Inertia\Support\SessionKey;
 use Inertia\Testing\AssertableInertia as Assert;
 use Tests\TestCase;
 
@@ -118,7 +119,9 @@ class CategoryIndexTest extends TestCase
                 'icon' => 'briefcase',
                 'is_active' => true,
             ])
-            ->assertRedirect(route('categories.index'));
+            ->assertRedirect(route('categories.index'))
+            ->assertSessionHas(SessionKey::FLASH_DATA, fn (array $flash): bool => ($flash['toast']['type'] ?? null) === 'success'
+                && ($flash['toast']['message'] ?? null) === 'Paket Corporate created.');
 
         $this->assertDatabaseHas('package_categories', [
             'name' => 'Paket Corporate',
@@ -140,7 +143,9 @@ class CategoryIndexTest extends TestCase
                 'icon' => null,
                 'is_active' => true,
             ])
-            ->assertRedirect(route('categories.index'));
+            ->assertRedirect(route('categories.index'))
+            ->assertSessionHas(SessionKey::FLASH_DATA, fn (array $flash): bool => ($flash['toast']['type'] ?? null) === 'success'
+                && ($flash['toast']['message'] ?? null) === 'Snack Premium updated.');
 
         $this->assertDatabaseHas('menu_categories', [
             'id' => $category->id,

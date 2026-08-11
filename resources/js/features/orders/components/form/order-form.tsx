@@ -220,11 +220,6 @@ export function OrderForm({
                 dismissSavingToast();
                 removePersistentState(formStorageKey);
                 removePersistentState(`${formStorageKey}.step`);
-                toast.success(
-                    isEditing
-                        ? 'Order berhasil diperbarui.'
-                        : 'Order berhasil ditambahkan.',
-                );
             },
             preserveScroll: true,
         };

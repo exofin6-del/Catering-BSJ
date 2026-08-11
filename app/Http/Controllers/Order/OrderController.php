@@ -138,7 +138,7 @@ class OrderController extends Controller
 
     public function update(UpdateOrderRequest $request, Order $order): RedirectResponse
     {
-        $updatedOrder = $this->orders->update(
+        $this->orders->update(
             $order,
             $request->validated(),
         );
@@ -147,10 +147,6 @@ class OrderController extends Controller
             'type' => 'success',
             'message' => __('Order :code updated.', ['code' => $order->order_code]),
         ]);
-
-        if ($request->string('redirect')->toString() === 'show') {
-            return to_route('order.show', $updatedOrder);
-        }
 
         return to_route('order.index');
     }

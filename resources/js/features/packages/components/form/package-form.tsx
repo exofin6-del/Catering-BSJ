@@ -3,7 +3,6 @@ import type { Errors } from '@inertiajs/core';
 import { router } from '@inertiajs/react';
 import { useMemo, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
-import { toast } from 'sonner';
 
 import {
     FormWizardFooter,
@@ -234,11 +233,6 @@ export function PackageForm({
                 removePersistentState(formStorageKey);
                 removePersistentState(`${formStorageKey}.step`);
                 clearComponents();
-                toast.success(
-                    isEditing
-                        ? 'Paket berhasil diperbarui.'
-                        : 'Paket berhasil ditambahkan.',
-                );
             },
             onFinish: () => setProcessing(false),
             onStart: () => {

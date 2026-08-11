@@ -9,6 +9,7 @@ import AuthLayout from '@/layouts/auth-layout';
 import CustomerLayout from '@/layouts/customer/customer-layout';
 import PublicLayout from '@/layouts/public-layout';
 import { initializeTheme } from '@/lib/hooks/use-appearance';
+import { useFlashToast } from '@/lib/hooks/use-flash-toast';
 
 // NProgress configuration
 NProgress.configure({ showSpinner: false, speed: 400, minimum: 0.08 });
@@ -42,6 +43,17 @@ router.on('finish', () => {
 });
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+
+function AppProviders({ children }: { children: React.ReactNode }) {
+    useFlashToast();
+
+    return (
+        <TooltipProvider delayDuration={0}>
+            {children}
+            <Toaster />
+        </TooltipProvider>
+    );
+}
 
 createInertiaApp({
     pages: {
@@ -79,12 +91,7 @@ createInertiaApp({
     strictMode: true,
 
     withApp(app) {
-        return (
-            <TooltipProvider delayDuration={0}>
-                {app}
-                <Toaster />
-            </TooltipProvider>
-        );
+        return <AppProviders>{app}</AppProviders>;
     },
 
     progress: false,

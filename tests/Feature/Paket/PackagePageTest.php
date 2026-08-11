@@ -12,6 +12,7 @@ use App\Models\PackageImage;
 use App\Models\PackageItem;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Inertia\Support\SessionKey;
 use Inertia\Testing\AssertableInertia as Assert;
 use Tests\TestCase;
 
@@ -200,7 +201,9 @@ class PackagePageTest extends TestCase
                     ],
                 ],
             ])
-            ->assertRedirect(route('paket.index'));
+            ->assertRedirect(route('paket.index'))
+            ->assertSessionHas(SessionKey::FLASH_DATA, fn (array $flash): bool => ($flash['toast']['type'] ?? null) === 'success'
+                && ($flash['toast']['message'] ?? null) === 'Package created.');
 
         $package = Package::query()
             ->where('name', 'Paket Pilihan Harga')
@@ -208,6 +211,27 @@ class PackagePageTest extends TestCase
 
         $this->assertNotNull($package);
         $this->assertSame('20000.00', $package->price);
+    }
+
+    public function test_package_can_be_updated_and_flashes_success_toast(): void
+    {
+        $user = User::factory()->create();
+        $packageCategory = $this->createPackageCategory('Paket Meeting', 'paket-meeting');
+        $package = $this->createPackage($packageCategory, [
+            'name' => 'Paket Lama',
+            'slug' => 'paket-lama',
+        ]);
+
+        $this
+            ->actingAs($user)
+            ->put(route('paket.update', $package), [
+                'name' => 'Paket Baru',
+            ])
+            ->assertRedirect(route('paket.index'))
+            ->assertSessionHas(SessionKey::FLASH_DATA, fn (array $flash): bool => ($flash['toast']['type'] ?? null) === 'success'
+                && ($flash['toast']['message'] ?? null) === 'Package updated.');
+
+        $this->assertSame('Paket Baru', $package->refresh()->name);
     }
 
     public function test_package_creation_saves_the_icon_for_a_new_category(): void
