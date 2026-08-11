@@ -242,9 +242,15 @@ export function PackageForm({
         };
 
         router.visit(route.url, {
-            data: payload,
+            data:
+                isEditing && item?.id !== undefined
+                    ? {
+                          ...payload,
+                          _method: 'put',
+                      }
+                    : payload,
             invalidateCacheTags: packageIndexCacheTag,
-            method: route.method,
+            method: isEditing ? 'post' : route.method,
             onError: (errors) => {
                 applyPackageFormServerErrors(errors, form.setError);
                 applyPackageImageServerError(errors, setImageError);

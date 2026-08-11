@@ -88,9 +88,15 @@ export function CategoryForm({
         });
 
         router.visit(route.url, {
-            data: payload,
+            data:
+                isEditing && category
+                    ? {
+                          ...payload,
+                          _method: 'put',
+                      }
+                    : payload,
             invalidateCacheTags: categoryIndexCacheTag,
-            method: route.method,
+            method: isEditing ? 'post' : route.method,
             onError: (errors) => {
                 applyCategoryFormServerErrors(errors, form.setError);
                 showSavingErrorToast(
