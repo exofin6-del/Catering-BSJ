@@ -28,7 +28,7 @@ router.on('start', () => {
 
 router.on('progress', (event) => {
     if (event.detail.progress?.percentage) {
-        NProgress.set((event.detail.progress.percentage / 100) * 0.9);
+        NProgress.set(event.detail.progress.percentage / 100);
     }
 });
 
