@@ -193,6 +193,7 @@ export function MenuForm({
                 );
             },
             onFinish: () => {
+                dismissSavingToast();
                 setProcessing(false);
             },
             onHttpException: () => {
@@ -208,7 +209,6 @@ export function MenuForm({
                 router.flushByCacheTags(menuIndexCacheTag);
                 setProcessing(true);
                 savingToastId = toast.loading(toastMessages.loading, {
-                    description: 'Mohon tunggu sebentar.',
                     duration: Infinity,
                 });
             },

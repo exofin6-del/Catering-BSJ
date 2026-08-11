@@ -86,6 +86,7 @@ export function OrderDetail({ order }: { order: Order }) {
                     savingToastId = null;
                 },
                 onFinish: () => {
+                    dismissSavingToast();
                     setProcessing(false);
                 },
                 onHttpException: () => {
@@ -111,7 +112,6 @@ export function OrderDetail({ order }: { order: Order }) {
                     savingToastId = toast.loading(
                         'Menyimpan perubahan detail',
                         {
-                            description: 'Mohon tunggu sebentar.',
                             duration: Infinity,
                         },
                     );

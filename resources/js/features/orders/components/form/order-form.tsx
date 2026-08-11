@@ -196,6 +196,7 @@ export function OrderForm({
                 );
             },
             onFinish: () => {
+                dismissSavingToast();
                 setProcessing(false);
             },
             onHttpException: () => {
@@ -212,7 +213,6 @@ export function OrderForm({
                 form.clearErrors();
                 setProcessing(true);
                 savingToastId = toast.loading(toastMessages.loading, {
-                    description: 'Mohon tunggu sebentar.',
                     duration: Infinity,
                 });
             },

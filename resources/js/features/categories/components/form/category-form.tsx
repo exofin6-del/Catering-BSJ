@@ -99,6 +99,7 @@ export function CategoryForm({
                 );
             },
             onFinish: () => {
+                dismissSavingToast();
                 setProcessing(false);
             },
             onHttpException: () => {
@@ -114,7 +115,6 @@ export function CategoryForm({
                 router.flushByCacheTags(categoryIndexCacheTag);
                 setProcessing(true);
                 savingToastId = toast.loading(toastMessages.loading, {
-                    description: 'Mohon tunggu sebentar.',
                     duration: Infinity,
                 });
             },

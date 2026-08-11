@@ -256,6 +256,7 @@ export function PackageForm({
                 );
             },
             onFinish: () => {
+                dismissSavingToast();
                 setProcessing(false);
             },
             onHttpException: () => {
@@ -271,7 +272,6 @@ export function PackageForm({
                 router.flushByCacheTags(packageIndexCacheTag);
                 setProcessing(true);
                 savingToastId = toast.loading(toastMessages.loading, {
-                    description: 'Mohon tunggu sebentar.',
                     duration: Infinity,
                 });
             },
