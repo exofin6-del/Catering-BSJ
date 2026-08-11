@@ -3,6 +3,7 @@
 namespace App\Actions\Menu;
 
 use App\Models\MenuImage;
+use App\Services\ImageCompressionService;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
@@ -12,6 +13,10 @@ class MenuImageAction
 {
     private const TemporarySessionKey = 'menu.temporary_images';
 
+    public function __construct(private ImageCompressionService $compressor)
+    {
+    }
+
     public function upload(
         UploadedFile $file,
         int $menuItemId,
@@ -19,10 +24,18 @@ class MenuImageAction
     ): MenuImage {
         $folder = "menu/items/{$menuItemId}";
 
-        $path = $file->store($folder, 'public');
+        // Compress image before storing
+        $compressedPath = $this->compressor->compressAndStore(
+            $file,
+            $folder,
+            'public',
+            1920,
+            1920,
+            85
+        );
 
         return $this->createFromStoredPath(
-            path: $path,
+            path: $compressedPath,
             menuItemId: $menuItemId,
             isPrimary: $isPrimary,
         );
@@ -34,13 +47,23 @@ class MenuImageAction
     public function temporaryUpload(UploadedFile $file): array
     {
         $id = (string) Str::uuid();
-        $path = $file->store('menu/temp', 'public');
+
+        // Compress image before storing
+        $compressedPath = $this->compressor->compressAndStore(
+            $file,
+            'menu/temp',
+            'public',
+            1920,
+            1920,
+            85
+        );
+
         $temporaryImages = session(self::TemporarySessionKey, []);
 
         $temporaryImages[$id] = [
             'name' => $file->getClientOriginalName(),
-            'path' => $path,
-            'url' => Storage::url($path),
+            'path' => $compressedPath,
+            'url' => Storage::url($compressedPath),
         ];
 
         session([self::TemporarySessionKey => $temporaryImages]);

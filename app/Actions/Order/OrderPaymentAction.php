@@ -4,6 +4,7 @@ namespace App\Actions\Order;
 
 use App\Models\Order;
 use App\Models\Payment;
+use App\Services\ImageCompressionService;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -11,6 +12,10 @@ use Illuminate\Validation\ValidationException;
 
 class OrderPaymentAction
 {
+    public function __construct(private ImageCompressionService $compressor)
+    {
+    }
+
     /**
      * @param  array<string, mixed>  $data
      */
@@ -62,15 +67,23 @@ class OrderPaymentAction
             return null;
         }
 
-        $path = $proofImage->store("payments/{$order->id}", 'public');
+        // Compress image before storing
+        $compressedPath = $this->compressor->compressAndStore(
+            $proofImage,
+            "payments/{$order->id}",
+            'public',
+            1920,
+            1920,
+            85
+        );
 
-        if ($path === false) {
+        if ($compressedPath === false) {
             throw ValidationException::withMessages([
                 'proof_image' => __('Bukti pembayaran gagal disimpan.'),
             ]);
         }
 
-        return Storage::disk('public')->url($path);
+        return Storage::disk('public')->url($compressedPath);
     }
 
     private function syncPaymentStatus(Order $order): void

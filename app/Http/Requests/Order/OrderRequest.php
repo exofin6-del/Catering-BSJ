@@ -62,7 +62,7 @@ abstract class OrderRequest extends FormRequest
             'payment_amount' => [...$sometimes, 'nullable', 'numeric', 'min:0'],
             'payment_method' => [...$sometimes, Rule::requiredIf($requiresPaymentDetails), 'nullable', Rule::in(['transfer', 'cash'])],
             'payment_paid_at' => [...$sometimes, Rule::requiredIf($requiresPaymentDetails), 'nullable', 'date'],
-            'proof_image' => [...$sometimes, 'nullable', File::image()->max('2mb')],
+            'proof_image' => [...$sometimes, 'nullable', File::image()],
             'payment_type' => [...$required, Rule::in(['dp', 'full'])],
             'status' => [...$sometimes, Rule::in(['pending_confirmation', 'confirmed', 'completed', 'canceled'])],
             'notes' => [...$sometimes, 'nullable', 'string'],

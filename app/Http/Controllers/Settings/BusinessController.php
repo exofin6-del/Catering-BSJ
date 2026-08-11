@@ -29,6 +29,10 @@ class BusinessController extends Controller
         // Ensure file uploads are included in data since $request->validated()
         // may not include them reliably when using _method spoofing with FormData.
 
+        if ($request->hasFile('logo')) {
+            $data['logo'] = $request->file('logo');
+        }
+
         for ($i = 0; $i < 3; $i++) {
             $key = "hero_image_{$i}";
             if ($request->hasFile($key)) {

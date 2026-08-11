@@ -40,7 +40,7 @@ class StoreMenuItemRequest extends FormRequest
             'is_recommended' => ['sometimes', 'boolean'],
             'sort_order' => ['nullable', 'integer', 'min:0'],
             'is_active' => ['sometimes', 'boolean'],
-            'image' => ['nullable', File::image()->max('2mb')],
+            'image' => ['nullable', File::image()],
             'temporary_image_id' => ['nullable', 'string'],
             'temporary_image_ids' => ['nullable', 'array', 'max:'.MenuImage::MaxImagesPerMenuItem],
             'temporary_image_ids.*' => ['string', 'distinct'],

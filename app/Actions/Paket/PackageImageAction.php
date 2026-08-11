@@ -3,6 +3,7 @@
 namespace App\Actions\Paket;
 
 use App\Models\PackageImage;
+use App\Services\ImageCompressionService;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
@@ -12,16 +13,29 @@ class PackageImageAction
 {
     private const TemporarySessionKey = 'packages.temporary_images';
 
+    public function __construct(private ImageCompressionService $compressor)
+    {
+    }
+
     public function upload(
         UploadedFile $file,
         int $packageId,
         bool $isPrimary = false,
     ): PackageImage {
         $folder = "packages/{$packageId}";
-        $path = $file->store($folder, 'public');
+
+        // Compress image before storing
+        $compressedPath = $this->compressor->compressAndStore(
+            $file,
+            $folder,
+            'public',
+            1920,
+            1920,
+            85
+        );
 
         return $this->createFromStoredPath(
-            path: $path,
+            path: $compressedPath,
             packageId: $packageId,
             isPrimary: $isPrimary,
         );
@@ -33,13 +47,23 @@ class PackageImageAction
     public function temporaryUpload(UploadedFile $file): array
     {
         $id = (string) Str::uuid();
-        $path = $file->store('packages/temp', 'public');
+
+        // Compress image before storing
+        $compressedPath = $this->compressor->compressAndStore(
+            $file,
+            'packages/temp',
+            'public',
+            1920,
+            1920,
+            85
+        );
+
         $temporaryImages = session(self::TemporarySessionKey, []);
 
         $temporaryImages[$id] = [
             'name' => $file->getClientOriginalName(),
-            'path' => $path,
-            'url' => Storage::url($path),
+            'path' => $compressedPath,
+            'url' => Storage::url($compressedPath),
         ];
 
         session([self::TemporarySessionKey => $temporaryImages]);

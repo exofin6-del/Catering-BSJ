@@ -25,7 +25,7 @@ class StoreOrderPaymentRequest extends FormRequest
             'amount' => ['required', 'numeric', 'gt:0'],
             'method' => ['required', Rule::in(['transfer', 'cash'])],
             'paid_at' => ['required', 'date'],
-            'proof_image' => ['nullable', File::image()->max('2mb')],
+            'proof_image' => ['nullable', File::image()],
             'notes' => ['nullable', 'string'],
         ];
     }

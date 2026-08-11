@@ -3,16 +3,29 @@
 namespace App\Actions\Settings;
 
 use App\Models\BusinessSetting;
+use App\Services\ImageCompressionService;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 class BusinessHeroImageAction
 {
+    public function __construct(private ImageCompressionService $compressor)
+    {
+    }
+
     public function store(BusinessSetting $setting, UploadedFile $file, int $index): string
     {
-        $path = $file->store('business/hero', 'public');
+        // Compress image before storing
+        $compressedPath = $this->compressor->compressAndStore(
+            $file,
+            'business/hero',
+            'public',
+            1920,
+            1920,
+            85
+        );
 
-        return '/storage/'.$path;
+        return '/storage/'.$compressedPath;
     }
 
     public function delete(BusinessSetting $setting, int $index): void

@@ -43,7 +43,7 @@ class AcceptOrderRequest extends FormRequest
                 'nullable',
                 'date',
             ],
-            'proof_image' => ['nullable', File::image()->max('2mb')],
+            'proof_image' => ['nullable', File::image()],
         ];
     }
 

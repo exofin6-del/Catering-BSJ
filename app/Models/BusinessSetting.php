@@ -12,6 +12,7 @@ class BusinessSetting extends Model
      */
     protected $fillable = [
         'business_name',
+        'logo',
         'description',
         'whatsapp_number',
         'business_lat',
