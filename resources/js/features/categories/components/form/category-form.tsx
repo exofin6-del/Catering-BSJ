@@ -1,7 +1,9 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import type { Errors } from '@inertiajs/core';
 import { router } from '@inertiajs/react';
 import { useMemo, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
+import { toast } from 'sonner';
 
 import {
     FormWizardFooter,
@@ -56,6 +58,26 @@ export function CategoryForm({
 
     function submit(values: CategoryFormValues) {
         form.clearErrors();
+        const toastMessages = categoryFormToastMessages(isEditing);
+        let savingToastId: number | string | null = null;
+        const showSavingErrorToast = (
+            message: string,
+            description?: string,
+        ): void => {
+            toast.error(message, {
+                description,
+                id: savingToastId ?? undefined,
+            });
+            savingToastId = null;
+        };
+        const dismissSavingToast = (): void => {
+            if (savingToastId === null) {
+                return;
+            }
+
+            toast.dismiss(savingToastId);
+            savingToastId = null;
+        };
 
         const route =
             isEditing && category
@@ -69,16 +91,36 @@ export function CategoryForm({
             data: payload,
             invalidateCacheTags: categoryIndexCacheTag,
             method: route.method,
-            onError: (errors) =>
-                applyCategoryFormServerErrors(errors, form.setError),
-            onSuccess: () => {
-                removePersistentState(formStorageKey);
+            onError: (errors) => {
+                applyCategoryFormServerErrors(errors, form.setError);
+                showSavingErrorToast(
+                    toastMessages.error,
+                    firstCategoryErrorMessage(errors),
+                );
             },
-            onFinish: () => setProcessing(false),
+            onFinish: () => {
+                setProcessing(false);
+            },
+            onHttpException: () => {
+                showSavingErrorToast(toastMessages.error);
+            },
+            onNetworkError: () => {
+                showSavingErrorToast(
+                    'Koneksi bermasalah. Perubahan belum tersimpan.',
+                );
+            },
             onStart: () => {
                 flushCategoryIndexTableCache();
                 router.flushByCacheTags(categoryIndexCacheTag);
                 setProcessing(true);
+                savingToastId = toast.loading(toastMessages.loading, {
+                    description: 'Mohon tunggu sebentar.',
+                    duration: Infinity,
+                });
+            },
+            onSuccess: () => {
+                dismissSavingToast();
+                removePersistentState(formStorageKey);
             },
             preserveScroll: true,
         });
@@ -115,5 +157,29 @@ export function CategoryForm({
                 />
             </form>
         </Form>
+    );
+}
+
+function categoryFormToastMessages(isEditing: boolean): {
+    error: string;
+    loading: string;
+} {
+    if (isEditing) {
+        return {
+            error: 'Gagal menyimpan perubahan. Periksa kembali data kategori.',
+            loading: 'Menyimpan perubahan',
+        };
+    }
+
+    return {
+        error: 'Gagal menyimpan kategori. Periksa kembali data kategori.',
+        loading: 'Menyimpan kategori',
+    };
+}
+
+function firstCategoryErrorMessage(errors: Errors): string | undefined {
+    return Object.values(errors).find(
+        (message): message is string =>
+            typeof message === 'string' && message.trim() !== '',
     );
 }

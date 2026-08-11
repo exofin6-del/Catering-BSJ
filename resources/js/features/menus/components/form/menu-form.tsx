@@ -3,6 +3,7 @@ import type { Errors } from '@inertiajs/core';
 import { router } from '@inertiajs/react';
 import { useMemo, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
+import { toast } from 'sonner';
 
 import {
     FormWizardFooter,
@@ -145,6 +146,27 @@ export function MenuForm({
             return;
         }
 
+        const toastMessages = menuFormToastMessages(isEditing);
+        let savingToastId: number | string | null = null;
+        const showSavingErrorToast = (
+            message: string,
+            description?: string,
+        ): void => {
+            toast.error(message, {
+                description,
+                id: savingToastId ?? undefined,
+            });
+            savingToastId = null;
+        };
+        const dismissSavingToast = (): void => {
+            if (savingToastId === null) {
+                return;
+            }
+
+            toast.dismiss(savingToastId);
+            savingToastId = null;
+        };
+
         const payload = buildMenuFormPayload(values, images, removedImageIds);
         const route =
             isEditing && item?.id !== undefined
@@ -165,15 +187,34 @@ export function MenuForm({
                 applyMenuFormServerErrors(errors, form.setError);
                 applyImageServerError(errors, setImageError);
                 moveToFirstErrorStep(errors);
+                showSavingErrorToast(
+                    toastMessages.error,
+                    firstMenuErrorMessage(errors),
+                );
             },
-            onSuccess: () => {
-                removePersistentState(formStorageKey);
+            onFinish: () => {
+                setProcessing(false);
             },
-            onFinish: () => setProcessing(false),
+            onHttpException: () => {
+                showSavingErrorToast(toastMessages.error);
+            },
+            onNetworkError: () => {
+                showSavingErrorToast(
+                    'Koneksi bermasalah. Perubahan belum tersimpan.',
+                );
+            },
             onStart: () => {
                 flushMenuIndexTableCache();
                 router.flushByCacheTags(menuIndexCacheTag);
                 setProcessing(true);
+                savingToastId = toast.loading(toastMessages.loading, {
+                    description: 'Mohon tunggu sebentar.',
+                    duration: Infinity,
+                });
+            },
+            onSuccess: () => {
+                dismissSavingToast();
+                removePersistentState(formStorageKey);
             },
             preserveScroll: true,
         });
@@ -185,6 +226,30 @@ export function MenuForm({
         if (firstErrorStepIndex >= 0) {
             setActiveStepIndex(firstErrorStepIndex);
         }
+    }
+
+    function firstMenuErrorMessage(errors: Errors): string | undefined {
+        return Object.values(errors).find(
+            (message): message is string =>
+                typeof message === 'string' && message.trim() !== '',
+        );
+    }
+
+    function menuFormToastMessages(isEditing: boolean): {
+        error: string;
+        loading: string;
+    } {
+        if (isEditing) {
+            return {
+                error: 'Gagal menyimpan perubahan. Periksa kembali data menu.',
+                loading: 'Menyimpan perubahan',
+            };
+        }
+
+        return {
+            error: 'Gagal menyimpan menu. Periksa kembali data menu.',
+            loading: 'Menyimpan menu',
+        };
     }
 
     return (

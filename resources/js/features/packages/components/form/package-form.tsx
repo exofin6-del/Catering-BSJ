@@ -3,6 +3,7 @@ import type { Errors } from '@inertiajs/core';
 import { router } from '@inertiajs/react';
 import { useMemo, useState } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
+import { toast } from 'sonner';
 
 import {
     FormWizardFooter,
@@ -219,6 +220,27 @@ export function PackageForm({
             removedImageIds,
         );
 
+        const toastMessages = packageFormToastMessages(isEditing);
+        let savingToastId: number | string | null = null;
+        const showSavingErrorToast = (
+            message: string,
+            description?: string,
+        ): void => {
+            toast.error(message, {
+                description,
+                id: savingToastId ?? undefined,
+            });
+            savingToastId = null;
+        };
+        const dismissSavingToast = (): void => {
+            if (savingToastId === null) {
+                return;
+            }
+
+            toast.dismiss(savingToastId);
+            savingToastId = null;
+        };
+
         router.visit(route.url, {
             data: payload,
             invalidateCacheTags: packageIndexCacheTag,
@@ -228,17 +250,36 @@ export function PackageForm({
                 applyPackageImageServerError(errors, setImageError);
                 setComponentError(resolvePackageComponentServerError(errors));
                 moveToFirstErrorStep(errors);
+                showSavingErrorToast(
+                    toastMessages.error,
+                    firstPackageErrorMessage(errors),
+                );
             },
-            onSuccess: () => {
-                removePersistentState(formStorageKey);
-                removePersistentState(`${formStorageKey}.step`);
-                clearComponents();
+            onFinish: () => {
+                setProcessing(false);
             },
-            onFinish: () => setProcessing(false),
+            onHttpException: () => {
+                showSavingErrorToast(toastMessages.error);
+            },
+            onNetworkError: () => {
+                showSavingErrorToast(
+                    'Koneksi bermasalah. Perubahan belum tersimpan.',
+                );
+            },
             onStart: () => {
                 flushPackageIndexTableCache();
                 router.flushByCacheTags(packageIndexCacheTag);
                 setProcessing(true);
+                savingToastId = toast.loading(toastMessages.loading, {
+                    description: 'Mohon tunggu sebentar.',
+                    duration: Infinity,
+                });
+            },
+            onSuccess: () => {
+                dismissSavingToast();
+                removePersistentState(formStorageKey);
+                removePersistentState(`${formStorageKey}.step`);
+                clearComponents();
             },
             preserveScroll: true,
         });
@@ -259,6 +300,30 @@ export function PackageForm({
         setComponentError(errorMessage);
 
         return errorMessage === null;
+    }
+
+    function firstPackageErrorMessage(errors: Errors): string | undefined {
+        return Object.values(errors).find(
+            (message): message is string =>
+                typeof message === 'string' && message.trim() !== '',
+        );
+    }
+
+    function packageFormToastMessages(isEditing: boolean): {
+        error: string;
+        loading: string;
+    } {
+        if (isEditing) {
+            return {
+                error: 'Gagal menyimpan perubahan. Periksa kembali data paket.',
+                loading: 'Menyimpan perubahan',
+            };
+        }
+
+        return {
+            error: 'Gagal menyimpan paket. Periksa kembali data paket.',
+            loading: 'Menyimpan paket',
+        };
     }
 
     return (
