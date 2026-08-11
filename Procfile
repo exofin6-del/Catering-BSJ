@@ -1,2 +1,2 @@
-web: php artisan migrate --force && php artisan storage:link && php artisan config:cache && php artisan route:cache && php artisan view:cache && php artisan serve --host=0.0.0.0 --port=$PORT
+web: mkdir -p storage/framework/{sessions,views,cache} && php artisan migrate --force && php artisan storage:link && php artisan serve --host=0.0.0.0 --port=$PORT
 worker: php artisan queue:work --tries=3 --timeout=90
