@@ -478,8 +478,9 @@ export function LocationCommand({
     }, []);
 
     const handleUseCurrentLocation = useCallback(() => {
-        // Pre-query/cache permission state
-        void readGeolocationPermission();
+        // Reset permission cache untuk memaksa prompt izin muncul di mobile
+        // Browser akan menampilkan dialog izin saat getCurrentPosition dipanggil
+        cachedPermissionState = null;
 
         // Pakai cache kalau masih valid — supaya tidak perlu tunggu GPS
         // dari nol lagi kalau posisi belum berubah sejak terakhir di-fetch.
@@ -587,13 +588,24 @@ export function LocationCommand({
                     );
                 },
 
-                () => {
-                    setGpsCoord(null);
-                    setGpsErr(
-                        'Gagal mengambil lokasi saat ini. Pastikan izin lokasi aktif.',
-                    );
-                    setGpsStatus('unavailable');
-                    setGpsPriming(false);
+                (err) => {
+                    // Tampilkan error yang lebih jelas untuk permission denied
+                    if (err.code === GeolocationPositionError.PERMISSION_DENIED) {
+                        setGpsCoord(null);
+                        setGpsErr(
+                            'Izin lokasi ditolak. Izinkan akses lokasi di browser untuk menggunakan fitur ini.',
+                        );
+                        setGpsRecovery('permission');
+                        setGpsStatus('unavailable');
+                        setGpsPriming(false);
+                    } else {
+                        setGpsCoord(null);
+                        setGpsErr(
+                            'Gagal mengambil lokasi saat ini. Pastikan izin lokasi aktif.',
+                        );
+                        setGpsStatus('unavailable');
+                        setGpsPriming(false);
+                    }
                 },
                 { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 },
             );
@@ -1031,7 +1043,7 @@ export function LocationCommand({
                 onOpenChange={handleOpen}
                 swipeDirection="right"
             >
-                <DrawerContent className="m-0 h-[100svh] max-h-none w-full max-w-none rounded-none border-0 bg-card text-card-foreground shadow-xl [--drawer-inset:0px] md:m-2 md:h-[calc(100dvh-1rem)] md:max-h-[calc(100dvh-1rem)] md:w-[28rem] md:max-w-[calc(100vw-1rem)] md:rounded-3xl md:border md:[--drawer-inset:--spacing(2)]">
+                <DrawerContent className="h-[100svh] w-full max-w-none rounded-none border-0 bg-card text-card-foreground shadow-xl md:h-[calc(100dvh-2rem)] md:w-[28rem] md:max-w-[calc(100vw-2rem)] md:rounded-3xl md:border md:shadow-2xl">
                     <Command
                         shouldFilter={false}
                         className="flex h-full min-h-0 w-full flex-col overflow-hidden rounded-none border-none bg-transparent p-0 text-slate-700 shadow-2xl outline-none sm:rounded-xl dark:text-slate-300"

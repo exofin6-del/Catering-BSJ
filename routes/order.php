@@ -4,13 +4,16 @@ use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\Order\OrderPaymentController;
 use Illuminate\Support\Facades\Route;
 
+// Public routes (no auth required)
+Route::get('order/calendar-capacity', [OrderController::class, 'calendarCapacity'])->name('order.calendar-capacity');
+
+// Protected routes (auth required)
 Route::middleware(['auth', 'verified'])->group(function (): void {
     Route::controller(OrderController::class)
         ->prefix('order')
         ->name('order.')
         ->group(function (): void {
             Route::get('catalog', 'catalog')->name('catalog');
-            Route::get('calendar-capacity', 'calendarCapacity')->name('calendar-capacity');
             Route::get('export', 'export')->name('export');
             Route::get('{order}/accept', 'acceptPage')->name('acceptPage');
             Route::post('{order}/accept', 'accept')->name('accept');

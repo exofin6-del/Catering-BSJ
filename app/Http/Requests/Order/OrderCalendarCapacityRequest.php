@@ -12,7 +12,8 @@ class OrderCalendarCapacityRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user() !== null;
+        // Allow public access for customer storefront checkout
+        return true;
     }
 
     /**
