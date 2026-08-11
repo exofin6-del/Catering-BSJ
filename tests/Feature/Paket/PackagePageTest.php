@@ -12,6 +12,8 @@ use App\Models\PackageImage;
 use App\Models\PackageItem;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Support\SessionKey;
 use Inertia\Testing\AssertableInertia as Assert;
 use Tests\TestCase;
@@ -232,6 +234,29 @@ class PackagePageTest extends TestCase
                 && ($flash['toast']['message'] ?? null) === 'Package updated.');
 
         $this->assertSame('Paket Baru', $package->refresh()->name);
+    }
+
+    public function test_package_temporary_image_upload_accepts_images_larger_than_two_megabytes(): void
+    {
+        Storage::fake('public');
+
+        $user = User::factory()->create();
+
+        $response = $this
+            ->actingAs($user)
+            ->postJson(route('paket.images.temp.store'), [
+                'image' => UploadedFile::fake()
+                    ->image('large-package.jpg', 2400, 1800)
+                    ->size(4096),
+            ]);
+
+        $response
+            ->assertOk()
+            ->assertJsonStructure(['id', 'name', 'url']);
+
+        $path = str_replace('/storage/', '', (string) $response->json('url'));
+
+        Storage::disk('public')->assertExists($path);
     }
 
     public function test_package_creation_saves_the_icon_for_a_new_category(): void

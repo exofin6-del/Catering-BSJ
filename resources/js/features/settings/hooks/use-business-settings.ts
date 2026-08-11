@@ -1,6 +1,7 @@
 import { router, useForm } from '@inertiajs/react';
 import { useRef, useState } from 'react';
 import type { FormEvent } from 'react';
+import { toast } from 'sonner';
 
 import type {
     AreaFormData,
@@ -9,6 +10,7 @@ import type {
     InfoFormData,
     ThemeFormData,
 } from '@/features/settings/types/business-setting';
+import { compressImageFile } from '@/lib/image-compression';
 import business from '@/routes/business';
 
 export function useBusinessSettings(businessSetting: BusinessSetting) {
@@ -57,27 +59,16 @@ export function useBusinessSettings(businessSetting: BusinessSetting) {
     function submitInfo(event?: FormEvent<HTMLFormElement>): void {
         event?.preventDefault();
 
-        const data = new FormData();
-        data.append('business_name', infoForm.data.business_name);
-        data.append('description', infoForm.data.description);
-        data.append('whatsapp_number', infoForm.data.whatsapp_number);
-        data.append('is_open', infoForm.data.is_open ? '1' : '0');
-        data.append('_method', 'patch');
+        let shouldDismissToast = true;
+        const savingToastId = toast.loading('Menyimpan pengaturan bisnis...');
 
-        // Hero images
-        for (let i = 0; i < 3; i++) {
-            if (heroImageFileRefs.current[i]) {
-                data.append(`hero_image_${i}`, heroImageFileRefs.current[i]!);
-            }
+        infoForm.transform((data) => ({
+            ...data,
+            _method: 'patch',
+            ...heroImagePayload(),
+        }));
 
-            if (heroImageRemoveFlags.current[i]) {
-                data.append(`remove_hero_image_${i}`, '1');
-            }
-        }
-
-        router.visit(business.update.url(), {
-            method: 'post',
-            data: data as any,
+        infoForm.post(business.update.url(), {
             forceFormData: true,
             onSuccess: (page) => {
                 const updatedSetting = page.props
@@ -101,21 +92,15 @@ export function useBusinessSettings(businessSetting: BusinessSetting) {
                 setHeroImagesChanged(false);
             },
             onError: (errors) => {
-                if (errors.whatsapp_number || errors.business_name) {
-                    infoForm.setError(
-                        Object.keys(errors) as any,
-                    );
-                }
-
-                // Handle hero image errors
-                for (let i = 0; i < 3; i++) {
-                    const heroKey = `hero_image_${i}`;
-
-                    if (errors[heroKey]) {
-                        const heroErrors = [...heroImageErrors];
-                        heroErrors[i] = errors[heroKey];
-                        setHeroImageErrors(heroErrors);
-                    }
+                shouldDismissToast = false;
+                syncHeroImageErrors(errors);
+                toast.error('Gagal menyimpan pengaturan bisnis.', {
+                    id: savingToastId,
+                });
+            },
+            onFinish: () => {
+                if (shouldDismissToast) {
+                    toast.dismiss(savingToastId);
                 }
             },
             preserveScroll: true,
@@ -123,7 +108,8 @@ export function useBusinessSettings(businessSetting: BusinessSetting) {
     }
 
     function submitHeroImages(): void {
-        setHeroImagesSaving(true);
+        let shouldDismissToast = true;
+        const savingToastId = toast.loading('Menyimpan gambar beranda...');
 
         const data = new FormData();
         data.append('_method', 'patch');
@@ -140,6 +126,9 @@ export function useBusinessSettings(businessSetting: BusinessSetting) {
 
         router.post(business.update.url(), data, {
             forceFormData: true,
+            onStart: () => {
+                setHeroImagesSaving(true);
+            },
             onSuccess: (page) => {
                 const updatedSetting = page.props
                     .businessSetting as BusinessSetting;
@@ -149,26 +138,26 @@ export function useBusinessSettings(businessSetting: BusinessSetting) {
                 setHeroImagePreviews(updatedSetting.hero_images ?? []);
                 setHeroImageErrors(['', '', '']);
                 setHeroImagesChanged(false);
-                setHeroImagesSaving(false);
             },
             onError: (errors) => {
-                for (let i = 0; i < 3; i++) {
-                    const heroKey = `hero_image_${i}`;
-
-                    if (errors[heroKey]) {
-                        const heroErrors = [...heroImageErrors];
-                        heroErrors[i] = errors[heroKey];
-                        setHeroImageErrors(heroErrors);
-                    }
-                }
-
+                shouldDismissToast = false;
+                syncHeroImageErrors(errors);
+                toast.error('Gagal menyimpan gambar beranda.', {
+                    id: savingToastId,
+                });
+            },
+            onFinish: () => {
                 setHeroImagesSaving(false);
+
+                if (shouldDismissToast) {
+                    toast.dismiss(savingToastId);
+                }
             },
             preserveScroll: true,
         });
     }
 
-    function handleHeroImageChange(index: number, file: File | null) {
+    async function handleHeroImageChange(index: number, file: File | null) {
         heroImageRemoveFlags.current[index] = false;
 
         if (file) {
@@ -180,19 +169,12 @@ export function useBusinessSettings(businessSetting: BusinessSetting) {
                 return;
             }
 
-            if (file.size > 5 * 1024 * 1024) {
-                const errors = [...heroImageErrors];
-                errors[index] = 'Ukuran gambar maksimal 5MB.';
-                setHeroImageErrors(errors);
-
-                return;
-            }
-
             const errors = [...heroImageErrors];
             errors[index] = '';
             setHeroImageErrors(errors);
 
-            heroImageFileRefs.current[index] = file;
+            const compressedFile = await compressImageFile(file);
+            heroImageFileRefs.current[index] = compressedFile;
 
             const reader = new FileReader();
             reader.onloadend = () => {
@@ -200,7 +182,7 @@ export function useBusinessSettings(businessSetting: BusinessSetting) {
                 previews[index] = reader.result as string;
                 setHeroImagePreviews(previews);
             };
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(compressedFile);
         } else {
             heroImageFileRefs.current[index] = null;
         }
@@ -235,16 +217,37 @@ export function useBusinessSettings(businessSetting: BusinessSetting) {
     function submitTheme(event: FormEvent<HTMLFormElement>): void {
         event.preventDefault();
 
-        const data = new FormData();
-        data.append('customer_theme', themeForm.data.customer_theme);
-        data.append('_method', 'patch');
+        let shouldDismissToast = true;
+        const savingToastId = toast.loading('Menyimpan tema customer...');
 
-        router.visit(business.update.url(), {
-            method: 'post',
-            data: data as any,
+        themeForm.transform((data) => ({
+            ...data,
+            _method: 'patch',
+        }));
+
+        themeForm.post(business.update.url(), {
             forceFormData: true,
-            onSuccess: () => {
-                themeForm.setDefaults(themeForm.data as any);
+            onSuccess: (page) => {
+                const updatedSetting = page.props
+                    .businessSetting as BusinessSetting;
+                const updatedTheme = {
+                    customer_theme: updatedSetting.customer_theme,
+                };
+
+                themeForm.setData(updatedTheme);
+                themeForm.setDefaults(updatedTheme);
+                themeForm.clearErrors();
+            },
+            onError: () => {
+                shouldDismissToast = false;
+                toast.error('Gagal menyimpan tema customer.', {
+                    id: savingToastId,
+                });
+            },
+            onFinish: () => {
+                if (shouldDismissToast) {
+                    toast.dismiss(savingToastId);
+                }
             },
             preserveScroll: true,
         });
@@ -253,27 +256,40 @@ export function useBusinessSettings(businessSetting: BusinessSetting) {
     function submitHours(event: FormEvent<HTMLFormElement>): void {
         event.preventDefault();
 
-        const data = new FormData();
-        data.append(
-            'operational_start_time',
-            hoursForm.data.operational_start_time,
-        );
-        data.append(
-            'operational_end_time',
-            hoursForm.data.operational_end_time,
-        );
-        data.append(
-            'max_orders_per_day',
-            String(hoursForm.data.max_orders_per_day),
-        );
-        data.append('_method', 'patch');
+        let shouldDismissToast = true;
+        const savingToastId = toast.loading('Menyimpan jam operasional...');
 
-        router.visit(business.update.url(), {
-            method: 'post',
-            data: data as any,
+        hoursForm.transform((data) => ({
+            ...data,
+            _method: 'patch',
+        }));
+
+        hoursForm.post(business.update.url(), {
             forceFormData: true,
-            onSuccess: () => {
-                hoursForm.setDefaults(hoursForm.data as any);
+            onSuccess: (page) => {
+                const updatedSetting = page.props
+                    .businessSetting as BusinessSetting;
+                const updatedHours = {
+                    max_orders_per_day: updatedSetting.max_orders_per_day,
+                    operational_end_time: updatedSetting.operational_end_time,
+                    operational_start_time:
+                        updatedSetting.operational_start_time,
+                };
+
+                hoursForm.setData(updatedHours);
+                hoursForm.setDefaults(updatedHours);
+                hoursForm.clearErrors();
+            },
+            onError: () => {
+                shouldDismissToast = false;
+                toast.error('Gagal menyimpan jam operasional.', {
+                    id: savingToastId,
+                });
+            },
+            onFinish: () => {
+                if (shouldDismissToast) {
+                    toast.dismiss(savingToastId);
+                }
             },
             preserveScroll: true,
         });
@@ -282,22 +298,71 @@ export function useBusinessSettings(businessSetting: BusinessSetting) {
     function submitArea(event: FormEvent<HTMLFormElement>): void {
         event.preventDefault();
 
-        const data = new FormData();
-        data.append('business_lat', areaForm.data.business_lat);
-        data.append('business_lng', areaForm.data.business_lng);
-        data.append('business_address', areaForm.data.business_address);
-        data.append('max_order_km', String(areaForm.data.max_order_km));
-        data.append('_method', 'patch');
+        let shouldDismissToast = true;
+        const savingToastId = toast.loading('Menyimpan area layanan...');
 
-        router.visit(business.update.url(), {
-            method: 'post',
-            data: data as any,
+        areaForm.transform((data) => ({
+            ...data,
+            _method: 'patch',
+        }));
+
+        areaForm.post(business.update.url(), {
             forceFormData: true,
-            onSuccess: () => {
-                areaForm.setDefaults(areaForm.data as any);
+            onSuccess: (page) => {
+                const updatedSetting = page.props
+                    .businessSetting as BusinessSetting;
+                const updatedArea = {
+                    business_address: updatedSetting.business_address ?? '',
+                    business_lat: updatedSetting.business_lat ?? '',
+                    business_lng: updatedSetting.business_lng ?? '',
+                    max_order_km: Number(updatedSetting.max_order_km),
+                };
+
+                areaForm.setData(updatedArea);
+                areaForm.setDefaults(updatedArea);
+                areaForm.clearErrors();
+            },
+            onError: () => {
+                shouldDismissToast = false;
+                toast.error('Gagal menyimpan area layanan.', {
+                    id: savingToastId,
+                });
+            },
+            onFinish: () => {
+                if (shouldDismissToast) {
+                    toast.dismiss(savingToastId);
+                }
             },
             preserveScroll: true,
         });
+    }
+
+    function heroImagePayload(): Record<string, File | string> {
+        const payload: Record<string, File | string> = {};
+
+        for (let i = 0; i < 3; i++) {
+            const file = heroImageFileRefs.current[i];
+
+            if (file) {
+                payload[`hero_image_${i}`] = file;
+            }
+
+            if (heroImageRemoveFlags.current[i]) {
+                payload[`remove_hero_image_${i}`] = '1';
+            }
+        }
+
+        return payload;
+    }
+
+    function syncHeroImageErrors(errors: Record<string, string>): void {
+        const nextErrors = ['', '', ''];
+
+        for (let i = 0; i < 3; i++) {
+            nextErrors[i] = errors[`hero_image_${i}`] ?? '';
+        }
+
+        setHeroImageErrors(nextErrors);
     }
 
     return {

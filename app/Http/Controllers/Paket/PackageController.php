@@ -60,7 +60,7 @@ class PackageController extends Controller
     public function temporaryImage(Request $request): JsonResponse
     {
         $request->validate([
-            'image' => ['required', File::image()->max('2mb')],
+            'image' => ['required', File::image()],
         ]);
 
         $image = $request->file('image');

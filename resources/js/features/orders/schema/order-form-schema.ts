@@ -5,7 +5,6 @@ import type { OrderFormData } from '../types/order-types';
 const orderItemTypeValues = ['menu_item', 'package'] as const;
 const orderPaymentMethodValues = ['', 'transfer', 'cash'] as const;
 const orderPaymentTypeValues = ['dp', 'full'] as const;
-const maxPaymentProofSize = 2 * 1024 * 1024;
 const orderStatusValues = [
     'pending_confirmation',
     'confirmed',
@@ -66,10 +65,6 @@ const paymentProofSchema = z
     .refine(
         (value) => value === null || value.type.startsWith('image/'),
         'Bukti pembayaran harus berupa gambar.',
-    )
-    .refine(
-        (value) => value === null || value.size <= maxPaymentProofSize,
-        'Ukuran bukti pembayaran maksimal 2 MB.',
     );
 
 const orderItemSchema = z
@@ -159,10 +154,7 @@ export const orderFormSchema = orderFormBase.superRefine((values, context) => {
 // Customer schema: all fields are required except notes (catatan)
 export const customerOrderFormSchema = orderFormBase
     .extend({
-        address_name: z
-            .string()
-            .trim()
-            .min(1, 'Nama alamat wajib diisi.'),
+        address_name: z.string().trim().min(1, 'Nama alamat wajib diisi.'),
         event_address: z.string().trim().min(1, 'Lokasi acara wajib diisi.'),
         event_time: z
             .string()

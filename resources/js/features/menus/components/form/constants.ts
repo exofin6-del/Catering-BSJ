@@ -5,7 +5,6 @@ import type { MenuFormValues } from '../../schema/menu-form-schema';
 import type { MenuFormStep } from './types';
 
 export const FORM_ID = 'menu-form';
-export const MAX_IMAGE_SIZE = 2 * 1024 * 1024;
 export const MAX_MENU_IMAGES = 5;
 export const NO_CATEGORY_VALUE = 'none';
 

@@ -40,7 +40,7 @@ export function ImageFileUpload({
     error,
     images,
     maxFiles = 5,
-    maxSize = 2 * 1024 * 1024,
+    maxSize,
     previewAlt = 'Preview gambar menu',
     onFilesChange,
     onRemove,
@@ -112,7 +112,7 @@ export function ImageFileUpload({
                     return 'File harus berupa gambar.';
                 }
 
-                if (file.size > maxSize) {
+                if (maxSize && file.size > maxSize) {
                     return `Ukuran gambar maksimal ${formatMegabytes(maxSize)}.`;
                 }
 
@@ -128,8 +128,9 @@ export function ImageFileUpload({
             >
                 <div className="flex flex-wrap items-center justify-between gap-2">
                     <p className="text-sm text-muted-foreground">
-                        Maksimal {maxFiles} gambar, {formatMegabytes(maxSize)}{' '}
-                        per gambar.
+                        {maxSize
+                            ? `Maksimal ${maxFiles} gambar, ${formatMegabytes(maxSize)} per gambar.`
+                            : `Maksimal ${maxFiles} gambar. File besar akan dikompres otomatis.`}
                     </p>
                     <Badge variant="outline">
                         {images.length}/{maxFiles}

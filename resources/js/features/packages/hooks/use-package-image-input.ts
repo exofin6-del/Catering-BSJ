@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { compressImageFiles } from '@/lib/image-compression';
 import paket from '@/routes/paket';
 import type { MenuPackage } from '@/types';
 import type {
@@ -13,7 +14,6 @@ import {
 } from '../utils/package-form-values';
 
 const MaxPackageImages = 5;
-const MaxPackageImageSize = 2 * 1024 * 1024;
 
 export function usePackageImageInput(item?: MenuPackage | null) {
     const [imageError, setImageError] = useState<string | null>(null);
@@ -63,7 +63,9 @@ export function usePackageImageInput(item?: MenuPackage | null) {
             return;
         }
 
-        const files = nextFiles.slice(0, remainingSlots);
+        const files = await compressImageFiles(
+            nextFiles.slice(0, remainingSlots),
+        );
         const validationError = validateFiles(files);
 
         if (validationError) {
@@ -240,10 +242,6 @@ function validateFiles(files: File[]): string | null {
     for (const file of files) {
         if (!file.type.startsWith('image/')) {
             return 'File harus berupa gambar.';
-        }
-
-        if (file.size > MaxPackageImageSize) {
-            return 'Ukuran gambar maksimal 2 MB.';
         }
     }
 

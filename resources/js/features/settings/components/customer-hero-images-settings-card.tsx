@@ -127,7 +127,7 @@ export function CustomerHeroImagesSettingsCard({
                                                 <span className="text-[11px] text-muted-foreground">
                                                     PNG · JPG · WEBP
                                                     <br />
-                                                    maks. 5MB
+                                                    auto kompres
                                                 </span>
                                             </div>
                                         )}

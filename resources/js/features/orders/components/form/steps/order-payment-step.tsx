@@ -44,6 +44,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
+import { compressImageFile } from '@/lib/image-compression';
 import type { Order, OrderMenuItem, OrderPackage } from '@/types';
 
 import type { OrderFormData } from '../../../types/order-types';
@@ -65,8 +66,6 @@ import {
     orderPaymentAmountFormValue,
 } from '../../../utils/order-payment-logic';
 import { OrderFormSummaryAside } from '../order-form-summary-aside';
-
-const MAX_PAYMENT_PROOF_SIZE = 2 * 1024 * 1024;
 
 export type OrderPaymentMetric = {
     emphasized?: boolean;
@@ -591,9 +590,15 @@ export function OrderPaymentProofUpload({
     disabled: boolean;
     invalid?: boolean;
     onRejectMessage: (message: string) => void;
-    onValueChange: (file: File | null) => void;
+    onValueChange: (file: File | null) => Promise<void> | void;
     value: File | null;
 }) {
+    async function handleValueChange(files: File[]): Promise<void> {
+        const file = files[0] ?? null;
+
+        onValueChange(file ? await compressImageFile(file) : null);
+    }
+
     return (
         <div className="grid gap-2">
             <Label>Bukti pembayaran</Label>
@@ -604,7 +609,6 @@ export function OrderPaymentProofUpload({
                 invalid={invalid}
                 label="Bukti pembayaran"
                 maxFiles={1}
-                maxSize={MAX_PAYMENT_PROOF_SIZE}
                 onFileReject={(_file, message) => {
                     onRejectMessage(
                         message.startsWith('Maximum')
@@ -617,14 +621,10 @@ export function OrderPaymentProofUpload({
                         return 'File harus berupa gambar.';
                     }
 
-                    if (file.size > MAX_PAYMENT_PROOF_SIZE) {
-                        return 'Ukuran gambar maksimal 2 MB.';
-                    }
-
                     return null;
                 }}
                 onValueChange={(files) => {
-                    onValueChange(files[0] ?? null);
+                    void handleValueChange(files);
                 }}
             >
                 {value ? (
@@ -656,7 +656,7 @@ export function OrderPaymentProofUpload({
                                 Upload bukti pembayaran
                             </p>
                             <p className="text-xs text-muted-foreground">
-                                Gambar maksimal 2 MB.
+                                File besar akan dikompres otomatis.
                             </p>
                         </div>
                     </FileUploadDropzone>

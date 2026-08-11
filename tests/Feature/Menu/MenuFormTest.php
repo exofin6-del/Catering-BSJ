@@ -130,6 +130,29 @@ class MenuFormTest extends TestCase
         );
     }
 
+    public function test_menu_temporary_image_upload_accepts_images_larger_than_two_megabytes(): void
+    {
+        Storage::fake('public');
+
+        $user = User::factory()->create();
+
+        $response = $this
+            ->actingAs($user)
+            ->postJson(route('menu.images.temp.store'), [
+                'image' => UploadedFile::fake()
+                    ->image('large-menu.jpg', 2400, 1800)
+                    ->size(4096),
+            ]);
+
+        $response
+            ->assertOk()
+            ->assertJsonStructure(['id', 'name', 'url']);
+
+        $path = str_replace('/storage/', '', (string) $response->json('url'));
+
+        Storage::disk('public')->assertExists($path);
+    }
+
     public function test_menu_creation_saves_the_icon_for_a_new_category(): void
     {
         $user = User::factory()->create();

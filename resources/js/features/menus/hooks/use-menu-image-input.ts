@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { compressImageFiles } from '@/lib/image-compression';
 import menu from '@/routes/menu';
 import type { MenuItem } from '@/types';
-import { MAX_IMAGE_SIZE, MAX_MENU_IMAGES } from '../components/form/constants';
+import { MAX_MENU_IMAGES } from '../components/form/constants';
 import type {
     MenuImagePreview,
     TemporaryImageUploadResponse,
@@ -65,7 +66,9 @@ export function useMenuImageInput(item?: MenuItem | null) {
             return;
         }
 
-        const files = nextFiles.slice(0, remainingSlots);
+        const files = await compressImageFiles(
+            nextFiles.slice(0, remainingSlots),
+        );
         const validationError = validateFiles(files);
 
         if (validationError) {
@@ -294,10 +297,6 @@ function validateFiles(files: File[]): string | null {
     for (const file of files) {
         if (!file.type.startsWith('image/')) {
             return 'File harus berupa gambar.';
-        }
-
-        if (file.size > MAX_IMAGE_SIZE) {
-            return 'Ukuran gambar maksimal 2 MB.';
         }
     }
 
