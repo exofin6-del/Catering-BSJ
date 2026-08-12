@@ -180,10 +180,10 @@ export function LocationCommand({
     );
     const [gpsStatus, setGpsStatus] = useState<
         'idle' | 'locating' | 'resolved' | 'unavailable'
-    >(() => (readCachedGpsFix() ? 'resolved' : 'locating'));
+    >(() => (readCachedGpsFix() ? 'resolved' : 'idle'));
     const [gpsErr, setGpsErr] = useState<string | null>(null);
     const [gpsRecovery, setGpsRecovery] = useState<'permission' | null>(null);
-    const [gpsPriming, setGpsPriming] = useState(() => !readCachedGpsFix());
+    const [gpsPriming, setGpsPriming] = useState(false);
 
     const [pinCoord, setPinCoord] = useState<Coordinate | null>(null);
     const [isSearchActive, setIsSearchActive] = useState(false);
@@ -478,35 +478,9 @@ export function LocationCommand({
     }, []);
 
     const handleUseCurrentLocation = useCallback(() => {
-        // Reset permission cache untuk memaksa prompt izin muncul di mobile
-        // Browser akan menampilkan dialog izin saat getCurrentPosition dipanggil
-        cachedPermissionState = null;
-
-        // Pakai cache kalau masih valid — supaya tidak perlu tunggu GPS
-        // dari nol lagi kalau posisi belum berubah sejak terakhir di-fetch.
-        const cached = readCachedGpsFix();
-
-        if (cached) {
-            const [lat, lng] = cached;
-
-            setGpsCoord(cached);
-            setPinCoord(cached);
-            setGpsStatus('resolved');
-            setGpsErr(null);
-            setGpsRecovery(null);
-            setGpsPriming(false);
-
-            setDraftAddress('Memuat alamat...');
-
-            void reverseGeocodeCoordinate(cached).then((addr) => {
-                setDraftAddress(
-                    addr ||
-                        `${formatCoordinate(lat)}, ${formatCoordinate(lng)}`,
-                );
-            });
-
-            return;
-        }
+        // Harus dipanggil langsung dari aksi pengguna. Safari iOS dapat
+        // menolak menampilkan prompt jika geolocation diminta dari effect
+        // atau timer, dan cache tidak boleh melewati permintaan izin ini.
 
         // Invalidasi requestGps yang mungkin masih berjalan di background
         // supaya tidak saling menimpa dengan hasil manual ini.
@@ -590,7 +564,9 @@ export function LocationCommand({
 
                 (err) => {
                     // Tampilkan error yang lebih jelas untuk permission denied
-                    if (err.code === GeolocationPositionError.PERMISSION_DENIED) {
+                    if (
+                        err.code === GeolocationPositionError.PERMISSION_DENIED
+                    ) {
                         setGpsCoord(null);
                         setGpsErr(
                             'Izin lokasi ditolak. Izinkan akses lokasi di browser untuk menggunakan fitur ini.',
@@ -616,29 +592,34 @@ export function LocationCommand({
 
     /* ---- Effects ---- */
 
-    // Minta GPS saat buka
+    // Saat izin telah diberikan, GPS boleh diambil saat drawer dibuka.
+    // Jika izin masih "prompt", tunggu tombol pengguna agar Safari/iOS
+    // menampilkan dialog izin sistem.
     useEffect(() => {
-        if (!open) {
+        if (!open || gpsCoord) {
             return;
         }
 
-        // Cache permission status sembari inisialisasi
-        void readGeolocationPermission();
+        let isActive = true;
+        const requestId = gpsRid.current;
 
-        if (gpsCoord) {
-            return;
-        }
-
-        let a = true;
-        const t = window.setTimeout(() => {
-            if (a) {
-                requestGps(() => a);
+        void readGeolocationPermission().then((permission) => {
+            if (!isActive || gpsRid.current !== requestId) {
+                return;
             }
-        }, 0);
+
+            if (permission === 'granted') {
+                requestGps(() => isActive);
+
+                return;
+            }
+
+            setGpsStatus('idle');
+            setGpsPriming(false);
+        });
 
         return () => {
-            a = false;
-            window.clearTimeout(t);
+            isActive = false;
         };
     }, [gpsCoord, open, requestGps]);
 
@@ -663,8 +644,8 @@ export function LocationCommand({
             // dianggap "priming" lagi — biar saat dibuka lagi langsung
             // tampil tanpa loading state yang tidak perlu.
             if (!gpsCoord) {
-                setGpsPriming(true);
-                setGpsStatus('locating');
+                setGpsPriming(false);
+                setGpsStatus('idle');
             } else {
                 setGpsPriming(false);
             }
@@ -826,8 +807,8 @@ export function LocationCommand({
                 setIsSearchActive(false);
 
                 if (!gpsCoord) {
-                    setGpsPriming(true);
-                    setGpsStatus('locating');
+                    setGpsPriming(false);
+                    setGpsStatus('idle');
                 } else {
                     setGpsPriming(false);
                 }
@@ -1043,7 +1024,7 @@ export function LocationCommand({
                 onOpenChange={handleOpen}
                 swipeDirection="right"
             >
-                <DrawerContent className="h-[100svh] w-full max-w-none rounded-none border-0 bg-card text-card-foreground shadow-xl md:h-[calc(100dvh-2rem)] md:w-[28rem] md:max-w-[calc(100vw-2rem)] md:rounded-3xl md:border md:shadow-2xl">
+                <DrawerContent className="m-0 h-[100dvh] max-h-none w-full max-w-none rounded-none border-0 bg-card text-card-foreground shadow-xl [--drawer-inset:0px] md:m-2 md:h-[calc(100dvh-1rem)] md:max-h-[calc(100dvh-1rem)] md:w-[28rem] md:max-w-[calc(100vw-1rem)] md:rounded-3xl md:border md:shadow-2xl md:[--drawer-inset:--spacing(2)]">
                     <Command
                         shouldFilter={false}
                         className="flex h-full min-h-0 w-full flex-col overflow-hidden rounded-none border-none bg-transparent p-0 text-slate-700 shadow-2xl outline-none sm:rounded-xl dark:text-slate-300"
@@ -1107,7 +1088,26 @@ export function LocationCommand({
                                     {showSkeleton ? (
                                         <div className="relative h-56 min-h-48 overflow-hidden bg-muted sm:h-64">
                                             <Skeleton className="h-full w-full rounded-none" />
-                                            {gpsStatus === 'unavailable' ? (
+                                            {gpsStatus === 'idle' ? (
+                                                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-4 text-center">
+                                                    <MapPin className="size-5 text-muted-foreground" />
+                                                    <span className="max-w-60 text-sm text-muted-foreground">
+                                                        Izinkan lokasi untuk
+                                                        menampilkan lokasi Anda
+                                                        di peta.
+                                                    </span>
+                                                    <Button
+                                                        type="button"
+                                                        size="sm"
+                                                        className="h-9 rounded-lg px-3 text-xs"
+                                                        onClick={
+                                                            handleUseCurrentLocation
+                                                        }
+                                                    >
+                                                        Gunakan lokasi saat ini
+                                                    </Button>
+                                                </div>
+                                            ) : gpsStatus === 'unavailable' ? (
                                                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-4 text-center">
                                                     <MapPin className="size-5 text-muted-foreground" />
                                                     <span className="text-sm text-muted-foreground">
@@ -1274,8 +1274,8 @@ export function LocationCommand({
                                                                     variant="secondary"
                                                                     size="sm"
                                                                     className="h-8 rounded-lg px-3 text-xs"
-                                                                    onClick={() =>
-                                                                        requestGps()
+                                                                    onClick={
+                                                                        handleUseCurrentLocation
                                                                     }
                                                                 >
                                                                     <RotateCcw className="mr-1 size-3" />

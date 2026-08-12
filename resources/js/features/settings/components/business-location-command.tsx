@@ -155,10 +155,10 @@ export function BusinessLocationCommand({
     );
     const [gpsStatus, setGpsStatus] = useState<
         'idle' | 'locating' | 'resolved' | 'unavailable'
-    >(() => (readCachedGpsFix() ? 'resolved' : 'locating'));
+    >(() => (readCachedGpsFix() ? 'resolved' : 'idle'));
     const [gpsErr, setGpsErr] = useState<string | null>(null);
     const [gpsRecovery, setGpsRecovery] = useState<'permission' | null>(null);
-    const [gpsPriming, setGpsPriming] = useState(() => !readCachedGpsFix());
+    const [gpsPriming, setGpsPriming] = useState(false);
 
     const [pinCoord, setPinCoord] = useState<Coordinate | null>(null);
     const [isSearchActive, setIsSearchActive] = useState(false);
@@ -433,36 +433,8 @@ export function BusinessLocationCommand({
 
     const handleUseCurrentLocation = useCallback(() => {
         // Ini dipicu tombol "gunakan lokasi saat ini" — aksi eksplisit
-        // user, jadi BOLEH selalu menimpa pin (beda dari auto-locate saat
-        // drawer dibuka).
-
-        // Pre-query/cache permission state
-        void readGeolocationPermission();
-
-        // Pakai cache kalau masih valid
-        const cached = readCachedGpsFix();
-
-        if (cached) {
-            const [lat, lng] = cached;
-
-            setGpsCoord(cached);
-            setPinCoord(cached);
-            setGpsStatus('resolved');
-            setGpsErr(null);
-            setGpsRecovery(null);
-            setGpsPriming(false);
-
-            setDraftAddress('Memuat alamat...');
-
-            void reverseGeocodeCoordinate(cached).then((addr) => {
-                setDraftAddress(
-                    addr ||
-                        `${formatCoordinate(lat)}, ${formatCoordinate(lng)}`,
-                );
-            });
-
-            return;
-        }
+        // user, sehingga browser mobile dapat menampilkan prompt izin.
+        // Cache tidak dipakai agar permintaan izin tidak terlewat.
 
         // Invalidasi requestGps yang mungkin masih berjalan di background
         gpsRid.current += 1;
@@ -558,29 +530,34 @@ export function BusinessLocationCommand({
 
     /* ---- Effects ---- */
 
-    // Minta GPS saat buka
+    // Minta GPS otomatis hanya setelah izin sebelumnya sudah diberikan.
+    // Untuk izin baru, tunggu klik pengguna agar Safari/iOS memunculkan
+    // dialog izin sistem.
     useEffect(() => {
-        if (!open) {
+        if (!open || gpsCoord) {
             return;
         }
 
-        // Cache permission status sembari inisialisasi
-        void readGeolocationPermission();
+        let isActive = true;
+        const requestId = gpsRid.current;
 
-        if (gpsCoord) {
-            return;
-        }
-
-        let a = true;
-        const t = window.setTimeout(() => {
-            if (a) {
-                requestGps(() => a);
+        void readGeolocationPermission().then((permission) => {
+            if (!isActive || gpsRid.current !== requestId) {
+                return;
             }
-        }, 0);
+
+            if (permission === 'granted') {
+                requestGps(() => isActive);
+
+                return;
+            }
+
+            setGpsStatus('idle');
+            setGpsPriming(false);
+        });
 
         return () => {
-            a = false;
-            window.clearTimeout(t);
+            isActive = false;
         };
     }, [gpsCoord, open, requestGps]);
 
@@ -602,8 +579,8 @@ export function BusinessLocationCommand({
             setIsSearchActive(false);
 
             if (!gpsCoord) {
-                setGpsPriming(true);
-                setGpsStatus('locating');
+                setGpsPriming(false);
+                setGpsStatus('idle');
             } else {
                 setGpsPriming(false);
             }
@@ -676,8 +653,8 @@ export function BusinessLocationCommand({
                 setIsSearchActive(false);
 
                 if (!gpsCoord) {
-                    setGpsPriming(true);
-                    setGpsStatus('locating');
+                    setGpsPriming(false);
+                    setGpsStatus('idle');
                 } else {
                     setGpsPriming(false);
                 }
@@ -928,6 +905,29 @@ export function BusinessLocationCommand({
 
                                 {/* Info lokasi & radius di bawah peta */}
                                 <div className="mt-2 flex flex-col gap-2">
+                                    {gpsStatus === 'idle' && !gpsCoord && (
+                                        <div className="flex flex-col gap-2 rounded-lg border border-zinc-100 bg-zinc-50 px-3 py-2.5 text-xs dark:border-zinc-800/60 dark:bg-zinc-900/50">
+                                            <div className="flex items-center gap-2 text-muted-foreground">
+                                                <MapPin className="size-4 shrink-0" />
+                                                <span>
+                                                    Izinkan lokasi untuk
+                                                    menampilkan lokasi Anda di
+                                                    peta.
+                                                </span>
+                                            </div>
+                                            <Button
+                                                type="button"
+                                                variant="secondary"
+                                                size="sm"
+                                                className="h-8 self-start rounded-lg px-3 text-xs"
+                                                onClick={
+                                                    handleUseCurrentLocation
+                                                }
+                                            >
+                                                Gunakan lokasi saat ini
+                                            </Button>
+                                        </div>
+                                    )}
                                     {gpsPriming && gpsStatus === 'locating' && (
                                         <div className="flex items-center gap-2 rounded-lg border border-zinc-100 bg-zinc-50 px-3 py-2.5 text-xs text-muted-foreground dark:border-zinc-800/60 dark:bg-zinc-900/50">
                                             <LoaderCircle className="size-4 shrink-0 animate-spin" />
@@ -945,12 +945,23 @@ export function BusinessLocationCommand({
                                         </div>
                                     )}
                                     {gpsRecovery === 'permission' && (
-                                        <div className="flex items-center gap-2 rounded-lg border border-amber-100 bg-amber-50 px-3 py-2.5 text-xs text-amber-600 dark:border-amber-800/60 dark:bg-amber-900/50">
-                                            <span className="truncate">
+                                        <div className="flex flex-col gap-2 rounded-lg border border-amber-100 bg-amber-50 px-3 py-2.5 text-xs text-amber-600 dark:border-amber-800/60 dark:bg-amber-900/50">
+                                            <span>
                                                 Izinkan akses lokasi di browser
                                                 Anda untuk menggunakan fitur
                                                 ini.
                                             </span>
+                                            <Button
+                                                type="button"
+                                                variant="secondary"
+                                                size="sm"
+                                                className="h-8 self-start rounded-lg px-3 text-xs"
+                                                onClick={
+                                                    handleUseCurrentLocation
+                                                }
+                                            >
+                                                Coba izinkan lokasi
+                                            </Button>
                                         </div>
                                     )}
                                     <div className="flex items-center gap-2 rounded-lg border border-zinc-100 bg-zinc-50 px-3 py-2.5 text-xs dark:border-zinc-800/60 dark:bg-zinc-900/50">
