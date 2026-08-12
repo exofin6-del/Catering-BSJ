@@ -11,7 +11,7 @@ import {
     customerCatalogItemCategory,
     customerCatalogItems,
 } from '../utils/customer-catalog';
-import { CustomerProductCard } from './customer-catalog';
+import { CatalogSectionMenu } from './customer-catalog';
 
 const MAX_INTERESTED_ITEMS = 10;
 
@@ -67,29 +67,22 @@ export function CustomerInterestedSection({
     }
 
     return (
-        <section className="grid gap-6 border-t border-border/70 pt-10">
-            <div className="flex items-end justify-between gap-4 pb-4">
-                <div className="grid gap-1">
-                    <h2 className="text-xl font-semibold tracking-tight">
-                        Anda mungkin tertarik
-                    </h2>
-                </div>
-                <span className="shrink-0 text-xs font-medium text-muted-foreground">
-                    {interestedItems.length} pilihan
-                </span>
-            </div>
-
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
-                {interestedItems.map((item) => (
-                    <CustomerProductCard
-                        key={item.id}
-                        entry={item}
-                        layout="horizontal"
-                        onAdd={() => setSelectedItem(item)}
-                        onClick={() => handleViewDetail(item)}
-                    />
-                ))}
-            </div>
+        <section className="border-t border-border/70 pt-2">
+            <CatalogSectionMenu
+                categories={[]}
+                category="all"
+                emptyLabel="Produk tidak ditemukan"
+                items={interestedItems}
+                previewLimit={MAX_INTERESTED_ITEMS}
+                title="Anda mungkin tertarik"
+                visibleCount={MAX_INTERESTED_ITEMS}
+                showVisibilityControls={false}
+                onAdd={setSelectedItem}
+                onCategoryChange={() => {}}
+                onShowLess={() => {}}
+                onShowMore={() => {}}
+                onViewDetail={handleViewDetail}
+            />
 
             {selectedItem?.type === 'menu_item' ? (
                 <OrderConfirmDialog
