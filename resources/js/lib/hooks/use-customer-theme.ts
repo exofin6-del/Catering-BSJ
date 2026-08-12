@@ -1,7 +1,6 @@
 import { usePage } from '@inertiajs/react';
 import { useLayoutEffect } from 'react';
 import type { CustomerTheme } from '@/features/customers/types/customer-theme';
-import { refreshAppearanceTheme } from '@/lib/hooks/use-appearance';
 import type { SharedData } from '@/types';
 
 type CustomerThemePageProps = SharedData & {

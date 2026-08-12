@@ -7,15 +7,12 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import type { useBusinessSettings } from '@/features/settings/hooks/use-business-settings';
-import type { BusinessSetting } from '@/features/settings/types/business-setting';
 
 import { BusinessSettingCardHeader } from './business-setting-card-header';
 
 export function BusinessInfoSettingsCard({
-    businessSetting,
     settings,
 }: {
-    businessSetting: BusinessSetting;
     settings: ReturnType<typeof useBusinessSettings>;
 }) {
     const { heroImagesChanged, infoForm, submitInfo } = settings;
@@ -34,9 +31,7 @@ export function BusinessInfoSettingsCard({
                     {/* Nama + WhatsApp */}
                     <div className="grid gap-4">
                         <div className="grid gap-1.5">
-                            <Label htmlFor="business_name">
-                                Nama catering
-                            </Label>
+                            <Label htmlFor="business_name">Nama catering</Label>
                             <Input
                                 id="business_name"
                                 value={infoForm.data.business_name}

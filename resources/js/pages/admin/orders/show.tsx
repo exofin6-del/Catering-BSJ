@@ -25,19 +25,6 @@ import orderRoute from '@/routes/order';
 import type { Order } from '@/types';
 
 export default function OrderShow({ order }: { order?: Order | null }) {
-    if (!order) {
-        return (
-            <>
-                <Head title="Detail Order" />
-                <div className="@container/main flex flex-1 flex-col py-4 md:py-6">
-                    <div className="px-4 text-sm text-muted-foreground lg:px-6">
-                        Order tidak ditemukan.
-                    </div>
-                </div>
-            </>
-        );
-    }
-
     const [processing, setProcessing] = useState(false);
     const [openConfirm, setOpenConfirm] = useState(false);
 
@@ -54,6 +41,19 @@ export default function OrderShow({ order }: { order?: Order | null }) {
             );
         };
     }, []);
+
+    if (!order) {
+        return (
+            <>
+                <Head title="Detail Order" />
+                <div className="@container/main flex flex-1 flex-col py-4 md:py-6">
+                    <div className="px-4 text-sm text-muted-foreground lg:px-6">
+                        Order tidak ditemukan.
+                    </div>
+                </div>
+            </>
+        );
+    }
 
     const handleConfirmComplete = () => {
         setProcessing(true);

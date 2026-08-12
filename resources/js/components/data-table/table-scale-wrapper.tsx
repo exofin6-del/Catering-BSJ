@@ -17,23 +17,24 @@ export function TableScaleWrapper({
     const containerRef = React.useRef<HTMLDivElement>(null);
     const contentRef = React.useRef<HTMLDivElement>(null);
     const [scale, setScale] = React.useState(1);
-    const [supportsZoom, setSupportsZoom] = React.useState(true);
-
-    React.useEffect(() => {
-        // Detect browser support for CSS zoom property
-        const hasZoomSupport =
+    const [supportsZoom] = React.useState(
+        () =>
+            // Detect browser support for CSS zoom property
             typeof CSS !== 'undefined' &&
             CSS.supports &&
-            (CSS.supports('zoom: 1') || CSS.supports('zoom', '1'));
-        setSupportsZoom(hasZoomSupport);
-    }, []);
+            (CSS.supports('zoom: 1') || CSS.supports('zoom', '1')),
+    );
 
     React.useEffect(() => {
         if (!active) {
-            setScale(1);
+            const frame = window.requestAnimationFrame(() => {
+                setScale(1);
+            });
 
-            return;
+            return () => window.cancelAnimationFrame(frame);
         }
+
+        const hasZoom = supportsZoom;
 
         const handleResize = () => {
             const container = containerRef.current;
@@ -78,8 +79,6 @@ export function TableScaleWrapper({
                 }
             }
         };
-
-        const hasZoom = supportsZoom;
 
         const resizeObserver = new ResizeObserver(() => {
             // Use requestAnimationFrame to prevent "ResizeObserver loop limit exceeded" warning

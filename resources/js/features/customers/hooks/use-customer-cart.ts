@@ -40,8 +40,10 @@ export function useCustomerCart(
     const packagesRef = useRef(packages);
 
     // Keep refs up-to-date so the normalization effect can use latest data.
-    menuItemsRef.current = menuItems;
-    packagesRef.current = packages;
+    useEffect(() => {
+        menuItemsRef.current = menuItems;
+        packagesRef.current = packages;
+    }, [menuItems, packages]);
 
     // Normalize stored items once per session (filter stale/invalid entries).
     useEffect(() => {

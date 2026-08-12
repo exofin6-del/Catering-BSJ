@@ -11,7 +11,6 @@ import { CustomerFooter } from '@/features/customers/components/customer-footer'
 import { useCustomerCartStore } from '@/features/customers/context/customer-cart-context';
 import type { CustomerBusiness } from '@/features/customers/types/customer-storefront-types';
 import { useCustomerTheme } from '@/lib/hooks/use-customer-theme';
-import { useScrollRestoration } from '@/lib/hooks/use-scroll-restoration';
 import { cn } from '@/lib/utils';
 import { checkout, search } from '@/routes/customerV2';
 import type { OrderMenuItem, OrderPackage, SharedData } from '@/types';

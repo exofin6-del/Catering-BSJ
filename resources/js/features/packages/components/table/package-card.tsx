@@ -21,7 +21,6 @@ type PackageCardProps = PackageTableActions & {
 export function PackageCard({
     canMove = false,
     item,
-    onActiveChange,
     onDelete,
     onEdit,
     onMove,

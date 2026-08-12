@@ -2,14 +2,11 @@ import { Head, Link } from '@inertiajs/react';
 import {
     ArrowLeft,
     Printer,
-    ReceiptText,
     Calendar,
-    Clock,
     User,
     Phone,
     MapPin,
     Building2,
-    CheckCircle2,
     FileText,
     CreditCard,
 } from 'lucide-react';
@@ -35,7 +32,7 @@ import {
 } from '@/features/orders/utils/order-format';
 import { dashboard } from '@/routes';
 import orderRoute from '@/routes/order';
-import type { Order, OrderPayment } from '@/types';
+import type { Order } from '@/types';
 
 export default function OrderReceipt({ order }: { order?: Order | null }) {
     if (!order) {

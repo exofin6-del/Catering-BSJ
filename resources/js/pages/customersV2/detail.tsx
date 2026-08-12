@@ -1,8 +1,8 @@
 import { Head } from '@inertiajs/react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { useCustomerCartStore } from '@/features/customers/context/customer-cart-context';
 import { CustomerInterestedSection } from '@/features/customers/components/customer-interested-section';
+import { useCustomerCartStore } from '@/features/customers/context/customer-cart-context';
 import { MenuDetailView } from '@/features/menus/components/menu-detail-view';
 import { menuDisplayDataFromItem } from '@/features/menus/utils/menu-format';
 import { resolveMenuPrice } from '@/features/menus/utils/menu-price';

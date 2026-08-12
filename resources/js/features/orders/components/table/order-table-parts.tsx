@@ -29,7 +29,6 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { cn } from '@/lib/utils';
 import orderRoute from '@/routes/order';
-import payments from '@/routes/order/payments';
 import type { Order } from '@/types';
 
 import type { OrderTableProps } from '../../types/order-types';

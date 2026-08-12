@@ -5,12 +5,12 @@ import { AppHeader } from '@/components/shared/app-shell/app-header';
 import { AppShell } from '@/components/shared/app-shell/app-shell';
 import { CustomerCartSheet } from '@/features/customers/components/customer-cart-sheet';
 import { CustomerFooter } from '@/features/customers/components/customer-footer';
+import { CustomerWhatsAppButton } from '@/features/customers/components/customer-whatsapp-button';
 import { useCustomerCartStore } from '@/features/customers/context/customer-cart-context';
 import type { CustomerBusiness } from '@/features/customers/types/customer-storefront-types';
 import { useCustomerTheme } from '@/lib/hooks/use-customer-theme';
 import { useScrollRestoration } from '@/lib/hooks/use-scroll-restoration';
 import { checkout } from '@/routes/customerV2';
-import { CustomerWhatsAppButton } from '@/features/customers/components/customer-whatsapp-button';
 import type {
     AppLayoutProps,
     OrderMenuItem,

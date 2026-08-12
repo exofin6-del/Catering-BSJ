@@ -49,10 +49,7 @@ export default function BusinessPage({
                     description="Atur kontak, kapasitas, jam operasional, dan area layanan catering."
                 />
                 <div className="space-y-6">
-                    <BusinessInfoSettingsCard
-                        businessSetting={businessSetting}
-                        settings={settings}
-                    />
+                    <BusinessInfoSettingsCard settings={settings} />
                     <CustomerHeroImagesSettingsCard
                         businessSetting={businessSetting}
                         settings={settings}

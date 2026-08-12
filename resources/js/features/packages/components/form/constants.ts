@@ -1,4 +1,4 @@
-import { Info, Megaphone, PackageCheck, PackagePlus } from 'lucide-react';
+import { Info, Megaphone, PackagePlus } from 'lucide-react';
 
 import type { FormWizardStepDefinition } from '@/components/shared/form-wizard';
 import type { PackageDetailsFormValues } from '../../schema/package-form-schema';
