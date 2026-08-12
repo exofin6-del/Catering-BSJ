@@ -184,6 +184,9 @@ export function LocationCommand({
     const [gpsErr, setGpsErr] = useState<string | null>(null);
     const [gpsRecovery, setGpsRecovery] = useState<'permission' | null>(null);
     const [gpsPriming, setGpsPriming] = useState(false);
+    const [permissionState, setPermissionState] = useState<PermissionState>(
+        () => cachedPermissionState ?? 'prompt',
+    );
 
     const [pinCoord, setPinCoord] = useState<Coordinate | null>(null);
     const [isSearchActive, setIsSearchActive] = useState(false);
@@ -240,11 +243,13 @@ export function LocationCommand({
     // bukan sebelum itu — dan Surakarta TIDAK PERNAH dipakai diam-diam
     // sebagai titik tampil; ia hanya dipakai sebagai bias pencarian di
     // `origin` di bawah, yang tidak pernah dirender ke peta/nearby.
-    const resolvedOrigin: Coordinate | null =
-        pinCoord ??
-        gpsCoord ??
-        selectedCoord ??
-        (gpsStatus === 'unavailable' ? (bizCoord ?? null) : null);
+    const isLocationPermissionGranted = permissionState === 'granted';
+    const resolvedOrigin: Coordinate | null = isLocationPermissionGranted
+        ? (pinCoord ??
+          gpsCoord ??
+          selectedCoord ??
+          (gpsStatus === 'unavailable' ? (bizCoord ?? null) : null))
+        : null;
 
     const isOriginReady = resolvedOrigin !== null;
 
@@ -361,6 +366,7 @@ export function LocationCommand({
 
                     done(() => {
                         gpsLast.current = Date.now();
+                        setPermissionState('granted');
 
                         const finalFix = accurateEnough
                             ? { coord: c, accuracy }
@@ -430,6 +436,8 @@ export function LocationCommand({
                             if (!active()) {
                                 return;
                             }
+
+                            setPermissionState(state);
 
                             if (
                                 err.code ===
@@ -505,6 +513,7 @@ export function LocationCommand({
         const attempt = () => {
             navigator.geolocation.getCurrentPosition(
                 (pos) => {
+                    setPermissionState('granted');
                     const c: Coordinate = [
                         pos.coords.latitude,
                         pos.coords.longitude,
@@ -567,6 +576,7 @@ export function LocationCommand({
                     if (
                         err.code === GeolocationPositionError.PERMISSION_DENIED
                     ) {
+                        setPermissionState('denied');
                         setGpsCoord(null);
                         setGpsErr(
                             'Izin lokasi ditolak. Izinkan akses lokasi di browser untuk menggunakan fitur ini.',
@@ -592,11 +602,10 @@ export function LocationCommand({
 
     /* ---- Effects ---- */
 
-    // Saat izin telah diberikan, GPS boleh diambil saat drawer dibuka.
-    // Jika izin masih "prompt", tunggu tombol pengguna agar Safari/iOS
-    // menampilkan dialog izin sistem.
+    // Coba minta izin saat drawer dibuka. Browser yang mengharuskan user
+    // gesture (terutama Safari/iOS) tetap mendapat tombol fallback di UI.
     useEffect(() => {
-        if (!open || gpsCoord) {
+        if (!open) {
             return;
         }
 
@@ -608,7 +617,13 @@ export function LocationCommand({
                 return;
             }
 
-            if (permission === 'granted') {
+            setPermissionState(permission);
+
+            if (gpsCoord) {
+                return;
+            }
+
+            if (permission === 'prompt' || permission === 'granted') {
                 requestGps(() => isActive);
 
                 return;
@@ -947,7 +962,10 @@ export function LocationCommand({
     /* ---- UI ---- */
     const noResults =
         hasSearched && !isSearching && !searchErr && results.length === 0;
-    const showMap = !isSearchActive && (!isSearchMode || hasLocation);
+    const showMap =
+        isLocationPermissionGranted &&
+        !isSearchActive &&
+        (!isSearchMode || hasLocation);
     // Tampilkan skeleton peta selama titik lokasi asli belum siap
     // (`isOriginReady` false) — termasuk saat GPS masih locating maupun
     // saat sudah gagal tapi belum ada fallback nyata (pin/selected/biz).
@@ -1024,7 +1042,7 @@ export function LocationCommand({
                 onOpenChange={handleOpen}
                 swipeDirection="right"
             >
-                <DrawerContent className="m-0 h-[100dvh] max-h-none w-full max-w-none rounded-none border-0 bg-card text-card-foreground shadow-xl [--drawer-inset:0px] md:m-2 md:h-[calc(100dvh-1rem)] md:max-h-[calc(100dvh-1rem)] md:w-[28rem] md:max-w-[calc(100vw-1rem)] md:rounded-3xl md:border md:shadow-2xl md:[--drawer-inset:--spacing(2)]">
+                <DrawerContent className="m-0 h-[100svh] max-h-none w-full max-w-none rounded-none border-0 bg-card text-card-foreground shadow-xl [--drawer-inset:0px] max-sm:right-0 max-sm:left-auto max-sm:h-[100svh] max-sm:max-h-none max-sm:w-screen! max-sm:max-w-none! max-sm:rounded-none! md:m-2 md:h-[calc(100dvh-1rem)] md:max-h-[calc(100dvh-1rem)] md:w-[28rem] md:max-w-[calc(100vw-1rem)] md:rounded-3xl md:border md:shadow-2xl md:[--drawer-inset:--spacing(2)]">
                     <Command
                         shouldFilter={false}
                         className="flex h-full min-h-0 w-full flex-col overflow-hidden rounded-none border-none bg-transparent p-0 text-slate-700 shadow-2xl outline-none sm:rounded-xl dark:text-slate-300"
@@ -1185,6 +1203,7 @@ export function LocationCommand({
                                                 coords,
                                                 accuracy,
                                             ) => {
+                                                setPermissionState('granted');
                                                 setGpsCoord(coords);
                                                 setPinCoord(coords);
                                                 setGpsStatus('resolved');
@@ -1225,8 +1244,43 @@ export function LocationCommand({
                                 </div>
                             )}
 
+                            {!isSearchMode && !isLocationPermissionGranted && (
+                                <div className="flex flex-col items-center gap-3 border-b border-border/30 px-6 py-8 text-center">
+                                    {gpsStatus === 'locating' ? (
+                                        <MapPin className="size-5 animate-pulse text-muted-foreground" />
+                                    ) : (
+                                        <MapPin className="size-5 text-muted-foreground" />
+                                    )}
+                                    <p className="max-w-xs text-sm text-muted-foreground">
+                                        {gpsStatus === 'locating'
+                                            ? 'Menunggu izin lokasi dari browser...'
+                                            : 'Izinkan akses lokasi untuk menampilkan peta dan saran lokasi terdekat.'}
+                                    </p>
+                                    <Button
+                                        type="button"
+                                        size="sm"
+                                        className="h-9 rounded-lg px-3 text-xs"
+                                        disabled={gpsStatus === 'locating'}
+                                        onClick={handleUseCurrentLocation}
+                                    >
+                                        {gpsStatus === 'locating'
+                                            ? 'Meminta izin...'
+                                            : permissionState === 'denied'
+                                              ? 'Coba izinkan lokasi'
+                                              : 'Izinkan lokasi'}
+                                    </Button>
+                                </div>
+                            )}
+
                             {/* Panel */}
-                            <div className="flex min-w-0 shrink-0 flex-col overflow-hidden border-b border-border/30">
+                            <div
+                                className={cn(
+                                    'flex min-w-0 shrink-0 flex-col overflow-hidden border-b border-border/30',
+                                    !isSearchMode &&
+                                        !isLocationPermissionGranted &&
+                                        'hidden',
+                                )}
+                            >
                                 <div className="flex items-center justify-between gap-2 px-4 py-2">
                                     <span className="text-[11px] font-bold tracking-wider text-muted-foreground/40 uppercase">
                                         {panelTitle}
