@@ -602,8 +602,9 @@ export function LocationCommand({
 
     /* ---- Effects ---- */
 
-    // Coba minta izin saat drawer dibuka. Browser yang mengharuskan user
-    // gesture (terutama Safari/iOS) tetap mendapat tombol fallback di UI.
+    // Jangan meminta izin baru dari effect. Safari/iOS lebih konsisten jika
+    // `getCurrentPosition()` dipanggil langsung dari aksi tap pengguna.
+    // Izin yang sudah granted tetap boleh dipakai otomatis saat drawer dibuka.
     useEffect(() => {
         if (!open) {
             return;
@@ -623,7 +624,7 @@ export function LocationCommand({
                 return;
             }
 
-            if (permission === 'prompt' || permission === 'granted') {
+            if (permission === 'granted') {
                 requestGps(() => isActive);
 
                 return;

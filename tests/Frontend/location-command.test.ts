@@ -36,10 +36,15 @@ test('location map and nearby suggestions require granted permission', () => {
     );
 });
 
-test('location permission is requested when the drawer opens', () => {
+test('location permission is requested only after an explicit user action', () => {
     assert.match(
         locationCommand,
-        /if \(gpsCoord\) \{\s+return;\s+\}\s+\s+if \(permission === 'prompt' \|\| permission === 'granted'/,
+        /if \(gpsCoord\) \{\s+return;\s+\}\s+\s+if \(permission === 'granted'/,
+    );
+    assert.doesNotMatch(
+        locationCommand,
+        /permission === 'prompt' \|\| permission === 'granted'/,
     );
     assert.match(locationCommand, /navigator\.geolocation\.getCurrentPosition/);
+    assert.match(locationCommand, /onClick=\{handleUseCurrentLocation\}/);
 });
