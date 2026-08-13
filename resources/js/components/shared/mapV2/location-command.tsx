@@ -83,32 +83,18 @@ function writeCachedGpsFix(coord: Coordinate, accuracy: number): void {
     cachedGpsFix = { coord, accuracy, capturedAt: Date.now() };
 }
 
-/**
- * Cache status izin geolocation di module scope supaya tidak perlu
- * query `navigator.permissions` berulang kali — ini yang menyebabkan
- * tombol "Coba lagi" muncul lebih cepat dari seharusnya karena query
- * permissions bersifat async dan bisa selesai setelah error state terlanjur
- * di-set. Kalau izin sudah pernah dikonfirmasi 'granted', kita tahu
- * bahwa error GPS bukan karena izin ditolak, jadi recovery tidak perlu.
- */
-let cachedPermissionState: PermissionState | null = null;
-
 async function readGeolocationPermission(): Promise<PermissionState> {
-    if (cachedPermissionState) {
-        return cachedPermissionState;
-    }
-
     try {
-        const p = await navigator.permissions.query({ name: 'geolocation' });
-        cachedPermissionState = p.state;
+        if (!navigator.permissions?.query) {
+            return 'prompt';
+        }
 
-        // Update cache bila izin berubah (mis. user cabut izin di browser)
-        p.addEventListener('change', () => {
-            cachedPermissionState = p.state;
-        });
-
-        return p.state;
+        return (
+            await navigator.permissions.query({ name: 'geolocation' })
+        ).state;
     } catch {
+        // Safari iOS tidak selalu menyediakan Permissions API untuk
+        // geolocation. Sumber kebenaran tetap callback Geolocation API.
         return 'prompt';
     }
 }
@@ -185,7 +171,7 @@ export function LocationCommand({
     const [gpsRecovery, setGpsRecovery] = useState<'permission' | null>(null);
     const [gpsPriming, setGpsPriming] = useState(false);
     const [permissionState, setPermissionState] = useState<PermissionState>(
-        () => cachedPermissionState ?? 'prompt',
+        'prompt',
     );
 
     const [pinCoord, setPinCoord] = useState<Coordinate | null>(null);
@@ -275,9 +261,6 @@ export function LocationCommand({
         const rid = gpsRid.current;
         const active = () =>
             gpsRid.current === rid && (!isActive || isActive());
-
-        // Pre-query/cache permission state
-        void readGeolocationPermission();
 
         if (gpsErrTmo.current) {
             clearTimeout(gpsErrTmo.current);
@@ -401,34 +384,6 @@ export function LocationCommand({
                 (err) => {
                     done(() => {
                         if (Date.now() - gpsLast.current < 5000) {
-                            return;
-                        }
-
-                        // Cek cache state secara sinkron terlebih dahulu.
-                        // Jika sudah 'granted', skip error/recovery state untuk izin (langsung retry/fail biasa).
-                        if (cachedPermissionState === 'granted') {
-                            if (!active()) {
-                                return;
-                            }
-
-                            if (gpsRetry.current >= 2) {
-                                setGpsCoord(null);
-                                setGpsErr('Gagal mengambil lokasi.');
-                                setGpsStatus('unavailable');
-                                setGpsPriming(false);
-
-                                return;
-                            }
-
-                            gpsRetry.current += 1;
-                            setGpsStatus('locating');
-                            setGpsPriming(true);
-                            window.setTimeout(() => {
-                                if (active()) {
-                                    start();
-                                }
-                            }, 1000);
-
                             return;
                         }
 
@@ -612,6 +567,10 @@ export function LocationCommand({
 
         let isActive = true;
         const requestId = gpsRid.current;
+
+        if (gpsCoord) {
+            return;
+        }
 
         void readGeolocationPermission().then((permission) => {
             if (!isActive || gpsRid.current !== requestId) {

@@ -85,21 +85,17 @@ function readCachedGpsFix(): Coordinate | null {
 }
 
 async function readGeolocationPermission(): Promise<PermissionState> {
-    if (cachedPermissionState) {
-        return cachedPermissionState;
-    }
-
     try {
-        const p = await navigator.permissions.query({ name: 'geolocation' });
-        cachedPermissionState = p.state;
+        if (!navigator.permissions?.query) {
+            return 'prompt';
+        }
 
-        // Update cache bila izin berubah (mis. user cabut izin di browser)
-        p.addEventListener('change', () => {
-            cachedPermissionState = p.state;
-        });
-
-        return p.state;
+        return (
+            await navigator.permissions.query({ name: 'geolocation' })
+        ).state;
     } catch {
+        // Safari iOS tidak selalu menyediakan Permissions API untuk
+        // geolocation. Sumber kebenaran tetap callback Geolocation API.
         return 'prompt';
     }
 }
@@ -107,12 +103,6 @@ async function readGeolocationPermission(): Promise<PermissionState> {
 function writeCachedGpsFix(coord: Coordinate, accuracy: number): void {
     cachedGpsFix = { coord, accuracy, capturedAt: Date.now() };
 }
-
-/**
- * Cache status izin geolocation di module scope supaya tidak perlu
- * query `navigator.permissions` berulang kali.
- */
-let cachedPermissionState: PermissionState | null = null;
 
 /**
  * Berapa kali maksimal `requestGps` boleh mencoba ulang saat fix yang
@@ -221,9 +211,6 @@ export function BusinessLocationCommand({
         const rid = gpsRid.current;
         const active = () =>
             gpsRid.current === rid && (!isActive || isActive());
-
-        // Pre-query/cache permission state
-        void readGeolocationPermission();
 
         if (gpsErrTmo.current) {
             clearTimeout(gpsErrTmo.current);
@@ -351,32 +338,6 @@ export function BusinessLocationCommand({
                 (err) => {
                     done(() => {
                         if (Date.now() - gpsLast.current < 5000) {
-                            return;
-                        }
-
-                        if (cachedPermissionState === 'granted') {
-                            if (!active()) {
-                                return;
-                            }
-
-                            if (gpsRetry.current >= 2) {
-                                setGpsCoord(null);
-                                setGpsErr('Gagal mengambil lokasi.');
-                                setGpsStatus('unavailable');
-                                setGpsPriming(false);
-
-                                return;
-                            }
-
-                            gpsRetry.current += 1;
-                            setGpsStatus('locating');
-                            setGpsPriming(true);
-                            window.setTimeout(() => {
-                                if (active()) {
-                                    start();
-                                }
-                            }, 1000);
-
                             return;
                         }
 

@@ -9,6 +9,13 @@ const locationCommand = readFileSync(
     ),
     'utf8',
 );
+const businessLocationCommand = readFileSync(
+    new URL(
+        '../../resources/js/features/settings/components/business-location-command.tsx',
+        import.meta.url,
+    ),
+    'utf8',
+);
 
 test('location drawer fills the mobile viewport', () => {
     assert.match(locationCommand, /h-\[100svh\]/);
@@ -47,4 +54,21 @@ test('location permission is requested only after an explicit user action', () =
     );
     assert.match(locationCommand, /navigator\.geolocation\.getCurrentPosition/);
     assert.match(locationCommand, /onClick=\{handleUseCurrentLocation\}/);
+});
+
+test('location permission is not kept in a stale module cache', () => {
+    assert.doesNotMatch(locationCommand, /cachedPermissionState/);
+    assert.match(
+        locationCommand,
+        /if \(!navigator\.permissions\?\.query\) \{\s+return 'prompt';/,
+    );
+    assert.match(
+        locationCommand,
+        /if \(gpsCoord\) \{\s+return;/,
+    );
+    assert.doesNotMatch(businessLocationCommand, /cachedPermissionState/);
+    assert.match(
+        businessLocationCommand,
+        /if \(!navigator\.permissions\?\.query\) \{\s+return 'prompt';/,
+    );
 });
