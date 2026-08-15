@@ -56,7 +56,7 @@ export default function CustomerSearchLayout({
         <AppShell variant="header">
             <header
                 className={cn(
-                    'sticky top-0 z-40 bg-background text-foreground transition-all duration-300',
+                    'sticky top-0 z-40 bg-background pt-[env(safe-area-inset-top)] text-foreground transition-all duration-300',
                 )}
             >
                 <div className="relative mx-auto flex h-14 max-w-7xl items-center justify-center px-4 sm:px-6 lg:px-8">

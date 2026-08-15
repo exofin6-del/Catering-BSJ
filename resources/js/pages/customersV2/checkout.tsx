@@ -85,6 +85,10 @@ export default function CustomerCheckoutPage({
     usePersistedFormState(form, CustomerCheckoutStorageKey, ['proof_image']);
 
     useEffect(() => {
+        return () => removePersistentState(CustomerCheckoutStorageKey);
+    }, []);
+
+    useEffect(() => {
         form.setValue('items', cart.items, {
             shouldDirty: false,
             shouldValidate: false,
@@ -167,6 +171,11 @@ export default function CustomerCheckoutPage({
         });
     }
 
+    function handleBack(): void {
+        removePersistentState(CustomerCheckoutStorageKey);
+        window.history.back();
+    }
+
     const itemError = form.formState.errors.items?.message;
     const canCheckout = business.is_open && Boolean(business.whatsapp_number);
 
@@ -180,7 +189,7 @@ export default function CustomerCheckoutPage({
                         <Button
                             variant="secondary"
                             size="icon"
-                            onClick={() => window.history.back()}
+                            onClick={handleBack}
                             className="size-9 rounded-full bg-primary/10 text-primary transition-all duration-200 hover:bg-primary/20"
                             aria-label="Kembali"
                         >

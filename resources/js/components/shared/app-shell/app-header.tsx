@@ -71,7 +71,6 @@ const rightNavItems: NavLinkItem[] = [
 ];
 
 export function AppHeader({
-    
     breadcrumbs = [],
     cartCount = 0,
     cartAnimationKey = 0,
@@ -85,10 +84,10 @@ export function AppHeader({
         <>
             <header
                 className={cn(
-                    'sticky top-0 z-40 bg-background text-foreground transition-all duration-300',
+                    'sticky top-0 z-40 bg-background pt-[env(safe-area-inset-top)] text-foreground transition-all duration-300',
                 )}
             >
-                <div className="relative mx-auto flex h-14 max-w-7xl items-center gap-3 px-4 sm:px-6">
+                <div className="relative mx-auto flex h-16 max-w-7xl items-center gap-3 px-4 sm:px-6">
                     <div className="flex items-center space-x-2">
                         <AppLogo />
                     </div>
@@ -178,14 +177,14 @@ export function AppHeader({
             </header>
             {breadcrumbs.length > 1 && (
                 <div className="flex w-full border-b border-sidebar-border/70">
-                    <div className="mx-auto flex h-12 w-full items-center justify-start px-4 text-neutral-500 sm:px-6 md:max-w-7xl">
+                    <div className="mx-auto flex h-12 w-full max-w-7xl items-center justify-start px-4 text-neutral-500 sm:px-6">
                         <Breadcrumbs breadcrumbs={breadcrumbs} />
                     </div>
                 </div>
             )}
 
             {/* Mobile Bottom Navigation */}
-            <nav className="fixed inset-x-0 bottom-0 z-50 bg-background pb-[env(safe-area-inset-bottom)] lg:hidden">
+            <nav className="fixed inset-x-0 bottom-0 z-50 bg-background pb-[env(safe-area-inset-bottom)] shadow-[0_-1px_0_var(--border)] lg:hidden">
                 <div className="mx-auto flex max-w-lg items-stretch">
                     {mainNavItems.map((item) => (
                         <Link
@@ -194,7 +193,10 @@ export function AppHeader({
                             prefetch
                             className={cn(
                                 'flex flex-1 flex-col items-center justify-center gap-1 py-2.5 text-[10px] font-medium text-muted-foreground transition-colors hover:text-foreground',
-                                whenCurrentUrl(item.href, 'text-primary font-semibold'),
+                                whenCurrentUrl(
+                                    item.href,
+                                    'font-semibold text-primary',
+                                ),
                             )}
                         >
                             {item.icon && <item.icon className="h-5 w-5" />}

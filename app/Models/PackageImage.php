@@ -13,6 +13,7 @@ class PackageImage extends Model
     protected $fillable = [
         'package_id',
         'image_url',
+        'cloudinary_public_id',
         'is_primary',
         'sort_order',
     ];

@@ -17,6 +17,7 @@ class Payment extends Model
         'method',
         'paid_at',
         'proof_image',
+        'cloudinary_public_id',
         'notes',
     ];
 

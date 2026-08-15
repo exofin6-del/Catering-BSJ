@@ -315,6 +315,7 @@ export function MapV2LocationMap({
                         <MapLocateControl
                             position="right-3 bottom-3"
                             showMarker={false}
+                            externalLocationHandling
                             loading={isLocating || currentLocationLoading}
                             onClick={() => {
                                 // Reset lastFlyToCoordRef di MapViewportHandler
@@ -639,6 +640,7 @@ function MapViewportHandler({
         isAutoMovingRef,
         isUserPanningRef,
         isLocating,
+        locateToken,
         isMapReady,
         map,
     ]);

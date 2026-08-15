@@ -4,17 +4,14 @@ namespace App\Actions\Order;
 
 use App\Models\Order;
 use App\Models\Payment;
-use App\Services\ImageCompressionService;
+use App\Services\CloudinaryService;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 
 class OrderPaymentAction
 {
-    public function __construct(private ImageCompressionService $compressor)
-    {
-    }
+    public function __construct(private readonly CloudinaryService $cloudinary) {}
 
     /**
      * @param  array<string, mixed>  $data
@@ -42,7 +39,7 @@ class OrderPaymentAction
                 ]);
             }
 
-            $proofImage = $this->storePaymentProof(
+            $proofAsset = $this->storePaymentProof(
                 $lockedOrder,
                 $data['proof_image'] ?? null,
             );
@@ -51,7 +48,8 @@ class OrderPaymentAction
                 'amount' => $this->decimal($paymentAmount),
                 'method' => $data['method'] ?? 'manual',
                 'paid_at' => $data['paid_at'] ?? now(),
-                'proof_image' => $proofImage,
+                'proof_image' => $proofAsset['url'] ?? null,
+                'cloudinary_public_id' => $proofAsset['public_id'] ?? null,
                 'notes' => $data['notes'] ?? null,
             ]);
 
@@ -61,29 +59,29 @@ class OrderPaymentAction
         });
     }
 
-    private function storePaymentProof(Order $order, mixed $proofImage): ?string
+    /**
+     * @return array{public_id: string, url: string}|null
+     */
+    private function storePaymentProof(Order $order, mixed $proofImage): ?array
     {
         if (! $proofImage instanceof UploadedFile) {
             return null;
         }
 
-        // Compress image before storing
-        $compressedPath = $this->compressor->compressAndStore(
-            $proofImage,
-            "payments/{$order->id}",
-            'public',
-            1920,
-            1920,
-            85
-        );
+        try {
+            $asset = $this->cloudinary->upload($proofImage, "catering/payments/{$order->id}");
+        } catch (\Throwable $exception) {
+            report($exception);
 
-        if ($compressedPath === false) {
             throw ValidationException::withMessages([
                 'proof_image' => __('Bukti pembayaran gagal disimpan.'),
             ]);
         }
 
-        return Storage::disk('public')->url($compressedPath);
+        return [
+            'public_id' => $asset['public_id'],
+            'url' => $asset['secure_url'],
+        ];
     }
 
     private function syncPaymentStatus(Order $order): void

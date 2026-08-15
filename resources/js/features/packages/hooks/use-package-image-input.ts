@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { compressImageFiles } from '@/lib/image-compression';
 import paket from '@/routes/paket';
 import type { MenuPackage } from '@/types';
 import type {
@@ -63,9 +62,7 @@ export function usePackageImageInput(item?: MenuPackage | null) {
             return;
         }
 
-        const files = await compressImageFiles(
-            nextFiles.slice(0, remainingSlots),
-        );
+        const files = nextFiles.slice(0, remainingSlots);
         const validationError = validateFiles(files);
 
         if (validationError) {

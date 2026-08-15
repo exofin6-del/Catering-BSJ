@@ -4,18 +4,15 @@ namespace App\Actions\Settings;
 
 use App\CustomerTheme;
 use App\Models\BusinessSetting;
-use App\Services\ImageCompressionService;
+use App\Services\CloudinaryService;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 class BusinessSettingsAction
 {
-    /**
-     * @return array<string, mixed>
-     */
     public function __construct(
         private readonly BusinessHeroImageAction $heroImageAction,
-        private readonly ImageCompressionService $compressor,
+        private readonly CloudinaryService $cloudinary,
     ) {}
 
     /**
@@ -27,14 +24,12 @@ class BusinessSettingsAction
     }
 
     /**
-     * @return array<string, mixed>
+     * @param  array<string, mixed>  $data
      */
     public function update(array $data): BusinessSetting
     {
         $setting = $this->setting();
 
-        // Normalize empty location values to null so clearing the location
-        // actually persists instead of turning into 0 due to decimal casts.
         if (empty($data['business_lat'])) {
             $data['business_lat'] = null;
         }
@@ -47,13 +42,11 @@ class BusinessSettingsAction
             $data['business_address'] = null;
         }
 
-        // Handle logo upload with compression
         if (isset($data['logo']) && $data['logo'] instanceof UploadedFile) {
-            $this->handleLogoUpload($setting, $data);
+            $this->handleLogoUpload($setting, $data['logo']);
             unset($data['logo']);
         }
 
-        // Handle hero image uploads
         $data = $this->handleHeroImages($setting, $data);
 
         $setting->fill($data);
@@ -71,63 +64,71 @@ class BusinessSettingsAction
     private function handleHeroImages(BusinessSetting $setting, array $data): array
     {
         $existingImages = $setting->hero_images ?? [];
-        $newImages = $existingImages;
+        $existingPublicIds = $setting->hero_image_cloudinary_public_ids ?? [];
+        $heroImages = [];
+        $heroPublicIds = [];
 
-        // Handle remove_hero_image_{index} flags
         for ($i = 0; $i < 3; $i++) {
+            $imageUrl = $existingImages[$i] ?? null;
+            $publicId = $existingPublicIds[$i] ?? null;
             $removeKey = "remove_hero_image_{$i}";
             $uploadKey = "hero_image_{$i}";
 
             if (! empty($data[$removeKey])) {
                 $this->heroImageAction->delete($setting, $i);
-                $newImages[$i] = null;
+                $imageUrl = null;
+                $publicId = null;
             }
 
             if (isset($data[$uploadKey]) && $data[$uploadKey] instanceof UploadedFile) {
                 $this->heroImageAction->delete($setting, $i);
-                $newImages[$i] = $this->heroImageAction->store($setting, $data[$uploadKey], $i);
+                $asset = $this->heroImageAction->store($setting, $data[$uploadKey], $i);
+                $imageUrl = $asset['url'];
+                $publicId = $asset['public_id'];
+            }
+
+            if (filled($imageUrl)) {
+                $heroImages[] = $imageUrl;
+                $heroPublicIds[] = filled($publicId) ? $publicId : null;
             }
 
             unset($data[$removeKey], $data[$uploadKey]);
         }
 
-        // Clean up null entries and re-index
-        $data['hero_images'] = array_values(array_filter($newImages));
+        $data['hero_images'] = $heroImages;
+        $data['hero_image_cloudinary_public_ids'] = $heroPublicIds;
 
         return $data;
     }
 
-    /**
-     * @param  array<string, mixed>  $data
-     * @return array<string, mixed>
-     */
-
-
-    private function handleLogoUpload(BusinessSetting $setting, array $data): void
+    private function handleLogoUpload(BusinessSetting $setting, UploadedFile $logo): void
     {
-        $logo = $data['logo'];
-
-        if ($setting->logo) {
-            Storage::disk('public')->delete(ltrim((string) parse_url($setting->logo, PHP_URL_PATH), '/storage/'));
+        if (filled($setting->logo_cloudinary_public_id)) {
+            $this->cloudinary->destroy((string) $setting->logo_cloudinary_public_id);
+        } else {
+            $this->deleteLegacyFile($setting->logo);
         }
 
-        $compressedPath = $this->compressor->compressAndStore(
-            $logo,
-            'business/logo',
-            'public',
-            800,
-            800,
-            85
-        );
+        $asset = $this->cloudinary->upload($logo, 'catering/business/logo');
 
         $setting->update([
-            'logo' => Storage::disk('public')->url($compressedPath),
+            'logo' => $asset['secure_url'],
+            'logo_cloudinary_public_id' => $asset['public_id'],
         ]);
     }
 
     private function setting(): BusinessSetting
     {
         return BusinessSetting::query()->firstOrCreate();
+    }
+
+    private function deleteLegacyFile(?string $url): void
+    {
+        $path = parse_url((string) $url, PHP_URL_PATH);
+
+        if (is_string($path)) {
+            Storage::disk('public')->delete(str_replace('/storage/', '', $path));
+        }
     }
 
     /**

@@ -44,7 +44,6 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
-import { compressImageFile } from '@/lib/image-compression';
 import type { Order, OrderMenuItem, OrderPackage } from '@/types';
 
 import type { OrderFormData } from '../../../types/order-types';
@@ -593,10 +592,10 @@ export function OrderPaymentProofUpload({
     onValueChange: (file: File | null) => Promise<void> | void;
     value: File | null;
 }) {
-    async function handleValueChange(files: File[]): Promise<void> {
+    function handleValueChange(files: File[]): void {
         const file = files[0] ?? null;
 
-        onValueChange(file ? await compressImageFile(file) : null);
+        onValueChange(file);
     }
 
     return (

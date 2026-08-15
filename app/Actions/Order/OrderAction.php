@@ -10,17 +10,19 @@ use App\Models\Package;
 use App\Models\PackageItem;
 use App\Models\PackageItemPrice;
 use App\Models\Payment;
+use App\Services\CloudinaryService;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 
 class OrderAction
 {
+    public function __construct(private readonly CloudinaryService $cloudinary) {}
+
     private const DefaultDpPercentage = 50.0;
 
     private const DefaultPerPage = 10;
@@ -528,6 +530,7 @@ class OrderAction
                     'method' => (string) $paymentData['payment_method'],
                     'paid_at' => $paymentData['payment_paid_at'] ?? now(),
                     'proof_image' => $paymentData['proof_image'] ?? null,
+                    'cloudinary_public_id' => $paymentData['cloudinary_public_id'] ?? null,
                     'notes' => __('Pembayaran dicatat saat order diterima.'),
                 ]);
             }
@@ -1411,7 +1414,10 @@ class OrderAction
             $payment->update([
                 'amount' => $this->decimal($amount),
                 ...($hasNewProof
-                    ? ['proof_image' => $data['proof_image']]
+                    ? [
+                        'proof_image' => $data['proof_image'],
+                        'cloudinary_public_id' => $data['cloudinary_public_id'] ?? null,
+                    ]
                     : []),
             ]);
 
@@ -1445,7 +1451,10 @@ class OrderAction
             'method' => (string) ($data['payment_method'] ?? 'transfer'),
             'paid_at' => $data['payment_paid_at'] ?? now(),
             ...(is_string($data['proof_image'] ?? null)
-                ? ['proof_image' => $data['proof_image']]
+                ? [
+                    'proof_image' => $data['proof_image'],
+                    'cloudinary_public_id' => $data['cloudinary_public_id'] ?? null,
+                ]
                 : []),
         ];
 
@@ -1470,9 +1479,11 @@ class OrderAction
             return $data;
         }
 
-        $path = $proofImage->store("payments/{$order->id}", 'public');
+        try {
+            $asset = $this->cloudinary->upload($proofImage, "catering/payments/{$order->id}");
+        } catch (\Throwable $exception) {
+            report($exception);
 
-        if (! is_string($path)) {
             throw ValidationException::withMessages([
                 'proof_image' => __('Bukti pembayaran gagal disimpan.'),
             ]);
@@ -1480,7 +1491,8 @@ class OrderAction
 
         return [
             ...$data,
-            'proof_image' => Storage::disk('public')->url($path),
+            'proof_image' => $asset['secure_url'],
+            'cloudinary_public_id' => $asset['public_id'],
         ];
     }
 

@@ -127,7 +127,7 @@ export function CustomerHeroImagesSettingsCard({
                                                 <span className="text-[11px] text-muted-foreground">
                                                     PNG · JPG · WEBP
                                                     <br />
-                                                    auto kompres
+                                                    dioptimalkan Cloudinary
                                                 </span>
                                             </div>
                                         )}

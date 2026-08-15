@@ -19,6 +19,7 @@ class BusinessSettingTest extends TestCase
     {
         parent::setUp();
 
+        $this->fakeCloudinary();
         $this->withoutMiddleware(PreventRequestForgery::class);
     }
 
@@ -205,12 +206,9 @@ class BusinessSettingTest extends TestCase
 
         $this->assertIsArray($setting->hero_images);
         $this->assertCount(2, $setting->hero_images);
-        $this->assertStringContainsString('business/hero', $setting->hero_images[0]);
-        $this->assertStringContainsString('business/hero', $setting->hero_images[1]);
-
-        $firstImagePath = ltrim((string) parse_url($setting->hero_images[0], PHP_URL_PATH), '/');
-        $firstImagePath = str_replace('storage/', '', $firstImagePath);
-        Storage::disk('public')->assertExists($firstImagePath);
+        $this->assertStringContainsString('res.cloudinary.com/test-cloud', $setting->hero_images[0]);
+        $this->assertStringContainsString('res.cloudinary.com/test-cloud', $setting->hero_images[1]);
+        $this->assertCount(2, $setting->hero_image_cloudinary_public_ids);
     }
 
     public function test_business_settings_can_save_customer_home_images_via_multipart_method_spoofed_request(): void
@@ -255,7 +253,7 @@ class BusinessSettingTest extends TestCase
         ])->assertRedirect(route('business.edit'));
 
         $setting = BusinessSetting::query()->sole();
-        $oldPath = ltrim((string) parse_url($setting->logo, PHP_URL_PATH), '/storage/');
+        $oldPublicId = $setting->logo_cloudinary_public_id;
 
         $this->post(route('business.update'), [
             ...$payload,
@@ -263,10 +261,9 @@ class BusinessSettingTest extends TestCase
         ])->assertRedirect(route('business.edit'));
 
         $setting->refresh();
-        $newPath = ltrim((string) parse_url($setting->logo, PHP_URL_PATH), '/storage/');
+        $newPublicId = $setting->refresh()->logo_cloudinary_public_id;
 
-        $this->assertNotSame($oldPath, $newPath);
-        Storage::disk('public')->assertMissing($oldPath);
-        Storage::disk('public')->assertExists($newPath);
+        $this->assertNotSame($oldPublicId, $newPublicId);
+        $this->assertStringContainsString('res.cloudinary.com/test-cloud', $setting->logo);
     }
 }

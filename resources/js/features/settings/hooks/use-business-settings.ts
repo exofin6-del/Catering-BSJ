@@ -10,7 +10,6 @@ import type {
     InfoFormData,
     ThemeFormData,
 } from '@/features/settings/types/business-setting';
-import { compressImageFile } from '@/lib/image-compression';
 import business from '@/routes/business';
 
 export function useBusinessSettings(businessSetting: BusinessSetting) {
@@ -157,7 +156,7 @@ export function useBusinessSettings(businessSetting: BusinessSetting) {
         });
     }
 
-    async function handleHeroImageChange(index: number, file: File | null) {
+    function handleHeroImageChange(index: number, file: File | null): void {
         heroImageRemoveFlags.current[index] = false;
 
         if (file) {
@@ -173,8 +172,7 @@ export function useBusinessSettings(businessSetting: BusinessSetting) {
             errors[index] = '';
             setHeroImageErrors(errors);
 
-            const compressedFile = await compressImageFile(file);
-            heroImageFileRefs.current[index] = compressedFile;
+            heroImageFileRefs.current[index] = file;
 
             const reader = new FileReader();
             reader.onloadend = () => {
@@ -182,7 +180,7 @@ export function useBusinessSettings(businessSetting: BusinessSetting) {
                 previews[index] = reader.result as string;
                 setHeroImagePreviews(previews);
             };
-            reader.readAsDataURL(compressedFile);
+            reader.readAsDataURL(file);
         } else {
             heroImageFileRefs.current[index] = null;
         }

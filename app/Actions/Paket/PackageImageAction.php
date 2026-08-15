@@ -3,7 +3,7 @@
 namespace App\Actions\Paket;
 
 use App\Models\PackageImage;
-use App\Services\ImageCompressionService;
+use App\Services\CloudinaryService;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
@@ -13,32 +13,16 @@ class PackageImageAction
 {
     private const TemporarySessionKey = 'packages.temporary_images';
 
-    public function __construct(private ImageCompressionService $compressor)
-    {
-    }
+    public function __construct(private readonly CloudinaryService $cloudinary) {}
 
     public function upload(
         UploadedFile $file,
         int $packageId,
         bool $isPrimary = false,
     ): PackageImage {
-        $folder = "packages/{$packageId}";
+        $asset = $this->cloudinary->upload($file, "catering/packages/{$packageId}");
 
-        // Compress image before storing
-        $compressedPath = $this->compressor->compressAndStore(
-            $file,
-            $folder,
-            'public',
-            1920,
-            1920,
-            85
-        );
-
-        return $this->createFromStoredPath(
-            path: $compressedPath,
-            packageId: $packageId,
-            isPrimary: $isPrimary,
-        );
+        return $this->createFromAsset($asset, $packageId, $isPrimary);
     }
 
     /**
@@ -47,23 +31,13 @@ class PackageImageAction
     public function temporaryUpload(UploadedFile $file): array
     {
         $id = (string) Str::uuid();
-
-        // Compress image before storing
-        $compressedPath = $this->compressor->compressAndStore(
-            $file,
-            'packages/temp',
-            'public',
-            1920,
-            1920,
-            85
-        );
-
+        $asset = $this->cloudinary->upload($file, 'catering/packages/temp');
         $temporaryImages = session(self::TemporarySessionKey, []);
 
         $temporaryImages[$id] = [
             'name' => $file->getClientOriginalName(),
-            'path' => $compressedPath,
-            'url' => Storage::url($compressedPath),
+            'public_id' => $asset['public_id'],
+            'url' => $asset['secure_url'],
         ];
 
         session([self::TemporarySessionKey => $temporaryImages]);
@@ -83,23 +57,20 @@ class PackageImageAction
         $temporaryImages = session(self::TemporarySessionKey, []);
         $temporaryImage = Arr::get($temporaryImages, $temporaryImageId);
 
-        if (! is_array($temporaryImage) || ! isset($temporaryImage['path'])) {
+        if (! is_array($temporaryImage) || ! is_string($temporaryImage['public_id'] ?? null)) {
             return null;
         }
 
-        $temporaryPath = (string) $temporaryImage['path'];
-        $destinationPath = "packages/{$packageId}/".basename($temporaryPath);
-
-        Storage::disk('public')->move($temporaryPath, $destinationPath);
+        $publicId = (string) $temporaryImage['public_id'];
+        $asset = $this->cloudinary->rename(
+            $publicId,
+            "catering/packages/{$packageId}/".Str::afterLast($publicId, '/'),
+        );
 
         Arr::forget($temporaryImages, $temporaryImageId);
         session([self::TemporarySessionKey => $temporaryImages]);
 
-        return $this->createFromStoredPath(
-            path: $destinationPath,
-            packageId: $packageId,
-            isPrimary: $isPrimary,
-        );
+        return $this->createFromAsset($asset, $packageId, $isPrimary);
     }
 
     public function setPrimary(PackageImage $image): void
@@ -116,9 +87,11 @@ class PackageImageAction
         $wasPrimary = $image->is_primary;
         $packageId = $image->package_id;
 
-        Storage::disk('public')->delete(
-            str_replace('/storage/', '', parse_url($image->image_url, PHP_URL_PATH) ?: '')
-        );
+        if (filled($image->cloudinary_public_id)) {
+            $this->cloudinary->destroy((string) $image->cloudinary_public_id);
+        } else {
+            $this->deleteLegacyFile($image->image_url);
+        }
 
         $image->delete();
 
@@ -131,16 +104,14 @@ class PackageImageAction
             ->orderBy('sort_order')
             ->first();
 
-        if ($nextImage instanceof PackageImage) {
-            $nextImage->update(['is_primary' => true]);
-        }
+        $nextImage?->update(['is_primary' => true]);
     }
 
-    private function createFromStoredPath(
-        string $path,
-        int $packageId,
-        bool $isPrimary = false,
-    ): PackageImage {
+    /**
+     * @param  array{public_id: string, secure_url: string, version: int|null}  $asset
+     */
+    private function createFromAsset(array $asset, int $packageId, bool $isPrimary = false): PackageImage
+    {
         $aggregate = PackageImage::query()
             ->where('package_id', $packageId)
             ->selectRaw('COUNT(*) as total, MAX(sort_order) as max_sort')
@@ -158,9 +129,19 @@ class PackageImageAction
 
         return PackageImage::create([
             'package_id' => $packageId,
-            'image_url' => Storage::url($path),
+            'image_url' => $asset['secure_url'],
+            'cloudinary_public_id' => $asset['public_id'],
             'is_primary' => $shouldPrimary,
             'sort_order' => $nextSortOrder,
         ]);
+    }
+
+    private function deleteLegacyFile(?string $url): void
+    {
+        $path = parse_url((string) $url, PHP_URL_PATH);
+
+        if (is_string($path)) {
+            Storage::disk('public')->delete(str_replace('/storage/', '', $path));
+        }
     }
 }

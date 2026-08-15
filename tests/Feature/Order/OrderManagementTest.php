@@ -26,6 +26,7 @@ class OrderManagementTest extends TestCase
     {
         parent::setUp();
 
+        $this->fakeCloudinary();
         $this->withoutVite();
     }
 
@@ -526,14 +527,8 @@ class OrderManagementTest extends TestCase
             ->firstOrFail();
 
         $this->assertSame('paid', $paymentOrder->refresh()->payment_status);
-        $this->assertStringContainsString(
-            "/storage/payments/{$paymentOrder->id}/",
-            $payment->proof_image,
-        );
-        Storage::disk('public')->assertCount(
-            "payments/{$paymentOrder->id}",
-            1,
-        );
+        $this->assertStringContainsString('res.cloudinary.com/test-cloud', $payment->proof_image);
+        $this->assertNotNull($payment->cloudinary_public_id);
         $this->assertModelExists($payment);
     }
 
@@ -730,7 +725,8 @@ class OrderManagementTest extends TestCase
         $this->assertSame('dp', $payment->type);
         $this->assertSame('50000.00', $payment->amount);
         $this->assertNotNull($payment->proof_image);
-        Storage::disk('public')->assertCount("payments/{$order->id}", 1);
+        $this->assertStringContainsString('res.cloudinary.com/test-cloud', $payment->proof_image);
+        $this->assertNotNull($payment->cloudinary_public_id);
     }
 
     public function test_order_acceptance_rejects_overpayment_and_non_pending_orders(): void
@@ -811,11 +807,8 @@ class OrderManagementTest extends TestCase
             ->firstOrFail();
 
         $this->assertNotNull($payment->proof_image);
-        $this->assertStringContainsString(
-            "/storage/payments/{$order->id}/",
-            $payment->proof_image,
-        );
-        Storage::disk('public')->assertCount("payments/{$order->id}", 1);
+        $this->assertStringContainsString('res.cloudinary.com/test-cloud', $payment->proof_image);
+        $this->assertNotNull($payment->cloudinary_public_id);
     }
 
     public function test_dp_order_store_with_full_payment_keeps_dp_and_settlement_history(): void

@@ -13,6 +13,7 @@ class BusinessSetting extends Model
     protected $fillable = [
         'business_name',
         'logo',
+        'logo_cloudinary_public_id',
         'description',
         'whatsapp_number',
         'business_lat',
@@ -25,6 +26,7 @@ class BusinessSetting extends Model
         'is_open',
         'customer_theme',
         'hero_images',
+        'hero_image_cloudinary_public_ids',
     ];
 
     /**
@@ -52,6 +54,7 @@ class BusinessSetting extends Model
             'max_orders_per_day' => 'integer',
             'is_open' => 'boolean',
             'hero_images' => 'array',
+            'hero_image_cloudinary_public_ids' => 'array',
         ];
     }
 

@@ -21,6 +21,7 @@ class MenuFormTest extends TestCase
     {
         parent::setUp();
 
+        $this->fakeCloudinary();
         $this->withoutVite();
         cache()->forget('menu_categories');
     }
@@ -125,9 +126,8 @@ class MenuFormTest extends TestCase
             ->firstOrFail();
 
         $this->assertTrue($image->is_primary);
-        Storage::disk('public')->assertExists(
-            str_replace('/storage/', '', $image->image_url),
-        );
+        $this->assertSame('test/media/1', $image->cloudinary_public_id);
+        $this->assertStringContainsString('res.cloudinary.com/test-cloud', $image->image_url);
     }
 
     public function test_menu_temporary_image_upload_accepts_images_larger_than_two_megabytes(): void
@@ -148,9 +148,7 @@ class MenuFormTest extends TestCase
             ->assertOk()
             ->assertJsonStructure(['id', 'name', 'url']);
 
-        $path = str_replace('/storage/', '', (string) $response->json('url'));
-
-        Storage::disk('public')->assertExists($path);
+        $this->assertStringContainsString('res.cloudinary.com/test-cloud', (string) $response->json('url'));
     }
 
     public function test_menu_creation_saves_the_icon_for_a_new_category(): void

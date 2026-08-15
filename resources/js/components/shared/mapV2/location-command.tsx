@@ -61,6 +61,7 @@ type CachedGpsFix = {
     coord: Coordinate;
     accuracy: number;
     capturedAt: number;
+    address?: string;
 };
 
 let cachedGpsFix: CachedGpsFix | null = null;
@@ -79,8 +80,30 @@ function readCachedGpsFix(): Coordinate | null {
     return cachedGpsFix.coord;
 }
 
+function readCachedGpsAddress(): string | null {
+    if (
+        !cachedGpsFix ||
+        Date.now() - cachedGpsFix.capturedAt > GpsCacheMaxAgeMs
+    ) {
+        return null;
+    }
+
+    return cachedGpsFix.address ?? null;
+}
+
 function writeCachedGpsFix(coord: Coordinate, accuracy: number): void {
-    cachedGpsFix = { coord, accuracy, capturedAt: Date.now() };
+    cachedGpsFix = {
+        ...cachedGpsFix,
+        coord,
+        accuracy,
+        capturedAt: Date.now(),
+    };
+}
+
+function writeCachedGpsAddress(address: string): void {
+    if (cachedGpsFix && address.trim() !== '') {
+        cachedGpsFix.address = address;
+    }
 }
 
 async function readGeolocationPermission(): Promise<PermissionState> {
@@ -89,9 +112,8 @@ async function readGeolocationPermission(): Promise<PermissionState> {
             return 'prompt';
         }
 
-        return (
-            await navigator.permissions.query({ name: 'geolocation' })
-        ).state;
+        return (await navigator.permissions.query({ name: 'geolocation' }))
+            .state;
     } catch {
         // Safari iOS tidak selalu menyediakan Permissions API untuk
         // geolocation. Sumber kebenaran tetap callback Geolocation API.
@@ -170,14 +192,15 @@ export function LocationCommand({
     const [gpsErr, setGpsErr] = useState<string | null>(null);
     const [gpsRecovery, setGpsRecovery] = useState<'permission' | null>(null);
     const [gpsPriming, setGpsPriming] = useState(false);
-    const [permissionState, setPermissionState] = useState<PermissionState>(
-        'prompt',
-    );
+    const [permissionState, setPermissionState] =
+        useState<PermissionState>('prompt');
 
     const [pinCoord, setPinCoord] = useState<Coordinate | null>(null);
     const [isSearchActive, setIsSearchActive] = useState(false);
     const [alertOpen, setAlertOpen] = useState(false);
-    const [draftAddress, setDraftAddress] = useState<string>('');
+    const [draftAddress, setDraftAddress] = useState<string>(
+        () => readCachedGpsAddress() ?? '',
+    );
 
     const doneButtonRef = useRef<HTMLButtonElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -245,7 +268,9 @@ export function LocationCommand({
     // pakai `resolvedOrigin` + guard `isOriginReady`.
     const origin: Coordinate = resolvedOrigin ?? fallback.coord;
     const isSearchMode = query.trim() !== '';
-    const hasLocation = Boolean(pinCoord ?? selectedCoord);
+    const hasLocation = Boolean(
+        pinCoord ?? selectedCoord ?? (isLocationPermissionGranted && gpsCoord),
+    );
 
     //whatsapp
     const href = business
@@ -373,10 +398,11 @@ export function LocationCommand({
                         const [gpsLat, gpsLng] = finalFix.coord;
                         void reverseGeocodeCoordinate(finalFix.coord).then(
                             (addr) => {
-                                setDraftAddress(
+                                const address =
                                     addr ||
-                                        `${formatCoordinate(gpsLat)}, ${formatCoordinate(gpsLng)}`,
-                                );
+                                    `${formatCoordinate(gpsLat)}, ${formatCoordinate(gpsLng)}`;
+                                setDraftAddress(address);
+                                writeCachedGpsAddress(address);
                             },
                         );
                     });
@@ -456,6 +482,25 @@ export function LocationCommand({
         setGpsRecovery(null);
         setGpsPriming(true);
 
+        const cachedCoord =
+            permissionState === 'granted'
+                ? (gpsCoord ?? readCachedGpsFix())
+                : null;
+
+        if (cachedCoord) {
+            setPermissionState('granted');
+            setGpsCoord(cachedCoord);
+            setPinCoord(cachedCoord);
+            setGpsStatus('resolved');
+            setGpsPriming(false);
+            setDraftAddress(
+                readCachedGpsAddress() ??
+                    `${formatCoordinate(cachedCoord[0])}, ${formatCoordinate(cachedCoord[1])}`,
+            );
+
+            return;
+        }
+
         if (!('geolocation' in navigator)) {
             setGpsCoord(null);
             setGpsErr('Lokasi tidak didukung.');
@@ -518,10 +563,11 @@ export function LocationCommand({
 
                     void reverseGeocodeCoordinate(finalFix.coord).then(
                         (addr) => {
-                            setDraftAddress(
+                            const address =
                                 addr ||
-                                    `${formatCoordinate(lat)}, ${formatCoordinate(lng)}`,
-                            );
+                                `${formatCoordinate(lat)}, ${formatCoordinate(lng)}`;
+                            setDraftAddress(address);
+                            writeCachedGpsAddress(address);
                         },
                     );
                 },
@@ -553,7 +599,7 @@ export function LocationCommand({
         };
 
         attempt();
-    }, [setDraftAddress]);
+    }, [gpsCoord, permissionState]);
 
     /* ---- Effects ---- */
 
@@ -568,10 +614,6 @@ export function LocationCommand({
         let isActive = true;
         const requestId = gpsRid.current;
 
-        if (gpsCoord) {
-            return;
-        }
-
         void readGeolocationPermission().then((permission) => {
             if (!isActive || gpsRid.current !== requestId) {
                 return;
@@ -579,24 +621,47 @@ export function LocationCommand({
 
             setPermissionState(permission);
 
+            if (permission !== 'granted') {
+                return;
+            }
+
             if (gpsCoord) {
                 return;
             }
 
-            if (permission === 'granted') {
-                requestGps(() => isActive);
-
-                return;
-            }
-
-            setGpsStatus('idle');
-            setGpsPriming(false);
+            requestGps(() => isActive);
         });
 
         return () => {
             isActive = false;
         };
     }, [gpsCoord, open, requestGps]);
+
+    useEffect(() => {
+        if (!open || !gpsCoord || selectedCoord || pinCoord) {
+            return;
+        }
+
+        const cachedAddress = readCachedGpsAddress();
+
+        let isActive = true;
+
+        Promise.resolve().then(() => {
+            if (!isActive) {
+                return;
+            }
+
+            setPinCoord(gpsCoord);
+
+            if (cachedAddress) {
+                setDraftAddress(cachedAddress);
+            }
+        });
+
+        return () => {
+            isActive = false;
+        };
+    }, [gpsCoord, open, pinCoord, selectedCoord]);
 
     // Reset saat tutup
     useEffect(() => {
@@ -796,7 +861,7 @@ export function LocationCommand({
 
     const handleDone = useCallback(() => {
         // Gunakan pinCoord (draft) jika ada, fallback ke selectedCoord
-        const coordToCheck = pinCoord ?? selectedCoord;
+        const coordToCheck = pinCoord ?? selectedCoord ?? gpsCoord;
 
         if (
             surface === 'storefront' &&
@@ -818,13 +883,13 @@ export function LocationCommand({
         }
 
         // Update form dengan lokasi draft (pinCoord) jika ada
-        if (pinCoord) {
+        if (coordToCheck) {
             onLocationSelect({
-                latitude: formatCoordinate(pinCoord[0]),
-                longitude: formatCoordinate(pinCoord[1]),
+                latitude: formatCoordinate(coordToCheck[0]),
+                longitude: formatCoordinate(coordToCheck[1]),
                 address:
                     draftAddress ||
-                    `${formatCoordinate(pinCoord[0])}, ${formatCoordinate(pinCoord[1])}`,
+                    `${formatCoordinate(coordToCheck[0])}, ${formatCoordinate(coordToCheck[1])}`,
             });
         }
 
@@ -834,6 +899,7 @@ export function LocationCommand({
         pinCoord,
         draftAddress,
         selectedCoord,
+        gpsCoord,
         bizCoord,
         maxOrderKm,
         onLocationSelect,
@@ -1012,24 +1078,52 @@ export function LocationCommand({
                             {isSearchActive ? (
                                 <Button
                                     type="button"
-                                    variant="ghost"
+                                    variant={
+                                        surface === 'storefront'
+                                            ? 'secondary'
+                                            : 'ghost'
+                                    }
                                     size="icon"
-                                    className="h-9 w-9 shrink-0"
+                                    className={cn(
+                                        'h-9 w-9 shrink-0',
+                                        surface === 'storefront' &&
+                                            'rounded-full bg-primary/10 text-primary transition-all duration-200 hover:bg-primary/20',
+                                    )}
                                     aria-label="Keluar dari pencarian"
                                     onClick={handleExitSearch}
                                 >
-                                    <ChevronLeft className="size-5 text-zinc-500" />
+                                    <ChevronLeft
+                                        className={cn(
+                                            surface === 'storefront'
+                                                ? 'size-7'
+                                                : 'size-5 text-zinc-500',
+                                        )}
+                                    />
                                 </Button>
                             ) : (
                                 <Button
                                     type="button"
-                                    variant="ghost"
+                                    variant={
+                                        surface === 'storefront'
+                                            ? 'secondary'
+                                            : 'ghost'
+                                    }
                                     size="icon"
-                                    className="h-9 w-9 shrink-0 sm:hidden"
+                                    className={cn(
+                                        'h-9 w-9 shrink-0 sm:hidden',
+                                        surface === 'storefront' &&
+                                            'rounded-full bg-primary/10 text-primary transition-all duration-200 hover:bg-primary/20',
+                                    )}
                                     aria-label="Kembali"
                                     onClick={() => handleOpen(false)}
                                 >
-                                    <ChevronLeft className="size-5 text-zinc-500" />
+                                    <ChevronLeft
+                                        className={cn(
+                                            surface === 'storefront'
+                                                ? 'size-7'
+                                                : 'size-5 text-zinc-500',
+                                        )}
+                                    />
                                 </Button>
                             )}
                             <div className="relative min-w-0 flex-1">
@@ -1039,7 +1133,12 @@ export function LocationCommand({
                                     placeholder={searchPlaceholder}
                                     wrapperClassName="p-0"
                                     className="h-10 min-w-0 border-none bg-transparent pr-9 text-[15px] shadow-none focus-visible:ring-0"
-                                    inputGroupClassName="h-10! rounded-xl! border-primary/15 bg-primary/[0.03] text-foreground shadow-none! placeholder:text-muted-foreground/50 focus-within:border-primary/30 focus-within:ring-primary/20 **:[data-slot=input-group-addon]:pl-3.5! **:[data-slot=input-group-addon]:pr-2! **:[data-slot=input-group-addon]:text-primary [&_svg]:opacity-100"
+                                    inputGroupClassName={cn(
+                                        'h-10! border-primary/15 bg-primary/[0.03] text-foreground shadow-none! placeholder:text-muted-foreground/50 focus-within:border-primary/30 focus-within:ring-primary/20 [&_svg]:opacity-100 **:[data-slot=input-group-addon]:pr-2! **:[data-slot=input-group-addon]:pl-3.5! **:[data-slot=input-group-addon]:text-primary',
+                                        surface === 'storefront'
+                                            ? 'rounded-full!'
+                                            : 'rounded-xl!',
+                                    )}
                                     value={inputValue}
                                     onValueChange={handleQueryChange}
                                     onFocus={() => setIsSearchActive(true)}
@@ -1066,26 +1165,7 @@ export function LocationCommand({
                                     {showSkeleton ? (
                                         <div className="relative h-56 min-h-48 overflow-hidden bg-muted sm:h-64">
                                             <Skeleton className="h-full w-full rounded-none" />
-                                            {gpsStatus === 'idle' ? (
-                                                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-4 text-center">
-                                                    <MapPin className="size-5 text-muted-foreground" />
-                                                    <span className="max-w-60 text-sm text-muted-foreground">
-                                                        Izinkan lokasi untuk
-                                                        menampilkan lokasi Anda
-                                                        di peta.
-                                                    </span>
-                                                    <Button
-                                                        type="button"
-                                                        size="sm"
-                                                        className="h-9 rounded-lg px-3 text-xs"
-                                                        onClick={
-                                                            handleUseCurrentLocation
-                                                        }
-                                                    >
-                                                        Gunakan lokasi saat ini
-                                                    </Button>
-                                                </div>
-                                            ) : gpsStatus === 'unavailable' ? (
+                                            {gpsStatus === 'unavailable' ? (
                                                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-4 text-center">
                                                     <MapPin className="size-5 text-muted-foreground" />
                                                     <span className="text-sm text-muted-foreground">
@@ -1224,10 +1304,10 @@ export function LocationCommand({
                                         onClick={handleUseCurrentLocation}
                                     >
                                         {gpsStatus === 'locating'
-                                            ? 'Meminta izin...'
+                                            ? 'Mengaktifkan lokasi...'
                                             : permissionState === 'denied'
-                                              ? 'Coba izinkan lokasi'
-                                              : 'Izinkan lokasi'}
+                                              ? 'Coba lagi'
+                                              : 'Aktifkan lokasi'}
                                     </Button>
                                 </div>
                             )}

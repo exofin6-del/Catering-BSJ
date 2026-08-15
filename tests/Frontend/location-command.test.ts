@@ -43,10 +43,10 @@ test('location map and nearby suggestions require granted permission', () => {
     );
 });
 
-test('location permission is requested only after an explicit user action', () => {
+test('granted location permission loads automatically and remains user-recoverable', () => {
     assert.match(
         locationCommand,
-        /if \(gpsCoord\) \{\s+return;\s+\}\s+\s+if \(permission === 'granted'/,
+        /if \(permission !== 'granted'\) \{\s+return;\s+\}\s+\s+if \(gpsCoord\) \{\s+return;\s+\}/,
     );
     assert.doesNotMatch(
         locationCommand,
@@ -62,13 +62,25 @@ test('location permission is not kept in a stale module cache', () => {
         locationCommand,
         /if \(!navigator\.permissions\?\.query\) \{\s+return 'prompt';/,
     );
-    assert.match(
-        locationCommand,
-        /if \(gpsCoord\) \{\s+return;/,
-    );
+    assert.match(locationCommand, /if \(gpsCoord\) \{\s+return;/);
     assert.doesNotMatch(businessLocationCommand, /cachedPermissionState/);
     assert.match(
         businessLocationCommand,
         /if \(!navigator\.permissions\?\.query\) \{\s+return 'prompt';/,
+    );
+});
+
+test('customer location controls match the customer surface styling', () => {
+    assert.match(
+        locationCommand,
+        /surface === 'storefront'\s+\? 'secondary'\s+: 'ghost'/,
+    );
+    assert.match(
+        locationCommand,
+        /rounded-full bg-primary\/10 text-primary transition-all duration-200 hover:bg-primary\/20/,
+    );
+    assert.match(
+        locationCommand,
+        /surface === 'storefront'[\s\S]*rounded-full!/,
     );
 });

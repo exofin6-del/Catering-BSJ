@@ -880,6 +880,7 @@ function MapLocateControl({
     showMarker,
     loading,
     oneShot,
+    externalLocationHandling = false,
     onLocationFound,
     onLocationError,
     onLocationStart,
@@ -890,6 +891,7 @@ function MapLocateControl({
     showMarker?: boolean
     loading?: boolean
     oneShot?: boolean
+    externalLocationHandling?: boolean
     onLocationFound?: (latlng: L.LatLng, accuracy: number) => void
     onLocationError?: (message: string) => void
     onLocationStart?: () => void
@@ -939,9 +941,11 @@ function MapLocateControl({
             if (props.onClick) {
                 props.onClick(event)
             }
-            startLocating()
+            if (!externalLocationHandling) {
+                startLocating()
+            }
         },
-        [props, startLocating],
+        [externalLocationHandling, props, startLocating],
     )
 
     const isLoading = isLocating || loading

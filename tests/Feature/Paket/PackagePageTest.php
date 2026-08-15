@@ -26,6 +26,7 @@ class PackagePageTest extends TestCase
     {
         parent::setUp();
 
+        $this->fakeCloudinary();
         $this->withoutVite();
     }
 
@@ -254,9 +255,7 @@ class PackagePageTest extends TestCase
             ->assertOk()
             ->assertJsonStructure(['id', 'name', 'url']);
 
-        $path = str_replace('/storage/', '', (string) $response->json('url'));
-
-        Storage::disk('public')->assertExists($path);
+        $this->assertStringContainsString('res.cloudinary.com/test-cloud', (string) $response->json('url'));
     }
 
     public function test_package_creation_saves_the_icon_for_a_new_category(): void

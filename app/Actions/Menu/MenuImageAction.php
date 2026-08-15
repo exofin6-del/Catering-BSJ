@@ -3,7 +3,7 @@
 namespace App\Actions\Menu;
 
 use App\Models\MenuImage;
-use App\Services\ImageCompressionService;
+use App\Services\CloudinaryService;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
@@ -13,29 +13,17 @@ class MenuImageAction
 {
     private const TemporarySessionKey = 'menu.temporary_images';
 
-    public function __construct(private ImageCompressionService $compressor)
-    {
-    }
+    public function __construct(private readonly CloudinaryService $cloudinary) {}
 
     public function upload(
         UploadedFile $file,
         int $menuItemId,
         bool $isPrimary = false,
     ): MenuImage {
-        $folder = "menu/items/{$menuItemId}";
+        $asset = $this->cloudinary->upload($file, "catering/menu/items/{$menuItemId}");
 
-        // Compress image before storing
-        $compressedPath = $this->compressor->compressAndStore(
-            $file,
-            $folder,
-            'public',
-            1920,
-            1920,
-            85
-        );
-
-        return $this->createFromStoredPath(
-            path: $compressedPath,
+        return $this->createFromAsset(
+            asset: $asset,
             menuItemId: $menuItemId,
             isPrimary: $isPrimary,
         );
@@ -47,23 +35,13 @@ class MenuImageAction
     public function temporaryUpload(UploadedFile $file): array
     {
         $id = (string) Str::uuid();
-
-        // Compress image before storing
-        $compressedPath = $this->compressor->compressAndStore(
-            $file,
-            'menu/temp',
-            'public',
-            1920,
-            1920,
-            85
-        );
-
+        $asset = $this->cloudinary->upload($file, 'catering/menu/temp');
         $temporaryImages = session(self::TemporarySessionKey, []);
 
         $temporaryImages[$id] = [
             'name' => $file->getClientOriginalName(),
-            'path' => $compressedPath,
-            'url' => Storage::url($compressedPath),
+            'public_id' => $asset['public_id'],
+            'url' => $asset['secure_url'],
         ];
 
         session([self::TemporarySessionKey => $temporaryImages]);
@@ -83,30 +61,63 @@ class MenuImageAction
         $temporaryImages = session(self::TemporarySessionKey, []);
         $temporaryImage = Arr::get($temporaryImages, $temporaryImageId);
 
-        if (! is_array($temporaryImage) || ! isset($temporaryImage['path'])) {
+        if (! is_array($temporaryImage) || ! is_string($temporaryImage['public_id'] ?? null)) {
             return null;
         }
 
-        $temporaryPath = (string) $temporaryImage['path'];
-        $destinationPath = "menu/items/{$menuItemId}/".basename($temporaryPath);
-
-        Storage::disk('public')->move($temporaryPath, $destinationPath);
+        $publicId = (string) $temporaryImage['public_id'];
+        $asset = $this->cloudinary->rename(
+            $publicId,
+            "catering/menu/items/{$menuItemId}/".Str::afterLast($publicId, '/'),
+        );
 
         Arr::forget($temporaryImages, $temporaryImageId);
         session([self::TemporarySessionKey => $temporaryImages]);
 
-        return $this->createFromStoredPath(
-            path: $destinationPath,
+        return $this->createFromAsset(
+            asset: $asset,
             menuItemId: $menuItemId,
             isPrimary: $isPrimary,
         );
     }
 
-    private function createFromStoredPath(
-        string $path,
-        int $menuItemId,
-        bool $isPrimary = false,
-    ): MenuImage {
+    public function setPrimary(MenuImage $image): void
+    {
+        MenuImage::query()
+            ->where('menu_item_id', $image->menu_item_id)
+            ->update(['is_primary' => false]);
+
+        $image->update(['is_primary' => true]);
+    }
+
+    public function delete(MenuImage $image): void
+    {
+        $wasPrimary = $image->is_primary;
+        $itemId = $image->menu_item_id;
+
+        if (filled($image->cloudinary_public_id)) {
+            $this->cloudinary->destroy((string) $image->cloudinary_public_id);
+        } else {
+            $this->deleteLegacyFile($image->image_url);
+        }
+
+        $image->delete();
+
+        if ($wasPrimary) {
+            $nextImage = MenuImage::query()
+                ->where('menu_item_id', $itemId)
+                ->orderBy('sort_order')
+                ->first();
+
+            $nextImage?->update(['is_primary' => true]);
+        }
+    }
+
+    /**
+     * @param  array{public_id: string, secure_url: string, version: int|null}  $asset
+     */
+    private function createFromAsset(array $asset, int $menuItemId, bool $isPrimary = false): MenuImage
+    {
         $aggregate = MenuImage::query()
             ->where('menu_item_id', $menuItemId)
             ->selectRaw('COUNT(*) as total, MAX(sort_order) as max_sort')
@@ -124,47 +135,19 @@ class MenuImageAction
 
         return MenuImage::create([
             'menu_item_id' => $menuItemId,
-            'image_url' => Storage::url($path),
+            'image_url' => $asset['secure_url'],
+            'cloudinary_public_id' => $asset['public_id'],
             'is_primary' => $shouldPrimary,
             'sort_order' => $nextSortOrder,
         ]);
     }
 
-    public function setPrimary(MenuImage $image): void
+    private function deleteLegacyFile(?string $url): void
     {
-        // Reset primary lama lalu set yang baru — 2 query dalam 1 transaksi implisit
-        MenuImage::query()
-            ->where('menu_item_id', $image->menu_item_id)
-            ->update(['is_primary' => false]);
+        $path = parse_url((string) $url, PHP_URL_PATH);
 
-        $image->update(['is_primary' => true]);
-    }
-
-    public function delete(MenuImage $image): void
-    {
-        $wasPrimary = $image->is_primary;
-        $itemId = $image->menu_item_id;
-
-        // Hapus file dari storage
-        Storage::disk('public')->delete(
-            str_replace('/storage/', '', parse_url($image->image_url, PHP_URL_PATH))
-        );
-
-        $image->delete();
-
-        // Promote gambar berikutnya jadi primary jika perlu
-        if ($wasPrimary) {
-            $nextImageId = MenuImage::query()
-                ->where('menu_item_id', $itemId)
-                ->orderBy('sort_order')
-                ->value('id');
-
-            if ($nextImageId) {
-                $nextImage = MenuImage::find($nextImageId);
-                if ($nextImage) {
-                    $nextImage->update(['is_primary' => true]);
-                }
-            }
+        if (is_string($path)) {
+            Storage::disk('public')->delete(str_replace('/storage/', '', $path));
         }
     }
 }
