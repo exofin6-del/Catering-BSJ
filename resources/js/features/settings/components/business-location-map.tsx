@@ -110,6 +110,7 @@ export function BusinessLocationMap({
         null,
     );
     const locateRequestId = useRef<number>(0);
+    const wasCurrentLocationLoadingRef = useRef(currentLocationLoading);
 
     const currentCoordinate = useMemo(
         () => coordinateFromValues(selectedLatitude, selectedLongitude) ?? null,
@@ -225,14 +226,39 @@ export function BusinessLocationMap({
         }
     }, []);
 
-    const handleMoveStart = useCallback(() => {
-        isUserPanningRef.current = true;
+    useEffect(() => {
+        const wasLoading = wasCurrentLocationLoadingRef.current;
+        wasCurrentLocationLoadingRef.current = currentLocationLoading;
+
+        // GPS diminta oleh command di luar peta karena kontrol memakai
+        // externalLocationHandling. Lepaskan loading lokal setelah request
+        // selesai agar tombol locate bisa dipakai kembali.
+        if (
+            isLocating &&
+            currentLocation &&
+            wasLoading &&
+            !currentLocationLoading
+        ) {
+            setIsLocating(false);
+        }
+    }, [currentLocation, currentLocationLoading, isLocating]);
+
+    const handleMoveStart = useCallback((isAutoMoving: boolean) => {
+        if (!isAutoMoving) {
+            isUserPanningRef.current = true;
+        }
+
         setIsMapMoving(true);
     }, []);
 
     const handleMoveEnd = useCallback(
-        (centerCoordinate: Coordinate) => {
+        (centerCoordinate: Coordinate, isAutoMoving: boolean) => {
             setIsMapMoving(false);
+
+            if (isAutoMoving) {
+                return;
+            }
+
             void handleUpdateLocation(centerCoordinate, {
                 resolveAddress: true,
             });
@@ -288,9 +314,9 @@ export function BusinessLocationMap({
                             externalLocationHandling
                             loading={isLocating || currentLocationLoading}
                             onClick={() => {
-                                // Reset lastFlyToCoordRef di MapViewportHandler
-                                // supaya flyTo selalu jalan walau koordinat
-                                // sama dengan posisi terakhir.
+                                // Tandai request locate agar hasil GPS selalu
+                                // menjalankan fly-to yang dianimasikan.
+                                handleLocationStart();
                                 setLocateToken((t) => t + 1);
                                 onLocateCurrentLocation?.();
                             }}
@@ -475,24 +501,24 @@ function MapCenterMoveHandler({
     onReady,
     isAutoMovingRef,
 }: {
-    onMoveStart: () => void;
-    onMoveEnd: (center: Coordinate) => void;
+    onMoveStart: (isAutoMoving: boolean) => void;
+    onMoveEnd: (center: Coordinate, isAutoMoving: boolean) => void;
     onViewportChange?: (center: Coordinate) => void;
     onReady: () => void;
     isAutoMovingRef: React.RefObject<boolean>;
 }) {
     const map = useMapEvents({
         movestart: () => {
-            if (!isAutoMovingRef.current) {
-                onMoveStart();
-            }
+            onMoveStart(isAutoMovingRef.current);
         },
         moveend: () => {
             const center = map.getCenter();
             const coordinate: Coordinate = [center.lat, center.lng];
+            const wasAutoMoving = isAutoMovingRef.current;
 
-            if (!isAutoMovingRef.current) {
-                onMoveEnd(coordinate);
+            onMoveEnd(coordinate, wasAutoMoving);
+
+            if (!wasAutoMoving) {
                 onViewportChange?.(coordinate);
             }
 
@@ -599,6 +625,8 @@ function MapViewportHandler({
 }) {
     const map = useMap();
     const lastFlyToCoordRef = useRef<string | null>(null);
+    const lastLocateTokenRef = useRef(locateToken);
+    const forceFlyRef = useRef(false);
     const lastRadiusRef = useRef<number | null>(null);
     // Track apakah flyTo dipicu oleh tombol locate — kalau ya, pakai
     // zoomForRadius(radiusKm) supaya lingkaran radius ikut terlihat utuh.
@@ -613,18 +641,25 @@ function MapViewportHandler({
     // supaya kalau radius berubah dalam rentang zoom yang sama, tidak
     // perlu flyTo (mis. 12 km → 14 km sama-sama zoom 10).
     const lastRadiusZoomRef = useRef<number | null>(null);
+    const pendingRadiusZoomRef = useRef<number | null>(null);
+    const waitingForMoveEndRef = useRef(false);
+    const radiusMoveEndHandlerRef = useRef<(() => void) | null>(null);
 
-    // Reset cache saat locate diklik supaya flyTo selalu jalan
-    // walau koordinat GPS-nya sama dengan posisi terakhir.
+    // Reset cache saat locate diklik supaya flyTo tetap berjalan walau
+    // koordinat GPS sama dengan posisi terakhir.
     useEffect(() => {
         if (!isMapReady) {
             return;
         }
 
-        lastFlyToCoordRef.current = null;
-        lastRadiusRef.current = null;
-        lastRadiusZoomRef.current = null;
-        locateTriggeredRef.current = true;
+        if (lastLocateTokenRef.current !== locateToken) {
+            lastLocateTokenRef.current = locateToken;
+            lastFlyToCoordRef.current = null;
+            lastRadiusRef.current = null;
+            lastRadiusZoomRef.current = null;
+            forceFlyRef.current = true;
+            locateTriggeredRef.current = true;
+        }
     }, [locateToken, isMapReady]);
 
     // Bersihkan timeout auto-zoom saat komponen unmount supaya tidak ada
@@ -635,8 +670,13 @@ function MapViewportHandler({
                 clearTimeout(radiusZoomTimeoutRef.current);
                 radiusZoomTimeoutRef.current = null;
             }
+
+            if (radiusMoveEndHandlerRef.current) {
+                map.off('moveend', radiusMoveEndHandlerRef.current);
+                radiusMoveEndHandlerRef.current = null;
+            }
         };
-    }, []);
+    }, [map]);
 
     // Begitu user mulai gesture zoom manual (pinch, scroll, atau tombol
     // +/-), batalkan auto-zoom radius yang masih menunggu di debounce.
@@ -680,8 +720,11 @@ function MapViewportHandler({
             // tetap di radius yang sama (mis. 12 → 14 km, sama-sama 10)
             // tidak perlu animasi yang sia-sia.
             if (lastRadiusZoomRef.current === targetZoom) {
+                pendingRadiusZoomRef.current = null;
                 return;
             }
+
+            pendingRadiusZoomRef.current = targetZoom;
 
             if (radiusZoomTimeoutRef.current) {
                 clearTimeout(radiusZoomTimeoutRef.current);
@@ -694,9 +737,46 @@ function MapViewportHandler({
                 // zoom atau drag) — auto-zoom radius mengalah dan hanya
                 // jalan kalau map sedang diam.
                 if (isUserPanningRef.current) {
+                    pendingRadiusZoomRef.current = null;
                     return;
                 }
 
+                if (isAutoMovingRef.current) {
+                    if (!waitingForMoveEndRef.current) {
+                        waitingForMoveEndRef.current = true;
+                        const handleMoveEnd = () => {
+                            waitingForMoveEndRef.current = false;
+                            radiusMoveEndHandlerRef.current = null;
+
+                            const nextZoom = pendingRadiusZoomRef.current;
+
+                            if (
+                                nextZoom === null ||
+                                isUserPanningRef.current
+                            ) {
+                                pendingRadiusZoomRef.current = null;
+
+                                return;
+                            }
+
+                            pendingRadiusZoomRef.current = null;
+                            lastRadiusZoomRef.current = nextZoom;
+                            isAutoMovingRef.current = true;
+                            map.flyTo(map.getCenter(), nextZoom, {
+                                animate: true,
+                                duration: 0.55,
+                                easeLinearity: 0.2,
+                            });
+                        };
+
+                        radiusMoveEndHandlerRef.current = handleMoveEnd;
+                        map.once('moveend', handleMoveEnd);
+                    }
+
+                    return;
+                }
+
+                pendingRadiusZoomRef.current = null;
                 lastRadiusZoomRef.current = targetZoom;
                 isAutoMovingRef.current = true;
 
@@ -705,7 +785,8 @@ function MapViewportHandler({
                 // posisi basi kalau user sempat geser peta di antaranya.
                 map.flyTo(map.getCenter(), targetZoom, {
                     animate: true,
-                    duration: 0.5,
+                    duration: 0.55,
+                    easeLinearity: 0.2,
                 });
             }, 150);
         }
@@ -727,19 +808,19 @@ function MapViewportHandler({
             const center = map.getCenter();
             lastFlyToCoordRef.current = `${center.lat.toFixed(6)},${center.lng.toFixed(6)}`;
             lastRadiusRef.current = radiusKm;
+            lastRadiusZoomRef.current = map.getZoom();
 
-            // Jika koordinat yang masuk sama dengan center peta saat ini,
-            // skip flyTo.
-            if (lastFlyToCoordRef.current === key) {
+            if (lastFlyToCoordRef.current === key && !forceFlyRef.current) {
                 return;
             }
         }
 
         if (
             (isLocating || !isUserPanningRef.current) &&
-            lastFlyToCoordRef.current !== key
+            (lastFlyToCoordRef.current !== key || forceFlyRef.current)
         ) {
             lastFlyToCoordRef.current = key;
+            forceFlyRef.current = false;
             lastRadiusRef.current = radiusKm;
             lastRadiusZoomRef.current = zoomForRadius(radiusKm);
             isAutoMovingRef.current = true;
@@ -761,9 +842,11 @@ function MapViewportHandler({
                 : map.getZoom();
             locateTriggeredRef.current = false;
 
+            map.stop();
             map.flyTo(coordinate, zoom, {
                 animate: true,
-                duration: 1.0,
+                duration: 0.9,
+                easeLinearity: 0.2,
             });
         }
     }, [

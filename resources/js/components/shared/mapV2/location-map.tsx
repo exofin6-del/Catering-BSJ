@@ -82,6 +82,7 @@ export function MapV2LocationMap({
         null,
     );
     const locateRequestId = useRef<number>(0);
+    const wasCurrentLocationLoadingRef = useRef(currentLocationLoading);
 
     const isCompactMap = variant === 'compact';
     const isMapInteractionEnabled = true;
@@ -254,14 +255,39 @@ export function MapV2LocationMap({
         }
     }, []);
 
-    const handleMoveStart = useCallback(() => {
-        isUserPanningRef.current = true;
+    useEffect(() => {
+        const wasLoading = wasCurrentLocationLoadingRef.current;
+        wasCurrentLocationLoadingRef.current = currentLocationLoading;
+
+        // GPS diminta oleh command di luar peta karena kontrol memakai
+        // externalLocationHandling. Lepaskan loading lokal ketika command
+        // selesai agar tombol locate bisa dipakai kembali.
+        if (
+            isLocating &&
+            currentLocation &&
+            wasLoading &&
+            !currentLocationLoading
+        ) {
+            setIsLocating(false);
+        }
+    }, [currentLocation, currentLocationLoading, isLocating]);
+
+    const handleMoveStart = useCallback((isAutoMoving: boolean) => {
+        if (!isAutoMoving) {
+            isUserPanningRef.current = true;
+        }
+
         setIsMapMoving(true);
     }, []);
 
     const handleMoveEnd = useCallback(
-        (centerCoordinate: Coordinate) => {
+        (centerCoordinate: Coordinate, isAutoMoving: boolean) => {
             setIsMapMoving(false);
+
+            if (isAutoMoving) {
+                return;
+            }
+
             void handleUpdateLocation(centerCoordinate, {
                 resolveAddress: true,
             });
@@ -318,8 +344,10 @@ export function MapV2LocationMap({
                             externalLocationHandling
                             loading={isLocating || currentLocationLoading}
                             onClick={() => {
-                                // Reset lastFlyToCoordRef di MapViewportHandler
-                                // supaya flyTo selalu jalan walau koordinat sama.
+                                // GPS diminta oleh command di luar kontrol
+                                // Leaflet. Tetap tandai request ini supaya
+                                // hasilnya selalu mendapat animasi fly-to.
+                                handleLocationStart();
                                 setLocateToken((t) => t + 1);
                                 onLocateCurrentLocation?.();
                             }}
@@ -431,24 +459,24 @@ function MapCenterMoveHandler({
     onReady,
     isAutoMovingRef,
 }: {
-    onMoveStart: () => void;
-    onMoveEnd: (center: Coordinate) => void;
+    onMoveStart: (isAutoMoving: boolean) => void;
+    onMoveEnd: (center: Coordinate, isAutoMoving: boolean) => void;
     onViewportChange?: (center: Coordinate) => void;
     onReady: () => void;
     isAutoMovingRef: React.RefObject<boolean>;
 }) {
     const map = useMapEvents({
         movestart: () => {
-            if (!isAutoMovingRef.current) {
-                onMoveStart();
-            }
+            onMoveStart(isAutoMovingRef.current);
         },
         moveend: () => {
             const center = map.getCenter();
             const coordinate: Coordinate = [center.lat, center.lng];
+            const wasAutoMoving = isAutoMovingRef.current;
 
-            if (!isAutoMovingRef.current) {
-                onMoveEnd(coordinate);
+            onMoveEnd(coordinate, wasAutoMoving);
+
+            if (!wasAutoMoving) {
                 onViewportChange?.(coordinate);
             }
 
@@ -592,15 +620,21 @@ function MapViewportHandler({
 }) {
     const map = useMap();
     const lastFlyToCoordRef = useRef<string | null>(null);
+    const lastLocateTokenRef = useRef(locateToken);
+    const forceFlyRef = useRef(false);
 
-    // Reset cache saat locate diklik supaya flyTo selalu jalan
-    // walau koordinat GPS-nya sama dengan posisi terakhir.
+    // Reset cache saat locate diklik supaya flyTo tetap berjalan walau
+    // koordinat GPS sama dengan posisi terakhir.
     useEffect(() => {
         if (!isMapReady) {
             return;
         }
 
-        lastFlyToCoordRef.current = null;
+        if (lastLocateTokenRef.current !== locateToken) {
+            lastLocateTokenRef.current = locateToken;
+            lastFlyToCoordRef.current = null;
+            forceFlyRef.current = true;
+        }
     }, [locateToken, isMapReady]);
 
     useEffect(() => {
@@ -612,27 +646,30 @@ function MapViewportHandler({
 
         const key = `${coordinate[0].toFixed(6)},${coordinate[1].toFixed(6)}`;
 
-        // Jika ini adalah rendering pertama setelah map ready,
-        // inisialisasi lastFlyToCoordRef dengan center peta saat ini untuk menghindari flyTo redundant.
+        // Saat pertama siap, cegah animasi yang tidak diperlukan. Request
+        // locate dikecualikan dari skip ini agar koordinat yang sama pun
+        // tetap melewati siklus fly-to dan landing pin.
         if (lastFlyToCoordRef.current === null) {
             const center = map.getCenter();
             lastFlyToCoordRef.current = `${center.lat.toFixed(6)},${center.lng.toFixed(6)}`;
 
-            // Jika koordinat yang masuk sama dengan center peta saat ini, skip flyTo.
-            if (lastFlyToCoordRef.current === key) {
+            if (lastFlyToCoordRef.current === key && !forceFlyRef.current) {
                 return;
             }
         }
 
         if (
             (isLocating || !isUserPanningRef.current) &&
-            lastFlyToCoordRef.current !== key
+            (lastFlyToCoordRef.current !== key || forceFlyRef.current)
         ) {
             lastFlyToCoordRef.current = key;
+            forceFlyRef.current = false;
             isAutoMovingRef.current = true;
+            map.stop();
             map.flyTo(coordinate, Math.max(map.getZoom(), 18), {
                 animate: true,
-                duration: 1.0,
+                duration: 0.9,
+                easeLinearity: 0.2,
             });
         }
     }, [
