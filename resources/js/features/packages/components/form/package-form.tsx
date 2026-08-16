@@ -95,7 +95,6 @@ export function PackageForm({
         removeImage,
         reorderImages,
         setImageError,
-        setPrimaryImage,
     } = usePackageImageInput(item);
     const defaultValues = useMemo<PackageDetailsFormValues>(
         () => initialPackageDetails(item ?? null),
@@ -382,7 +381,6 @@ export function PackageForm({
                             onImageReject={setImageError}
                             onImageRemove={removeImage}
                             onImageReorder={reorderImages}
-                            onPrimaryImageChange={setPrimaryImage}
                         />
                     ) : null}
                 </FormWizardPage>

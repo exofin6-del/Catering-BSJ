@@ -67,7 +67,6 @@ export function MenuForm({
         removeImage,
         reorderImages,
         setImageError,
-        setPrimaryImage,
     } = useMenuImageInput(item);
 
     const defaultValues = useMemo<MenuFormValues>(
@@ -292,7 +291,6 @@ export function MenuForm({
                             onImageRemove={removeImage}
                             onImageReorder={reorderImages}
                             onImageReject={rejectImageSelection}
-                            onPrimaryImageChange={setPrimaryImage}
                         />
                     ) : null}
                 </FormWizardPage>

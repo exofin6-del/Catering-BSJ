@@ -43,7 +43,7 @@ class UpdateMenuItemRequest extends FormRequest
             'is_recommended' => ['sometimes', 'boolean'],
             'sort_order' => ['sometimes', 'nullable', 'integer', 'min:0'],
             'is_active' => ['sometimes', 'boolean'],
-            'image' => ['sometimes', 'nullable', File::image()],
+            'image' => ['sometimes', 'nullable', File::image()->max((int) config('cloudinary.max_upload_kilobytes', 20 * 1024))],
             'temporary_image_id' => ['sometimes', 'nullable', 'string'],
             'temporary_image_ids' => ['sometimes', 'nullable', 'array', 'max:'.MenuImage::MaxImagesPerMenuItem],
             'temporary_image_ids.*' => ['string', 'distinct'],

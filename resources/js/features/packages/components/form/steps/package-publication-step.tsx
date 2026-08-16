@@ -28,7 +28,6 @@ export function PackagePublicationStep({
     onImageReject,
     onImageRemove,
     onImageReorder,
-    onPrimaryImageChange,
 }: {
     imageError: string | null;
     images: PackageImagePreview[];
@@ -39,7 +38,6 @@ export function PackagePublicationStep({
     onImageReject: (message: string) => void;
     onImageRemove: (imageId: string) => void;
     onImageReorder: (activeImageId: string, overImageId: string) => void;
-    onPrimaryImageChange: (imageId: string) => void;
 }) {
     return (
         <div className="grid items-start gap-5 lg:grid-cols-[3fr_1.5fr]">
@@ -67,7 +65,6 @@ export function PackagePublicationStep({
                                 onRemove={onImageRemove}
                                 onReorder={onImageReorder}
                                 onReject={onImageReject}
-                                onSetPrimary={onPrimaryImageChange}
                             />
                         </Field>
 

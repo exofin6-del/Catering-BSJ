@@ -6,6 +6,7 @@ use App\CustomerTheme;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\File;
 use Illuminate\Validation\Validator;
 
 class UpdateBusinessSettingRequest extends FormRequest
@@ -44,9 +45,9 @@ class UpdateBusinessSettingRequest extends FormRequest
             'is_open' => ['sometimes', 'required', 'boolean'],
             'customer_theme' => ['sometimes', 'required', Rule::enum(CustomerTheme::class)],
             'description' => ['nullable', 'string', 'max:1000'],
-            'hero_image_0' => ['nullable', 'sometimes', 'image'],
-            'hero_image_1' => ['nullable', 'sometimes', 'image'],
-            'hero_image_2' => ['nullable', 'sometimes', 'image'],
+            'hero_image_0' => ['nullable', 'sometimes', File::image()->max((int) config('cloudinary.max_upload_kilobytes', 20 * 1024))],
+            'hero_image_1' => ['nullable', 'sometimes', File::image()->max((int) config('cloudinary.max_upload_kilobytes', 20 * 1024))],
+            'hero_image_2' => ['nullable', 'sometimes', File::image()->max((int) config('cloudinary.max_upload_kilobytes', 20 * 1024))],
             'remove_hero_image_0' => ['nullable', 'boolean'],
             'remove_hero_image_1' => ['nullable', 'boolean'],
             'remove_hero_image_2' => ['nullable', 'boolean'],

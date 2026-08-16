@@ -106,6 +106,7 @@ export type PackageImagePreview = {
     isPrimary: boolean;
     isUploading?: boolean;
     name: string;
+    uploadStage?: 'compressing' | 'uploading';
     temporaryId?: string;
     uploadError?: string;
     url: string;

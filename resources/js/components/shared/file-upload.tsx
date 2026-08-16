@@ -16,12 +16,13 @@ import {
     useSortable,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { GripVertical, ImagePlus, Loader2, Star, X } from 'lucide-react';
+import { GripVertical, ImagePlus, Loader2, X } from 'lucide-react';
 import * as React from 'react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { FileUpload, FileUploadTrigger } from '@/components/ui/file-upload';
+import { isSupportedImageFile } from '@/lib/image-compression';
 import { cn } from '@/lib/utils';
 
 export type ImageUploadItem = {
@@ -29,12 +30,13 @@ export type ImageUploadItem = {
     isPrimary?: boolean;
     isUploading?: boolean;
     name: string;
+    uploadStage?: 'compressing' | 'uploading';
     uploadError?: string;
     url: string;
 };
 
 export function ImageFileUpload({
-    accept = 'image/*',
+    accept = 'image/*,.svg,.heic,.heif',
     className,
     disabled = false,
     error,
@@ -46,7 +48,6 @@ export function ImageFileUpload({
     onRemove,
     onReorder,
     onReject,
-    onSetPrimary,
 }: {
     accept?: string;
     className?: string;
@@ -60,7 +61,6 @@ export function ImageFileUpload({
     onRemove: (imageId: string) => void;
     onReorder?: (activeImageId: string, overImageId: string) => void;
     onReject?: (message: string) => void;
-    onSetPrimary?: (imageId: string) => void;
 }) {
     'use no memo';
 
@@ -73,8 +73,10 @@ export function ImageFileUpload({
         [images],
     );
     const sensors = useSensors(
-        useSensor(MouseSensor, {}),
-        useSensor(TouchSensor, {}),
+        useSensor(MouseSensor, { activationConstraint: { distance: 6 } }),
+        useSensor(TouchSensor, {
+            activationConstraint: { delay: 180, tolerance: 5 },
+        }),
         useSensor(KeyboardSensor, {}),
     );
 
@@ -108,7 +110,7 @@ export function ImageFileUpload({
                 onFilesChange(acceptedFiles.slice(0, remainingSlots));
             }}
             onFileValidate={(file) => {
-                if (!file.type.startsWith('image/')) {
+                if (!isSupportedImageFile(file)) {
                     return 'File harus berupa gambar.';
                 }
 
@@ -156,7 +158,6 @@ export function ImageFileUpload({
                                     previewAlt={previewAlt}
                                     canReorder={canReorder}
                                     onRemove={onRemove}
-                                    onSetPrimary={onSetPrimary}
                                 />
                             ))}
                         </SortableContext>
@@ -199,14 +200,12 @@ function SortableImageTile({
     index,
     previewAlt,
     onRemove,
-    onSetPrimary,
 }: {
     canReorder: boolean;
     image: ImageUploadItem;
     index: number;
     previewAlt: string;
     onRemove: (imageId: string) => void;
-    onSetPrimary?: (imageId: string) => void;
 }) {
     const {
         attributes,
@@ -239,11 +238,9 @@ function SortableImageTile({
                 className="size-full object-cover"
             />
 
-            {image.isPrimary ? (
-                <Badge className="absolute top-2 left-2 bg-background/90 text-foreground shadow-xs">
-                    Utama
-                </Badge>
-            ) : null}
+            <Badge className="absolute top-2 left-2 min-w-6 justify-center bg-background/90 text-foreground shadow-xs">
+                {index + 1}
+            </Badge>
 
             {canReorder ? (
                 <Button
@@ -262,29 +259,6 @@ function SortableImageTile({
             ) : null}
 
             <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 bg-gradient-to-t from-black/70 to-transparent p-2 pt-8">
-                {onSetPrimary ? (
-                    <Button
-                        type="button"
-                        size="icon-xs"
-                        variant="secondary"
-                        className={cn(
-                            'bg-background/90 shadow-xs',
-                            image.isPrimary &&
-                                'bg-primary text-primary-foreground hover:bg-primary/90',
-                        )}
-                        title="Jadikan utama"
-                        disabled={image.isUploading}
-                        onClick={() => onSetPrimary(image.id)}
-                    >
-                        <Star
-                            className={cn(
-                                'size-3.5',
-                                image.isPrimary && 'fill-current',
-                            )}
-                        />
-                    </Button>
-                ) : null}
-
                 <Button
                     type="button"
                     size="icon-xs"
@@ -301,7 +275,9 @@ function SortableImageTile({
             {image.isUploading ? (
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-background/70 text-xs font-medium">
                     <Loader2 className="size-5 animate-spin" />
-                    Mengunggah
+                    {image.uploadStage === 'compressing'
+                        ? 'Menyiapkan gambar'
+                        : 'Mengunggah'}
                 </div>
             ) : null}
 

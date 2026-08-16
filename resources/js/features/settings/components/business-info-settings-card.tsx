@@ -15,7 +15,8 @@ export function BusinessInfoSettingsCard({
 }: {
     settings: ReturnType<typeof useBusinessSettings>;
 }) {
-    const { heroImagesChanged, infoForm, submitInfo } = settings;
+    const { heroImagesChanged, heroImagesUploading, infoForm, submitInfo } =
+        settings;
 
     const hasPendingChanges = heroImagesChanged || infoForm.isDirty;
 
@@ -100,7 +101,11 @@ export function BusinessInfoSettingsCard({
                         <Button
                             type="submit"
                             size="sm"
-                            disabled={!hasPendingChanges || infoForm.processing}
+                            disabled={
+                                !hasPendingChanges ||
+                                infoForm.processing ||
+                                heroImagesUploading
+                            }
                         >
                             {infoForm.processing ? (
                                 <LoaderCircle className="size-4 animate-spin" />

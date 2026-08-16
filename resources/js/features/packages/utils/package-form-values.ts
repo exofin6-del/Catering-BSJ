@@ -135,10 +135,10 @@ export function initialPackageImages(
     if (item?.images && item.images.length > 0) {
         return [...item.images]
             .sort((first, second) => first.sort_order - second.sort_order)
-            .map((image) => ({
+            .map((image, index) => ({
                 existingId: image.id,
                 id: `existing-${image.id}`,
-                isPrimary: image.is_primary,
+                isPrimary: index === 0,
                 name: item.name ?? 'Foto paket',
                 url: image.image_url,
             }));

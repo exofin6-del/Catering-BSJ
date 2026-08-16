@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { compressImage, isSupportedImageFile } from '@/lib/image-compression';
 import menu from '@/routes/menu';
 import type { MenuItem } from '@/types';
 import { MAX_MENU_IMAGES } from '../components/form/constants';
@@ -88,6 +89,7 @@ export function useMenuImageInput(item?: MenuItem | null) {
             isPrimary: imagesRef.current.length === 0 && index === 0,
             isUploading: true,
             name: file.name,
+            uploadStage: 'compressing' as const,
             url: URL.createObjectURL(file),
         }));
 
@@ -104,7 +106,18 @@ export function useMenuImageInput(item?: MenuItem | null) {
         await Promise.all(
             previews.map(async (preview) => {
                 try {
-                    const response = await uploadTemporaryImage(preview.file);
+                    const response = await uploadTemporaryImage(
+                        preview.file,
+                        (uploadStage) => {
+                            setImages((currentImages) =>
+                                currentImages.map((image) =>
+                                    image.id === preview.id
+                                        ? { ...image, uploadStage }
+                                        : image,
+                                ),
+                            );
+                        },
+                    );
 
                     setImages((currentImages) =>
                         normalizeImages(
@@ -118,6 +131,7 @@ export function useMenuImageInput(item?: MenuItem | null) {
                                     isUploading: false,
                                     name: response.name,
                                     temporaryId: response.id,
+                                    uploadStage: undefined,
                                     uploadError: undefined,
                                 };
                             }),
@@ -171,31 +185,6 @@ export function useMenuImageInput(item?: MenuItem | null) {
             ),
         );
         setImageError(null);
-    }
-
-    function setPrimaryImage(imageId: string): void {
-        setImages((currentImages) => {
-            const selectedImage = currentImages.find(
-                (image) => image.id === imageId,
-            );
-
-            if (!selectedImage) {
-                return currentImages;
-            }
-
-            return normalizeImages([
-                {
-                    ...selectedImage,
-                    isPrimary: true,
-                },
-                ...currentImages
-                    .filter((image) => image.id !== imageId)
-                    .map((image) => ({
-                        ...image,
-                        isPrimary: false,
-                    })),
-            ]);
-        });
     }
 
     function reorderImages(activeImageId: string, overImageId: string): void {
@@ -252,7 +241,6 @@ export function useMenuImageInput(item?: MenuItem | null) {
         removeImage,
         reorderImages,
         setImageError,
-        setPrimaryImage,
     };
 }
 
@@ -263,22 +251,10 @@ function normalizeImages(images: MenuImagePreview[]): MenuImagePreview[] {
         return [];
     }
 
-    const primaryIndex = slicedImages.findIndex((image) => image.isPrimary);
-    const resolvedPrimaryIndex = primaryIndex >= 0 ? primaryIndex : 0;
-    const primaryImage = {
-        ...slicedImages[resolvedPrimaryIndex],
-        isPrimary: true,
-    };
-
-    return [
-        primaryImage,
-        ...slicedImages
-            .filter((_, index) => index !== resolvedPrimaryIndex)
-            .map((image) => ({
-                ...image,
-                isPrimary: false,
-            })),
-    ];
+    return slicedImages.map((image, index) => ({
+        ...image,
+        isPrimary: index === 0,
+    }));
 }
 
 function markFirstImageAsPrimary(
@@ -292,7 +268,7 @@ function markFirstImageAsPrimary(
 
 function validateFiles(files: File[]): string | null {
     for (const file of files) {
-        if (!file.type.startsWith('image/')) {
+        if (!isSupportedImageFile(file)) {
             return 'File harus berupa gambar.';
         }
     }
@@ -335,9 +311,13 @@ function moveArrayItem<T>(items: T[], fromIndex: number, toIndex: number): T[] {
 
 async function uploadTemporaryImage(
     file: File,
+    onStage: (stage: 'compressing' | 'uploading') => void,
 ): Promise<TemporaryImageUploadResponse> {
+    onStage('compressing');
+    const compressedFile = await compressImage(file);
     const formData = new FormData();
-    formData.append('image', file);
+    formData.append('image', compressedFile);
+    onStage('uploading');
 
     const response = await fetch(menu.images.temp.store.url(), {
         body: formData,

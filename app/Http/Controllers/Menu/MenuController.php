@@ -60,7 +60,7 @@ class MenuController extends Controller
     public function temporaryImage(Request $request): JsonResponse
     {
         $request->validate([
-            'image' => ['required', File::image()],
+            'image' => ['required', File::image()->max((int) config('cloudinary.max_upload_kilobytes', 20 * 1024))],
         ]);
 
         $image = $request->file('image');

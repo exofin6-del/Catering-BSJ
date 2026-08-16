@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { compressImage, isSupportedImageFile } from '@/lib/image-compression';
 import paket from '@/routes/paket';
 import type { MenuPackage } from '@/types';
 import type {
@@ -77,6 +78,7 @@ export function usePackageImageInput(item?: MenuPackage | null) {
             isPrimary: imagesRef.current.length === 0 && index === 0,
             isUploading: true,
             name: file.name,
+            uploadStage: 'compressing' as const,
             url: URL.createObjectURL(file),
         }));
 
@@ -98,7 +100,18 @@ export function usePackageImageInput(item?: MenuPackage | null) {
         await Promise.all(
             previews.map(async (preview) => {
                 try {
-                    const response = await uploadTemporaryImage(preview.file);
+                    const response = await uploadTemporaryImage(
+                        preview.file,
+                        (uploadStage) => {
+                            setImages((currentImages) =>
+                                currentImages.map((image) =>
+                                    image.id === preview.id
+                                        ? { ...image, uploadStage }
+                                        : image,
+                                ),
+                            );
+                        },
+                    );
 
                     setImages((currentImages) =>
                         normalizeImages(
@@ -112,6 +125,7 @@ export function usePackageImageInput(item?: MenuPackage | null) {
                                     isUploading: false,
                                     name: response.name,
                                     temporaryId: response.id,
+                                    uploadStage: undefined,
                                     uploadError: undefined,
                                 };
                             }),
@@ -167,17 +181,6 @@ export function usePackageImageInput(item?: MenuPackage | null) {
         setImageError(null);
     }
 
-    function setPrimaryImage(imageId: string): void {
-        setImages((currentImages) =>
-            normalizeImages(
-                currentImages.map((image) => ({
-                    ...image,
-                    isPrimary: image.id === imageId,
-                })),
-            ),
-        );
-    }
-
     function reorderImages(activeImageId: string, overImageId: string): void {
         setImages((currentImages) => {
             const oldIndex = currentImages.findIndex(
@@ -206,7 +209,6 @@ export function usePackageImageInput(item?: MenuPackage | null) {
         removeImage,
         reorderImages,
         setImageError,
-        setPrimaryImage,
     };
 }
 
@@ -217,12 +219,9 @@ function normalizeImages(images: PackageImagePreview[]): PackageImagePreview[] {
         return [];
     }
 
-    const primaryIndex = slicedImages.findIndex((image) => image.isPrimary);
-    const resolvedPrimaryIndex = primaryIndex >= 0 ? primaryIndex : 0;
-
     return slicedImages.map((image, index) => ({
         ...image,
-        isPrimary: index === resolvedPrimaryIndex,
+        isPrimary: index === 0,
     }));
 }
 
@@ -237,7 +236,7 @@ function markFirstImageAsPrimary(
 
 function validateFiles(files: File[]): string | null {
     for (const file of files) {
-        if (!file.type.startsWith('image/')) {
+        if (!isSupportedImageFile(file)) {
             return 'File harus berupa gambar.';
         }
     }
@@ -280,9 +279,13 @@ function moveArrayItem<T>(items: T[], fromIndex: number, toIndex: number): T[] {
 
 async function uploadTemporaryImage(
     file: File,
+    onStage: (stage: 'compressing' | 'uploading') => void,
 ): Promise<TemporaryPackageImageUploadResponse> {
+    onStage('compressing');
+    const compressedFile = await compressImage(file);
     const formData = new FormData();
-    formData.append('image', file);
+    formData.append('image', compressedFile);
+    onStage('uploading');
 
     const response = await fetch(paket.images.temp.store.url(), {
         body: formData,

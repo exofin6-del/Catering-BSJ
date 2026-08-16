@@ -24,7 +24,6 @@ export function PublishMenuStep({
     onImageRemove,
     onImageReorder,
     onImageReject,
-    onPrimaryImageChange,
 }: {
     imageError: string | null;
     images: MenuImagePreview[];
@@ -35,7 +34,6 @@ export function PublishMenuStep({
     onImageRemove: (imageId: string) => void;
     onImageReorder: (activeImageId: string, overImageId: string) => void;
     onImageReject: (message: string) => void;
-    onPrimaryImageChange: (imageId: string) => void;
 }) {
     return (
         <div className="grid items-start gap-5 lg:grid-cols-[3fr_1.5fr]">
@@ -61,7 +59,6 @@ export function PublishMenuStep({
                                 onRemove={onImageRemove}
                                 onReorder={onImageReorder}
                                 onReject={onImageReject}
-                                onSetPrimary={onPrimaryImageChange}
                             />
                         </Field>
 

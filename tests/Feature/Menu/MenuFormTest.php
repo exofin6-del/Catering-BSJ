@@ -151,6 +151,23 @@ class MenuFormTest extends TestCase
         $this->assertStringContainsString('res.cloudinary.com/test-cloud', (string) $response->json('url'));
     }
 
+    public function test_menu_temporary_image_upload_rejects_images_larger_than_configured_limit(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this
+            ->actingAs($user)
+            ->postJson(route('menu.images.temp.store'), [
+                'image' => UploadedFile::fake()
+                    ->image('large-menu.jpg', 2400, 1800)
+                    ->size((int) config('cloudinary.max_upload_kilobytes') + 1),
+            ]);
+
+        $response
+            ->assertUnprocessable()
+            ->assertJsonValidationErrors('image');
+    }
+
     public function test_menu_creation_saves_the_icon_for_a_new_category(): void
     {
         $user = User::factory()->create();

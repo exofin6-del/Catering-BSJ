@@ -10,6 +10,7 @@ import type {
     InfoFormData,
     ThemeFormData,
 } from '@/features/settings/types/business-setting';
+import { compressImage, isSupportedImageFile } from '@/lib/image-compression';
 import business from '@/routes/business';
 
 export function useBusinessSettings(businessSetting: BusinessSetting) {
@@ -24,9 +25,15 @@ export function useBusinessSettings(businessSetting: BusinessSetting) {
         '',
     ]);
     const [heroImagesChanged, setHeroImagesChanged] = useState(false);
+    const [heroImageUploading, setHeroImageUploading] = useState<boolean[]>([
+        false,
+        false,
+        false,
+    ]);
     const [heroImagesSaving, setHeroImagesSaving] = useState(false);
     const heroImageFileRefs = useRef<(File | null)[]>([null, null, null]);
     const heroImageRemoveFlags = useRef<boolean[]>([false, false, false]);
+    const heroImageChangeTokens = useRef<number[]>([0, 0, 0]);
     const infoForm = useForm<InfoFormData>('business-info.v1', {
         business_name: initialBusinessName,
         description: businessSetting.description ?? '',
@@ -58,6 +65,12 @@ export function useBusinessSettings(businessSetting: BusinessSetting) {
     function submitInfo(event?: FormEvent<HTMLFormElement>): void {
         event?.preventDefault();
 
+        if (heroImageUploading.some(Boolean)) {
+            toast.error('Tunggu gambar selesai disiapkan.');
+
+            return;
+        }
+
         let shouldDismissToast = true;
         const savingToastId = toast.loading('Menyimpan pengaturan bisnis...');
 
@@ -86,6 +99,7 @@ export function useBusinessSettings(businessSetting: BusinessSetting) {
                 // Reset hero image state
                 heroImageFileRefs.current = [null, null, null];
                 heroImageRemoveFlags.current = [false, false, false];
+                setHeroImageUploading([false, false, false]);
                 setHeroImagePreviews(updatedSetting.hero_images ?? []);
                 setHeroImageErrors(['', '', '']);
                 setHeroImagesChanged(false);
@@ -107,6 +121,12 @@ export function useBusinessSettings(businessSetting: BusinessSetting) {
     }
 
     function submitHeroImages(): void {
+        if (heroImageUploading.some(Boolean)) {
+            toast.error('Tunggu gambar selesai disiapkan.');
+
+            return;
+        }
+
         let shouldDismissToast = true;
         const savingToastId = toast.loading('Menyimpan gambar beranda...');
 
@@ -134,6 +154,7 @@ export function useBusinessSettings(businessSetting: BusinessSetting) {
 
                 heroImageFileRefs.current = [null, null, null];
                 heroImageRemoveFlags.current = [false, false, false];
+                setHeroImageUploading([false, false, false]);
                 setHeroImagePreviews(updatedSetting.hero_images ?? []);
                 setHeroImageErrors(['', '', '']);
                 setHeroImagesChanged(false);
@@ -156,60 +177,161 @@ export function useBusinessSettings(businessSetting: BusinessSetting) {
         });
     }
 
-    function handleHeroImageChange(index: number, file: File | null): void {
+    async function handleHeroImageChange(
+        index: number,
+        file: File | null,
+    ): Promise<void> {
+        const changeToken = heroImageChangeTokens.current[index] + 1;
+        heroImageChangeTokens.current[index] = changeToken;
         heroImageRemoveFlags.current[index] = false;
 
         if (file) {
-            if (!file.type.startsWith('image/')) {
-                const errors = [...heroImageErrors];
-                errors[index] = 'File harus berupa gambar.';
-                setHeroImageErrors(errors);
+            if (!isSupportedImageFile(file)) {
+                setHeroImageErrors((errors) => {
+                    const nextErrors = [...errors];
+                    nextErrors[index] = 'File harus berupa gambar.';
+
+                    return nextErrors;
+                });
 
                 return;
             }
 
-            const errors = [...heroImageErrors];
-            errors[index] = '';
-            setHeroImageErrors(errors);
+            setHeroImageErrors((errors) => {
+                const nextErrors = [...errors];
+                nextErrors[index] = '';
 
-            heroImageFileRefs.current[index] = file;
+                return nextErrors;
+            });
 
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                const previews = [...heroImagePreviews];
-                previews[index] = reader.result as string;
-                setHeroImagePreviews(previews);
-            };
-            reader.readAsDataURL(file);
+            setHeroImageUploading((uploading) => {
+                const nextUploading = [...uploading];
+                nextUploading[index] = true;
+
+                return nextUploading;
+            });
+
+            try {
+                const [compressedFile, preview] = await Promise.all([
+                    compressImage(file),
+                    readImagePreview(file),
+                ]);
+
+                if (heroImageChangeTokens.current[index] !== changeToken) {
+                    return;
+                }
+
+                heroImageFileRefs.current[index] = compressedFile;
+                setHeroImagePreviews((previews) => {
+                    const nextPreviews = [...previews];
+                    nextPreviews[index] = preview;
+
+                    return nextPreviews;
+                });
+            } catch (error) {
+                setHeroImageErrors((errors) => {
+                    const nextErrors = [...errors];
+                    nextErrors[index] =
+                        error instanceof Error
+                            ? error.message
+                            : 'Gambar tidak dapat diproses.';
+
+                    return nextErrors;
+                });
+                heroImageFileRefs.current[index] = null;
+            } finally {
+                if (heroImageChangeTokens.current[index] === changeToken) {
+                    setHeroImageUploading((uploading) => {
+                        const nextUploading = [...uploading];
+                        nextUploading[index] = false;
+
+                        return nextUploading;
+                    });
+                }
+            }
         } else {
             heroImageFileRefs.current[index] = null;
+            setHeroImageUploading((uploading) => {
+                const nextUploading = [...uploading];
+                nextUploading[index] = false;
+
+                return nextUploading;
+            });
         }
 
         setHeroImagesChanged(true);
     }
 
     function handleHeroImageRemove(index: number) {
+        heroImageChangeTokens.current[index] += 1;
         heroImageFileRefs.current[index] = null;
         heroImageRemoveFlags.current[index] = true;
-        heroImageFileRefs.current[index] = null;
 
-        const previews = [...heroImagePreviews];
-        previews[index] = '';
-        setHeroImagePreviews(previews);
+        setHeroImageUploading((uploading) => {
+            const nextUploading = [...uploading];
+            nextUploading[index] = false;
 
-        const errors = [...heroImageErrors];
-        errors[index] = '';
-        setHeroImageErrors(errors);
+            return nextUploading;
+        });
+
+        setHeroImagePreviews((previews) => {
+            const nextPreviews = [...previews];
+            nextPreviews[index] = '';
+
+            return nextPreviews;
+        });
+
+        setHeroImageErrors((errors) => {
+            const nextErrors = [...errors];
+            nextErrors[index] = '';
+
+            return nextErrors;
+        });
 
         setHeroImagesChanged(true);
     }
 
     function handleHeroImageReset() {
+        heroImageChangeTokens.current = [0, 0, 0];
         heroImageFileRefs.current = [null, null, null];
         heroImageRemoveFlags.current = [false, false, false];
+        setHeroImageUploading([false, false, false]);
         setHeroImagePreviews(businessSetting.hero_images ?? []);
         setHeroImageErrors(['', '', '']);
         setHeroImagesChanged(false);
+    }
+
+    function reorderHeroImages(activeIndex: number, overIndex: number): void {
+        if (
+            activeIndex === overIndex ||
+            activeIndex < 0 ||
+            overIndex < 0 ||
+            activeIndex >= heroImagePreviews.length ||
+            overIndex >= heroImagePreviews.length
+        ) {
+            return;
+        }
+
+        setHeroImagePreviews((previews) =>
+            moveArrayItem(previews, activeIndex, overIndex),
+        );
+        heroImageFileRefs.current = moveArrayItem(
+            heroImageFileRefs.current,
+            activeIndex,
+            overIndex,
+        );
+        heroImageRemoveFlags.current = moveArrayItem(
+            heroImageRemoveFlags.current,
+            activeIndex,
+            overIndex,
+        );
+        setHeroImageErrors((errors) =>
+            moveArrayItem(errors, activeIndex, overIndex),
+        );
+        setHeroImageUploading((uploading) =>
+            moveArrayItem(uploading, activeIndex, overIndex),
+        );
+        setHeroImagesChanged(true);
     }
 
     function submitTheme(event: FormEvent<HTMLFormElement>): void {
@@ -368,10 +490,13 @@ export function useBusinessSettings(businessSetting: BusinessSetting) {
         handleHeroImageChange,
         handleHeroImageRemove,
         handleHeroImageReset,
+        reorderHeroImages,
         heroImageErrors,
         heroImageFileRefs,
         heroImagesChanged,
         heroImagePreviews,
+        heroImageUploading,
+        heroImagesUploading: heroImageUploading.some(Boolean),
         heroImageRemoveFlags,
         heroImagesSaving,
         setHeroImageErrors,
@@ -387,4 +512,35 @@ export function useBusinessSettings(businessSetting: BusinessSetting) {
         submitTheme,
         themeForm,
     };
+}
+
+function moveArrayItem<T>(items: T[], fromIndex: number, toIndex: number): T[] {
+    const nextItems = [...items];
+    const [item] = nextItems.splice(fromIndex, 1);
+
+    if (item === undefined) {
+        return items;
+    }
+
+    nextItems.splice(toIndex, 0, item);
+
+    return nextItems;
+}
+
+function readImagePreview(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+            if (typeof reader.result === 'string') {
+                resolve(reader.result);
+
+                return;
+            }
+
+            reject(new Error('Preview gambar tidak dapat dibuat.'));
+        };
+        reader.onerror = () =>
+            reject(new Error('Preview gambar tidak dapat dibuat.'));
+        reader.readAsDataURL(file);
+    });
 }
