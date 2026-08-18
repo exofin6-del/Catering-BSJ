@@ -181,6 +181,34 @@ class CloudinaryService
 
     private function ensureConfigured(): void
     {
+        $cloudName = config('cloudinary.cloud_name');
+        $apiKey = config('cloudinary.api_key');
+        $apiSecret = config('cloudinary.api_secret');
+
+        if (blank($cloudName) || blank($apiKey) || blank($apiSecret)) {
+            $cloudinaryUrl = getenv('CLOUDINARY_URL') ?: ($_SERVER['CLOUDINARY_URL'] ?? '');
+            if (is_string($cloudinaryUrl) && $cloudinaryUrl !== '') {
+                $parts = parse_url($cloudinaryUrl);
+                if (is_array($parts)) {
+                    $cloudName = $cloudName ?: ($parts['host'] ?? null);
+                    $apiKey = $apiKey ?: ($parts['user'] ?? null);
+                    $apiSecret = $apiSecret ?: (isset($parts['pass']) ? urldecode($parts['pass']) : null);
+                }
+            }
+
+            $cloudName = $cloudName ?: getenv('CLOUDINARY_CLOUD_NAME');
+            $apiKey = $apiKey ?: getenv('CLOUDINARY_API_KEY');
+            $apiSecret = $apiSecret ?: getenv('CLOUDINARY_API_SECRET');
+
+            if (filled($cloudName) && filled($apiKey) && filled($apiSecret)) {
+                config([
+                    'cloudinary.cloud_name' => $cloudName,
+                    'cloudinary.api_key' => $apiKey,
+                    'cloudinary.api_secret' => $apiSecret,
+                ]);
+            }
+        }
+
         if (filled(config('cloudinary.cloud_name'))
             && filled(config('cloudinary.api_key'))
             && filled(config('cloudinary.api_secret'))) {

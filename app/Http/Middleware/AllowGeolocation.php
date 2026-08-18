@@ -15,8 +15,10 @@ class AllowGeolocation
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return $next($request)->withHeaders([
-            'Permissions-Policy' => 'geolocation=(self)',
-        ]);
+        $response = $next($request);
+
+        $response->headers->set('Permissions-Policy', 'geolocation=(self)');
+
+        return $response;
     }
 }
