@@ -14,12 +14,23 @@ const defaultOptions: Required<ImageCompressionOptions> = {
 
 const heifMimeTypes = new Set(['image/heic', 'image/heif']);
 const heifExtensions = new Set(['heic', 'heif']);
+const supportedImageExtensions = new Set([
+    'avif',
+    'bmp',
+    'gif',
+    'heic',
+    'heif',
+    'jpeg',
+    'jpg',
+    'png',
+    'svg',
+    'webp',
+]);
 
 export function isSupportedImageFile(file: File): boolean {
     return (
         file.type.startsWith('image/') ||
-        fileExtension(file.name) === 'svg' ||
-        heifExtensions.has(fileExtension(file.name))
+        supportedImageExtensions.has(fileExtension(file.name))
     );
 }
 

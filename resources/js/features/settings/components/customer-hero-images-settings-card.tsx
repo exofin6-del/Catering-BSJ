@@ -308,7 +308,7 @@ function SortableHeroImageSlot({
                 <input
                     ref={fileInputRef}
                     type="file"
-                    accept="image/*,.svg,.heic,.heif"
+                    accept="image/*,.jpg,.jpeg,.png,.webp,.gif,.bmp,.avif,.svg,.heic,.heif"
                     className="hidden"
                     onChange={onChange}
                 />

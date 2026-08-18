@@ -16,7 +16,7 @@ import {
     useSortable,
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { GripVertical, ImagePlus, Loader2, X } from 'lucide-react';
+import { GripVertical, ImagePlus, Loader2, Trash2 } from 'lucide-react';
 import * as React from 'react';
 
 import { Badge } from '@/components/ui/badge';
@@ -36,7 +36,7 @@ export type ImageUploadItem = {
 };
 
 export function ImageFileUpload({
-    accept = 'image/*,.svg,.heic,.heif',
+    accept = 'image/*,.jpg,.jpeg,.png,.webp,.gif,.bmp,.avif,.svg,.heic,.heif',
     className,
     disabled = false,
     error,
@@ -258,19 +258,18 @@ function SortableImageTile({
                 </Button>
             ) : null}
 
-            <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 bg-gradient-to-t from-black/70 to-transparent p-2 pt-8">
-                <Button
-                    type="button"
-                    size="icon-xs"
-                    variant="secondary"
-                    className="bg-background/90 shadow-xs"
-                    title="Hapus gambar"
-                    disabled={image.isUploading}
-                    onClick={() => onRemove(image.id)}
-                >
-                    <X className="size-3.5" />
-                </Button>
-            </div>
+            <Button
+                type="button"
+                size="icon-xs"
+                variant="secondary"
+                className="absolute right-2 bottom-2 z-10 bg-background/90 shadow-xs"
+                title="Hapus gambar"
+                disabled={image.isUploading}
+                onClick={() => onRemove(image.id)}
+            >
+                <Trash2 className="size-3.5" />
+                <span className="sr-only">Hapus gambar</span>
+            </Button>
 
             {image.isUploading ? (
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-background/70 text-xs font-medium">

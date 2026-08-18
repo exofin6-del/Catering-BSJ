@@ -63,6 +63,10 @@ export function usePackageImageInput(item?: MenuPackage | null) {
             return;
         }
 
+        if (nextFiles.length === 0) {
+            return;
+        }
+
         const files = nextFiles.slice(0, remainingSlots);
         const validationError = validateFiles(files);
 
@@ -97,63 +101,61 @@ export function usePackageImageInput(item?: MenuPackage | null) {
         });
         setPendingUploadCount((count) => count + previews.length);
 
-        await Promise.all(
-            previews.map(async (preview) => {
-                try {
-                    const response = await uploadTemporaryImage(
-                        preview.file,
-                        (uploadStage) => {
-                            setImages((currentImages) =>
-                                currentImages.map((image) =>
-                                    image.id === preview.id
-                                        ? { ...image, uploadStage }
-                                        : image,
-                                ),
-                            );
-                        },
-                    );
-
-                    setImages((currentImages) =>
-                        normalizeImages(
-                            currentImages.map((image) => {
-                                if (image.id !== preview.id) {
-                                    return image;
-                                }
-
-                                return {
-                                    ...image,
-                                    isUploading: false,
-                                    name: response.name,
-                                    temporaryId: response.id,
-                                    uploadStage: undefined,
-                                    uploadError: undefined,
-                                };
-                            }),
-                        ),
-                    );
-                } catch (error) {
-                    const message =
-                        error instanceof Error
-                            ? error.message
-                            : 'Upload gambar gagal.';
-
-                    revokeObjectUrl(preview.url);
-                    setImageError(message);
-                    setImages((currentImages) =>
-                        normalizeImages(
-                            currentImages.filter(
-                                (image) => image.id !== preview.id,
+        for (const preview of previews) {
+            try {
+                const response = await uploadTemporaryImage(
+                    preview.file,
+                    (uploadStage) => {
+                        setImages((currentImages) =>
+                            currentImages.map((image) =>
+                                image.id === preview.id
+                                    ? { ...image, uploadStage }
+                                    : image,
                             ),
+                        );
+                    },
+                );
+
+                setImages((currentImages) =>
+                    normalizeImages(
+                        currentImages.map((image) => {
+                            if (image.id !== preview.id) {
+                                return image;
+                            }
+
+                            return {
+                                ...image,
+                                isUploading: false,
+                                name: response.name,
+                                temporaryId: response.id,
+                                uploadStage: undefined,
+                                uploadError: undefined,
+                            };
+                        }),
+                    ),
+                );
+            } catch (error) {
+                const message =
+                    error instanceof Error
+                        ? error.message
+                        : 'Upload gambar gagal.';
+
+                revokeObjectUrl(preview.url);
+                setImageError(message);
+                setImages((currentImages) =>
+                    normalizeImages(
+                        currentImages.filter(
+                            (image) => image.id !== preview.id,
                         ),
-                    );
-                } finally {
-                    activeFileSignaturesRef.current.delete(
-                        createFileSignature(preview.file),
-                    );
-                    setPendingUploadCount((count) => Math.max(0, count - 1));
-                }
-            }),
-        );
+                    ),
+                );
+            } finally {
+                activeFileSignaturesRef.current.delete(
+                    createFileSignature(preview.file),
+                );
+                setPendingUploadCount((count) => Math.max(0, count - 1));
+            }
+        }
     }
 
     function removeImage(imageId: string): void {
