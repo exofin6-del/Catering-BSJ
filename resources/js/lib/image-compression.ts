@@ -6,12 +6,14 @@ export type ImageCompressionOptions = {
 };
 
 const defaultOptions: Required<ImageCompressionOptions> = {
-    maxBytes: 8 * 1024 * 1024,
+    // Keep the multipart payload below restrictive PHP upload limits used by
+    // some production runtimes, including their request overhead.
+    maxBytes: 1.5 * 1024 * 1024,
     maxHeight: 1920,
     maxWidth: 1920,
     quality: 0.82,
 };
-const fallbackUploadMaxBytes = 20 * 1024 * 1024;
+const safeUploadMaxBytes = 1.5 * 1024 * 1024;
 
 const heifMimeTypes = new Set(['image/heic', 'image/heif']);
 const heifExtensions = new Set(['heic', 'heif']);
@@ -101,7 +103,10 @@ export async function compressImage(
             type: blob.type,
         });
     } catch (error) {
-        if (!mustRasterize && file.size <= fallbackUploadMaxBytes) {
+        if (
+            !mustRasterize &&
+            file.size <= Math.min(settings.maxBytes, safeUploadMaxBytes)
+        ) {
             return file;
         }
 
