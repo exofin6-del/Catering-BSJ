@@ -11,6 +11,7 @@ const defaultOptions: Required<ImageCompressionOptions> = {
     maxWidth: 1920,
     quality: 0.82,
 };
+const fallbackUploadMaxBytes = 20 * 1024 * 1024;
 
 const heifMimeTypes = new Set(['image/heic', 'image/heif']);
 const heifExtensions = new Set(['heic', 'heif']);
@@ -99,6 +100,12 @@ export async function compressImage(
             lastModified: Date.now(),
             type: blob.type,
         });
+    } catch (error) {
+        if (!mustRasterize && file.size <= fallbackUploadMaxBytes) {
+            return file;
+        }
+
+        throw error;
     } finally {
         decodedImage?.close?.();
         URL.revokeObjectURL(objectUrl);
