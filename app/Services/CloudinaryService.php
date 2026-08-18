@@ -37,7 +37,9 @@ class CloudinaryService
                 filename: $file->getClientOriginalName(),
             ));
         } finally {
-            fclose($stream);
+            if (is_resource($stream)) {
+                fclose($stream);
+            }
         }
     }
 
@@ -129,7 +131,11 @@ class CloudinaryService
     {
         ksort($parameters);
 
-        return sha1(http_build_query($parameters, '', '&', PHP_QUERY_RFC3986).(string) config('cloudinary.api_secret'));
+        $toSign = collect($parameters)
+            ->map(static fn (string|int $value, string $key): string => $key.'='.$value)
+            ->implode('&');
+
+        return sha1($toSign.(string) config('cloudinary.api_secret'));
     }
 
     /**

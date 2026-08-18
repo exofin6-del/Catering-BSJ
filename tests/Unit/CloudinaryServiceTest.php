@@ -39,8 +39,12 @@ class CloudinaryServiceTest extends TestCase
         ];
         ksort($signatureParameters);
 
+        $expectedSignature = collect($signatureParameters)
+            ->map(static fn (string|int $value, string $key): string => $key.'='.$value)
+            ->implode('&');
+
         $this->assertSame(
-            sha1(http_build_query($signatureParameters, '', '&', PHP_QUERY_RFC3986).'test-secret'),
+            sha1($expectedSignature.'test-secret'),
             $payload['signature'],
         );
         $this->assertSame('test-key', $payload['api_key']);
