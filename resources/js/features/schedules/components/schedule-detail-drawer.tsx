@@ -65,10 +65,6 @@ export function ScheduleDetailDrawer({
                                     <span className="shrink-0 rounded bg-muted px-1.5 py-0.5 font-mono text-xs font-semibold text-foreground">
                                         {activeOrder.order_code}
                                     </span>
-                                    <span className="shrink-0">·</span>
-                                    <span className="truncate">
-                                        {activeOrder.customer_name}
-                                    </span>
                                 </DrawerDescription>
                             </div>
                             <Badge
