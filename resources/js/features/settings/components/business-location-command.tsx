@@ -90,9 +90,8 @@ async function readGeolocationPermission(): Promise<PermissionState> {
             return 'prompt';
         }
 
-        return (
-            await navigator.permissions.query({ name: 'geolocation' })
-        ).state;
+        return (await navigator.permissions.query({ name: 'geolocation' }))
+            .state;
     } catch {
         // Safari iOS tidak selalu menyediakan Permissions API untuk
         // geolocation. Sumber kebenaran tetap callback Geolocation API.
@@ -753,7 +752,7 @@ export function BusinessLocationCommand({
 
     return (
         <Drawer open={open} onOpenChange={handleOpen} swipeDirection="right">
-            <DrawerContent className="m-0 h-[100svh] max-h-none w-full max-w-none rounded-none border-0 bg-card text-card-foreground shadow-xl [--drawer-inset:0px] md:m-2 md:h-[calc(100dvh-1rem)] md:max-h-[calc(100dvh-1rem)] md:w-[28rem] md:max-w-[calc(100vw-1rem)] md:rounded-3xl md:border md:[--drawer-inset:--spacing(2)]">
+            <DrawerContent className="m-0 h-[100svh] max-h-none w-full max-w-none rounded-none border-0 bg-card text-card-foreground shadow-xl [--drawer-bleed:0px] [--drawer-inset:0px] max-sm:right-0 max-sm:left-auto max-sm:w-screen! md:m-2 md:h-[calc(100dvh-1rem)] md:max-h-[calc(100dvh-1rem)] md:w-[28rem] md:max-w-[calc(100vw-1rem)] md:rounded-3xl md:border md:[--drawer-inset:--spacing(2)]">
                 <Command
                     shouldFilter={false}
                     className="flex h-full min-h-0 w-full flex-col overflow-hidden rounded-none border-none p-0 shadow-2xl outline-none sm:rounded-xl"

@@ -17,10 +17,14 @@ const businessLocationCommand = readFileSync(
     'utf8',
 );
 
-test('location drawer fills the mobile viewport', () => {
-    assert.match(locationCommand, /h-\[100svh\]/);
-    assert.match(locationCommand, /max-sm:w-screen!/);
-    assert.match(locationCommand, /max-sm:max-w-none!/);
+test('location drawers use the same edge-to-edge mobile panel treatment', () => {
+    for (const locationDrawer of [locationCommand, businessLocationCommand]) {
+        assert.match(locationDrawer, /h-\[100svh\]/);
+        assert.match(locationDrawer, /w-screen/);
+        assert.match(locationDrawer, /max-w-none/);
+        assert.match(locationDrawer, /\[--drawer-inset:0px\]/);
+        assert.match(locationDrawer, /\[--drawer-bleed:0px\]/);
+    }
 });
 
 test('location map and nearby suggestions require granted permission', () => {

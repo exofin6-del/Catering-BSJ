@@ -1068,7 +1068,7 @@ export function LocationCommand({
                 onOpenChange={handleOpen}
                 swipeDirection="right"
             >
-                <DrawerContent className="m-0 h-[100svh] max-h-none w-full max-w-none rounded-none border-0 bg-card text-card-foreground shadow-xl [--drawer-inset:0px] max-sm:right-0 max-sm:left-auto max-sm:h-[100svh] max-sm:max-h-none max-sm:w-screen! max-sm:max-w-none! max-sm:rounded-none! md:m-2 md:h-[calc(100dvh-1rem)] md:max-h-[calc(100dvh-1rem)] md:w-[28rem] md:max-w-[calc(100vw-1rem)] md:rounded-3xl md:border md:shadow-2xl md:[--drawer-inset:--spacing(2)]">
+                <DrawerContent className="m-0 h-[100svh] max-h-none w-full max-w-none rounded-none border-0 bg-card text-card-foreground shadow-xl [--drawer-bleed:0px] [--drawer-inset:0px] max-sm:right-0 max-sm:left-auto max-sm:h-[100svh] max-sm:max-h-none max-sm:w-screen! max-sm:max-w-none! max-sm:rounded-none! md:m-2 md:h-[calc(100dvh-1rem)] md:max-h-[calc(100dvh-1rem)] md:w-[28rem] md:max-w-[calc(100vw-1rem)] md:rounded-3xl md:border md:shadow-2xl md:[--drawer-inset:--spacing(2)]">
                     <Command
                         shouldFilter={false}
                         className="flex h-full min-h-0 w-full flex-col overflow-hidden rounded-none border-none bg-transparent p-0 text-slate-700 shadow-2xl outline-none sm:rounded-xl dark:text-slate-300"
