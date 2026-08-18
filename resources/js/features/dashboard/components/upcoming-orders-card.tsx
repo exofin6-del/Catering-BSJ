@@ -20,7 +20,7 @@ export function UpcomingOrdersCard({
 }: UpcomingOrdersCardProps) {
     return (
         <Card className={cn('flex h-full flex-col', className)}>
-            <CardHeader className="flex w-full flex-row items-center justify-between gap-2 pb-4">
+            <CardHeader className="flex w-full flex-row items-center justify-between gap-2">
                 <div className="flex min-w-0 items-center gap-2.5">
                     <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                         <CalendarClock className="size-4" />
