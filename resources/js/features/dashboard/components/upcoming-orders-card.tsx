@@ -20,22 +20,25 @@ export function UpcomingOrdersCard({
 }: UpcomingOrdersCardProps) {
     return (
         <Card className={cn('flex h-full flex-col', className)}>
-            <CardHeader className="flex-row items-center justify-between gap-2 pb-4">
-                <div className="flex items-center gap-2.5">
+            <CardHeader className="flex w-full flex-row items-center justify-between gap-2 pb-4">
+                <div className="flex min-w-0 items-center gap-2.5">
                     <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
                         <CalendarClock className="size-4" />
                     </span>
-                    <div>
-                        <CardTitle className="text-base font-semibold">
+
+                    <div className="min-w-0">
+                        <CardTitle className="truncate text-base font-semibold">
                             Jadwal Mendatang
                         </CardTitle>
-                        <p className="text-xs text-muted-foreground">
+
+                        <p className="truncate text-xs text-muted-foreground">
                             Event terdekat
                         </p>
                     </div>
                 </div>
+
                 {items.length > 0 && (
-                    <Badge variant="outline" className="tabular-nums">
+                    <Badge variant="outline" className="shrink-0 tabular-nums">
                         {items.length}
                     </Badge>
                 )}
