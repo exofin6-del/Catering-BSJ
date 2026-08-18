@@ -48,9 +48,11 @@ class HandleInertiaRequests extends Middleware
                 return $setting ? [
                     'business_name' => $setting->business_name,
                     'description' => $setting->description,
+                    'whatsapp_number' => $setting->whatsapp_number,
                 ] : [
                     'business_name' => 'Catering BSJ',
                     'description' => null,
+                    'whatsapp_number' => null,
                 ];
             }),
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',

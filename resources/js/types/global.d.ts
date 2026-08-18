@@ -12,5 +12,10 @@ declare module '@inertiajs/core' {
         name?: string;
         auth: Auth;
         sidebarOpen?: boolean;
+        business: {
+            business_name: string;
+            description: string | null;
+            whatsapp_number: string | null;
+        };
     }
 }
