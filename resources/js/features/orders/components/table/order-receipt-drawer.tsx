@@ -63,75 +63,152 @@ export function OrderReceiptDrawer({
 
         setIsDownloading(true);
 
+        let iframe: HTMLIFrameElement | null = null;
+
         try {
-            const receiptClone = cloneElementWithComputedStyles(receiptPaper);
-            receiptClone.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
             const { width, height } = receiptPaper.getBoundingClientRect();
-            const svg = `
-                <svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
-                    <foreignObject width="100%" height="100%">
-                        ${new XMLSerializer().serializeToString(receiptClone)}
-                    </foreignObject>
-                </svg>
-            `;
-            const svgUrl = URL.createObjectURL(
-                new Blob([svg], { type: 'image/svg+xml;charset=utf-8' }),
+
+            // Collect all stylesheet text from the document so fonts and
+            // Tailwind CSS variables resolve correctly inside the iframe.
+            const styleText = Array.from(document.styleSheets)
+                .flatMap((sheet) => {
+                    try {
+                        return Array.from(sheet.cssRules).map(
+                            (rule) => rule.cssText,
+                        );
+                    } catch {
+                        // Cross-origin stylesheets are not readable — skip.
+                        return [];
+                    }
+                })
+                .join('\n');
+
+            const html = `<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #fff; width: ${width}px; }
+  ${styleText}
+</style>
+</head>
+<body>
+${receiptPaper.outerHTML}
+</body>
+</html>`;
+
+            const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+            const blobUrl = URL.createObjectURL(blob);
+
+            iframe = document.createElement('iframe');
+            iframe.style.cssText =
+                `position:fixed;top:-9999px;left:-9999px;` +
+                `width:${width}px;height:${height}px;border:none;visibility:hidden;`;
+            document.body.appendChild(iframe);
+
+            await new Promise<void>((resolve, reject) => {
+                if (!iframe) {
+                    return reject(new Error('iframe not available'));
+                }
+
+                iframe.onload = () => resolve();
+                iframe.onerror = () =>
+                    reject(new Error('iframe failed to load'));
+                iframe.src = blobUrl;
+
+                // Safety timeout — resolve after 4 s even if onload doesn't fire.
+                setTimeout(resolve, 4000);
+            });
+
+            URL.revokeObjectURL(blobUrl);
+
+            // Wait for fonts inside the iframe to finish loading.
+            if (iframe.contentDocument?.fonts) {
+                await iframe.contentDocument.fonts.ready;
+            }
+
+            // Give the browser one more frame to paint.
+            await new Promise<void>((resolve) =>
+                (iframe?.contentWindow ?? window).requestAnimationFrame(() =>
+                    resolve(),
+                ),
             );
+
+            const iframeBody = iframe.contentDocument?.body;
+
+            if (!iframeBody) {
+                throw new Error('iframe body not available');
+            }
+
+            const scale = Math.min(window.devicePixelRatio || 1, 2);
+            const canvas = document.createElement('canvas');
+            canvas.width = Math.ceil(width * scale);
+            canvas.height = Math.ceil(height * scale);
+
+            const context = canvas.getContext('2d');
+
+            if (!context) {
+                throw new Error('Canvas is not supported.');
+            }
+
+            context.scale(scale, scale);
+            context.fillStyle = '#ffffff';
+            context.fillRect(0, 0, width, height);
+
+            // Draw the iframe document element to canvas.
+            const svgClone = cloneElementWithComputedStyles(
+                iframe.contentDocument!.documentElement,
+            );
+            svgClone.setAttribute('xmlns', 'http://www.w3.org/1999/xhtml');
+
+            const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}"><foreignObject width="100%" height="100%">${new XMLSerializer().serializeToString(svgClone)}</foreignObject></svg>`;
+            const svgBlob = new Blob([svg], {
+                type: 'image/svg+xml;charset=utf-8',
+            });
+            const svgUrl = URL.createObjectURL(svgBlob);
 
             try {
                 const image = new Image();
                 image.src = svgUrl;
                 await image.decode();
-
-                const scale = Math.min(window.devicePixelRatio || 1, 2);
-                const canvas = document.createElement('canvas');
-                canvas.width = Math.ceil(width * scale);
-                canvas.height = Math.ceil(height * scale);
-
-                const context = canvas.getContext('2d');
-
-                if (!context) {
-                    throw new Error('Canvas is not supported.');
-                }
-
-                context.scale(scale, scale);
-                context.fillStyle = '#ffffff';
-                context.fillRect(0, 0, width, height);
                 context.drawImage(image, 0, 0, width, height);
-
-                const jpeg = await new Promise<Blob>((resolve, reject) => {
-                    canvas.toBlob(
-                        (blob) => {
-                            if (blob) {
-                                resolve(blob);
-
-                                return;
-                            }
-
-                            reject(new Error('Unable to create JPG.'));
-                        },
-                        'image/jpeg',
-                        0.95,
-                    );
-                });
-                const downloadUrl = URL.createObjectURL(jpeg);
-                const downloadLink = document.createElement('a');
-                const orderCode = order.order_code
-                    .replace(/[^a-z0-9]+/gi, '-')
-                    .replace(/^-|-$/g, '')
-                    .toLowerCase();
-
-                downloadLink.href = downloadUrl;
-                downloadLink.download = `struk-${orderCode || order.id}.jpg`;
-                downloadLink.click();
-                URL.revokeObjectURL(downloadUrl);
-                toast.success('Struk JPG berhasil diunduh.');
             } finally {
                 URL.revokeObjectURL(svgUrl);
             }
+
+            const jpeg = await new Promise<Blob>((resolve, reject) => {
+                canvas.toBlob(
+                    (blob) => {
+                        if (blob) {
+                            resolve(blob);
+
+                            return;
+                        }
+                        
+                        reject(new Error('Unable to create JPG.'));
+                    },
+                    'image/jpeg',
+                    0.95,
+                );
+            });
+
+            const downloadUrl = URL.createObjectURL(jpeg);
+            const downloadLink = document.createElement('a');
+            const orderCode = order.order_code
+                .replace(/[^a-z0-9]+/gi, '-')
+                .replace(/^-|-$/g, '')
+                .toLowerCase();
+
+            downloadLink.href = downloadUrl;
+            downloadLink.download = `struk-${orderCode || order.id}.jpg`;
+            downloadLink.click();
+            URL.revokeObjectURL(downloadUrl);
+            toast.success('Struk JPG berhasil diunduh.');
         } catch {
             toast.error('Struk JPG gagal diunduh. Silakan coba lagi.');
         } finally {
+            iframe?.remove();
             setIsDownloading(false);
         }
     }
@@ -168,7 +245,7 @@ export function OrderReceiptDrawer({
                             onClick={handleDownloadJpg}
                         >
                             <Download className="size-4" />
-                            {isDownloading ? 'Menyiapkan JPG...' : 'Unduh JPG'}
+                            {isDownloading ? 'Menyiapkan JPG...' : 'Unduh'}
                         </Button>
                         <Button type="button" onClick={handlePrint}>
                             <Printer className="size-4" />
