@@ -117,7 +117,7 @@ export function ScheduleListCard({
                     <ScheduleListEmptyState />
                 ) : (
                     visibleItems.map((item) => (
-                        <ScheduleListItem
+                        <ScheduleListItem<ScheduleItem>
                             key={item.id}
                             item={item}
                             onSelect={onOrderSelect}
@@ -184,12 +184,22 @@ export function ScheduleListEmptyState() {
     );
 }
 
-export function ScheduleListItem({
+export type ScheduleListItemData = {
+    customer_name: string;
+    event_date: string | null;
+    event_name: string;
+    event_time?: string | null;
+    order_code: string;
+    payment_status: string;
+    phone: string;
+};
+
+export function ScheduleListItem<T extends ScheduleListItemData>({
     item,
     onSelect,
 }: {
-    item: ScheduleItem;
-    onSelect?: (item: ScheduleItem) => void;
+    item: T;
+    onSelect?: (item: T) => void;
 }) {
     const content = (
         <>
@@ -221,8 +231,10 @@ export function ScheduleListItem({
             <div className="mt-3 grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
                 <span className="flex items-center gap-2">
                     <Clock3 className="size-4" />
-                    {formatScheduleDate(item.event_date)},{' '}
-                    {item.event_time || 'Waktu belum diisi'}
+                    {item.event_date
+                        ? formatScheduleDate(item.event_date)
+                        : 'Tanggal belum diisi'}
+                    , {item.event_time || 'Waktu belum diisi'}
                 </span>
                 <span className="flex items-center gap-2">
                     <Users className="size-4" />

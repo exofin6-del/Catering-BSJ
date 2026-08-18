@@ -189,7 +189,7 @@ class DashboardAction
     }
 
     /**
-     * @return array{id: int, order_code: string, customer_name: string, event_name: string, event_date: string|null, event_time: string, status: string, payment_status: string, total_price: string, remaining_amount: string}
+     * @return array{id: int, order_code: string, customer_name: string, event_name: string, event_date: string|null, event_time: string, phone: string, status: string, payment_status: string, total_price: string, remaining_amount: string}
      */
     private function serializeUpcomingOrder(Order $order): array
     {
@@ -200,6 +200,7 @@ class DashboardAction
             'event_name' => $order->event_name,
             'event_date' => $order->event_date?->toDateString(),
             'event_time' => $this->formatTimeValue($order->event_time),
+            'phone' => $order->phone,
             'status' => $order->status,
             'payment_status' => $order->payment_status,
             'total_price' => $this->decimal($order->total_price),

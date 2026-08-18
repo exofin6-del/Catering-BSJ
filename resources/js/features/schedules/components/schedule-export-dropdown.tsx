@@ -340,7 +340,7 @@ export function ScheduleExportDropdown() {
                                     exportItems.length > 0 && (
                                         <div className="space-y-3">
                                             {previewItems.map((item) => (
-                                                <ScheduleListItem
+                                                <ScheduleListItem<ScheduleItem>
                                                     key={item.id}
                                                     item={item}
                                                 />

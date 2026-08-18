@@ -40,6 +40,7 @@ export type DashboardUpcomingOrder = {
     id: number;
     order_code: string;
     payment_status: string;
+    phone: string;
     remaining_amount: string;
     status: string;
     total_price: string;

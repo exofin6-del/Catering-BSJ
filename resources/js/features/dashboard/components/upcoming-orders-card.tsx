@@ -1,25 +1,13 @@
 import { Link } from '@inertiajs/react';
-import { ArrowUpRight, CalendarClock, CalendarX2, Clock4 } from 'lucide-react';
+import { CalendarClock, CalendarX2 } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { ScheduleListItem } from '@/features/schedules/components/schedule-list-card';
 import { cn } from '@/lib/utils';
 import orderRoute from '@/routes/order';
 
 import type { DashboardUpcomingOrder } from '../types/dashboard-types';
-import {
-    formatDashboardCurrency,
-    formatDashboardDate,
-} from '../utils/dashboard-format';
-
-const paymentStatusConfig: Record<
-    string,
-    { label: string; variant: 'default' | 'secondary' | 'destructive' }
-> = {
-    dp_paid: { label: 'DP', variant: 'secondary' },
-    paid: { label: 'Lunas', variant: 'default' },
-    unpaid: { label: 'Belum Bayar', variant: 'destructive' },
-};
 
 type UpcomingOrdersCardProps = {
     className?: string;
@@ -53,17 +41,18 @@ export function UpcomingOrdersCard({
                 )}
             </CardHeader>
 
-            <CardContent className="flex flex-1 flex-col gap-0 p-0">
+            <CardContent className="flex flex-1 flex-col gap-3 p-4">
                 {items.length > 0 ? (
-                    <ul className="divide-y">
-                        {items.map((item, index) => (
-                            <UpcomingOrderRow
-                                key={item.id}
-                                item={item}
-                                index={index}
-                            />
-                        ))}
-                    </ul>
+                    items.map((item) => (
+                        <Link
+                            key={item.id}
+                            href={orderRoute.show(item.id)}
+                            prefetch
+                            className="block rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        >
+                            <ScheduleListItem item={item} />
+                        </Link>
+                    ))
                 ) : (
                     <div className="flex flex-1 flex-col items-center justify-center gap-2 py-10 text-center">
                         <CalendarX2 className="size-8 text-muted-foreground/40" />
@@ -77,78 +66,5 @@ export function UpcomingOrdersCard({
                 )}
             </CardContent>
         </Card>
-    );
-}
-
-function UpcomingOrderRow({
-    item,
-    index,
-}: {
-    item: DashboardUpcomingOrder;
-    index: number;
-}) {
-    const status = paymentStatusConfig[item.payment_status];
-
-    return (
-        <li>
-            <Link
-                href={orderRoute.show(item.id)}
-                prefetch
-                className="group flex items-center gap-3 px-5 py-3 transition-colors hover:bg-muted/40"
-            >
-                {/* Index */}
-                <span className="flex size-6 shrink-0 items-center justify-center rounded-md bg-muted/60 text-xs font-semibold text-muted-foreground tabular-nums">
-                    {index + 1}
-                </span>
-
-                {/* Content */}
-                <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2">
-                        <span className="truncate font-mono text-xs font-medium">
-                            {item.order_code}
-                        </span>
-                        {status && (
-                            <Badge
-                                variant={status.variant}
-                                className="rounded-full px-1.5 py-0 text-[10px]"
-                            >
-                                {status.label}
-                            </Badge>
-                        )}
-                    </div>
-                    <div className="flex items-center gap-2 truncate">
-                        <p className="truncate text-sm font-medium">
-                            {item.customer_name}
-                        </p>
-                    </div>
-                    {item.event_name && (
-                        <p className="truncate text-xs text-muted-foreground">
-                            {item.event_name}
-                        </p>
-                    )}
-                </div>
-
-                {/* Date & Price */}
-                <div className="flex shrink-0 flex-col items-end gap-0.5">
-                    <div className="flex items-center gap-1 text-xs">
-                        <Clock4 className="size-3 text-muted-foreground" />
-                        <span className="font-medium tabular-nums">
-                            {formatDashboardDate(item.event_date)}
-                        </span>
-                    </div>
-                    {item.event_time && (
-                        <span className="text-[11px] text-muted-foreground">
-                            {item.event_time}
-                        </span>
-                    )}
-                    <span className="text-sm font-semibold text-emerald-600 tabular-nums dark:text-emerald-400">
-                        {formatDashboardCurrency(item.total_price)}
-                    </span>
-                </div>
-
-                {/* Arrow */}
-                <ArrowUpRight className="size-3.5 shrink-0 text-muted-foreground/40 transition group-hover:text-muted-foreground" />
-            </Link>
-        </li>
     );
 }

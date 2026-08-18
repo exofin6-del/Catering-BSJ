@@ -108,6 +108,7 @@ class DashboardTest extends TestCase
                 ->where('stats.upcoming_orders', 1) // Only ORD-CONFIRMED counted
                 ->has('upcomingOrders', 1)          // Only ORD-CONFIRMED returned
                 ->where('upcomingOrders.0.order_code', 'ORD-CONFIRMED')
+                ->where('upcomingOrders.0.phone', '081234567890')
             );
     }
 }
