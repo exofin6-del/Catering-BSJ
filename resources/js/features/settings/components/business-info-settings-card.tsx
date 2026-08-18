@@ -15,10 +15,9 @@ export function BusinessInfoSettingsCard({
 }: {
     settings: ReturnType<typeof useBusinessSettings>;
 }) {
-    const { heroImagesChanged, heroImagesUploading, infoForm, submitInfo } =
-        settings;
+    const { infoForm, submitInfo } = settings;
 
-    const hasPendingChanges = heroImagesChanged || infoForm.isDirty;
+    const hasPendingChanges = infoForm.isDirty;
 
     return (
         <Card className="overflow-hidden">
@@ -101,11 +100,7 @@ export function BusinessInfoSettingsCard({
                         <Button
                             type="submit"
                             size="sm"
-                            disabled={
-                                !hasPendingChanges ||
-                                infoForm.processing ||
-                                heroImagesUploading
-                            }
+                            disabled={!hasPendingChanges || infoForm.processing}
                         >
                             {infoForm.processing ? (
                                 <LoaderCircle className="size-4 animate-spin" />

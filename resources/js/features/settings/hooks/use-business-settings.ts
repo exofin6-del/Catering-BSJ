@@ -65,19 +65,12 @@ export function useBusinessSettings(businessSetting: BusinessSetting) {
     function submitInfo(event?: FormEvent<HTMLFormElement>): void {
         event?.preventDefault();
 
-        if (heroImageUploading.some(Boolean)) {
-            toast.error('Tunggu gambar selesai disiapkan.');
-
-            return;
-        }
-
         let shouldDismissToast = true;
         const savingToastId = toast.loading('Menyimpan pengaturan bisnis...');
 
         infoForm.transform((data) => ({
             ...data,
             _method: 'patch',
-            ...heroImagePayload(),
         }));
 
         infoForm.post(business.update.url(), {
@@ -95,14 +88,6 @@ export function useBusinessSettings(businessSetting: BusinessSetting) {
                 infoForm.setData(updatedInfo);
                 infoForm.setDefaults(updatedInfo);
                 infoForm.clearErrors();
-
-                // Reset hero image state
-                heroImageFileRefs.current = [null, null, null];
-                heroImageRemoveFlags.current = [false, false, false];
-                setHeroImageUploading([false, false, false]);
-                setHeroImagePreviews(updatedSetting.hero_images ?? []);
-                setHeroImageErrors(['', '', '']);
-                setHeroImagesChanged(false);
             },
             onError: (errors) => {
                 shouldDismissToast = false;
@@ -455,24 +440,6 @@ export function useBusinessSettings(businessSetting: BusinessSetting) {
             },
             preserveScroll: true,
         });
-    }
-
-    function heroImagePayload(): Record<string, File | string> {
-        const payload: Record<string, File | string> = {};
-
-        for (let i = 0; i < 3; i++) {
-            const file = heroImageFileRefs.current[i];
-
-            if (file) {
-                payload[`hero_image_${i}`] = file;
-            }
-
-            if (heroImageRemoveFlags.current[i]) {
-                payload[`remove_hero_image_${i}`] = '1';
-            }
-        }
-
-        return payload;
     }
 
     function syncHeroImageErrors(errors: Record<string, string>): void {
