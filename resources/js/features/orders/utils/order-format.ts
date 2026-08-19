@@ -94,6 +94,17 @@ export function formatOrderTime(value?: string | null): string {
     return value.slice(0, 5);
 }
 
+export function orderReceiptDownloadFilename(
+    order: Pick<Order, 'id' | 'order_code'>,
+): string {
+    const orderCode = order.order_code
+        .replace(/[^a-z0-9]+/gi, '-')
+        .replace(/^-|-$/g, '')
+        .toLowerCase();
+
+    return `struk-${orderCode || order.id}.jpg`;
+}
+
 export function orderPaidAmount(order: Pick<Order, 'payments'>): number {
     return order.payments.reduce(
         (total, payment) => total + numberValue(payment.amount),

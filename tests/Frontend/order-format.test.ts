@@ -4,6 +4,7 @@ import {
     formatOrderItemPriceSummary,
     orderPaymentMethodLabel,
     orderPaymentTypeLabel,
+    orderReceiptDownloadFilename,
     orderReceiptDate,
 } from '../../resources/js/features/orders/utils/order-format.ts';
 
@@ -30,4 +31,8 @@ test('receipt helpers use the latest payment and readable labels', () => {
     );
     assert.equal(orderPaymentTypeLabel('remaining'), 'Pelunasan');
     assert.equal(orderPaymentMethodLabel('cash'), 'Tunai');
+    assert.equal(
+        orderReceiptDownloadFilename({ id: 1, order_code: 'ORD / 2026 # 001' }),
+        'struk-ord-2026-001.jpg',
+    );
 });
