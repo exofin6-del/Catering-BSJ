@@ -1,13 +1,15 @@
 import { Head, router } from '@inertiajs/react';
-import { CircleAlert } from 'lucide-react';
+import { CircleAlert, Trash2 } from 'lucide-react';
 import { useCallback, useMemo } from 'react';
 
 import type { DataTableExportChip } from '@/components/data-table';
 import {
     AlertDialog,
+    AlertDialogAction,
     AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
+    AlertDialogFooter,
     AlertDialogHeader,
     AlertDialogMedia,
     AlertDialogTitle,
@@ -43,13 +45,16 @@ export default function MenuIndexPage(props: MenuIndexProps) {
 
     const {
         deleteBlockedTarget,
+        deleteTarget,
         handleActiveChange,
+        handleDeleteConfirm,
         handleDeleteRequest,
         handleMove,
         handleReorder,
         isLoading,
         search,
         setDeleteBlockedTarget,
+        setDeleteTarget,
         setSearch,
         visitIndex,
         canReorderCurrentPage,
@@ -258,6 +263,42 @@ export default function MenuIndexPage(props: MenuIndexProps) {
                             Tutup
                         </AlertDialogCancel>
                     </div>
+                </AlertDialogContent>
+            </AlertDialog>
+
+            <AlertDialog
+                open={deleteTarget !== null}
+                onOpenChange={(open) => {
+                    if (!open) {
+                        setDeleteTarget(null);
+                    }
+                }}
+            >
+                <AlertDialogContent size="sm">
+                    <AlertDialogHeader>
+                        <AlertDialogMedia>
+                            <Trash2 className="size-5" />
+                        </AlertDialogMedia>
+                        <AlertDialogTitle>Hapus menu?</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            {deleteTarget
+                                ? `Menu "${deleteTarget.name}" akan dihapus dari katalog. Tindakan ini tidak bisa dibatalkan.`
+                                : 'Menu ini akan dihapus dari katalog.'}
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogCancel
+                            onClick={() => setDeleteTarget(null)}
+                        >
+                            Batal
+                        </AlertDialogCancel>
+                        <AlertDialogAction
+                            variant="destructive"
+                            onClick={handleDeleteConfirm}
+                        >
+                            Hapus
+                        </AlertDialogAction>
+                    </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>
         </>
