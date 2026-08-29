@@ -90,6 +90,20 @@ class CustomerController extends Controller
         ]);
     }
 
+    public function privacyPolicy(): Response
+    {
+        return Inertia::render('customersV2/privacy-policy', [
+            ...$this->storefrontProps(),
+        ]);
+    }
+
+    public function termsOfService(): Response
+    {
+        return Inertia::render('customersV2/terms-of-service', [
+            ...$this->storefrontProps(),
+        ]);
+    }
+
     public function checkout(): Response
     {
         $businessSetting = BusinessSetting::query()->first() ?? new BusinessSetting;

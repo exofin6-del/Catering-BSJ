@@ -90,6 +90,19 @@ class CustomerStorefrontTest extends TestCase
                 ->where('packages.0.package_category.icon', 'package'));
     }
 
+    public function test_privacy_policy_and_terms_of_service_pages_are_accessible(): void
+    {
+        $this->get(route('customerV2.privacyPolicy'))
+            ->assertOk()
+            ->assertInertia(fn (Assert $page) => $page
+                ->component('customersV2/privacy-policy'));
+
+        $this->get(route('customerV2.termsOfService'))
+            ->assertOk()
+            ->assertInertia(fn (Assert $page) => $page
+                ->component('customersV2/terms-of-service'));
+    }
+
     public function test_package_detail_includes_catalog_data_for_the_customer_cart(): void
     {
         $menuCategory = MenuCategory::query()->create([

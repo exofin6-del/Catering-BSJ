@@ -9,6 +9,8 @@ Route::get('search', [CustomerController::class, 'search'])->name('customerV2.se
 Route::get('menu-catalog', [CustomerController::class, 'menuCatalog'])->name('customerV2.menuCatalog');
 Route::get('package', [CustomerController::class, 'packageCatalog'])->name('customerV2.packageCatalog');
 Route::get('info', [CustomerController::class, 'info'])->name('customerV2.info');
+Route::get('privacy-policy', [CustomerController::class, 'privacyPolicy'])->name('customerV2.privacyPolicy');
+Route::get('terms-of-service', [CustomerController::class, 'termsOfService'])->name('customerV2.termsOfService');
 Route::get('menu/{menuItem}/detail', [CustomerController::class, 'menuDetail'])->name('customerV2.menuDetail');
 Route::get('package/{package}/detail', [CustomerController::class, 'packageDetail'])->name('customerV2.packageDetail');
 

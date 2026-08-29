@@ -1,0 +1,4 @@
+
+> types:check
+> tsc --noEmit
+
