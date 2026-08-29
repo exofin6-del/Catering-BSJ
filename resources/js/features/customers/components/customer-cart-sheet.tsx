@@ -17,6 +17,7 @@ import {
 import { formatOrderPrice } from '@/features/orders/utils/order-format';
 import { useIsMobile } from '@/lib/hooks/use-mobile';
 import { useCustomerLogin } from '../components/customer-login-dialog';
+import { MAX_CART_ITEM_QUANTITY } from '../hooks/use-customer-cart';
 import type { CustomerCartLine } from '../hooks/use-customer-cart';
 
 type CustomerCartSheetProps = {
@@ -206,6 +207,7 @@ function customerCartSummaryItem({
                 </Button>
             ),
             layout: 'right-stacked',
+            max: MAX_CART_ITEM_QUANTITY,
             min: line.minimumOrder,
             onDecrease: () => onChangeQuantity(line.key, -1),
             onIncrease: () => onChangeQuantity(line.key, 1),

@@ -1,6 +1,7 @@
 import type { VisitOptions } from '@inertiajs/core';
 import { Head, router } from '@inertiajs/react';
 import { useMemo, useState } from 'react';
+import { toast } from 'sonner';
 import { MenuCatalog } from '@/features/customers/components/customer-catalog';
 import { useCustomerCartStore } from '@/features/customers/context/customer-cart-context';
 import type {
@@ -37,7 +38,14 @@ export default function CustomerV2MenuPage({
     }, []);
 
     function addToCart(item: OrderFormItem): void {
-        cart.add(item);
+        const added = cart.add(item);
+
+        if (!added) {
+            toast.error('Keranjang maksimal sepuluh jenis item.');
+
+            return;
+        }
+
         setSelectedItem(null);
     }
 

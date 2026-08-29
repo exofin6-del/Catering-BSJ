@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { toast } from 'sonner';
 import type { OrderFormItem } from '@/features/orders/types/order-types';
 import { orderFormItemUnitPrice } from '@/features/orders/utils/order-form-values';
 import { formatOrderItemPriceSummary } from '@/features/orders/utils/order-format';
@@ -30,6 +31,14 @@ export type CustomerCartLine = {
 
 // Normalization only needs to happen once per app session.
 let cartNormalized = false;
+
+// A cart may hold at most ten distinct item types (menu items / packages).
+export const MAX_CART_ITEM_TYPES = 10;
+
+// Each cart line is capped at this many units.
+export const MAX_CART_ITEM_QUANTITY = 3000;
+
+const MAX_CART_ITEM_QUANTITY_MESSAGE = 'Maksimal 3000 per item.';
 
 export function useCustomerCart(
     menuItems: OrderMenuItem[],
@@ -75,8 +84,14 @@ export function useCustomerCart(
         [items, menuItems, packages],
     );
 
-    function add(item: OrderFormItem): void {
+    /**
+     * Adds an item to the cart. Returns false when the cart already holds
+     * the maximum number of distinct item types.
+     */
+    function add(item: OrderFormItem): boolean {
         const key = customerCartItemKey(item);
+        let added = true;
+        let exceededMaxQuantity = false;
 
         updateCartItems((currentItems) => {
             const existingIndex = currentItems.findIndex(
@@ -84,23 +99,57 @@ export function useCustomerCart(
             );
 
             if (existingIndex === -1) {
-                return [...currentItems, item];
+                if (currentItems.length >= MAX_CART_ITEM_TYPES) {
+                    added = false;
+
+                    return currentItems;
+                }
+
+                const minimumOrder = customerCartItemMinimumOrder(
+                    item,
+                    menuItems,
+                    packages,
+                );
+                const quantity = customerCartClampedQuantity(
+                    item.qty,
+                    minimumOrder,
+                );
+
+                if (quantity < Number(item.qty)) {
+                    exceededMaxQuantity = true;
+                }
+
+                return [...currentItems, { ...item, qty: String(quantity) }];
             }
 
-            return currentItems.map((currentItem, index) =>
-                index === existingIndex
-                    ? {
-                          ...currentItem,
-                          qty: String(
-                              Number(currentItem.qty) + Number(item.qty),
-                          ),
-                      }
-                    : currentItem,
-            );
+            return currentItems.map((currentItem, index) => {
+                if (index !== existingIndex) {
+                    return currentItem;
+                }
+
+                const combined = Number(currentItem.qty) + Number(item.qty);
+
+                if (combined > MAX_CART_ITEM_QUANTITY) {
+                    exceededMaxQuantity = true;
+                }
+
+                return {
+                    ...currentItem,
+                    qty: String(Math.min(MAX_CART_ITEM_QUANTITY, combined)),
+                };
+            });
         });
+
+        if (exceededMaxQuantity) {
+            toast.info(MAX_CART_ITEM_QUANTITY_MESSAGE);
+        }
+
+        return added;
     }
 
     function changeQuantity(key: string, amount: number): void {
+        let exceededMaxQuantity = false;
+
         updateCartItems((currentItems) =>
             currentItems.map((item) => {
                 if (customerCartItemKey(item) !== key) {
@@ -116,16 +165,32 @@ export function useCustomerCart(
                     item.qty,
                     minimumOrder,
                 );
+                const requested = quantity + amount;
+
+                if (requested > MAX_CART_ITEM_QUANTITY) {
+                    exceededMaxQuantity = true;
+                }
 
                 return {
                     ...item,
-                    qty: String(Math.max(minimumOrder, quantity + amount)),
+                    qty: String(
+                        Math.min(
+                            MAX_CART_ITEM_QUANTITY,
+                            Math.max(minimumOrder, requested),
+                        ),
+                    ),
                 };
             }),
         );
+
+        if (exceededMaxQuantity) {
+            toast.info(MAX_CART_ITEM_QUANTITY_MESSAGE);
+        }
     }
 
     function setQuantity(key: string, value: string): void {
+        let exceededMaxQuantity = false;
+
         updateCartItems((currentItems) =>
             currentItems.map((item) => {
                 if (customerCartItemKey(item) !== key) {
@@ -138,17 +203,29 @@ export function useCustomerCart(
                     packages,
                 );
                 const quantity = Number(value);
+                const requested = Number.isFinite(quantity)
+                    ? Math.floor(quantity)
+                    : minimumOrder;
+
+                if (requested > MAX_CART_ITEM_QUANTITY) {
+                    exceededMaxQuantity = true;
+                }
 
                 return {
                     ...item,
                     qty: String(
-                        Number.isFinite(quantity)
-                            ? Math.max(minimumOrder, Math.floor(quantity))
-                            : minimumOrder,
+                        Math.min(
+                            MAX_CART_ITEM_QUANTITY,
+                            Math.max(minimumOrder, requested),
+                        ),
                     ),
                 };
             }),
         );
+
+        if (exceededMaxQuantity) {
+            toast.info(MAX_CART_ITEM_QUANTITY_MESSAGE);
+        }
     }
 
     function remove(key: string): void {
@@ -248,7 +325,7 @@ function normalizeStoredCustomerCartItems(
         }
 
         const minimumOrder = source.min_order ?? 1;
-        const quantity = customerCartItemQuantity(
+        const quantity = customerCartClampedQuantity(
             stringValue(candidate.qty),
             minimumOrder,
         );
@@ -318,4 +395,14 @@ function customerCartItemQuantity(value: string, minimumOrder: number): number {
     return Number.isFinite(quantity) && quantity > 0
         ? Math.floor(quantity)
         : minimumOrder;
+}
+
+function customerCartClampedQuantity(
+    value: string,
+    minimumOrder: number,
+): number {
+    return Math.min(
+        MAX_CART_ITEM_QUANTITY,
+        customerCartItemQuantity(value, minimumOrder),
+    );
 }

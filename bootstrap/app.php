@@ -6,7 +6,9 @@ use App\Http\Middleware\HandleInertiaRequests;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Http\Exceptions\ThrottleRequestsException;
 use Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -41,4 +43,18 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*') || $request->expectsJson(),
         );
+
+        // Surface checkout rate limits as a validation error so the checkout
+        // page's onError toast shows a friendly message instead of a 429 page.
+        $exceptions->render(function (ThrottleRequestsException $exception, Request $request): ?RedirectResponse {
+            if (! $request->inertia() || $request->expectsJson()) {
+                return null;
+            }
+
+            return back()
+                ->withInput()
+                ->withErrors([
+                    'items' => __('Aktivitas bot terdeteksi. Maksimal 5 permintaan checkout per menit.'),
+                ]);
+        });
     })->create();

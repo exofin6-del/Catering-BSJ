@@ -23,6 +23,7 @@ export type OrderSummaryQuantityControl = {
     ariaLabel?: string;
     detailAction?: ReactNode;
     layout?: 'default' | 'right-stacked';
+    max?: number;
     min?: number;
     onDecrease: () => void;
     onIncrease: () => void;
@@ -496,6 +497,7 @@ function OrderSummaryQuantityEditor({
     control: OrderSummaryQuantityControl;
 }) {
     const min = control.min ?? 1;
+    const max = control.max;
     const quantity = numericQuantity(control.value, min);
     const useConfirmQuantityStyle = control.layout === 'right-stacked';
     const quantityEditor = (
@@ -531,6 +533,7 @@ function OrderSummaryQuantityEditor({
                     useConfirmQuantityStyle ? 'border-0' : 'border-x',
                 )}
                 inputMode="numeric"
+                max={max}
                 min={min}
                 step={1}
                 type="number"
@@ -539,7 +542,7 @@ function OrderSummaryQuantityEditor({
                 onChange={(event) => control.onValueChange(event.target.value)}
                 onBlur={() =>
                     control.onValueCommit?.(
-                        normalizeQuantity(control.value, min),
+                        normalizeQuantity(control.value, min, max),
                     )
                 }
                 onKeyDown={(event) => {
@@ -557,6 +560,7 @@ function OrderSummaryQuantityEditor({
                     'size-7',
                     useConfirmQuantityStyle ? 'rounded-full' : 'rounded-none',
                 )}
+                disabled={max !== undefined && quantity >= max}
                 onClick={control.onIncrease}
                 aria-label="Tambah jumlah"
             >
@@ -714,12 +718,20 @@ function numericQuantity(value: string, fallback: number): number {
         : fallback;
 }
 
-function normalizeQuantity(value: string, minimum: number): string {
+function normalizeQuantity(
+    value: string,
+    minimum: number,
+    maximum?: number,
+): string {
     const parsedValue = Number(value);
 
     if (!Number.isFinite(parsedValue)) {
         return String(minimum);
     }
 
-    return String(Math.max(minimum, Math.floor(parsedValue)));
+    const normalized = Math.max(minimum, Math.floor(parsedValue));
+
+    return String(
+        maximum === undefined ? normalized : Math.min(maximum, normalized),
+    );
 }

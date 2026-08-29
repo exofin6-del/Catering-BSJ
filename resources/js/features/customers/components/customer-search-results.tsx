@@ -58,7 +58,14 @@ export function CustomerSearchResults({
     }
 
     function handleConfirm(item: OrderFormItem): void {
-        cart.add(item);
+        const added = cart.add(item);
+
+        if (!added) {
+            toast.error('Keranjang maksimal sepuluh jenis item.');
+
+            return;
+        }
+
         toast.success(
             selectedItem?.type === 'package'
                 ? 'Paket ditambahkan ke keranjang.'

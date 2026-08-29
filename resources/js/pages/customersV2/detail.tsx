@@ -1,5 +1,6 @@
 import { Head } from '@inertiajs/react';
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { CustomerInterestedSection } from '@/features/customers/components/customer-interested-section';
 import { useCustomerCartStore } from '@/features/customers/context/customer-cart-context';
@@ -42,7 +43,14 @@ export default function CustomerV2Detail({
         : undefined;
 
     function addToCart(orderItem: OrderFormItem): void {
-        cart.add(orderItem);
+        const added = cart.add(orderItem);
+
+        if (!added) {
+            toast.error('Keranjang maksimal sepuluh jenis item.');
+
+            return;
+        }
+
         setConfirmOpen(false);
     }
 

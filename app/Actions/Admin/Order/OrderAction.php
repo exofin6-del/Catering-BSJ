@@ -1080,6 +1080,7 @@ class OrderAction
     private function orderAttributes(array $data, array $totals, ?Order $order = null): array
     {
         return [
+            'customer_id' => $this->value($data, 'customer_id', $order?->customer_id),
             'customer_name' => $this->value($data, 'customer_name', $order?->customer_name),
             'phone' => $this->value($data, 'phone', $order?->phone),
             'event_date' => $this->value($data, 'event_date', $order?->event_date),

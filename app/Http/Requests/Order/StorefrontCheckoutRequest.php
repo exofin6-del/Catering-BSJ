@@ -20,6 +20,12 @@ class StorefrontCheckoutRequest extends OrderRequest
     {
         $rules = $this->orderRules(isUpdate: false, requiresLocation: true);
 
+        // Storefront carts are capped at ten distinct item types.
+        $rules['items'] = [...$rules['items'], 'max:10'];
+
+        // Each line item is capped at 3000 units.
+        $rules['items.*.qty'] = [...$rules['items.*.qty'], 'lte:3000'];
+
         // All fields are required on the storefront checkout except notes.
         $rules['event_time'] = ['required', 'date_format:H:i'];
         $rules['address_name'] = ['required', 'string', 'max:255'];
@@ -27,6 +33,19 @@ class StorefrontCheckoutRequest extends OrderRequest
         $rules['longitude'] = ['required', 'numeric', 'between:-180,180'];
 
         return $rules;
+    }
+
+    /**
+     * Get the custom validation messages.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'items.max' => __('Keranjang maksimal sepuluh jenis item.'),
+            'items.*.qty.lte' => __('Jumlah per item maksimal 3000.'),
+        ];
     }
 
     protected function prepareForValidation(): void

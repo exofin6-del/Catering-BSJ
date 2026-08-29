@@ -9,6 +9,8 @@ use Illuminate\Validation\ValidationException;
 
 class StorefrontCheckoutAction
 {
+    private const MAX_ORDERS_PER_CUSTOMER_PER_DAY = 3;
+
     public function __construct(
         private readonly OrderAction $orders,
     ) {}
@@ -30,6 +32,7 @@ class StorefrontCheckoutAction
         $whatsAppNumber = $setting->normalizedWhatsAppNumber();
 
         $data['customer_id'] = $customerId;
+        $this->assertCustomerDailyOrderLimit($customerId);
         $order = $this->orders->create($data);
 
         return [
@@ -40,6 +43,26 @@ class StorefrontCheckoutAction
                 (string) $setting->business_name,
             ) : '',
         ];
+    }
+
+    private function assertCustomerDailyOrderLimit(?int $customerId): void
+    {
+        if ($customerId === null) {
+            return;
+        }
+
+        $ordersToday = Order::query()
+            ->where('customer_id', $customerId)
+            ->whereDate('created_at', now()->toDateString())
+            ->count();
+
+        if ($ordersToday >= self::MAX_ORDERS_PER_CUSTOMER_PER_DAY) {
+            throw ValidationException::withMessages([
+                'items' => __('Anda telah mencapai batas harian. Maksimal :max order per hari.', [
+                    'max' => self::MAX_ORDERS_PER_CUSTOMER_PER_DAY,
+                ]),
+            ]);
+        }
     }
 
     private function whatsAppCheckoutUrl(Order $order, string $number, string $businessName): string

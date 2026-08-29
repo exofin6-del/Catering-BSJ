@@ -171,11 +171,14 @@ class CustomerCheckoutTest extends TestCase
 
     public function test_checkout_is_rate_limited(): void
     {
-        $this->withCustomerJwt();
         $this->createBusinessSetting();
         $menuItem = $this->createActiveMenuItem();
 
+        // Each attempt uses a fresh customer so the per-customer daily order
+        // limit never interferes with the checkout rate limiter.
         for ($i = 0; $i < 5; $i++) {
+            $this->withCustomerJwt();
+
             $this->post(
                 route('customerV2.storeCheckout'),
                 $this->checkoutPayload($menuItem),
@@ -188,6 +191,165 @@ class CustomerCheckoutTest extends TestCase
         )->assertStatus(429);
     }
 
+    public function test_checkout_rate_limit_redirects_back_with_error_for_inertia_requests(): void
+    {
+        $this->createBusinessSetting();
+        $menuItem = $this->createActiveMenuItem();
+
+        for ($i = 0; $i < 5; $i++) {
+            $this->withCustomerJwt();
+
+            $this->post(
+                route('customerV2.storeCheckout'),
+                $this->checkoutPayload($menuItem),
+            );
+        }
+
+        $this->withCustomerJwt();
+
+        $this->from(route('customerV2.checkout'))
+            ->withHeaders(['X-Inertia' => 'true'])
+            ->post(
+                route('customerV2.storeCheckout'),
+                $this->checkoutPayload($menuItem),
+            )
+            ->assertRedirect(route('customerV2.checkout'))
+            ->assertSessionHasErrors([
+                'items' => 'Aktivitas bot terdeteksi. Maksimal 5 permintaan checkout per menit.',
+            ]);
+    }
+
+    public function test_checkout_blocks_fourth_order_per_customer_per_day(): void
+    {
+        $this->createBusinessSetting();
+        $menuItem = $this->createActiveMenuItem();
+        $customer = $this->createCustomer();
+        $this->withCustomerJwt($customer);
+
+        for ($i = 0; $i < 3; $i++) {
+            $this->post(
+                route('customerV2.storeCheckout'),
+                $this->checkoutPayload($menuItem),
+            )->assertRedirect(route('customerV2.orders'));
+        }
+
+        $this->from(route('customerV2.checkout'))
+            ->post(
+                route('customerV2.storeCheckout'),
+                $this->checkoutPayload($menuItem),
+            )
+            ->assertRedirect(route('customerV2.checkout'))
+            ->assertSessionHasErrors('items');
+
+        $this->assertDatabaseCount('orders', 3);
+    }
+
+    public function test_daily_order_limit_is_tracked_per_customer(): void
+    {
+        $this->createBusinessSetting();
+        $menuItem = $this->createActiveMenuItem();
+
+        $first = $this->createCustomer();
+        $this->withCustomerJwt($first);
+
+        for ($i = 0; $i < 3; $i++) {
+            $this->post(
+                route('customerV2.storeCheckout'),
+                $this->checkoutPayload($menuItem),
+            )->assertRedirect(route('customerV2.orders'));
+        }
+
+        $second = $this->createCustomer();
+        $this->withCustomerJwt($second);
+
+        $this->post(
+            route('customerV2.storeCheckout'),
+            $this->checkoutPayload($menuItem),
+        )->assertRedirect(route('customerV2.orders'));
+
+        $this->assertSame(3, Order::query()->where('customer_id', $first->id)->count());
+        $this->assertSame(1, Order::query()->where('customer_id', $second->id)->count());
+    }
+
+    public function test_checkout_rejects_more_than_ten_item_types(): void
+    {
+        $this->withCustomerJwt();
+        $this->createBusinessSetting();
+        $menuItem = $this->createActiveMenuItem();
+        $extraMenuItems = [];
+
+        for ($i = 1; $i <= 10; $i++) {
+            $extraMenuItems[] = MenuItem::query()->create([
+                'menu_category_id' => $menuItem->menu_category_id,
+                'name' => "Menu Tambahan {$i}",
+                'slug' => "menu-tambahan-{$i}",
+                'base_price' => 10000,
+                'min_order' => 1,
+                'is_active' => true,
+            ]);
+        }
+
+        $payload = $this->checkoutPayload($menuItem);
+        $payload['items'] = [
+            ...array_map(
+                fn (MenuItem $item): array => [
+                    'item_type' => 'menu_item',
+                    'menu_item_id' => $item->id,
+                    'package_id' => null,
+                    'qty' => 1,
+                    'selected_items' => [],
+                ],
+                $extraMenuItems,
+            ),
+            $payload['items'][0],
+        ];
+
+        $this->from(route('customerV2.checkout'))
+            ->post(route('customerV2.storeCheckout'), $payload)
+            ->assertRedirect(route('customerV2.checkout'))
+            ->assertSessionHasErrors([
+                'items' => 'Keranjang maksimal sepuluh jenis item.',
+            ]);
+
+        $this->assertDatabaseCount('orders', 0);
+    }
+
+    public function test_checkout_rejects_quantity_above_3000_per_item(): void
+    {
+        $this->withCustomerJwt();
+        $this->createBusinessSetting();
+        $menuItem = $this->createActiveMenuItem();
+
+        $payload = $this->checkoutPayload($menuItem);
+        $payload['items'][0]['qty'] = 3001;
+
+        $this->from(route('customerV2.checkout'))
+            ->post(route('customerV2.storeCheckout'), $payload)
+            ->assertRedirect(route('customerV2.checkout'))
+            ->assertSessionHasErrors([
+                'items.0.qty' => 'Jumlah per item maksimal 3000.',
+            ]);
+
+        $this->assertDatabaseCount('orders', 0);
+    }
+
+    public function test_checkout_accepts_quantity_of_3000_per_item(): void
+    {
+        $this->withCustomerJwt();
+        $this->createBusinessSetting();
+        $menuItem = $this->createActiveMenuItem();
+
+        $payload = $this->checkoutPayload($menuItem);
+        $payload['items'][0]['qty'] = 3000;
+
+        $this->post(route('customerV2.storeCheckout'), $payload)
+            ->assertRedirect(route('customerV2.orders'));
+
+        $order = Order::query()->with('items')->sole();
+
+        $this->assertSame(3000, (int) $order->items->first()->qty);
+    }
+
     private function createBusinessSetting(): BusinessSetting
     {
         return BusinessSetting::query()->create([
@@ -198,14 +360,19 @@ class CustomerCheckoutTest extends TestCase
         ]);
     }
 
-    private function withCustomerJwt(): void
+    private function createCustomer(): Customer
     {
-        $customer = Customer::query()->create([
+        return Customer::query()->create([
             'google_id' => 'google-'.fake()->unique()->uuid(),
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
         ]);
+    }
+
+    private function withCustomerJwt(?Customer $customer = null): void
+    {
+        $customer ??= $this->createCustomer();
 
         $this->withCookie(
             (string) config('customer-auth.cookie'),
