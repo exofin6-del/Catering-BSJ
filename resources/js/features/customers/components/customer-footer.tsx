@@ -4,7 +4,7 @@ import BsjLogoIcon from '@/components/brand/bsj-logo-icon';
 import type { CustomerBusiness } from '@/features/customers/types/customer-storefront-types';
 import { customerWhatsAppUrl } from '@/features/customers/utils/customer-whatsapp';
 import { home } from '@/routes';
-import { info, menuCatalog, packageCatalog } from '@/routes/customerV2';
+import { info, menuCatalog, packageCatalog, privacyPolicy, termsOfService } from '@/routes/customerV2';
 
 type CustomerFooterProps = {
     business: CustomerBusiness;
@@ -162,18 +162,30 @@ export function CustomerFooter({ business }: CustomerFooterProps) {
             </div>
 
             {/* Bottom bar */}
-            <div className="border-t border-primary-foreground/15">
-                <div className="mx-auto flex w-full max-w-7xl flex-col gap-2 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
-                    <p className="text-xs text-primary-foreground/50">
+            <div className="border-t border-primary-foreground/15 bg-black/10 backdrop-blur-xs">
+                <div className="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+                    <p className="text-xs text-primary-foreground/80 font-normal">
                         © {year}{' '}
-                        <span className="font-medium text-primary-foreground/70">
+                        <span className="font-semibold text-primary-foreground">
                             {business.name}
                         </span>
                         . Seluruh hak cipta dilindungi.
                     </p>
-                    <p className="text-xs text-primary-foreground/50">
-                        Catering &amp; Prasmanan
-                    </p>
+                    <div className="flex items-center gap-4 text-xs text-primary-foreground/80">
+                        <Link
+                            href={privacyPolicy()}
+                            className="transition-colors hover:text-primary-foreground underline-offset-4 hover:underline"
+                        >
+                            Kebijakan Privasi
+                        </Link>
+                        <span className="text-primary-foreground/40">•</span>
+                        <Link
+                            href={termsOfService()}
+                            className="transition-colors hover:text-primary-foreground underline-offset-4 hover:underline"
+                        >
+                            Syarat & Ketentuan
+                        </Link>
+                    </div>
                 </div>
             </div>
         </footer>

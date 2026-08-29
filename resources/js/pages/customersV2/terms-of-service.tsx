@@ -1,19 +1,18 @@
 import { Head } from '@inertiajs/react';
 import { FileText, CheckCircle2, AlertCircle, ShoppingBag, CreditCard } from 'lucide-react';
+import CustomerDetailLayout from '@/layouts/customer/customer-detail-layout';
 import type { CustomerStorefrontProps } from '@/features/customers/types/customer-storefront-types';
-import { useCustomerTheme } from '@/lib/hooks/use-customer-theme';
 
 export default function TermsOfServicePage({
     business,
 }: CustomerStorefrontProps) {
-    useCustomerTheme();
     const appName = business?.name || 'Layanan Catering Kami';
 
     return (
-        <>
+        <CustomerDetailLayout title="Syarat & Ketentuan" showFooter={false}>
             <Head title="Syarat dan Ketentuan (Terms of Service)" />
 
-            <div className="mx-auto max-w-4xl space-y-8 py-6 sm:py-8 lg:py-10">
+            <div className="mx-auto max-w-4xl space-y-8 px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
                 {/* Header */}
                 <div className="border-b border-border pb-6 space-y-2">
                     <div className="flex items-center gap-2 text-primary font-semibold text-xs tracking-wider uppercase">
@@ -83,11 +82,6 @@ export default function TermsOfServicePage({
                     </section>
                 </div>
             </div>
-        </>
+        </CustomerDetailLayout>
     );
 }
-
-TermsOfServicePage.layout = {
-    title: 'Syarat & Ketentuan',
-    description: 'Syarat dan ketentuan penggunaan layanan customer.',
-};
