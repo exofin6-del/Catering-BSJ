@@ -1,5 +1,5 @@
 import { Link, usePage } from '@inertiajs/react';
-import BsjLogoIcon from '@/components/shared/brand/bsj-logo-icon';
+import BsjLogoIcon from '@/components/brand/bsj-logo-icon';
 import { home } from '@/routes';
 import type { AuthLayoutProps } from '@/types';
 import type { SharedData } from '@/types';

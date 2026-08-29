@@ -18,25 +18,20 @@ class MenuCategoryIndexTest extends TestCase
         $this->withoutVite();
     }
 
-    public function test_menu_category_index_redirects_to_generic_categories_page(): void
+    public function test_legacy_menu_category_endpoints_are_removed(): void
     {
         $user = User::factory()->create();
+        $category = $this->createCategory('Snack Box', 'snack-box');
 
         $this
             ->actingAs($user)
-            ->get(route('menu.kategori.index'))
-            ->assertRedirect(route('categories.index', ['type' => 'menu']));
-    }
-
-    public function test_menu_category_edit_redirects_to_generic_category_edit_page(): void
-    {
-        $user = User::factory()->create();
-        $category = $this->createCategory('Snack Box', 'snack-box', sortOrder: 1);
+            ->get('/menu/kategori')
+            ->assertNotFound();
 
         $this
             ->actingAs($user)
-            ->get(route('menu.kategori.edit', $category))
-            ->assertRedirect(route('categories.edit', ['type' => 'menu', 'category' => $category->id]));
+            ->get("/menu/kategori/{$category->id}/edit")
+            ->assertNotFound();
     }
 
     public function test_menu_category_status_can_be_updated(): void
@@ -46,10 +41,10 @@ class MenuCategoryIndexTest extends TestCase
 
         $this
             ->actingAs($user)
-            ->patch(route('menu.kategori.status', $category), [
+            ->patch(route('categories.status', ['type' => 'menu', 'category' => $category]), [
                 'is_active' => false,
             ])
-            ->assertRedirect(route('categories.index', ['type' => 'menu']));
+            ->assertRedirect(route('categories.index'));
 
         $this->assertFalse($category->refresh()->is_active);
     }

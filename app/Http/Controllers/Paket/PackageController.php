@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Paket;
 
-use App\Actions\Paket\PackageAction;
+use App\Actions\Admin\Paket\PackageAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Paket\ReorderPackagesRequest;
 use App\Http\Requests\Paket\StorePackageRequest;

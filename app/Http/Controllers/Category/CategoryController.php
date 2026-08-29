@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Category;
 
-use App\Actions\Category\CategoryAction;
+use App\Actions\Admin\Category\CategoryAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\ReorderCategoriesRequest;
 use App\Http\Requests\Category\StoreCategoryRequest;

@@ -308,7 +308,7 @@ export function ScheduleCalendarCard({
                                     day.is_selected &&
                                         'bg-primary/5 hover:bg-primary/5',
                                     isFull &&
-                                        ' text-destructive hover:bg-destructive/15',
+                                        'text-destructive hover:bg-destructive/15',
                                     isDisabled &&
                                         'cursor-not-allowed opacity-60 hover:bg-transparent',
                                 )}

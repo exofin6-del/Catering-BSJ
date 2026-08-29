@@ -1,8 +1,8 @@
 import { usePage } from '@inertiajs/react';
 import { ChevronLeft } from 'lucide-react';
-import type { ReactNode } from 'react';
-import { AppContent } from '@/components/shared/app-shell/app-content';
-import { AppShell } from '@/components/shared/app-shell/app-shell';
+import type {ReactNode} from 'react';
+import { AppContent } from '@/components/app-shell/app-content';
+import { AppShell } from '@/components/app-shell/app-shell';
 import { Button } from '@/components/ui/button';
 import { CustomerCartSheet } from '@/features/customers/components/customer-cart-sheet';
 import { CustomerFooter } from '@/features/customers/components/customer-footer';
@@ -19,6 +19,7 @@ type Props = {
     title: string;
     backHref?: string;
     backLabel?: string;
+    showFooter?: boolean;
 };
 
 export default function CustomerDetailLayout({
@@ -26,19 +27,18 @@ export default function CustomerDetailLayout({
     title,
     backHref = '/',
     backLabel = 'Kembali',
+    showFooter = true,
 }: Props) {
     useCustomerTheme();
     useScrollRestoration();
-    const page = usePage<SharedData>();
-    const {
-        business,
-        menuItems = [],
-        packages = [],
-    } = page.props as {
-        business?: CustomerBusiness;
-        menuItems?: OrderMenuItem[];
-        packages?: OrderPackage[];
-    };
+    const page = usePage<
+        SharedData & {
+            business: CustomerBusiness;
+            menuItems?: OrderMenuItem[];
+            packages?: OrderPackage[];
+        }
+    >();
+    const { business, menuItems = [], packages = [] } = page.props;
     const cart = useCustomerCartStore(menuItems, packages);
 
     return (
@@ -50,9 +50,9 @@ export default function CustomerDetailLayout({
             >
                 <div className="relative mx-auto flex h-14 max-w-7xl items-center gap-3 px-4 sm:px-6 lg:px-8">
                     <Button
-                        variant="secondary"
+                        variant="ghost"
                         size="icon"
-                        className="size-9 rounded-full bg-primary/10 text-primary shadow-sm shadow-primary/5 transition-all duration-200 hover:bg-primary/20 hover:shadow-md hover:shadow-primary/10 active:scale-95"
+                        className="size-9 shrink-0 rounded-full text-foreground hover:bg-muted"
                         onClick={() => {
                             if (window.history.length > 1) {
                                 window.history.back();
@@ -62,7 +62,7 @@ export default function CustomerDetailLayout({
                         }}
                         aria-label={backLabel}
                     >
-                        <ChevronLeft className="size-7" />
+                        <ChevronLeft className="size-6" />
                     </Button>
                     <h1 className="absolute left-1/2 -translate-x-1/2 text-lg font-semibold tracking-tight sm:static sm:translate-x-0">
                         {title}
@@ -70,7 +70,7 @@ export default function CustomerDetailLayout({
                 </div>
             </header>
             <AppContent variant="header">{children}</AppContent>
-            {business ? <CustomerFooter business={business} /> : null}
+            {showFooter && business ? <CustomerFooter business={business} /> : null}
             <CustomerCartSheet
                 checkoutHref={checkout.url()}
                 lines={cart.lines}

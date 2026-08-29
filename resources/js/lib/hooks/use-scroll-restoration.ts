@@ -44,7 +44,11 @@ export function useScrollRestoration(): void {
         const isReload =
             window.performance &&
             window.performance.getEntriesByType('navigation')[0]
-                ? (window.performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming).type === 'reload'
+                ? (
+                      window.performance.getEntriesByType(
+                          'navigation',
+                      )[0] as PerformanceNavigationTiming
+                  ).type === 'reload'
                 : window.performance.navigation.type === 1;
 
         // If it's a manual reload, let browser's native scroll restoration handle it smoothly.

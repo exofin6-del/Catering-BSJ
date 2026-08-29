@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Dashboard\DashboardAction;
+use App\Actions\Admin\Dashboard\DashboardAction;
 use Inertia\Inertia;
 use Inertia\Response;
 

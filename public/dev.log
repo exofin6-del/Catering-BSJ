@@ -1,0 +1,220 @@
+
+> dev
+> vite
+
+[2m04.20.31[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m info: Types generated for actions, routes, form variants
+  Plugin: [35m@laravel/vite-plugin-wayfinder[39m
+
+  [32m[1mVITE[22m v8.0.16[39m  [2mready in [0m[1m13744[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m5173[22m/[39m
+[2m[32m  ➜[39m[22m[2m  press [22m[1mh + enter[22m[2m to show help[22m
+
+  [31m[1mLARAVEL[22m v13.13.0[39m  [2mplugin[22m [1mv3.1.0[22m
+
+  [32m➜[39m  [1mAPP_URL[22m: [36mhttp://localhost:[1m8000[22m[39m
+[2m04.22.06[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/js/app.tsx, /resources/css/app.css?direct[22m
+[2m04.22.07[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/resources/js/app.tsx[22m Could not Fast Refresh ("true" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m04.22.07[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2mresources/js/app.tsx[22m
+[2m04.22.13[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/js/app.tsx, /resources/css/app.css?direct[22m
+[2m04.22.14[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/resources/js/app.tsx[22m Could not Fast Refresh ("true" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m04.22.14[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2mresources/js/app.tsx[22m
+[2m04.22.22[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/js/app.tsx, /resources/css/app.css?direct[22m
+[2m04.22.22[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/resources/js/app.tsx[22m Could not Fast Refresh ("true" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m04.22.22[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2mresources/js/app.tsx[22m
+[2m04.22.48[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/features/customers/components/customer-login-dialog.tsx[22m
+[2m04.22.49[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/resources/js/features/customers/components/customer-login-dialog.tsx[22m Could not Fast Refresh ("useCustomerLogin" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m04.22.49[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/js/layouts/customer/customer-layout.tsx, /resources/js/features/customers/components/customer-cart-sheet.tsx, /resources/js/components/app-shell/customer-user-menu.tsx[22m
+[2m04.29.31[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/js/app.tsx, /resources/css/app.css?direct[22m
+[2m04.29.34[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/resources/js/app.tsx[22m Could not Fast Refresh ("true" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m04.29.34[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2mresources/js/app.tsx[22m
+[2m04.43.53[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/components/app-shell/customer-catalog-search.tsx[22m
+[2m04.43.53[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/components/app-shell/customer-catalog-search.tsx[22m
+[2m04.44.01[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/components/app-shell/customer-catalog-search.tsx[22m
+[2m04.44.02[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/components/app-shell/customer-catalog-search.tsx[22m
+[2m04.46.40[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/components/app-shell/customer-catalog-search.tsx[22m
+[2m04.46.40[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/components/app-shell/customer-catalog-search.tsx[22m
+[2m04.47.06[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/components/app-shell/customer-catalog-search.tsx[22m
+[2m04.47.13[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/components/app-shell/customer-catalog-search.tsx[22m
+[2m04.47.21[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/components/app-shell/app-header.tsx[22m
+[2m04.47.28[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/components/app-shell/app-header.tsx[22m
+[2m04.47.34[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/components/app-shell/app-header.tsx[22m
+[2m04.47.40[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/components/app-shell/app-header.tsx[22m
+[2m04.47.52[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/layouts/customer/customer-search-layout.tsx[22m
+[2m04.47.58[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/layouts/customer/customer-search-layout.tsx[22m
+[2m04.48.04[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/layouts/customer/customer-search-layout.tsx[22m
+[2m05.00.14[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/layouts/customer/customer-search-layout.tsx[22m
+[2m05.00.14[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/layouts/customer/customer-search-layout.tsx[22m
+[2m05.00.47[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/layouts/customer/customer-search-layout.tsx[22m
+[2m05.22.54[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/layouts/customer/customer-search-layout.tsx[22m
+[2m13.50.15[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/layouts/customer/customer-detail-layout.tsx[22m
+[2m13.50.27[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/layouts/customer/customer-search-layout.tsx[22m
+[2m13.50.41[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/layouts/customer/customer-search-layout.tsx[22m
+[2m13.50.43[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/layouts/customer/customer-search-layout.tsx[22m
+[2m13.50.57[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/layouts/customer/customer-search-layout.tsx[22m
+[2m13.51.44[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/layouts/customer/customer-detail-layout.tsx[22m
+[2m13.52.55[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/features/customers/components/customer-cart-sheet.tsx[22m
+[2m13.53.12[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/features/customers/components/customer-cart-sheet.tsx[22m
+[2m13.53.19[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/features/customers/components/customer-cart-sheet.tsx[22m
+[2m13.54.33[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/features/customers/components/customer-cart-sheet.tsx[22m
+[2m13.54.33[22m [31m[1m[vite][22m[39m [31mInternal server error: C:\laragon\www\Admin-catering-app\resources\js\features\customers\components\customer-cart-sheet.tsx: Unexpected token (71:112)
+
+[0m [90m 69 |[31m                             variant[33m=[31m[32m"ghost"[31m
+ [90m 70 |[31m                             size[33m=[31m[32m"icon"[31m
+[31m[1m>[22m[31m[90m 71 |[31m                                 className[33m=[31m[32m"size-9 shrink-0 rounded-full text-foreground hover:bg-muted"[31mmd[33m:[31mhidden[32m"[31m
+ [90m    |[31m                                                                                                                 [31m[1m^[22m[31m
+ [90m 72 |[31m                             aria[33m-[31mlabel[33m=[31m[32m"Kembali"[31m
+ [90m 73 |[31m                             onClick[33m=[31m{() [33m=>[31m onOpenChange([36mfalse[31m)}
+ [90m 74 |[31m                         [33m>[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mC:/laragon/www/Admin-catering-app/resources/js/features/customers/components/customer-cart-sheet.tsx[39m:71:112
+[33m  69 |                              variant="ghost"
+  70 |                              size="icon"
+  71 |                                  className="size-9 shrink-0 rounded-full text-foreground hover:bg-muted"md:hidden"
+     |                                                                                                                  ^
+  72 |                              aria-label="Kembali"
+  73 |                              onClick={() => onOpenChange(false)}[39m
+      at constructor (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:6616:19)
+      at TypeScriptParserMixin.unexpected (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:6636:16)
+      at TypeScriptParserMixin.jsxParseIdentifier (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4581:12)
+      at TypeScriptParserMixin.jsxParseNamespacedName (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4588:23)
+      at TypeScriptParserMixin.jsxParseAttribute (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4664:22)
+      at TypeScriptParserMixin.jsxParseOpeningElementAfterName (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4679:28)
+      at TypeScriptParserMixin.jsxParseOpeningElementAfterName (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10060:18)
+      at TypeScriptParserMixin.jsxParseOpeningElementAt (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4674:17)
+      at TypeScriptParserMixin.jsxParseElementAt (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4698:33)
+      at TypeScriptParserMixin.jsxParseElementAt (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4710:32)
+      at TypeScriptParserMixin.jsxParseElementAt (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4710:32)
+      at TypeScriptParserMixin.jsxParseElementAt (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4710:32)
+      at TypeScriptParserMixin.jsxParseElementAt (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4710:32)
+      at TypeScriptParserMixin.jsxParseElement (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4761:17)
+      at TypeScriptParserMixin.parseExprAtom (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4771:19)
+      at TypeScriptParserMixin.parseExprSubscripts (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:11098:23)
+      at TypeScriptParserMixin.parseUpdate (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:11083:21)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:11063:23)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:9854:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10916:61)
+      at TypeScriptParserMixin.parseExprOps (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10921:23)
+      at TypeScriptParserMixin.parseMaybeConditional (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10898:23)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10848:21)
+      at C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:9792:39
+      at TypeScriptParserMixin.tryParse (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:6924:20)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:9792:18)
+      at C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10817:39
+      at TypeScriptParserMixin.allowInAnd (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:12443:12)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10817:17)
+      at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:12510:17)
+      at TypeScriptParserMixin.parseParenAndDistinguishExpression (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:11692:28)
+      at TypeScriptParserMixin.parseExprAtom (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:11348:23)
+      at TypeScriptParserMixin.parseExprAtom (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4776:20)
+      at TypeScriptParserMixin.parseExprSubscripts (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:11098:23)
+      at TypeScriptParserMixin.parseUpdate (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:11083:21)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:11063:23)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:9854:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10916:61)
+      at TypeScriptParserMixin.parseExprOps (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10921:23)
+      at TypeScriptParserMixin.parseMaybeConditional (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10898:23)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10848:21)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:9803:20)
+      at TypeScriptParserMixin.parseExpressionBase (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10801:23)
+      at C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10797:39
+      at TypeScriptParserMixin.allowInAnd (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:12438:16)
+      at TypeScriptParserMixin.parseExpression (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10797:17)
+      at TypeScriptParserMixin.parseReturnStatement (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:13159:28)
+      at TypeScriptParserMixin.parseStatementContent (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:12815:21)
+      at TypeScriptParserMixin.parseStatementContent (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:9525:18)
+[2m13.54.35[22m [31m[1m[vite][22m[39m [31mInternal server error: C:\laragon\www\Admin-catering-app\resources\js\features\customers\components\customer-cart-sheet.tsx: Unexpected token (71:112)
+
+[0m [90m 69 |[31m                             variant[33m=[31m[32m"ghost"[31m
+ [90m 70 |[31m                             size[33m=[31m[32m"icon"[31m
+[31m[1m>[22m[31m[90m 71 |[31m                                 className[33m=[31m[32m"size-9 shrink-0 rounded-full text-foreground hover:bg-muted"[31mmd[33m:[31mhidden[32m"[31m
+ [90m    |[31m                                                                                                                 [31m[1m^[22m[31m
+ [90m 72 |[31m                             aria[33m-[31mlabel[33m=[31m[32m"Kembali"[31m
+ [90m 73 |[31m                             onClick[33m=[31m{() [33m=>[31m onOpenChange([36mfalse[31m)}
+ [90m 74 |[31m                         [33m>[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mC:/laragon/www/Admin-catering-app/resources/js/features/customers/components/customer-cart-sheet.tsx[39m:71:112
+[33m  69 |                              variant="ghost"
+  70 |                              size="icon"
+  71 |                                  className="size-9 shrink-0 rounded-full text-foreground hover:bg-muted"md:hidden"
+     |                                                                                                                  ^
+  72 |                              aria-label="Kembali"
+  73 |                              onClick={() => onOpenChange(false)}[39m
+      at constructor (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:6616:19)
+      at TypeScriptParserMixin.unexpected (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:6636:16)
+      at TypeScriptParserMixin.jsxParseIdentifier (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4581:12)
+      at TypeScriptParserMixin.jsxParseNamespacedName (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4588:23)
+      at TypeScriptParserMixin.jsxParseAttribute (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4664:22)
+      at TypeScriptParserMixin.jsxParseOpeningElementAfterName (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4679:28)
+      at TypeScriptParserMixin.jsxParseOpeningElementAfterName (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10060:18)
+      at TypeScriptParserMixin.jsxParseOpeningElementAt (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4674:17)
+      at TypeScriptParserMixin.jsxParseElementAt (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4698:33)
+      at TypeScriptParserMixin.jsxParseElementAt (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4710:32)
+      at TypeScriptParserMixin.jsxParseElementAt (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4710:32)
+      at TypeScriptParserMixin.jsxParseElementAt (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4710:32)
+      at TypeScriptParserMixin.jsxParseElementAt (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4710:32)
+      at TypeScriptParserMixin.jsxParseElement (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4761:17)
+      at TypeScriptParserMixin.parseExprAtom (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4771:19)
+      at TypeScriptParserMixin.parseExprSubscripts (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:11098:23)
+      at TypeScriptParserMixin.parseUpdate (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:11083:21)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:11063:23)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:9854:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10916:61)
+      at TypeScriptParserMixin.parseExprOps (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10921:23)
+      at TypeScriptParserMixin.parseMaybeConditional (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10898:23)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10848:21)
+      at C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:9792:39
+      at TypeScriptParserMixin.tryParse (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:6924:20)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:9792:18)
+      at C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10817:39
+      at TypeScriptParserMixin.allowInAnd (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:12443:12)
+      at TypeScriptParserMixin.parseMaybeAssignAllowIn (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10817:17)
+      at TypeScriptParserMixin.parseMaybeAssignAllowInOrVoidPattern (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:12510:17)
+      at TypeScriptParserMixin.parseParenAndDistinguishExpression (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:11692:28)
+      at TypeScriptParserMixin.parseExprAtom (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:11348:23)
+      at TypeScriptParserMixin.parseExprAtom (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:4776:20)
+      at TypeScriptParserMixin.parseExprSubscripts (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:11098:23)
+      at TypeScriptParserMixin.parseUpdate (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:11083:21)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:11063:23)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:9854:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10916:61)
+      at TypeScriptParserMixin.parseExprOps (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10921:23)
+      at TypeScriptParserMixin.parseMaybeConditional (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10898:23)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10848:21)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:9803:20)
+      at TypeScriptParserMixin.parseExpressionBase (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10801:23)
+      at C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10797:39
+      at TypeScriptParserMixin.allowInAnd (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:12438:16)
+      at TypeScriptParserMixin.parseExpression (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:10797:17)
+      at TypeScriptParserMixin.parseReturnStatement (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:13159:28)
+      at TypeScriptParserMixin.parseStatementContent (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:12815:21)
+      at TypeScriptParserMixin.parseStatementContent (C:\laragon\www\Admin-catering-app\node_modules\.pnpm\@babel+parser@7.29.7\node_modules\@babel\parser\lib\index.js:9525:18)
+[2m13.54.45[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/features/customers/components/customer-cart-sheet.tsx[22m
+[2m13.55.07[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/resources/css/app.css?direct, /resources/js/features/customers/components/customer-cart-sheet.tsx[22m
+[2m14.05.33[22m [36m[1m[vite][22m[39m [32m.env changed, restarting server...[39m
+[2m14.05.48[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m info: Types generated for actions, routes, form variants
+  Plugin: [35m@laravel/vite-plugin-wayfinder[39m
+TypeError: Cannot set properties of undefined (setting 'error')
+    at handleHMRUpdate (file:///C:/laragon/www/Admin-catering-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:26889:14)
+    at async onHMRUpdate (file:///C:/laragon/www/Admin-catering-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:26390:35)
+    at async onFileChange (file:///C:/laragon/www/Admin-catering-app/node_modules/.pnpm/vite@8.0.16_@types+node@22.19.20_jiti@2.7.0/node_modules/vite/dist/node/chunks/node.js:26415:3)
+[2m14.05.53[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m info: Types generated for actions, routes, form variants
+  Plugin: [35m@laravel/vite-plugin-wayfinder[39m
+[2m14.05.55[22m [36m[1m[vite][22m[39m server restarted.
+
+  [31m[1mLARAVEL[22m v13.13.0[39m  [2mplugin[22m [1mv3.1.0[22m
+
+  [32m➜[39m  [1mAPP_URL[22m: [36mhttp://localhost:[1m8000[22m[39m
+[2m14.06.08[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m info: Types generated for actions, routes, form variants
+  Plugin: [35m@laravel/vite-plugin-wayfinder[39m
+[2m14.06.25[22m [36m[1m[vite][22m[39m [32mfull reload[39m [2mroutes\customer\customerV2.php[22m
+[2m14.06.26[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m info: Types generated for actions, routes, form variants
+  Plugin: [35m@laravel/vite-plugin-wayfinder[39m
+[2m14.06.28[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m info: Types generated for actions, routes, form variants
+  Plugin: [35m@laravel/vite-plugin-wayfinder[39m
+[2m14.06.29[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m info: Types generated for actions, routes, form variants
+  Plugin: [35m@laravel/vite-plugin-wayfinder[39m
+
+C:\laragon\www\Admin-catering-app>

@@ -1,6 +1,6 @@
 import { Link } from '@inertiajs/react';
 import { ChefHat, Phone, UtensilsCrossed } from 'lucide-react';
-import BsjLogoIcon from '@/components/shared/brand/bsj-logo-icon';
+import BsjLogoIcon from '@/components/brand/bsj-logo-icon';
 import type { CustomerBusiness } from '@/features/customers/types/customer-storefront-types';
 import { customerWhatsAppUrl } from '@/features/customers/utils/customer-whatsapp';
 import { home } from '@/routes';

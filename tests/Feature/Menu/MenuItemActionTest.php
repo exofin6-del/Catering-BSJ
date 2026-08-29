@@ -2,7 +2,9 @@
 
 namespace Tests\Feature\Menu;
 
-use App\Actions\Menu\MenuItemAction;
+use App\Actions\Admin\Menu\MenuItemIndex;
+use App\Actions\Admin\Menu\MenuItemReorder;
+use App\Actions\Admin\Menu\MenuItemStats;
 use App\Models\MenuImage;
 use App\Models\MenuItem;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -43,7 +45,7 @@ class MenuItemActionTest extends TestCase
         DB::enableQueryLog();
         DB::flushQueryLog();
 
-        $activities = app(MenuItemAction::class)->recentActivities();
+        $activities = app(MenuItemStats::class)->recentActivities();
         $queries = DB::getQueryLog();
 
         DB::disableQueryLog();
@@ -61,7 +63,7 @@ class MenuItemActionTest extends TestCase
         $secondItem = $this->createMenuItem('Ayam Bakar', 'ayam-bakar', 2);
         $thirdItem = $this->createMenuItem('Sate Ayam', 'sate-ayam', 3);
 
-        app(MenuItemAction::class)->reorder([
+        app(MenuItemReorder::class)->handle([
             $thirdItem->id,
             $firstItem->id,
             $secondItem->id,
@@ -76,7 +78,7 @@ class MenuItemActionTest extends TestCase
     {
         $item = $this->createMenuItem('Nasi Liwet', 'nasi-liwet', 1);
 
-        $serialized = app(MenuItemAction::class)->serialize($item->loadMissing([
+        $serialized = app(MenuItemIndex::class)->serialize($item->loadMissing([
             'images',
         ]));
 

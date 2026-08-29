@@ -19,14 +19,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import DeleteUser from '@/features/settings/components/delete-user';
 import { edit } from '@/routes/profile';
-import type { Auth } from '@/types';
-
-type PageProps = {
-    auth: Auth;
-};
+import type { SharedData } from '@/types';
 
 export default function AccountPage() {
-    const { auth } = usePage<PageProps>().props;
+    const { auth } = usePage<SharedData>().props;
     const currentPasswordInput = useRef<HTMLInputElement>(null);
     const newPasswordInput = useRef<HTMLInputElement>(null);
 

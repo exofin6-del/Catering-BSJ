@@ -8,7 +8,6 @@ import { Label } from '@/components/ui/label';
 import { Spinner } from '@/components/ui/spinner';
 import { store } from '@/routes/login';
 
-
 export default function Login() {
     const loginRoute = store();
 
@@ -78,8 +77,6 @@ export default function Login() {
                     </>
                 )}
             </Form>
-
-            
         </>
     );
 }

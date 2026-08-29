@@ -1,8 +1,8 @@
 import { ChevronLeft, LoaderCircle, MapPin, X } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { distanceMetersBetween } from '@/components/shared/mapV2/distance';
-import type { Coordinate } from '@/components/shared/mapV2/location-utils';
+import { distanceMetersBetween } from '@/components/mapV2/distance';
+import type { Coordinate } from '@/components/mapV2/location-utils';
 import {
     coordinateFromValues,
     formatCoordinate,
@@ -10,14 +10,14 @@ import {
     isLocationAccurateEnough,
     reverseGeocodeCoordinate,
     SurakartaCoordinate,
-} from '@/components/shared/mapV2/location-utils';
+} from '@/components/mapV2/location-utils';
 import {
     displayPlaceArea,
     displayPlaceTitle,
     formatAddress,
-} from '@/components/shared/mapV2/place-utils';
-import { searchPlaces } from '@/components/shared/mapV2/search-service';
-import type { PlaceFeature } from '@/components/shared/mapV2/types';
+} from '@/components/mapV2/place-utils';
+import { searchPlaces } from '@/components/mapV2/search-service';
+import type { PlaceFeature } from '@/components/mapV2/types';
 import { Button } from '@/components/ui/button';
 import {
     Command,

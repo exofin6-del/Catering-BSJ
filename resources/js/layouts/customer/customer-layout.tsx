@@ -1,10 +1,11 @@
 import { usePage } from '@inertiajs/react';
-import { useState } from 'react';
-import { AppContent } from '@/components/shared/app-shell/app-content';
-import { AppHeader } from '@/components/shared/app-shell/app-header';
-import { AppShell } from '@/components/shared/app-shell/app-shell';
+import { useEffect, useState } from 'react';
+import { AppContent } from '@/components/app-shell/app-content';
+import { AppHeader } from '@/components/app-shell/app-header';
+import { AppShell } from '@/components/app-shell/app-shell';
 import { CustomerCartSheet } from '@/features/customers/components/customer-cart-sheet';
 import { CustomerFooter } from '@/features/customers/components/customer-footer';
+import { CustomerLoginDialog } from '@/features/customers/components/customer-login-dialog';
 import { CustomerWhatsAppButton } from '@/features/customers/components/customer-whatsapp-button';
 import { useCustomerCartStore } from '@/features/customers/context/customer-cart-context';
 import type { CustomerBusiness } from '@/features/customers/types/customer-storefront-types';
@@ -19,16 +20,28 @@ import type {
 } from '@/types';
 
 export default function CustomerLayout({ children }: AppLayoutProps) {
-    const page = usePage<SharedData>();
+    const page = usePage<
+        SharedData & {
+            business: CustomerBusiness;
+            menuItems?: OrderMenuItem[];
+            packages?: OrderPackage[];
+        }
+    >();
     useCustomerTheme();
     useScrollRestoration();
-    const { business, menuItems = [], packages = [] } = page.props as {
-        business?: CustomerBusiness;
-        menuItems?: OrderMenuItem[];
-        packages?: OrderPackage[];
-    };
+    const { business, menuItems = [], packages = [] } = page.props;
+
     const [cartAnimationKey] = useState(0);
     const cart = useCustomerCartStore(menuItems, packages);
+    const [loginOpen, setLoginOpen] = useState(false);
+
+    useEffect(() => {
+        const handleShow = (): void => setLoginOpen(true);
+        window.addEventListener('show-customer-login', handleShow);
+        
+        return () =>
+            window.removeEventListener('show-customer-login', handleShow);
+    }, []);
 
     return (
         <AppShell variant="header">
@@ -52,6 +65,7 @@ export default function CustomerLayout({ children }: AppLayoutProps) {
                 onRemove={cart.remove}
                 onSetQuantity={cart.setQuantity}
             />
+            <CustomerLoginDialog open={loginOpen} onOpenChange={setLoginOpen} />
         </AppShell>
     );
 }

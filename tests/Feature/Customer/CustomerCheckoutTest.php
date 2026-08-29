@@ -4,13 +4,13 @@ namespace Tests\Feature\Customer;
 
 use App\Http\Middleware\HandleInertiaRequests;
 use App\Models\BusinessSetting;
+use App\Models\Customer;
 use App\Models\MenuCategory;
 use App\Models\MenuItem;
 use App\Models\Order;
+use App\Services\CustomerJwtService;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\DB;
-use Inertia\Testing\AssertableInertia as Assert;
 use Tests\TestCase;
 
 class CustomerCheckoutTest extends TestCase
@@ -25,28 +25,15 @@ class CustomerCheckoutTest extends TestCase
         $this->withoutMiddleware(PreventRequestForgery::class);
     }
 
-    public function test_checkout_page_is_public_and_uses_business_whatsapp_number(): void
+    public function test_checkout_page_requires_customer_authentication(): void
     {
-        BusinessSetting::query()->create([
-            'business_name' => 'Dapur Bersama',
-            'whatsapp_number' => '+62 812-3456-7890',
-            'is_open' => true,
-        ]);
-        $this->createActiveMenuItem();
-
         $this->get(route('customerV2.checkout'))
-            ->assertOk()
-            ->assertInertia(fn (Assert $page) => $page
-                ->component('customersV2/checkout')
-                ->where('business.name', 'Dapur Bersama')
-                ->where('customerTheme', 'minimal')
-                ->where('business.whatsapp_number', '6281234567890')
-                ->has('businessSetting')
-                ->has('menuItems', 1));
+            ->assertRedirect(route('home'));
     }
 
     public function test_checkout_includes_catalog_props_from_the_storefront(): void
     {
+        $this->withCustomerJwt();
         $this->createBusinessSetting();
         $this->createActiveMenuItem();
         $assetVersion = app(HandleInertiaRequests::class)->version(request());
@@ -63,24 +50,19 @@ class CustomerCheckoutTest extends TestCase
             ->assertJsonPath('props.packages', []);
     }
 
-    public function test_checkout_creates_pending_order_and_redirects_to_business_whatsapp(): void
+    public function test_checkout_creates_pending_order_and_redirects_to_orders_page(): void
     {
+        $this->withCustomerJwt();
         $this->createBusinessSetting();
         $menuItem = $this->createActiveMenuItem();
 
-        $response = $this->withHeader('X-Inertia', 'true')
-            ->post(
-                route('customerV2.storeCheckout'),
-                $this->checkoutPayload($menuItem),
-            );
+        $response = $this->post(
+            route('customerV2.storeCheckout'),
+            $this->checkoutPayload($menuItem),
+        );
 
         $response
-            ->assertStatus(409)
-            ->assertHeader('X-Inertia-Location');
-        $this->assertStringStartsWith(
-            'https://wa.me/6281234567890?text=',
-            (string) $response->headers->get('X-Inertia-Location'),
-        );
+            ->assertRedirect(route('customerV2.orders'));
 
         $order = Order::query()
             ->with(['items', 'payments'])
@@ -98,21 +80,21 @@ class CustomerCheckoutTest extends TestCase
 
     public function test_checkout_ignores_submitted_payment_and_status_values(): void
     {
+        $this->withCustomerJwt();
         $this->createBusinessSetting();
         $menuItem = $this->createActiveMenuItem();
 
-        $this->withHeader('X-Inertia', 'true')
-            ->post(route('customerV2.storeCheckout'), $this->checkoutPayload(
-                $menuItem,
-                [
-                    'payment_amount' => 50000,
-                    'payment_method' => 'cash',
-                    'payment_paid_at' => now()->toDateTimeString(),
-                    'payment_type' => 'dp',
-                    'status' => 'confirmed',
-                ],
-            ))
-            ->assertStatus(409);
+        $this->post(route('customerV2.storeCheckout'), $this->checkoutPayload(
+            $menuItem,
+            [
+                'payment_amount' => 50000,
+                'payment_method' => 'cash',
+                'payment_paid_at' => now()->toDateTimeString(),
+                'payment_type' => 'dp',
+                'status' => 'confirmed',
+            ],
+        ))
+            ->assertRedirect(route('customerV2.orders'));
 
         $order = Order::query()->with('payments')->sole();
 
@@ -124,6 +106,7 @@ class CustomerCheckoutTest extends TestCase
 
     public function test_checkout_requires_a_delivery_location(): void
     {
+        $this->withCustomerJwt();
         $this->createBusinessSetting();
         $menuItem = $this->createActiveMenuItem();
 
@@ -146,8 +129,9 @@ class CustomerCheckoutTest extends TestCase
         $this->assertDatabaseCount('orders', 0);
     }
 
-    public function test_checkout_does_not_create_order_when_whatsapp_is_not_configured(): void
+    public function test_checkout_allows_order_creation_when_whatsapp_is_not_configured(): void
     {
+        $this->withCustomerJwt();
         BusinessSetting::query()->create([
             'business_name' => 'Dapur Bersama',
             'is_open' => true,
@@ -159,14 +143,14 @@ class CustomerCheckoutTest extends TestCase
                 route('customerV2.storeCheckout'),
                 $this->checkoutPayload($menuItem),
             )
-            ->assertRedirect(route('customerV2.checkout'))
-            ->assertSessionHasErrors('items');
+            ->assertRedirect(route('customerV2.orders'));
 
-        $this->assertDatabaseCount('orders', 0);
+        $this->assertDatabaseCount('orders', 1);
     }
 
     public function test_checkout_does_not_create_order_when_business_is_closed(): void
     {
+        $this->withCustomerJwt();
         BusinessSetting::query()->create([
             'business_name' => 'Dapur Bersama',
             'whatsapp_number' => '081234567890',
@@ -185,6 +169,25 @@ class CustomerCheckoutTest extends TestCase
         $this->assertDatabaseCount('orders', 0);
     }
 
+    public function test_checkout_is_rate_limited(): void
+    {
+        $this->withCustomerJwt();
+        $this->createBusinessSetting();
+        $menuItem = $this->createActiveMenuItem();
+
+        for ($i = 0; $i < 5; $i++) {
+            $this->post(
+                route('customerV2.storeCheckout'),
+                $this->checkoutPayload($menuItem),
+            )->assertRedirect(route('customerV2.orders'));
+        }
+
+        $this->post(
+            route('customerV2.storeCheckout'),
+            $this->checkoutPayload($menuItem),
+        )->assertStatus(429);
+    }
+
     private function createBusinessSetting(): BusinessSetting
     {
         return BusinessSetting::query()->create([
@@ -193,6 +196,21 @@ class CustomerCheckoutTest extends TestCase
             'max_orders_per_day' => 10,
             'is_open' => true,
         ]);
+    }
+
+    private function withCustomerJwt(): void
+    {
+        $customer = Customer::query()->create([
+            'google_id' => 'google-'.fake()->unique()->uuid(),
+            'name' => fake()->name(),
+            'email' => fake()->unique()->safeEmail(),
+            'email_verified_at' => now(),
+        ]);
+
+        $this->withCookie(
+            (string) config('customer-auth.cookie'),
+            app(CustomerJwtService::class)->issue($customer),
+        );
     }
 
     private function createActiveMenuItem(): MenuItem

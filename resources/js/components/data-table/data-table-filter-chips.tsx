@@ -220,16 +220,21 @@ function DataTableFilterChipCarousel({
     );
 }
 
-function DataTableFilterChipCarouselContent({ children }: { children: ReactNode }) {
-    const { canScrollPrev, canScrollNext, scrollPrev, scrollNext } = useCarousel();
+function DataTableFilterChipCarouselContent({
+    children,
+}: {
+    children: ReactNode;
+}) {
+    const { canScrollPrev, canScrollNext, scrollPrev, scrollNext } =
+        useCarousel();
 
     return (
         <div className="relative w-full">
             {/* Left Fade Gradient + Button */}
             <div
                 className={cn(
-                    'absolute -left-1 top-0 bottom-0 z-10 flex w-16 items-center justify-start bg-gradient-to-r from-background via-background/80 to-transparent transition-opacity duration-300 pointer-events-none',
-                    canScrollPrev ? 'opacity-100' : 'opacity-0'
+                    'pointer-events-none absolute top-0 bottom-0 -left-1 z-10 flex w-16 items-center justify-start bg-gradient-to-r from-background via-background/80 to-transparent transition-opacity duration-300',
+                    canScrollPrev ? 'opacity-100' : 'opacity-0',
                 )}
             >
                 {canScrollPrev && (
@@ -254,8 +259,8 @@ function DataTableFilterChipCarouselContent({ children }: { children: ReactNode 
             {/* Right Fade Gradient + Button */}
             <div
                 className={cn(
-                    'absolute -right-1 top-0 bottom-0 z-10 flex w-16 items-center justify-end bg-gradient-to-l from-background via-background/80 to-transparent transition-opacity duration-300 pointer-events-none',
-                    canScrollNext ? 'opacity-100' : 'opacity-0'
+                    'pointer-events-none absolute top-0 -right-1 bottom-0 z-10 flex w-16 items-center justify-end bg-gradient-to-l from-background via-background/80 to-transparent transition-opacity duration-300',
+                    canScrollNext ? 'opacity-100' : 'opacity-0',
                 )}
             >
                 {canScrollNext && (

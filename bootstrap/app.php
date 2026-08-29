@@ -26,6 +26,10 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->encryptCookies(except: ['appearance', 'sidebar_state']);
 
+        $middleware->validateCsrfTokens(except: [
+            'login/google/callback',
+        ]);
+
         $middleware->web(append: [
             AllowGeolocation::class,
             HandleAppearance::class,

@@ -32,6 +32,7 @@ class Order extends Model
         'payment_status',
         'status',
         'created_by_admin_id',
+        'customer_id',
         'notes',
     ];
 
@@ -51,6 +52,11 @@ class Order extends Model
     public function createdByAdmin(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by_admin_id');
+    }
+
+    public function customer(): BelongsTo
+    {
+        return $this->belongsTo(Customer::class);
     }
 
     public function items(): HasMany

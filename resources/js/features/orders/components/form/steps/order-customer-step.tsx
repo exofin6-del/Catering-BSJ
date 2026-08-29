@@ -2,7 +2,7 @@ import { MapPin, X } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
-import { LocationCommand } from '@/components/shared/mapV2/location-command';
+import { LocationCommand } from '@/components/mapV2/location-command';
 import {
     Field,
     FieldContent,

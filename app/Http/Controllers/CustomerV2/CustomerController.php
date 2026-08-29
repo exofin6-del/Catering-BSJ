@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers\CustomerV2;
 
-use App\Actions\Order\OrderAction;
-use App\Actions\Order\StorefrontCheckoutAction;
-use App\Http\Requests\Order\StorefrontCheckoutRequest;
-use App\Actions\Paket\PackageAction;
+use App\Actions\Admin\Order\OrderAction;
+use App\Actions\Admin\Paket\PackageAction;
+use App\Actions\Customer\StorefrontCheckoutAction;
 use App\CustomerTheme;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Order\StorefrontCheckoutRequest;
 use App\Models\BusinessSetting;
-use Inertia\Inertia;
-use Inertia\Response;
+use App\Models\Customer;
 use App\Models\MenuItem;
+use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Package;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 
 class CustomerController extends Controller
@@ -22,8 +25,7 @@ class CustomerController extends Controller
         private readonly OrderAction $orders,
         private readonly PackageAction $packages,
         private readonly StorefrontCheckoutAction $checkout,
-    ) {
-    }
+    ) {}
 
     public function __invoke(): Response
     {
@@ -98,28 +100,67 @@ class CustomerController extends Controller
         ]);
     }
 
+    public function orders(Request $request): Response
+    {
+        /** @var Customer $customer */
+        $customer = $request->user();
+
+        $orders = Order::query()
+            ->where('customer_id', $customer->id)
+            ->with(['items:id,order_id,item_type,name_snapshot,qty,subtotal'])
+            ->orderByDesc('created_at')
+            ->get()
+            ->map(fn (Order $order): array => [
+                'id' => $order->id,
+                'order_code' => $order->order_code,
+                'customer_name' => $order->customer_name,
+                'event_name' => $order->event_name,
+                'event_date' => $order->event_date?->format('Y-m-d'),
+                'event_time' => $order->event_time ? substr((string) $order->event_time, 0, 5) : null,
+                'event_address' => $order->event_address,
+                'status' => $order->status,
+                'payment_status' => $order->payment_status,
+                'payment_type' => $order->payment_type,
+                'total_price' => $order->total_price,
+                'dp_amount' => $order->dp_amount,
+                'remaining_amount' => $order->remaining_amount,
+                'notes' => $order->notes,
+                'created_at' => $order->created_at?->toIso8601String(),
+                'items' => $order->items->map(fn (OrderItem $item): array => [
+                    'id' => $item->id,
+                    'item_type' => $item->item_type,
+                    'name_snapshot' => $item->name_snapshot,
+                    'qty' => $item->qty,
+                    'subtotal' => $item->subtotal,
+                ])->values()->all(),
+            ])
+            ->values()
+            ->all();
+
+        return Inertia::render('customersV2/orders', [
+            ...$this->storefrontProps(),
+            'orders' => $orders,
+        ]);
+    }
+
     public function storeCheckout(StorefrontCheckoutRequest $request): SymfonyResponse
     {
-        $checkout = $this->checkout->execute($request->validated());
+        /** @var Customer|null $customer */
+        $customer = $request->user();
+        $checkout = $this->checkout->execute($request->validated(), $customer?->id);
         $order = $checkout['order'];
 
         Inertia::flash([
             'toast' => [
                 'type' => 'success',
-                'message' => __('Pesanan :code berhasil dibuat. Lanjutkan konfirmasi di WhatsApp.', [
+                'message' => __('Pesanan :code berhasil dibuat.', [
                     'code' => $order->order_code,
                 ]),
             ],
-            'storefront_checkout' => [
-                'order_code' => $order->order_code,
-                'whatsapp_url' => $checkout['whatsapp_url'],
-            ],
         ]);
 
-        return Inertia::location($checkout['whatsapp_url']);
+        return redirect()->route('customerV2.orders');
     }
-
-
 
     /**
      * @return array<string, mixed>
@@ -139,8 +180,8 @@ class CustomerController extends Controller
                 'description' => $businessSetting->description,
                 'hero_images' => $businessSetting->hero_images ?? [],
             ],
-            'menuItems' => fn(): array => $this->orders->menuItemsForCommand(),
-            'packages' => fn(): array => $this->orders->packagesForCommand(),
+            'menuItems' => fn (): array => $this->orders->menuItemsForCommand(),
+            'packages' => fn (): array => $this->orders->packagesForCommand(),
         ];
     }
 }

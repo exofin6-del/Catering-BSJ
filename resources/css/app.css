@@ -448,7 +448,11 @@ html[data-customer-theme='citrus'] {
 
 /* ─── Prevent iOS/Android auto-zoom on input focus (mobile) ────────────── */
 @media (max-width: 640px) {
-    input:not([type='checkbox']):not([type='radio']):not([type='range']):not([type='color']):not([type='button']):not([type='submit']):not([type='reset']):not([type='file']),
+    input:not([type='checkbox']):not([type='radio']):not([type='range']):not(
+            [type='color']
+        ):not([type='button']):not([type='submit']):not([type='reset']):not(
+            [type='file']
+        ),
     select,
     textarea {
         font-size: 16px !important;

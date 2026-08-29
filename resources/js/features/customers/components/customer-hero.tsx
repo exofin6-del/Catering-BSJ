@@ -1,4 +1,4 @@
-import {  ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { customerWhatsAppUrl } from '@/features/customers/utils/customer-whatsapp';
@@ -120,7 +120,6 @@ export function CustomerHero({
 
                 {/* Hero Content — vertically centered, left-aligned */}
                 <div className="relative flex min-h-full w-full flex-col justify-center gap-4 p-5 sm:min-h-[460px] sm:gap-6 sm:p-10 lg:min-h-[500px] lg:max-w-3xl lg:p-10 xl:p-14">
-
                     <div className="relative grid gap-1.5 sm:gap-4">
                         <h1 className="max-w-[16rem] text-2xl leading-tight font-bold tracking-tight text-white sm:max-w-2xl sm:text-4xl sm:leading-[1.05] sm:font-semibold lg:text-5xl">
                             Hidangan Istimewa Untuk Momen Spesial
@@ -164,7 +163,8 @@ export function CustomerHero({
                                         alt="WhatsApp"
                                         className="size-4 object-contain"
                                         onError={(e) => {
-                                            e.currentTarget.style.display = 'none';
+                                            e.currentTarget.style.display =
+                                                'none';
                                         }}
                                     />
                                     <span>Hubungi Kami</span>

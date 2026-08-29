@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Report;
 
-use App\Actions\Report\ReportAction;
+use App\Actions\Admin\Report\ReportAction;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;

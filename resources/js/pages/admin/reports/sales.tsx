@@ -213,20 +213,17 @@ export default function ReportSalesPage({
 
     // Trigger full CSV export download from backend
     const triggerBackendExport = () => {
-        const queryParams = new URLSearchParams();
-        queryParams.append('period', period);
-
-        if (period === 'custom') {
-            if (startDate) {
-                queryParams.append('start_date', startDate);
-            }
-
-            if (endDate) {
-                queryParams.append('end_date', endDate);
-            }
-        }
-
-        window.location.href = `/laporan/ekspor?${queryParams.toString()}`;
+        window.location.href = reportRoute.export.url({
+            query: {
+                period,
+                ...(period === 'custom' && startDate
+                    ? { start_date: startDate }
+                    : {}),
+                ...(period === 'custom' && endDate
+                    ? { end_date: endDate }
+                    : {}),
+            },
+        });
     };
 
     // Mix menu and package data for visual breakdown comparison

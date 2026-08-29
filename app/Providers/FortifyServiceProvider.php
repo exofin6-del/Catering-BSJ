@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Actions\Fortify\CreateNewUser;
-use App\Actions\Fortify\ResetUserPassword;
+use App\Actions\Admin\Fortify\CreateNewUser;
+use App\Actions\Admin\Fortify\ResetUserPassword;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
@@ -23,7 +23,8 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->instance(LoginResponseContract::class, new class implements LoginResponseContract {
+        $this->app->instance(LoginResponseContract::class, new class implements LoginResponseContract
+        {
             public function toResponse($request)
             {
                 if ($request->inertia()) {
@@ -34,7 +35,8 @@ class FortifyServiceProvider extends ServiceProvider
             }
         });
 
-        $this->app->instance(LogoutResponseContract::class, new class implements LogoutResponseContract {
+        $this->app->instance(LogoutResponseContract::class, new class implements LogoutResponseContract
+        {
             public function toResponse($request)
             {
                 if ($request->inertia()) {

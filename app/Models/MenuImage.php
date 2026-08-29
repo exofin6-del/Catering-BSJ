@@ -16,7 +16,6 @@ class MenuImage extends Model
         'menu_item_id',
         'image_url',
         'cloudinary_public_id',
-        'is_primary',
         'sort_order',
     ];
 
@@ -24,7 +23,6 @@ class MenuImage extends Model
      * @var array<string, mixed>
      */
     protected $attributes = [
-        'is_primary' => false,
         'sort_order' => 0,
     ];
 
@@ -39,7 +37,6 @@ class MenuImage extends Model
     protected function casts(): array
     {
         return [
-            'is_primary' => 'boolean',
             'sort_order' => 'integer',
         ];
     }

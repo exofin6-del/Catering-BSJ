@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Settings;
 
-use App\Actions\Settings\BusinessSettingsAction;
+use App\Actions\Admin\Settings\BusinessSettingsAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Settings\UpdateBusinessSettingRequest;
 use Illuminate\Http\RedirectResponse;

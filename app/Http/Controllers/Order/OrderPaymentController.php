@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Order;
 
-use App\Actions\Order\OrderAction;
-use App\Actions\Order\OrderPaymentAction;
+use App\Actions\Admin\Order\OrderAction;
+use App\Actions\Admin\Order\OrderPaymentAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Order\StoreOrderPaymentRequest;
 use App\Models\Order;

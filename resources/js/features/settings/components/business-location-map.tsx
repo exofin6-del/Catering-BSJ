@@ -4,12 +4,12 @@ import { LoaderCircle, MapPin } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useMap, useMapEvents } from 'react-leaflet';
 
-import type { Coordinate } from '@/components/shared/mapV2/location-utils';
+import type { Coordinate } from '@/components/mapV2/location-utils';
 import {
     coordinateFromValues,
     reverseGeocodeCoordinate,
     SurakartaCoordinate,
-} from '@/components/shared/mapV2/location-utils';
+} from '@/components/mapV2/location-utils';
 import {
     Map,
     MapLocateControl,
@@ -750,10 +750,7 @@ function MapViewportHandler({
 
                             const nextZoom = pendingRadiusZoomRef.current;
 
-                            if (
-                                nextZoom === null ||
-                                isUserPanningRef.current
-                            ) {
+                            if (nextZoom === null || isUserPanningRef.current) {
                                 pendingRadiusZoomRef.current = null;
 
                                 return;

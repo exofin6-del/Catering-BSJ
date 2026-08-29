@@ -2,7 +2,7 @@ import { router } from '@inertiajs/react';
 import { Slot } from '@radix-ui/react-slot';
 import type { VariantProps } from 'class-variance-authority';
 import { cva } from 'class-variance-authority';
-import { PanelLeftCloseIcon, PanelLeftOpenIcon } from 'lucide-react';
+import { PanelLeft,  PanelRight } from 'lucide-react';
 import * as React from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -177,7 +177,7 @@ function Sidebar({
     variant?: 'sidebar' | 'floating' | 'inset';
     collapsible?: 'offcanvas' | 'icon' | 'none';
 }) {
-    const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
+    const { isMobile, state, openMobile, setOpenMobile, toggleSidebar } = useSidebar();
 
     if (collapsible === 'none') {
         return (
@@ -259,7 +259,18 @@ function Sidebar({
             >
                 <div
                     data-sidebar="sidebar"
-                    className="flex h-full w-full flex-col bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow-sm"
+                    className={cn(
+                        "flex h-full w-full flex-col bg-sidebar group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow-sm",
+                        state === 'collapsed' && "cursor-pointer sm:cursor-col-resize"
+                    )}
+                    onClick={(e) => {
+                        if (state === 'collapsed') {
+                            const target = e.target as HTMLElement;
+                            if (!target.closest('button, a, [role="button"]')) {
+                                toggleSidebar();
+                            }
+                        }
+                    }}
                 >
                     {children}
                 </div>
@@ -292,9 +303,9 @@ function SidebarTrigger({
             {children ? (
                 children
             ) : isMobile || state === 'collapsed' ? (
-                <PanelLeftOpenIcon />
+                <PanelLeft />
             ) : (
-                <PanelLeftCloseIcon />
+                <PanelRight />
             )}
             <span className="sr-only">Toggle sidebar</span>
         </Button>

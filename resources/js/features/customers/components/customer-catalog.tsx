@@ -4,8 +4,8 @@ import {
     ChevronRight,
     ImageIcon,
     LayoutGrid,
+    Plus,
     SearchX,
-    ShoppingCart,
 } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { MouseEvent } from 'react';
@@ -757,10 +757,10 @@ export function CustomerProductCard({
                                 type="button"
                                 variant="ghost"
                                 size="icon"
-                                className="size-9 shrink-0 rounded-full border border-primary bg-primary text-primary-foreground hover:bg-primary/85 hover:text-primary-foreground"
+                                className="size-8 shrink-0 rounded-full border border-primary bg-primary text-primary-foreground hover:bg-primary/85 hover:text-primary-foreground"
                                 onClick={handleAddButton}
                             >
-                                <ShoppingCart className="size-4" />
+                                <Plus className="size-4" />
                             </Button>
                         </div>
                     </CardContent>
@@ -876,7 +876,9 @@ export function CustomerPaketCard({
 
                                 <div className="flex items-center gap-2">
                                     <p className="text-base leading-none font-semibold">
-                                        {formatOrderPrice(priceInfo.activePrice)}
+                                        {formatOrderPrice(
+                                            priceInfo.activePrice,
+                                        )}
                                     </p>
 
                                     {priceInfo.discountPercent > 0 && (
@@ -890,7 +892,9 @@ export function CustomerPaketCard({
 
                                 {priceInfo.originalPrice ? (
                                     <p className="text-xs text-muted-foreground line-through">
-                                        {formatOrderPrice(priceInfo.originalPrice)}
+                                        {formatOrderPrice(
+                                            priceInfo.originalPrice,
+                                        )}
                                     </p>
                                 ) : (
                                     <div className="h-4" />
@@ -901,10 +905,10 @@ export function CustomerPaketCard({
                                 type="button"
                                 variant="ghost"
                                 size="icon"
-                                className="size-9 shrink-0 rounded-full border border-primary bg-primary text-primary-foreground hover:bg-primary/85 hover:text-primary-foreground"
+                                className="size-8 shrink-0 rounded-full border border-primary bg-primary text-primary-foreground hover:bg-primary/85 hover:text-primary-foreground"
                                 onClick={handleAddButton}
                             >
-                                <ShoppingCart className="size-4" />
+                                <Plus className="size-4" />
                             </Button>
                         </div>
                     </CardContent>

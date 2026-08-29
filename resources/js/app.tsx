@@ -11,6 +11,12 @@ import { useFlashToast } from '@/lib/hooks/use-flash-toast';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
+declare global {
+    interface Window {
+        __inertiaAppBootstrapped?: boolean;
+    }
+}
+
 function AppProviders({ children }: { children: React.ReactNode }) {
     useFlashToast();
 
@@ -22,47 +28,58 @@ function AppProviders({ children }: { children: React.ReactNode }) {
     );
 }
 
-createInertiaApp({
-    pages: {
-        path: './pages',
-        extension: '.tsx',
-    },
+// Idempotency guard: in Vite dev, HMR can re-execute this entry module after
+// page-graph changes. Without the guard, createInertiaApp() would run twice and
+// mount two independent React roots — duplicating every layout-level UI such as
+// the customer login dialog. A fresh page load resets the flag, so production
+// behavior is unaffected.
+if (!window.__inertiaAppBootstrapped) {
+    window.__inertiaAppBootstrapped = true;
 
-    title: (title) => (title ? `${title} - ${appName}` : appName),
+    createInertiaApp({
+        pages: {
+            path: './pages',
+            extension: '.tsx',
+        },
 
-    layout: (name) => {
-        // Pages with no layout (standalone full-screen pages)
-        if (name === 'customersV2/checkout') {
-            return null;
-        }
+        title: (title) => (title ? `${title} - ${appName}` : appName),
 
-        if (name.startsWith('customersV2/')) {
-            return CustomerLayout;
-        }
+        layout: (name) => {
+            // Standalone full-screen page without a layout
+            if (name === 'customersV2/checkout') {
+                return null;
+            }
 
-        switch (true) {
-            case name === 'welcome':
-                return PublicLayout;
+            if (name.startsWith('customersV2/')) {
+                return CustomerLayout;
+            }
 
-            case name.startsWith('auth/'):
-                return AuthLayout;
+            switch (true) {
+                case name === 'welcome':
+                    return PublicLayout;
 
-            case name.startsWith('settings/'):
-                return [AdminLayout, SettingsLayout];
+                case name.startsWith('auth/'):
+                    return AuthLayout;
 
-            default:
-                return AdminLayout;
-        }
-    },
+                case name.startsWith('settings/'):
+                    return [AdminLayout, SettingsLayout];
 
-    strictMode: true,
+                default:
+                    return AdminLayout;
+            }
+        },
 
-    withApp(app) {
-        return <AppProviders>{app}</AppProviders>;
-    },
+        strictMode: true,
 
-    progress: false,
-});
+        withApp(app) {
+            return <AppProviders>{app}</AppProviders>;
+        },
+
+        progress: {
+            color: '#4B5563',
+        },
+    });
+}
 
 // Apply saved theme
 initializeTheme();

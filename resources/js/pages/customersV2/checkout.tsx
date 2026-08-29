@@ -139,25 +139,13 @@ export default function CustomerCheckoutPage({
                     description: firstErrorMessage(errors),
                 });
             },
-            onFinish: (visit) => {
+            onFinish: () => {
                 setProcessing(false);
-
-                // The backend redirects to WhatsApp via Inertia::location()
-                // (HTTP 409 + X-Inertia-Location), which never fires
-                // onFlash/onSuccess. Only onFinish runs, so clear the cart
-                // and reset the form here on a successful checkout.
-                if (visit.completed && !hasErrorRef.current) {
-                    clearCart();
-                    removePersistentState(CustomerCheckoutStorageKey);
-                    form.reset({
-                        ...initialOrderFormData(),
-                        items: [],
-                        payment_type: 'full',
-                        status: 'pending_confirmation',
-                    });
-                }
             },
-            onFlash: handleCheckoutFlash,
+            onSuccess: () => {
+                clearCart();
+                removePersistentState(CustomerCheckoutStorageKey);
+            },
             onNetworkError: () => {
                 hasErrorRef.current = true;
                 toast.error('Koneksi bermasalah. Silakan coba kembali.');
@@ -177,7 +165,7 @@ export default function CustomerCheckoutPage({
     }
 
     const itemError = form.formState.errors.items?.message;
-    const canCheckout = business.is_open && Boolean(business.whatsapp_number);
+    const canCheckout = business.is_open;
 
     return (
         <>
@@ -187,10 +175,10 @@ export default function CustomerCheckoutPage({
                 <main className="mx-auto grid w-full max-w-7xl gap-6 px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
                     <div className="flex items-start gap-2 sm:gap-3">
                         <Button
-                            variant="secondary"
+                            variant="ghost"
                             size="icon"
                             onClick={handleBack}
-                            className="size-9 rounded-full bg-primary/10 text-primary transition-all duration-200 hover:bg-primary/20"
+                            className="size-9 shrink-0 rounded-full text-foreground hover:bg-muted"
                             aria-label="Kembali"
                         >
                             <ChevronLeft className="size-7" />
@@ -200,8 +188,7 @@ export default function CustomerCheckoutPage({
                                 Lengkapi detail pesanan
                             </h1>
                             <p className="text-sm leading-6 text-muted-foreground">
-                                Isi informasi acara, lalu lanjutkan konfirmasi
-                                pesanan melalui WhatsApp.
+                                Isi informasi acara untuk menyelesaikan pesanan Anda.
                             </p>
                         </div>
                     </div>
@@ -315,27 +302,16 @@ function CustomerCheckoutSummary({
                         {processing ? (
                             <LoaderCircle className="size-5 animate-spin" />
                         ) : (
-                            <img
-                                src="/images/ikon-whatsapp.png"
-                                alt="WhatsApp"
-                                className="size-5 object-contain"
-                                onError={(e) => {
-                                    e.currentTarget.style.display = 'none';
-                                }}
-                            />
+                            <ShoppingBag className="size-5" />
                         )}
                         {processing
-                            ? 'Mencatat pesanan...'
-                            : 'Buat pesanan & lanjut WhatsApp'}
+                            ? 'Memproses pesanan...'
+                            : 'Buat Pesanan Sekarang'}
                     </Button>
 
                     {!business.is_open ? (
                         <p className="text-center text-xs text-destructive">
                             Catering sedang tidak menerima order baru.
-                        </p>
-                    ) : !business.whatsapp_number ? (
-                        <p className="text-center text-xs text-destructive">
-                            Nomor WhatsApp belum diatur oleh admin.
                         </p>
                     ) : null}
                 </div>

@@ -81,7 +81,7 @@ import React, {
 import {
     getAccurateCurrentPosition,
     isLocationAccurateEnough,
-} from '@/components/shared/mapV2/location-utils'
+} from '@/components/mapV2/location-utils'
 import { renderToString } from "react-dom/server"
 import {
     useMap,

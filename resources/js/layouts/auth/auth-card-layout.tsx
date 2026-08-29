@@ -1,6 +1,6 @@
 import { Link } from '@inertiajs/react';
 import type { PropsWithChildren } from 'react';
-import BsjLogoIcon from '@/components/shared/brand/bsj-logo-icon';
+import BsjLogoIcon from '@/components/brand/bsj-logo-icon';
 import {
     Card,
     CardContent,

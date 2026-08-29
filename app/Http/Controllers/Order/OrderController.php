@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Order;
 
-use App\Actions\Order\OrderAction;
+use App\Actions\Admin\Order\OrderAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Order\AcceptOrderRequest;
 use App\Http\Requests\Order\OrderCalendarCapacityRequest;

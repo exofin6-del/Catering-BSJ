@@ -1,4 +1,4 @@
-import BsjLogoIcon from '@/components/shared/brand/bsj-logo-icon';
+import BsjLogoIcon from '@/components/brand/bsj-logo-icon';
 
 import type { AuthLayoutProps } from '@/types';
 

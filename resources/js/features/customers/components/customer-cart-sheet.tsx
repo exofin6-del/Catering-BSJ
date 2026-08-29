@@ -1,4 +1,4 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { ArrowRight, ChevronLeft, ShoppingCart, Trash2 } from 'lucide-react';
 import type { OrderSummaryItemData } from '@/components/shared/order-summaries';
 import {
@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/drawer';
 import { formatOrderPrice } from '@/features/orders/utils/order-format';
 import { useIsMobile } from '@/lib/hooks/use-mobile';
+import { useCustomerLogin } from '../components/customer-login-dialog';
 import type { CustomerCartLine } from '../hooks/use-customer-cart';
 
 type CustomerCartSheetProps = {
@@ -40,6 +41,10 @@ export function CustomerCartSheet({
     onSetQuantity,
 }: CustomerCartSheetProps) {
     const isMobile = useIsMobile();
+    const page = usePage<any>();
+    const isLoggedIn = !!page.props.auth?.user;
+    const { showLogin } = useCustomerLogin();
+
     const summaryItems = lines.map((line) =>
         customerCartSummaryItem({
             line,
@@ -61,9 +66,9 @@ export function CustomerCartSheet({
                     <div className="flex items-center gap-3 md:block">
                         <Button
                             type="button"
-                            variant="secondary"
+                            variant="ghost"
                             size="icon"
-                            className="size-9 shrink-0 rounded-full bg-primary/10 text-primary transition-all duration-200 hover:bg-primary/20 md:hidden"
+                            className="size-9 shrink-0 rounded-full text-foreground hover:bg-muted md:hidden"
                             aria-label="Kembali"
                             onClick={() => onOpenChange(false)}
                         >
@@ -127,7 +132,15 @@ export function CustomerCartSheet({
                                     cacheFor="1m"
                                     preserveScroll
                                     className="gap-2 data-loading:pointer-events-none data-loading:opacity-75"
-                                    onClick={() => onOpenChange(false)}
+                                    onClick={(e) => {
+                                        if (!isLoggedIn) {
+                                            e.preventDefault();
+                                            onOpenChange(false);
+                                            showLogin();
+                                        } else {
+                                            onOpenChange(false);
+                                        }
+                                    }}
                                 >
                                     Checkout
                                     <ArrowRight className="size-4" />

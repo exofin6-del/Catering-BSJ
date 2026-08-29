@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Schedule;
 
-use App\Actions\Schedule\ScheduleAction;
+use App\Actions\Admin\Schedule\ScheduleAction;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
