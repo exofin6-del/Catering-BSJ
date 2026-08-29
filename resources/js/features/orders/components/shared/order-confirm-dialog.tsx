@@ -44,6 +44,8 @@ type OrderConfirmSelection =
 
 type OrderConfirmDialogProps = OrderConfirmSelection & {
     open: boolean;
+    /** Upper bound for the quantity input. Omit for unlimited (admin). */
+    maxQuantity?: number;
     onCancel?: () => void;
     onConfirm: (item: OrderFormItem) => void;
     onOpenChange: (open: boolean) => void;
@@ -52,6 +54,7 @@ type OrderConfirmDialogProps = OrderConfirmSelection & {
 type OrderConfirmContentProps = OrderConfirmSelection & {
     onCancel: () => void;
     onConfirm: (item: OrderFormItem) => void;
+    maxQuantity?: number;
 };
 
 export function OrderConfirmDialog(props: OrderConfirmDialogProps) {
@@ -112,6 +115,7 @@ export function OrderConfirmDialog(props: OrderConfirmDialogProps) {
                     <OrderConfirmContent
                         menuItem={props.menuItem}
                         type="menu_item"
+                        maxQuantity={props.maxQuantity}
                         onCancel={closeDrawer}
                         onConfirm={props.onConfirm}
                     />
@@ -119,6 +123,7 @@ export function OrderConfirmDialog(props: OrderConfirmDialogProps) {
                     <OrderConfirmContent
                         packageItem={props.packageItem}
                         type="package"
+                        maxQuantity={props.maxQuantity}
                         onCancel={closeDrawer}
                         onConfirm={props.onConfirm}
                     />
@@ -131,6 +136,7 @@ export function OrderConfirmDialog(props: OrderConfirmDialogProps) {
 function OrderConfirmContent(props: OrderConfirmContentProps) {
     const selectedMenuItem = props.type === 'menu_item' ? props.menuItem : null;
     const selectedPackage = props.type === 'package' ? props.packageItem : null;
+    const maxQuantity = props.maxQuantity ?? Number.POSITIVE_INFINITY;
     const [draftItem, setDraftItem] = useState<OrderFormItem>(() =>
         props.type === 'menu_item'
             ? menuConfirmItem(props.menuItem)
@@ -145,7 +151,9 @@ function OrderConfirmContent(props: OrderConfirmContentProps) {
     const quantity = Number(draftItem.qty);
     const normalizedQuantity = Number.isFinite(quantity) ? quantity : 0;
     const isQuantityValid =
-        Number.isInteger(quantity) && normalizedQuantity >= minOrder;
+        Number.isInteger(quantity) &&
+        normalizedQuantity >= minOrder &&
+        normalizedQuantity <= maxQuantity;
     const isPackageSelectionValid = choiceGroups.every((packageItem) =>
         hasSelectedChoice(draftItem, packageItem),
     );
@@ -157,19 +165,35 @@ function OrderConfirmContent(props: OrderConfirmContentProps) {
     );
     const subtotal = cartLine.subtotal;
     function handleQtyChange(qty: string): void {
-        setDraftItem((currentItem) => ({ ...currentItem, qty }));
+        const parsed = Number(qty);
+        const next =
+            Number.isFinite(parsed) && parsed > maxQuantity
+                ? String(maxQuantity)
+                : qty;
+
+        setDraftItem((currentItem) => ({ ...currentItem, qty: next }));
     }
 
     function handleQtyStep(change: number): void {
         const currentQuantity = isQuantityValid ? normalizedQuantity : minOrder;
+        const requested = Math.min(
+            maxQuantity,
+            Math.max(minOrder, currentQuantity + change),
+        );
 
-        handleQtyChange(String(Math.max(minOrder, currentQuantity + change)));
+        handleQtyChange(String(requested));
     }
 
     function handleQtyCommit(): void {
-        if (!isQuantityValid) {
-            handleQtyChange(String(minOrder));
-        }
+        const clamped = Math.min(
+            maxQuantity,
+            Math.max(
+                minOrder,
+                Number.isFinite(quantity) ? Math.floor(quantity) : minOrder,
+            ),
+        );
+
+        handleQtyChange(String(clamped));
     }
 
     function handleChoiceChange(
@@ -193,7 +217,12 @@ function OrderConfirmContent(props: OrderConfirmContentProps) {
 
         props.onConfirm({
             ...draftItem,
-            qty: String(Math.max(minOrder, normalizedQuantity)),
+            qty: String(
+                Math.min(
+                    maxQuantity,
+                    Math.max(minOrder, normalizedQuantity),
+                ),
+            ),
         });
     }
 
@@ -203,6 +232,7 @@ function OrderConfirmContent(props: OrderConfirmContentProps) {
                 cartLine={cartLine}
                 draftQty={draftItem.qty}
                 isQuantityValid={isQuantityValid}
+                maxQuantity={maxQuantity}
                 minOrder={minOrder}
                 onQtyChange={handleQtyChange}
                 onQtyCommit={handleQtyCommit}
@@ -255,6 +285,7 @@ function ConfirmProductOverview({
     cartLine,
     draftQty,
     isQuantityValid,
+    maxQuantity,
     minOrder,
     onQtyChange,
     onQtyCommit,
@@ -263,6 +294,7 @@ function ConfirmProductOverview({
     cartLine: CustomerCartLine;
     draftQty: string;
     isQuantityValid: boolean;
+    maxQuantity: number;
     minOrder: number;
     onQtyChange: (qty: string) => void;
     onQtyCommit: () => void;
@@ -271,7 +303,9 @@ function ConfirmProductOverview({
     const name = cartLine.name;
     const description = isQuantityValid
         ? `${cartLine.categoryName} | Min. ${minOrder} pesanan`
-        : `Jumlah minimal ${minOrder}.`;
+        : Number(draftQty) > maxQuantity
+          ? `Maksimal ${maxQuantity} per item.`
+          : `Jumlah minimal ${minOrder}.`;
     const summaryItem: OrderSummaryItemData = {
         id: cartLine.key,
         image: cartLine.image,
@@ -283,6 +317,7 @@ function ConfirmProductOverview({
             ariaInvalid: !isQuantityValid,
             ariaLabel: 'Jumlah pesanan',
             layout: 'right-stacked',
+            max: Number.isFinite(maxQuantity) ? maxQuantity : undefined,
             min: minOrder,
             onDecrease: () => onQtyStep(-1),
             onIncrease: () => onQtyStep(1),

@@ -9,6 +9,7 @@ import type {
     CustomerStorefrontProps,
 } from '@/features/customers/types/customer-storefront-types';
 import { customerCatalogItems } from '@/features/customers/utils/customer-catalog';
+import { MAX_CART_ITEM_QUANTITY } from '@/features/customers/hooks/use-customer-cart';
 import { OrderConfirmDialog } from '@/features/orders/components/shared/order-confirm-dialog';
 import type { OrderFormItem } from '@/features/orders/types/order-types';
 import { menuDetail, packageDetail } from '@/routes/customerV2';
@@ -78,6 +79,7 @@ export default function CustomerV2PackagePage({
                         open
                         menuItem={selectedItem.item}
                         type="menu_item"
+                        maxQuantity={MAX_CART_ITEM_QUANTITY}
                         onConfirm={addToCart}
                         onOpenChange={(open) => !open && setSelectedItem(null)}
                     />
@@ -88,6 +90,7 @@ export default function CustomerV2PackagePage({
                         open
                         packageItem={selectedItem.item}
                         type="package"
+                        maxQuantity={MAX_CART_ITEM_QUANTITY}
                         onConfirm={addToCart}
                         onOpenChange={(open) => !open && setSelectedItem(null)}
                     />

@@ -2,6 +2,7 @@ import type { VisitOptions } from '@inertiajs/core';
 import { router } from '@inertiajs/react';
 import { useMemo, useState } from 'react';
 import { toast } from 'sonner';
+import { MAX_CART_ITEM_QUANTITY } from '@/features/customers/hooks/use-customer-cart';
 import { OrderConfirmDialog } from '@/features/orders/components/shared/order-confirm-dialog';
 import type { OrderFormItem } from '@/features/orders/types/order-types';
 import { menuDetail, packageDetail } from '@/routes/customerV2';
@@ -145,6 +146,7 @@ export function CustomerRecommendations({
                     open
                     menuItem={selectedItem.item}
                     type="menu_item"
+                    maxQuantity={MAX_CART_ITEM_QUANTITY}
                     onConfirm={handleConfirm}
                     onOpenChange={(open) => !open && setSelectedItem(null)}
                 />
@@ -155,6 +157,7 @@ export function CustomerRecommendations({
                     open
                     packageItem={selectedItem.item}
                     type="package"
+                    maxQuantity={MAX_CART_ITEM_QUANTITY}
                     onConfirm={handleConfirm}
                     onOpenChange={(open) => !open && setSelectedItem(null)}
                 />

@@ -7,6 +7,7 @@ import { useCustomerCartStore } from '@/features/customers/context/customer-cart
 import { MenuDetailView } from '@/features/menus/components/menu-detail-view';
 import { menuDisplayDataFromItem } from '@/features/menus/utils/menu-format';
 import { resolveMenuPrice } from '@/features/menus/utils/menu-price';
+import { MAX_CART_ITEM_QUANTITY } from '@/features/customers/hooks/use-customer-cart';
 import { OrderConfirmDialog } from '@/features/orders/components/shared/order-confirm-dialog';
 import type { OrderFormItem } from '@/features/orders/types/order-types';
 import { PackageDetail } from '@/features/packages/components/shared/package-detail';
@@ -103,6 +104,7 @@ export default function CustomerV2Detail({
                     open={confirmOpen}
                     menuItem={resolvedMenuItem}
                     type="menu_item"
+                    maxQuantity={MAX_CART_ITEM_QUANTITY}
                     onConfirm={addToCart}
                     onOpenChange={setConfirmOpen}
                 />
@@ -112,6 +114,7 @@ export default function CustomerV2Detail({
                     open={confirmOpen}
                     packageItem={resolvedPackage}
                     type="package"
+                    maxQuantity={MAX_CART_ITEM_QUANTITY}
                     onConfirm={addToCart}
                     onOpenChange={setConfirmOpen}
                 />
