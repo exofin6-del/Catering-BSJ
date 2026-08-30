@@ -9,7 +9,7 @@ export default function PrivacyPolicyPage({
     const appName = business?.name || 'Layanan Catering Kami';
 
     return (
-        <CustomerDetailLayout title="Kebijakan Privasi" showFooter={false}>
+        <CustomerDetailLayout title="Kebijakan Privasi" showHeader={false} showFooter={false}>
             <Head title="Kebijakan Privasi (Privacy Policy)" />
 
             <div className="mx-auto max-w-4xl space-y-8 px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">

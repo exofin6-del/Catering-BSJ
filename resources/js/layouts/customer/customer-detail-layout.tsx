@@ -20,6 +20,7 @@ type Props = {
     backHref?: string;
     backLabel?: string;
     showFooter?: boolean;
+    showHeader?: boolean;
 };
 
 export default function CustomerDetailLayout({
@@ -28,6 +29,7 @@ export default function CustomerDetailLayout({
     backHref = '/',
     backLabel = 'Kembali',
     showFooter = true,
+    showHeader = true,
 }: Props) {
     useCustomerTheme();
     useScrollRestoration();
@@ -43,32 +45,34 @@ export default function CustomerDetailLayout({
 
     return (
         <AppShell variant="header">
-            <header
-                className={cn(
-                    'sticky top-0 z-40 bg-background pt-[env(safe-area-inset-top)] text-foreground transition-all duration-300',
-                )}
-            >
-                <div className="relative mx-auto flex h-14 max-w-7xl items-center gap-3 px-4 sm:px-6 lg:px-8">
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        className="size-9 shrink-0 rounded-full text-foreground hover:bg-muted"
-                        onClick={() => {
-                            if (window.history.length > 1) {
-                                window.history.back();
-                            } else {
-                                window.location.href = backHref;
-                            }
-                        }}
-                        aria-label={backLabel}
-                    >
-                        <ChevronLeft className="size-6" />
-                    </Button>
-                    <h1 className="absolute left-1/2 -translate-x-1/2 text-lg font-semibold tracking-tight sm:static sm:translate-x-0">
-                        {title}
-                    </h1>
-                </div>
-            </header>
+            {showHeader && (
+                <header
+                    className={cn(
+                        'sticky top-0 z-40 bg-background pt-[env(safe-area-inset-top)] text-foreground transition-all duration-300',
+                    )}
+                >
+                    <div className="relative mx-auto flex h-14 max-w-7xl items-center gap-3 px-4 sm:px-6 lg:px-8">
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            className="size-9 shrink-0 rounded-full text-foreground hover:bg-muted"
+                            onClick={() => {
+                                if (window.history.length > 1) {
+                                    window.history.back();
+                                } else {
+                                    window.location.href = backHref;
+                                }
+                            }}
+                            aria-label={backLabel}
+                        >
+                            <ChevronLeft className="size-6" />
+                        </Button>
+                        <h1 className="absolute left-1/2 -translate-x-1/2 text-lg font-semibold tracking-tight sm:static sm:translate-x-0">
+                            {title}
+                        </h1>
+                    </div>
+                </header>
+            )}
             <AppContent variant="header">{children}</AppContent>
             {showFooter && business ? <CustomerFooter business={business} /> : null}
             <CustomerCartSheet
