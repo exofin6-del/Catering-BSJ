@@ -57,6 +57,71 @@ type StorefrontCheckoutFlash = {
     whatsapp_url?: string;
 };
 
+declare global {
+    interface Window {
+        grecaptcha?: {
+            ready: (callback: () => void) => void;
+            execute: (
+                siteKey: string,
+                options: { action: string },
+            ) => Promise<string>;
+        };
+    }
+}
+
+const RecaptchaScriptSrc = (siteKey: string): string =>
+    `https://www.google.com/recaptcha/api.js?render=${siteKey}`;
+
+let recaptchaLoadPromise: Promise<boolean> | null = null;
+
+function loadRecaptcha(siteKey: string): Promise<boolean> {
+    if (typeof window === 'undefined') {
+        return Promise.resolve(false);
+    }
+
+    if (!recaptchaLoadPromise) {
+        recaptchaLoadPromise = new Promise((resolve) => {
+            const existing = document.querySelector<HTMLScriptElement>(
+                'script[data-recaptcha-site-key]',
+            );
+
+            if (existing) {
+                resolve(typeof window.grecaptcha?.execute === 'function');
+
+                return;
+            }
+
+            const script = document.createElement('script');
+            script.src = RecaptchaScriptSrc(siteKey);
+            script.async = true;
+            script.defer = true;
+            script.dataset.recaptchaSiteKey = siteKey;
+            script.onload = () =>
+                resolve(typeof window.grecaptcha?.execute === 'function');
+            script.onerror = () => resolve(false);
+            document.head.appendChild(script);
+        });
+    }
+
+    return recaptchaLoadPromise;
+}
+
+async function executeRecaptcha(siteKey: string): Promise<string> {
+    const loaded = await loadRecaptcha(siteKey);
+
+    if (!loaded || typeof window.grecaptcha?.execute !== 'function') {
+        return '';
+    }
+
+    try {
+        return await window.grecaptcha.execute(siteKey, {
+            action: 'checkout',
+        });
+    } catch {
+        return '';
+    }
+}
+
 export const layout = null;
 
 export default function CustomerCheckoutPage({
@@ -64,6 +129,7 @@ export default function CustomerCheckoutPage({
     businessSetting,
     menuItems,
     packages,
+    recaptchaSiteKey,
 }: CustomerCheckoutProps) {
     const cart = useCustomerCartStore(menuItems, packages);
     const clearCart = cart.clear;
@@ -121,13 +187,32 @@ export default function CustomerCheckoutPage({
         });
     }, [handleCheckoutFlash]);
 
-    function submit(values: OrderFormData): void {
-        const payload = buildOrderPayload({
-            ...values,
-            items: cart.items,
-            payment_type: 'full',
-            status: 'pending_confirmation',
-        });
+    async function submit(values: OrderFormData): Promise<void> {
+        setProcessing(true);
+
+        let recaptchaToken = '';
+
+        if (recaptchaSiteKey !== '') {
+            recaptchaToken = await executeRecaptcha(recaptchaSiteKey);
+
+            if (recaptchaToken === '') {
+                hasErrorRef.current = true;
+                setProcessing(false);
+                toast.error('Verifikasi keamanan gagal. Silakan coba lagi.');
+
+                return;
+            }
+        }
+
+        const payload = {
+            ...buildOrderPayload({
+                ...values,
+                items: cart.items,
+                payment_type: 'full',
+                status: 'pending_confirmation',
+            }),
+            recaptcha_token: recaptchaToken,
+        };
 
         router.visit(storeCheckout.url(), {
             data: payload,

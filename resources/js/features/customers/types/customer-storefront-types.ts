@@ -30,4 +30,5 @@ export type CustomerStorefrontProps = {
 
 export type CustomerCheckoutProps = CustomerStorefrontProps & {
     businessSetting?: OrderBusinessSetting | null;
+    recaptchaSiteKey: string;
 };

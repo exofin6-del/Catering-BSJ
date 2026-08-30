@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Order;
 
+use App\Rules\Recaptcha;
 use Illuminate\Contracts\Validation\ValidationRule;
 
 class StorefrontCheckoutRequest extends OrderRequest
@@ -31,6 +32,11 @@ class StorefrontCheckoutRequest extends OrderRequest
         $rules['address_name'] = ['required', 'string', 'max:255'];
         $rules['latitude'] = ['required', 'numeric', 'between:-90,90'];
         $rules['longitude'] = ['required', 'numeric', 'between:-180,180'];
+
+        // Bot protection: only enforced once a secret key is configured.
+        if ((string) config('recaptcha.secret_key') !== '') {
+            $rules['recaptcha_token'] = ['required', 'string', app(Recaptcha::class)];
+        }
 
         return $rules;
     }

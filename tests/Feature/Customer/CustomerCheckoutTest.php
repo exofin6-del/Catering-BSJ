@@ -11,6 +11,7 @@ use App\Models\Order;
 use App\Services\CustomerJwtService;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Http;
 use Tests\TestCase;
 
 class CustomerCheckoutTest extends TestCase
@@ -73,6 +74,7 @@ class CustomerCheckoutTest extends TestCase
         $this->assertSame('full', $order->payment_type);
         $this->assertSame('unpaid', $order->payment_status);
         $this->assertNull($order->created_by_admin_id);
+        $this->assertSame('127.0.0.1', $order->ip_address);
         $this->assertSame('50000.00', $order->total_price);
         $this->assertCount(1, $order->items);
         $this->assertCount(0, $order->payments);
@@ -129,6 +131,107 @@ class CustomerCheckoutTest extends TestCase
         $this->assertDatabaseCount('orders', 0);
     }
 
+    public function test_checkout_accepts_valid_recaptcha_token_when_configured(): void
+    {
+        config()->set('recaptcha.secret_key', 'test-secret');
+        config()->set('recaptcha.min_score', 0.5);
+
+        Http::fake([
+            'google.com/recaptcha/api/siteverify' => Http::response([
+                'success' => true,
+                'score' => 0.9,
+            ]),
+        ]);
+
+        $this->withCustomerJwt();
+        $this->createBusinessSetting();
+        $menuItem = $this->createActiveMenuItem();
+
+        $this->post(
+            route('customerV2.storeCheckout'),
+            $this->checkoutPayload($menuItem, [
+                'recaptcha_token' => 'valid-token',
+            ]),
+        )->assertRedirect(route('customerV2.orders'));
+
+        $this->assertDatabaseCount('orders', 1);
+    }
+
+    public function test_checkout_rejects_low_recaptcha_score_when_configured(): void
+    {
+        config()->set('recaptcha.secret_key', 'test-secret');
+        config()->set('recaptcha.min_score', 0.5);
+
+        Http::fake([
+            'google.com/recaptcha/api/siteverify' => Http::response([
+                'success' => true,
+                'score' => 0.1,
+            ]),
+        ]);
+
+        $this->withCustomerJwt();
+        $this->createBusinessSetting();
+        $menuItem = $this->createActiveMenuItem();
+
+        $this->from(route('customerV2.checkout'))
+            ->post(
+                route('customerV2.storeCheckout'),
+                $this->checkoutPayload($menuItem, [
+                    'recaptcha_token' => 'low-score-token',
+                ]),
+            )
+            ->assertRedirect(route('customerV2.checkout'))
+            ->assertSessionHasErrors('recaptcha_token');
+
+        $this->assertDatabaseCount('orders', 0);
+    }
+
+    public function test_checkout_rejects_recaptcha_verification_failure(): void
+    {
+        config()->set('recaptcha.secret_key', 'test-secret');
+
+        Http::fake([
+            'google.com/recaptcha/api/siteverify' => Http::response([
+                'success' => false,
+            ]),
+        ]);
+
+        $this->withCustomerJwt();
+        $this->createBusinessSetting();
+        $menuItem = $this->createActiveMenuItem();
+
+        $this->from(route('customerV2.checkout'))
+            ->post(
+                route('customerV2.storeCheckout'),
+                $this->checkoutPayload($menuItem, [
+                    'recaptcha_token' => 'failed-token',
+                ]),
+            )
+            ->assertRedirect(route('customerV2.checkout'))
+            ->assertSessionHasErrors('recaptcha_token');
+
+        $this->assertDatabaseCount('orders', 0);
+    }
+
+    public function test_checkout_requires_recaptcha_token_when_configured(): void
+    {
+        config()->set('recaptcha.secret_key', 'test-secret');
+
+        $this->withCustomerJwt();
+        $this->createBusinessSetting();
+        $menuItem = $this->createActiveMenuItem();
+
+        $payload = $this->checkoutPayload($menuItem);
+        unset($payload['recaptcha_token']);
+
+        $this->from(route('customerV2.checkout'))
+            ->post(route('customerV2.storeCheckout'), $payload)
+            ->assertRedirect(route('customerV2.checkout'))
+            ->assertSessionHasErrors('recaptcha_token');
+
+        $this->assertDatabaseCount('orders', 0);
+    }
+
     public function test_checkout_allows_order_creation_when_whatsapp_is_not_configured(): void
     {
         $this->withCustomerJwt();
@@ -146,6 +249,27 @@ class CustomerCheckoutTest extends TestCase
             ->assertRedirect(route('customerV2.orders'));
 
         $this->assertDatabaseCount('orders', 1);
+    }
+
+    public function test_checkout_stores_ip_when_whatsapp_is_not_configured(): void
+    {
+        $this->withCustomerJwt();
+        BusinessSetting::query()->create([
+            'business_name' => 'Dapur Bersama',
+            'is_open' => true,
+        ]);
+        $menuItem = $this->createActiveMenuItem();
+
+        $this->from(route('customerV2.checkout'))
+            ->post(
+                route('customerV2.storeCheckout'),
+                $this->checkoutPayload($menuItem),
+            )
+            ->assertRedirect(route('customerV2.orders'));
+
+        $order = Order::query()->sole();
+
+        $this->assertSame('127.0.0.1', $order->ip_address);
     }
 
     public function test_checkout_does_not_create_order_when_business_is_closed(): void
@@ -175,7 +299,9 @@ class CustomerCheckoutTest extends TestCase
         $menuItem = $this->createActiveMenuItem();
 
         // Each attempt uses a fresh customer so the per-customer daily order
-        // limit never interferes with the checkout rate limiter.
+        // limit never interferes with the checkout rate limiter. The limiter
+        // is keyed by IP (not by account), so rotating through many accounts
+        // from the same IP must still exhaust the shared budget.
         for ($i = 0; $i < 5; $i++) {
             $this->withCustomerJwt();
 
@@ -414,6 +540,7 @@ class CustomerCheckoutTest extends TestCase
             'latitude' => -6.2,
             'longitude' => 106.816666,
             'notes' => 'Tanpa sambal',
+            'recaptcha_token' => '',
             'items' => [
                 [
                     'item_type' => 'menu_item',

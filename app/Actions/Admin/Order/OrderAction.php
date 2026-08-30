@@ -1081,6 +1081,7 @@ class OrderAction
     {
         return [
             'customer_id' => $this->value($data, 'customer_id', $order?->customer_id),
+            'ip_address' => $this->value($data, 'ip_address', $order?->ip_address),
             'customer_name' => $this->value($data, 'customer_name', $order?->customer_name),
             'phone' => $this->value($data, 'phone', $order?->phone),
             'event_date' => $this->value($data, 'event_date', $order?->event_date),

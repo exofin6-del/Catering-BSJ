@@ -19,7 +19,7 @@ class StorefrontCheckoutAction
      * @param  array<string, mixed>  $data
      * @return array{order: Order, whatsapp_url: string}
      */
-    public function execute(array $data, ?int $customerId = null): array
+    public function execute(array $data, ?int $customerId = null, ?string $ipAddress = null): array
     {
         $setting = BusinessSetting::query()->first() ?? new BusinessSetting;
 
@@ -32,6 +32,7 @@ class StorefrontCheckoutAction
         $whatsAppNumber = $setting->normalizedWhatsAppNumber();
 
         $data['customer_id'] = $customerId;
+        $data['ip_address'] = $ipAddress;
         $this->assertCustomerDailyOrderLimit($customerId);
         $order = $this->orders->create($data);
 

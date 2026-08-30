@@ -33,6 +33,7 @@ class Order extends Model
         'status',
         'created_by_admin_id',
         'customer_id',
+        'ip_address',
         'notes',
     ];
 

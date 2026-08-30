@@ -59,9 +59,10 @@ class AppServiceProvider extends ServiceProvider
         });
 
         RateLimiter::for('customer-checkout', function (Request $request): Limit {
-            $userKey = $request->user()?->id ?: $request->ip();
-
-            return Limit::perMinute(5)->by($userKey);
+            // Keyed by IP instead of the account so that an attacker rotating
+            // through many customer accounts from the same network cannot
+            // bypass the checkout throttle.
+            return Limit::perMinute(5)->by($request->ip());
         });
     }
 }

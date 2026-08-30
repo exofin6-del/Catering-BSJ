@@ -111,6 +111,7 @@ class CustomerController extends Controller
         return Inertia::render('customersV2/checkout', [
             ...$this->storefrontProps($businessSetting),
             'businessSetting' => $this->orders->businessSettingForCommand($businessSetting),
+            'recaptchaSiteKey' => (string) config('recaptcha.site_key'),
         ]);
     }
 
@@ -161,7 +162,7 @@ class CustomerController extends Controller
     {
         /** @var Customer|null $customer */
         $customer = $request->user();
-        $checkout = $this->checkout->execute($request->validated(), $customer?->id);
+        $checkout = $this->checkout->execute($request->validated(), $customer?->id, $request->ip());
         $order = $checkout['order'];
 
         Inertia::flash([
