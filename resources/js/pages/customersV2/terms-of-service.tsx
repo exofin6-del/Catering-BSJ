@@ -9,7 +9,7 @@ export default function TermsOfServicePage({
     const appName = business?.name || 'Layanan Catering Kami';
 
     return (
-        <CustomerDetailLayout title="Syarat & Ketentuan" showHeader={false} showFooter={false}>
+        <CustomerDetailLayout title="Syarat & Ketentuan" showFooter={false}>
             <Head title="Syarat dan Ketentuan (Terms of Service)" />
 
             <div className="mx-auto max-w-4xl space-y-8 px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
