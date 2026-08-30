@@ -1,7 +1,7 @@
 import { Head } from '@inertiajs/react';
 import { ShieldCheck, Lock, Eye, UserCheck } from 'lucide-react';
-import CustomerDetailLayout from '@/layouts/customer/customer-detail-layout';
 import type { CustomerStorefrontProps } from '@/features/customers/types/customer-storefront-types';
+import CustomerDetailLayout from '@/layouts/customer/customer-detail-layout';
 
 export default function PrivacyPolicyPage({
     business,
@@ -9,7 +9,7 @@ export default function PrivacyPolicyPage({
     const appName = business?.name || 'Layanan Catering Kami';
 
     return (
-        <CustomerDetailLayout title="Kebijakan Privasi" showFooter={false}>
+        <>
             <Head title="Kebijakan Privasi (Privacy Policy)" />
 
             <div className="mx-auto max-w-4xl space-y-8 px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
@@ -87,6 +87,17 @@ export default function PrivacyPolicyPage({
                     </section>
                 </div>
             </div>
-        </CustomerDetailLayout>
+        </>
     );
 }
+
+PrivacyPolicyPage.layout = (page: React.ReactNode) => (
+    <CustomerDetailLayout
+        title="Kebijakan Privasi"
+        backHref="/"
+        backLabel="Kembali ke Beranda"
+        showFooter={false}
+    >
+        {page}
+    </CustomerDetailLayout>
+);
