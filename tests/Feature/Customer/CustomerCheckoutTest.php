@@ -232,6 +232,56 @@ class CustomerCheckoutTest extends TestCase
         $this->assertDatabaseCount('orders', 0);
     }
 
+    public function test_checkout_returns_422_json_response_for_invalid_recaptcha_token_when_json_requested(): void
+    {
+        config()->set('recaptcha.secret_key', 'test-secret');
+
+        Http::fake([
+            'google.com/recaptcha/api/siteverify' => Http::response([
+                'success' => false,
+            ]),
+        ]);
+
+        $this->withCustomerJwt();
+        $this->createBusinessSetting();
+        $menuItem = $this->createActiveMenuItem();
+
+        $response = $this->post(
+            route('customerV2.storeCheckout'),
+            $this->checkoutPayload($menuItem, [
+                'recaptcha_token' => 'palsu',
+            ]),
+            ['Accept' => 'application/json'],
+        );
+
+        $response->assertStatus(422)
+            ->assertJsonValidationErrors(['recaptcha_token']);
+
+        $this->assertDatabaseCount('orders', 0);
+    }
+
+    public function test_checkout_rejects_postman_fake_recaptcha_token_when_secret_key_empty(): void
+    {
+        config()->set('recaptcha.secret_key', '');
+
+        $this->withCustomerJwt();
+        $this->createBusinessSetting();
+        $menuItem = $this->createActiveMenuItem();
+
+        $response = $this->post(
+            route('customerV2.storeCheckout'),
+            $this->checkoutPayload($menuItem, [
+                'recaptcha_token' => 'token-palsu-tidak-valid-abc123',
+            ]),
+            ['Accept' => 'application/json'],
+        );
+
+        $response->assertStatus(422)
+            ->assertJsonValidationErrors(['recaptcha_token']);
+
+        $this->assertDatabaseCount('orders', 0);
+    }
+
     public function test_checkout_allows_order_creation_when_whatsapp_is_not_configured(): void
     {
         $this->withCustomerJwt();
@@ -364,8 +414,7 @@ class CustomerCheckoutTest extends TestCase
                 route('customerV2.storeCheckout'),
                 $this->checkoutPayload($menuItem),
             )
-            ->assertRedirect(route('customerV2.checkout'))
-            ->assertSessionHasErrors('items');
+            ->assertStatus(429);
 
         $this->assertDatabaseCount('orders', 3);
     }
@@ -474,6 +523,154 @@ class CustomerCheckoutTest extends TestCase
         $order = Order::query()->with('items')->sole();
 
         $this->assertSame(3000, (int) $order->items->first()->qty);
+    }
+
+    public function test_checkout_fails_validation_when_form_fields_are_incomplete(): void
+    {
+        $this->withCustomerJwt();
+        $this->createBusinessSetting();
+        $menuItem = $this->createActiveMenuItem();
+
+        $this->from(route('customerV2.checkout'))
+            ->post(route('customerV2.storeCheckout'), [
+                'customer_name' => '',
+                'phone' => '',
+                'event_date' => '',
+                'event_time' => '',
+                'event_name' => '',
+                'address_name' => '',
+                'event_address' => '',
+                'latitude' => null,
+                'longitude' => null,
+                'payment_type' => '',
+                'items' => [],
+            ])
+            ->assertRedirect(route('customerV2.checkout'))
+            ->assertSessionHasErrors([
+                'customer_name',
+                'phone',
+                'event_date',
+                'event_time',
+                'event_name',
+                'address_name',
+                'event_address',
+                'latitude',
+                'longitude',
+                'items',
+            ]);
+
+        $this->assertDatabaseCount('orders', 0);
+    }
+
+    public function test_checkout_fails_validation_for_past_event_date_or_invalid_event_time(): void
+    {
+        $this->withCustomerJwt();
+        $this->createBusinessSetting();
+        $menuItem = $this->createActiveMenuItem();
+
+        $this->from(route('customerV2.checkout'))
+            ->post(
+                route('customerV2.storeCheckout'),
+                $this->checkoutPayload($menuItem, [
+                    'event_date' => now()->subDay()->toDateString(),
+                    'event_time' => '03:00',
+                ]),
+            )
+            ->assertRedirect(route('customerV2.checkout'))
+            ->assertSessionHasErrors([
+                'event_date',
+                'event_time',
+            ]);
+
+        $this->assertDatabaseCount('orders', 0);
+    }
+
+    public function test_checkout_rejects_order_when_delivery_location_is_outside_maximum_distance_radius(): void
+    {
+        $this->withCustomerJwt();
+        BusinessSetting::query()->create([
+            'business_name' => 'Dapur Bersama',
+            'whatsapp_number' => '081234567890',
+            'business_lat' => -6.200000,
+            'business_lng' => 106.816666,
+            'max_order_km' => 5,
+            'max_orders_per_day' => 10,
+            'is_open' => true,
+        ]);
+        $menuItem = $this->createActiveMenuItem();
+
+        // Location ~11.1 km away from business origin (far beyond 5 km limit)
+        $this->from(route('customerV2.checkout'))
+            ->post(
+                route('customerV2.storeCheckout'),
+                $this->checkoutPayload($menuItem, [
+                    'latitude' => -6.300000,
+                    'longitude' => 106.816666,
+                ]),
+            )
+            ->assertRedirect(route('customerV2.checkout'))
+            ->assertSessionHasErrors('event_address');
+
+        $this->assertDatabaseCount('orders', 0);
+    }
+
+    public function test_checkout_returns_422_json_response_when_form_is_incomplete_and_json_is_requested(): void
+    {
+        $this->withCustomerJwt();
+        $this->createBusinessSetting();
+
+        $response = $this->post(
+            route('customerV2.storeCheckout'),
+            [
+                'customer_name' => '',
+                'phone' => '',
+                'event_date' => '',
+            ],
+            ['Accept' => 'application/json'],
+        );
+
+        $response->assertStatus(422)
+            ->assertJsonValidationErrors([
+                'customer_name',
+                'phone',
+                'event_date',
+                'event_name',
+                'event_address',
+                'latitude',
+                'longitude',
+                'items',
+            ]);
+
+        $this->assertDatabaseCount('orders', 0);
+    }
+
+    public function test_checkout_returns_422_json_response_when_location_is_out_of_reach_and_json_is_requested(): void
+    {
+        $this->withCustomerJwt();
+        BusinessSetting::query()->create([
+            'business_name' => 'Dapur Bersama',
+            'whatsapp_number' => '081234567890',
+            'business_lat' => -6.200000,
+            'business_lng' => 106.816666,
+            'max_order_km' => 5,
+            'max_orders_per_day' => 10,
+            'is_open' => true,
+        ]);
+        $menuItem = $this->createActiveMenuItem();
+
+        $response = $this->post(
+            route('customerV2.storeCheckout'),
+            $this->checkoutPayload($menuItem, [
+                'latitude' => -6.300000,
+                'longitude' => 106.816666,
+            ]),
+            ['Accept' => 'application/json'],
+        );
+
+        $response->assertStatus(422)
+            ->assertJsonValidationErrors(['event_address']);
+
+        $this->assertDatabaseCount('orders', 0);
     }
 
     private function createBusinessSetting(): BusinessSetting

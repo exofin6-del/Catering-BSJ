@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\CustomerJwtService;
 use Carbon\CarbonImmutable;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
@@ -58,11 +59,22 @@ class AppServiceProvider extends ServiceProvider
             return Limit::perMinute(10)->by($request->ip());
         });
 
-        RateLimiter::for('customer-checkout', function (Request $request): Limit {
-            // Keyed by IP instead of the account so that an attacker rotating
-            // through many customer accounts from the same network cannot
-            // bypass the checkout throttle.
-            return Limit::perMinute(5)->by($request->ip());
+        RateLimiter::for('customer-checkout', function (Request $request): array {
+            $user = $request->user();
+            $customerId = $user?->id;
+
+            if ($customerId === null && $request->hasCookie((string) config('customer-auth.cookie'))) {
+                $jwt = app(CustomerJwtService::class);
+                $claims = $jwt->claims((string) $request->cookie(config('customer-auth.cookie')));
+                $customerId = $claims['customer_id'] ?? null;
+            }
+
+            $customerKey = $customerId !== null ? 'customer:'.$customerId : 'anon:'.$request->ip();
+
+            return [
+                Limit::perMinute(5)->by('ip:'.$request->ip()),
+                Limit::perDay(3)->by($customerKey),
+            ];
         });
     }
 }

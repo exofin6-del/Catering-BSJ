@@ -5,6 +5,7 @@ namespace App\Actions\Customer;
 use App\Actions\Admin\Order\OrderAction;
 use App\Models\BusinessSetting;
 use App\Models\Order;
+use Illuminate\Support\Collection;
 use Illuminate\Validation\ValidationException;
 
 class StorefrontCheckoutAction
@@ -70,7 +71,9 @@ class StorefrontCheckoutAction
     {
         $order->loadMissing('items');
 
-        $itemLines = $order->items
+        $items = $order->items instanceof Collection ? $order->items : collect($order->items);
+
+        $itemLines = $items
             ->values()
             ->map(fn ($item, int $index): string => implode("\n", [
                 ($index + 1).". {$item->name_snapshot}",

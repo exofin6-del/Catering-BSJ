@@ -4,6 +4,8 @@ namespace App\Http\Requests\Order;
 
 use App\Rules\Recaptcha;
 use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StorefrontCheckoutRequest extends OrderRequest
 {
@@ -33,12 +35,31 @@ class StorefrontCheckoutRequest extends OrderRequest
         $rules['latitude'] = ['required', 'numeric', 'between:-90,90'];
         $rules['longitude'] = ['required', 'numeric', 'between:-180,180'];
 
-        // Bot protection: only enforced once a secret key is configured.
+        // Bot protection: required once secret key is configured, or validated if provided.
         if ((string) config('recaptcha.secret_key') !== '') {
             $rules['recaptcha_token'] = ['required', 'string', app(Recaptcha::class)];
+        } elseif ($this->filled('recaptcha_token')) {
+            $rules['recaptcha_token'] = ['string', app(Recaptcha::class)];
         }
 
         return $rules;
+    }
+
+    /**
+     * Handle a failed validation attempt.
+     */
+    protected function failedValidation(Validator $validator): void
+    {
+        if ($this->expectsJson() || $this->wantsJson() || $this->isJson()) {
+            throw new HttpResponseException(
+                response()->json([
+                    'message' => __('Verifikasi reCAPTCHA atau data yang diberikan tidak valid.'),
+                    'errors' => $validator->errors(),
+                ], 422)
+            );
+        }
+
+        parent::failedValidation($validator);
     }
 
     /**

@@ -30,6 +30,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->validateCsrfTokens(except: [
             'login/google/callback',
+            'checkout',
         ]);
 
         $middleware->web(append: [

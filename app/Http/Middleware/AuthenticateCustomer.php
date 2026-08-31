@@ -32,7 +32,7 @@ class AuthenticateCustomer
                 ->withoutCookie((string) config('customer-auth.cookie'));
         }
 
-        $request->setUserResolver(fn (): Customer => $customer);
+        $request->setUserResolver(fn ($guard = null): ?Customer => $customer);
 
         return $next($request);
     }
