@@ -60,7 +60,7 @@ type StorefrontCheckoutFlash = {
 declare global {
     interface Window {
         grecaptcha?: {
-            ready: (callback: () => void) => void;
+            ready: <T>(callback: () => T) => Promise<T>;
             execute: (
                 siteKey: string,
                 options: { action: string },
@@ -79,27 +79,47 @@ function loadRecaptcha(siteKey: string): Promise<boolean> {
         return Promise.resolve(false);
     }
 
+    // `onload` pada <script> api.js bisa membakar SEBELUM `window.grecaptcha`
+    // (khususnya `grecaptcha.execute`) benar-benar tersedia. Akibatnya token
+    // yang dihasilkan kosong dan checkout selalu gagal dengan pesan "Verifikasi
+    // keamanan gagal". `grecaptcha.ready()` menjamin API sudah siap dipakai.
+    const waitUntilReady = (): Promise<boolean> =>
+        new Promise((resolve) => {
+            if (typeof window.grecaptcha?.ready === 'function') {
+                window.grecaptcha.ready(() => {
+                    resolve(typeof window.grecaptcha?.execute === 'function');
+                });
+            } else {
+                resolve(typeof window.grecaptcha?.execute === 'function');
+            }
+        });
+
     if (!recaptchaLoadPromise) {
-        recaptchaLoadPromise = new Promise((resolve) => {
+        recaptchaLoadPromise = (async (): Promise<boolean> => {
             const existing = document.querySelector<HTMLScriptElement>(
                 'script[data-recaptcha-site-key]',
             );
 
-            if (existing) {
-                resolve(typeof window.grecaptcha?.execute === 'function');
-
-                return;
+            if (!existing) {
+                await new Promise<void>((resolve, reject) => {
+                    const script = document.createElement('script');
+                    script.src = RecaptchaScriptSrc(siteKey);
+                    script.async = true;
+                    script.defer = true;
+                    script.dataset.recaptchaSiteKey = siteKey;
+                    script.onload = () => resolve();
+                    script.onerror = () =>
+                        reject(new Error('reCAPTCHA script gagal dimuat.'));
+                    document.head.appendChild(script);
+                });
             }
 
-            const script = document.createElement('script');
-            script.src = RecaptchaScriptSrc(siteKey);
-            script.async = true;
-            script.defer = true;
-            script.dataset.recaptchaSiteKey = siteKey;
-            script.onload = () =>
-                resolve(typeof window.grecaptcha?.execute === 'function');
-            script.onerror = () => resolve(false);
-            document.head.appendChild(script);
+            return waitUntilReady();
+        })().catch(() => {
+            // Jangan cache kegagalan selamanya; biarkan percobaan berikutnya mengulang.
+            recaptchaLoadPromise = null;
+
+            return false;
         });
     }
 
@@ -108,15 +128,18 @@ function loadRecaptcha(siteKey: string): Promise<boolean> {
 
 async function executeRecaptcha(siteKey: string): Promise<string> {
     const loaded = await loadRecaptcha(siteKey);
+    const grecaptcha = window.grecaptcha;
 
-    if (!loaded || typeof window.grecaptcha?.execute !== 'function') {
+    if (!loaded || !grecaptcha || typeof grecaptcha.execute !== 'function') {
         return '';
     }
 
     try {
-        return await window.grecaptcha.execute(siteKey, {
-            action: 'checkout',
-        });
+        return await grecaptcha.ready(() =>
+            grecaptcha.execute(siteKey, {
+                action: 'checkout',
+            }),
+        );
     } catch {
         return '';
     }
