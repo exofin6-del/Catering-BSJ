@@ -163,7 +163,7 @@ export function CustomerFooter({ business }: CustomerFooterProps) {
 
             {/* Bottom bar */}
             <div className="border-t border-primary-foreground/15 bg-black/10 backdrop-blur-xs">
-                <div className="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+                <div className="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 pt-5 pb-[calc(env(safe-area-inset-bottom,_0px)_+_4rem)] sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8 lg:pb-5">
                     <p className="text-xs text-primary-foreground/80 font-normal">
                         © {year}{' '}
                         <span className="font-semibold text-primary-foreground">

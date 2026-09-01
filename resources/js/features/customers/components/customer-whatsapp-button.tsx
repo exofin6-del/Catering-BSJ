@@ -20,7 +20,7 @@ export function CustomerWhatsAppButton({
             href={href}
             target="_blank"
             rel="noreferrer"
-            className="fixed right-4 bottom-20 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500 text-white shadow-[0_8px_30px_rgba(16,185,129,0.4)] transition-all duration-300 hover:scale-110 hover:bg-emerald-600 focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:outline-none active:scale-95 sm:right-8 sm:bottom-8 sm:h-16 sm:w-16"
+            className="fixed right-4 bottom-[calc(env(safe-area-inset-bottom,_0px)_+_4.5rem)] z-50 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500 text-white shadow-[0_8px_30px_rgba(16,185,129,0.4)] transition-all duration-300 hover:scale-110 hover:bg-emerald-600 focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:outline-none active:scale-95 lg:right-8 lg:bottom-8 lg:h-16 lg:w-16"
             aria-label={`Hubungi ${business.name} melalui WhatsApp`}
         >
             {/* Soft background pulse wave */}

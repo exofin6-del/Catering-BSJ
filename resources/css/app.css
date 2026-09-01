@@ -538,3 +538,23 @@ html[data-customer-theme='citrus'] {
         0 0 10px var(--primary),
         0 0 5px var(--primary);
 }
+
+/* ─── Google reCAPTCHA v3 badge ─────────────────────────────────────── */
+/* Google menaruh badge di pojok kanan-bawah — bentrok dengan tombol
+   WhatsApp dan terlihat semrawut. Pindahkan ke pojok kiri-bawah yang
+   lebih lega (di halaman checkout tidak ada elemen tetap di sana).
+   `env(safe-area-inset-bottom)` menjaga jarak dari gesture bar iOS. */
+.grecaptcha-badge {
+    left: 1rem;
+    right: auto;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 1rem);
+    z-index: 40;
+}
+
+/* Di layar sempit pastikan badge tidak menutupi konten yang sedang dibaca. */
+@media (max-width: 640px) {
+    .grecaptcha-badge {
+        transform: scale(0.92);
+        transform-origin: bottom left;
+    }
+}
