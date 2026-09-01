@@ -60,7 +60,7 @@ type StorefrontCheckoutFlash = {
 declare global {
     interface Window {
         grecaptcha?: {
-            ready: <T>(callback: () => T) => Promise<T>;
+            ready: (callback: () => void) => Promise<void> | void;
             execute: (
                 siteKey: string,
                 options: { action: string },
@@ -135,11 +135,22 @@ async function executeRecaptcha(siteKey: string): Promise<string> {
     }
 
     try {
-        return await grecaptcha.ready(() =>
-            grecaptcha.execute(siteKey, {
-                action: 'checkout',
-            }),
-        );
+        // Catatan penting: `grecaptcha.ready()` TIDAK me-resolve promise
+        // dengan nilai kembalian callback-nya (selalu `undefined`). Jika kita
+        // menulis `return await grecaptcha.ready(() => grecaptcha.execute(...))`,
+        // token akan berubah menjadi `undefined`. Karena Inertia v3 mengirim body
+        // sebagai JSON (`JSON.stringify`), key `recaptcha_token` dengan nilai
+        // `undefined` DIHAPUS dari body → server selalu bilang token wajib diisi.
+        // Karena itu token diambil eksplisit dari promise `execute()` di dalam
+        // callback `ready()`.
+        return await new Promise<string>((resolve) => {
+            grecaptcha.ready(() => {
+                grecaptcha
+                    .execute(siteKey, { action: 'checkout' })
+                    .then((token: string) => resolve(token))
+                    .catch(() => resolve(''));
+            });
+        });
     } catch {
         return '';
     }

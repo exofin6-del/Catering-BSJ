@@ -50,7 +50,15 @@ class StorefrontCheckoutRequest extends OrderRequest
      */
     protected function failedValidation(Validator $validator): void
     {
-        if ($this->expectsJson() || $this->wantsJson() || $this->isJson()) {
+        // Inertia v3 mengirim body sebagai JSON (`Content-Type: application/json`),
+        // sehingga `isJson()` bernilai true untuk permintaan Inertia. Bila kita
+        // mengembalikan JSON polos di sini, Inertia menampilkan dialog
+        // "All Inertia requests must receive a valid Inertia response" alih-alih
+        // error validasi normal. Untuk permintaan Inertia, serahkan ke parent agar
+        // terjadi redirect balik dengan errors (flow standar Inertia).
+        $isInertiaRequest = $this->header('X-Inertia') === 'true';
+
+        if (! $isInertiaRequest && ($this->expectsJson() || $this->wantsJson() || $this->isJson())) {
             throw new HttpResponseException(
                 response()->json([
                     'message' => __('Verifikasi reCAPTCHA atau data yang diberikan tidak valid.'),
